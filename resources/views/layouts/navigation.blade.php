@@ -1,31 +1,21 @@
-<nav class="bg-gray-200 p-4">
-    <div class="container mx-auto flex justify-between items-center">
-        <div class="leftArea flex justify-start items-center gap-5">
-            <!-- Logo -->
-            <a href="{{ route('home') }}" class="text-white text-lg font-bold me-10">
-                <img src="{{ asset('images/logo.png') }}" class="w-10 h-10" alt="">
-            </a>
-
-            <a href="{{ route('test1') }}" class="text-gray-800 mr-4 font-medium hover:opacity-50">測試頁1</a>
-            <a href="{{ route('test2') }}" class="text-gray-800 mr-4 font-medium hover:opacity-50">測試頁2</a>
+<nav class="text-brandGray-normal font-lexend font-normal flex w-full h-[94px] px-[85px] py-5 justify-between items-center border-b border-b-normalLight bg-white">
+    <div class="leftArea flex justify-start items-center gap-10">
+        <!-- Logo -->
+        <a href="{{ route('home') }}">
+            <img src="{{ asset('images/logo.png') }}" class="h-10" alt="">
+        </a>
+        <a href="{{ route('test1') }}">商品＋</a>
+        <a href="{{ route('test2') }}">關於我們</a>
+    </div>
+    <div class="rightArea flex justify-end items-center gap-10">
+        <div class="relative flex items-center">
+            <input type="text" class="flex w-[254px] h-[30px] px-4 py-3 items-center gap-2 rounded-[20px] border border-[#484848] bg-white">
+            <span class="absolute left-5 w-[16px] h-[16px] icon-[basil--search-outline]"></span>
         </div>
-
-        <div class="flex items-center">
-            <!-- 我的帳戶 -->
-            <a href="{{ route('dashboard') }}" class="text-gray-800 mr-4 font-medium hover:opacity-50">
-                我的帳戶
-            </a>
-
-            @auth
-            <span class="text-gray-800 mr-4 font-medium">Hello, {{ Auth::user()->name }}</span>
-            <form method="POST" action="{{ route('logout') }}" class="inline">
-                @csrf
-                <button type="submit" class="text-red-400 font-medium hover:opacity-50">登出</button>
-            </form>
-            @else
-            <a href="{{ route('login') }}" class="text-gray-800 mr-4 font-medium hover:opacity-50">登入</a>
-            <a href="{{ route('register') }}" class="text-gray-800 font-medium hover:opacity-50">註冊</a>
-            @endauth
+        <div class="icons flex gap-10">
+            <a href=""><span class="w-[25px] h-[25px] icon-[mynaui--heart]"></span></a>
+            <a href=""><span class="w-[25px] h-[25px] icon-[iconoir--cart]"></span></a>
+            <a href=""><span class="w-[25px] h-[25px] icon-[qlementine-icons--user-16]"></span></a>  
         </div>
     </div>
 </nav>

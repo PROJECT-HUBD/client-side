@@ -4,7 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', config('app.name'))</title>
+
+    <!-- 設定動態 SEO 標題與描述 -->
+    <title>@yield('title', '預設網站標題')</title>
+    <meta name="description" content="@yield('meta_description', '這是預設網站描述')">
+    <meta name="keywords" content="@yield('meta_keywords', '預設關鍵字1, 預設關鍵字2')">
 
     <!-- 設定 favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
@@ -17,7 +21,7 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
-    <!-- vite + Tailwind -->
+    <!-- Vite + Tailwind -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 

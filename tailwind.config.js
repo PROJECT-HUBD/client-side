@@ -1,5 +1,6 @@
 import defaultTheme from "tailwindcss/defaultTheme";
 import forms from "@tailwindcss/forms";
+const { addDynamicIconSelectors } = require("@iconify/tailwind");
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -11,8 +12,11 @@ export default {
 
     theme: {
         extend: {
-            fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+            // 斷點
+            screens: {
+                lg: "1440px",
+                md: "840px",
+                sm: "390px",
             },
             colors: {
                 // 品牌色 紅／灰／藍
@@ -55,15 +59,12 @@ export default {
                     darkActive: "#11131E",
                     darker: "#0D0F17",
                 },
-                // 標準字 共2種
-                // class="font-lexend font-normal"
-                // class="font-lexend font-extrabold"
-                fontFamily: {
-                    lexend: ['Lexend', 'sans-serif'],
-                  },
+            },
+            fontFamily: {
+                lexend: ["Lexend", "sans-serif"],
             },
         },
     },
 
-    plugins: [forms],
+    plugins: [forms, addDynamicIconSelectors()],
 };
