@@ -38,7 +38,6 @@
     <!-- footer -->
     @include('layouts.footer')
     
-
     @stack('scripts')
 </body>
 

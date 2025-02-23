@@ -14,12 +14,21 @@ export default {
         extend: {
             // 斷點
             screens: {
-                lg: "1440px",
-                md: "840px",
-                sm: "390px",
+                sm: "450px", // 手機
+                md: "900px", // 平板
+                lg: "1200px", // 電腦
+                // xl: "1440px", // 大螢幕電腦
             },
+            // 標準字
+            fontFamily: {
+                // 使用範例一：class="font-lexend font-normal"
+                // 使用範例二：class="font-lexend font-semibold"
+                // 新增regular
+                lexend: ["Lexend", "sans-serif"],
+            },
+            // 品牌色
             colors: {
-                // 品牌色 紅／灰／藍
+                // 使用範例：class="text-brandRed-light"
                 brandRed: {
                     light: "#FCEBEC",
                     lightHover: "#FAE1E3",
@@ -59,9 +68,6 @@ export default {
                     darkActive: "#11131E",
                     darker: "#0D0F17",
                 },
-            },
-            fontFamily: {
-                lexend: ["Lexend", "sans-serif"],
             },
         },
     },

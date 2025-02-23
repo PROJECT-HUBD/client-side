@@ -3,26 +3,20 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+// 首頁
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
+// 測試頁
 Route::get('/test1', function () {
     return view('test1');
 })->name('test1');
 
-Route::get('/test2', function () {
-    return view('test2');
-})->name('test2');
-
+// 登入才看得到頁
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
 
 require __DIR__.'/auth.php';

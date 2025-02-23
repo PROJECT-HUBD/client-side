@@ -5,20 +5,20 @@
 @section('meta_keywords', '測試')
 
 @section('content')
-<div class="container p-8">
-    <h2 class="text-2xl text-indigo-500 mb-8">測試頁1</h2>
+<!-- HTML 內容 -->
+ <button type="button" id="btn" class="text-brandRed-light bg-brandRed-normal font-lexend font-semibold p-3 rounded-md hover:opacity-80 active:opacity-50 mb-10">測試點擊</button>
+ <p id="text" class="text-xl mb-10"></p>
 
-    <div class="mb-20">
-        <p class="mb-5">按鈕元件測試</p>
-        <x-button type="sky-600">按鈕1</x-button>
-        <x-button type="sky-400">按鈕2</x-button>
-        <x-button type="sky-400">按鈕3</x-button>
-        <x-button type="sky-300">按鈕4</x-button>
-    </div>
-
-</div>
+ <!-- icon 使用 https://icon-sets.iconify.design/-->
+<div><span class="w-12 h-12 icon-[jam--alert]"></span></div>
+<div><span class="w-12 h-12 bg-sky-400 icon-[jam--alert]"></span></div>
 @endsection
 
 @push('scripts')
 <!-- jQuery 內容 -->
+<script>
+    $('#btn').on('click', ()=>{
+        $('#text').append('123, ')
+    })
+</script>
 @endpush

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', '登入才能看到')
+@section('meta_description', '登入才能看到')
+@section('meta_keywords', '登入才能看到')
 
 @section('content')
 <div class="container p-8">
