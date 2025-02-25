@@ -13,6 +13,16 @@ Route::get('/test1', function () {
     return view('test1');
 })->name('test1');
 
+// 商品分類_飾品
+Route::get('/categories_accessories', function () {
+    return view('categories_accessories');
+})->name('categories_accessories');
+
+// 商品分類_服飾
+Route::get('/categories_clothes', function () {
+    return view('categories_clothes');
+})->name('categories_clothes');
+
 // 登入才看得到頁
 Route::get('/dashboard', function () {
     return view('dashboard');

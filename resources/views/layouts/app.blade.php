@@ -20,24 +20,27 @@
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     <!-- Vite + Tailwind -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased bg-brandGray-light max-w-[1440px] min-w-[390px]">
-
-    <!-- nav -->
-    @include('layouts.navigation')
+<body class="font-lexend antialiased bg-white w-screen">
+    <header class="w-full">
+        <!-- marquerr -->
+        @include('layouts.header_marquee')
+        <!-- nav -->
+        @include('layouts.navigation')
+    </header>
 
     <!-- main -->
-    <main class="container mx-auto mt-6 px-4">
+    <main class="max-w-[1440px] min-w-[390px] mx-auto mt-6">
         @yield('content')
     </main>
 
     <!-- footer -->
     @include('layouts.footer')
-    
+
     @stack('scripts')
 </body>
 

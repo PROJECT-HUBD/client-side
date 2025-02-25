@@ -1,4 +1,4 @@
-<nav class="text-brandGray-normal font-lexend font-normal min-w-[390px]">
+<nav class="text-brandGray-normal font-lexend font-normal">
     <div class="flex w-full h-[94px] lg:px-[85px] md:px-[60px] px-[20px] py-5 justify-between items-center border-b border-b-normalLight md:border-0 lg:border-b lg:border-b-normalLight">
         <!-- 左側區塊 -->
         <div class="leftArea flex justify-start items-center gap-10">
@@ -7,8 +7,8 @@
                 <img src="{{ asset('images/logo-nav1.png') }}" class="h-8 me-[12px]" alt="">
                 <img src="{{ asset('images/logo-nav2.png') }}" class="h-5" alt="">
             </a>
-            <div class="prodsBtn hidden lg:block cursor-pointer">商品＋</div>
-            <a href="" class="hidden lg:block">關於我們</a>
+            <div class="text-lg prodsBtn hidden lg:block cursor-pointer">商品<span>＋</span></div>
+            <a href="" class="text-lg hidden lg:block">關於我們</a>
         </div>
         <!-- 右側區塊 -->
         <div class="rightArea flex justify-end items-center gap-10">
@@ -46,21 +46,21 @@
 
     <!-- 平板版 變版 -->
     <div class="hidden md:block lg:hidden h-[50px] px-[60px] border-b border-b-normalLight">
-        <span class="prodsBtn me-10 cursor-pointer">商品＋</span>
+        <span class="prodsBtn me-10 cursor-pointer">商品<span>＋</span></span>
         <a href="">關於我們</a>
     </div>
 
     <!-- 電腦＋平板版 下拉式選單 -->
-    <div id="dropDownMenuPc" class="absolute hidden h-[62px] border-b border-b-normalLight">
+    <div id="dropDownMenuPc" class="z-30 bg-white absolute hidden w-full h-[62px] border-b border-b-normalLight">
         <div class="h-full lg:px-[85px] md:px-[60px] flex justify-start items-center gap-[30px] py-1">
-            <a href="">飾品 Accessories</a>
-            <a href="">服飾 Clothes</a>
+            <a href="{{ route('categories_accessories') }}">飾品 Accessories</a>
+            <a href="{{ route('categories_clothes') }}">服飾 Clothes</a>
             <a href="">銀黏土課程 Lessons</a>
         </div>
     </div>
 
     <!-- 手機版 下拉式選單 -->
-    <div id="dropDownMenuPhone" class="hidden h-[96px] px-[20px] border-b border-b-normalLight">
+    <div id="dropDownMenuPhone" class="absolute w-full hidden bg-white h-[96px] px-[20px] border-b border-b-normalLight">
         <div class="w-full h-full flex flex-col justify-center items-center py-[12px]">
             <div class="md:hidden w-[350px] h-[30px]  mb-[12px]">
                 <div class="relative flex justify-center items-center">
@@ -69,20 +69,28 @@
                 </div>
             </div>
             <div class="w-[350px] h-[30px] flex justify-center gap-[30px]">
-                <a href="">商品＋</a>
+                <a href="">商品<span>＋</span></a>
                 <a href="">關於我們</a>
             </div>
         </div>
     </div>
 
     <!-- 手機版 下拉選單 子選單-->
-    <div id="dropDownMenuPhoneChild" class="hidden h-[38px] border-b border-b-normalLight">
+    <div id="dropDownMenuPhoneChild" class="absolute bg-white top-[235px] hidden w-full h-[38px] border-b border-b-normalLight">
         <div class="h-full flex justify-center items-center gap-[30px] py-1">
-            <a href="">飾品</a>
-            <a href="">服飾</a>
+            <a href="{{ route('categories_accessories') }}">飾品</a>
+            <a href="{{ route('categories_clothes') }}">服飾</a>
             <a href="">銀黏土課程</a>
         </div>
     </div>
+
+    <!-- 麵包屑 -->
+    <!-- <x-breadcrumb :items="[
+        ['name' => 'Home', 'url' => route('home')],
+        ['name' => '飾品 Accessories',],
+        ['name' => '異世界2000'],
+        ['name' => 'Navajo 綠松石十字星戒']
+    ]" /> -->
 </nav>
 
 
