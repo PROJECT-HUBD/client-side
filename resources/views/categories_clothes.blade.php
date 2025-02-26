@@ -6,10 +6,12 @@
 
 @section('content')
 <!-- HTML 內容 -->
-<x-breadcrumb :items="[
-        ['name' => '首頁', 'url' => route('home')],
-        ['name' => '服飾'],
-    ]" />
+<section class="mt-[170px]">
+    <x-breadcrumb :items="[
+             ['name' => '首頁', 'url' => route('home')],
+             ['name' => '服飾'],
+         ]" />
+</section>
 @endsection
 
 @push('scripts')
