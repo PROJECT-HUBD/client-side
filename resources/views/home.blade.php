@@ -11,6 +11,8 @@
     <p class="mt-4">✦這是 Laravel + Vite + Tailwind CSS 的專案✦</p>
     <p class="mt-4 mb-20">大專加油，我們可以的ლ(╹◡╹ლ)</p>
 </div>
+
+
 @endsection
 
 @push('scripts')
