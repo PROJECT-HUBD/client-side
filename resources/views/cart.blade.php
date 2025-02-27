@@ -154,21 +154,22 @@
     class="flex flex-wrap px-[20px] gap-10 justify-between items-start mt-7 max-w-full text-2xl tracking-normal leading-none whitespace-nowrap w-[1201px]"
   >
   <!-- 繼續購物 -->
-    <button
-      class="flex overflow-hidden gap-4 items-center px-8 py-4 font-semibold bg-gray-500 rounded-md text-neutral-100 max-md:px-5"
+    <button  onclick="window.open('/', '_blank')"
+    
+      class="keepShoping flex overflow-hidden gap-4 items-center px-8 py-4 font-semibold bg-gray-500 rounded-md text-neutral-100 max-md:px-5"
     >
       <img
         src="https://cdn.builder.io/api/v1/image/assets/TEMP/c952c62e6cb99f0e5fac8a2b72bd495f5e660b6e2fc4c7c02951f27ad1e2d261?placeholderIfAbsent=true&apiKey=29bdb496da09449eb579968368248119"
         class="object-contain shrink-0 self-stretch my-auto aspect-[0.58] w-[15px]"
         alt="Back arrow"
       />
-      <span class="self-stretch my-auto">繼續購物</span>
+      <span class=" self-stretch my-auto">繼續購物</span>
     </button>
     <!-- 去買單 -->
-    <button
+    <button onclick="window.open('client-side/public/cart', '_blank')"
       class="flex overflow-hidden gap-4 items-center py-4 pr-5 pl-8 font-bold text-white bg-red-500 rounded-md min-h-[62px] w-[150px] max-md:pl-5"
     >
-      <span class="self-stretch my-auto">去買單</span>
+      <span class="goToCart self-stretch my-auto">去買單</span>
       <img
         src="https://cdn.builder.io/api/v1/image/assets/TEMP/01358f71e96d7239da8d986d8c3bbfd60d8b98845b483c92c503485ebb51f59f?placeholderIfAbsent=true&apiKey=29bdb496da09449eb579968368248119"
         class="object-contain shrink-0 self-stretch my-auto w-3.5 aspect-[0.56]"
