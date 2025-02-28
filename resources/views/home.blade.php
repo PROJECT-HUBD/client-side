@@ -12,15 +12,15 @@
         <div class="relative w-full h-[600px] overflow-hidden flex justify-center items-start gap-5 mb-10">
             <!-- 左側圖片 -->
             <div class="w-[720px] h-[600px] flex-shrink-0">
-                <a href=""><img src="{{ asset('images/home_test1.JPG') }}" alt="" class="w-full h-full object-cover"></a>
+                <a href=""><img src="{{ asset('images/home_test1.JPG') }}" alt="banner" class="w-full h-full object-cover" loading="lazy"></a>
             </div>
             <!-- 中間圖片 -->
             <div class="w-[720px] h-[600px] flex-shrink-0 z-10">
-                <a href=""><img src="{{ asset('images/home_test2.JPG') }}" alt="" class="w-full h-full object-cover"></a>
+                <a href=""><img src="{{ asset('images/home_test2.JPG') }}" alt="banner" class="w-full h-full object-cover" loading="lazy"></a>
             </div>
             <!-- 右側圖片 -->
             <div class="w-[720px] h-[600px] flex-shrink-0">
-                <a href=""><img src="{{ asset('images/home_test3.JPG') }}" alt="" class="w-full h-full object-cover"></a>
+                <a href=""><img src="{{ asset('images/home_test3.JPG') }}" alt="banner" class="w-full h-full object-cover" loading="lazy"></a>
             </div>
         </div>
 
@@ -58,7 +58,7 @@
                     <div class="w-[90px] h-[36px] font-semibold bg-brandRed-normal flex justify-center items-center text-brandGray-lightLight">10% OFF</div>
                 </div>
                 <div class="w-full h-[580px]">
-                    <img src="{{ asset('images/home_test5.JPG')}}" alt="" class="w-full h-full object-contain">
+                    <img src="{{ asset('images/home_test5.JPG')}}" alt="hit item" class="w-full h-full object-contain" loading="lazy">
                 </div>
                 <div class="w-full h-[266px]">
                     <div class="pb-[28px]">

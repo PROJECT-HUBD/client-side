@@ -27,7 +27,7 @@
 
 <body class="font-lexend antialiased bg-white w-screen">
     <header class="w-full">
-        <!-- marquerr -->
+        <!-- marquee -->
         @include('layouts.header_marquee')
         <!-- nav -->
         @include('layouts.navigation')
