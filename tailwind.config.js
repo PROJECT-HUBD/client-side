@@ -41,7 +41,7 @@ export default {
                     darkActive: "#63181F",
                     darker: "#4D1318",
                 },
-                brandGray: {
+                brandGrey: {
                     lightLight: "#FBFBFB",
                     light: "#F6F6F6",
                     lightHover: "#E4E4E4",

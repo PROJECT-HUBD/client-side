@@ -1,3 +1,24 @@
-<div>
-    <!-- The only way to do great work is to love what you do. - Steve Jobs -->
+@extends('layouts.app')
+
+@section('title', 'Home')
+
+@section('content')
+<style>
+    * {
+        /* border: 1px solid red; */
+    }
+</style>
+
+<div class="flex flex-col items-center justify-center w-full  min-h-full gap-5">
+    <img class="h-[260px]" src="{{ asset('images/views/success.png')   }}" alt="">
+    <p class="text-[36px] text-brandGrey-normal font-lexend font-semibold">交易成功~</p>
+    <p class="text-[24px] text-brandGrey-normal font-normal">恭喜你買到本日份的幸福時光</p>
+    <a href="{{ route('home') }}"
+        class="flex overflow-hidden items-center py-4  font-bold text-white bg-red-500 rounded-md min-h-[56px] w-[176px] ">
+        <span class="goHome self-stretch my-auto mx-auto ">回到首頁</span>
+    </a>
 </div>
+@endsection
+@push('scripts')
+<!-- jQuery 內容 -->
+@endpush

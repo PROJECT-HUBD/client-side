@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\View\Cart;
-use Illuminate\View\Check-out;
+use Illuminate\View\CheckOut;
 
 class ProfileController extends Controller
 {

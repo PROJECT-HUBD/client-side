@@ -24,12 +24,20 @@ Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
 // 購物清單頁
-Route::get('/check-out', function () {
-    return view('check-out');
-})->name('cart');
+Route::get('/checkOut', function () {
+    return view('checkOut');
+})->name('checkOut');
+// 成功頁
+Route::get('/successful_transaction', function () {
+    return view('successful_transaction');
+})->name('successful_transaction');
+// 失敗頁
+Route::get('/failed_transaction', function () {
+    return view('failed_transaction');
+})->name('failed_transaction');
+// 維護頁
+Route::get('/system-maintenance', function () {
+    return view('system-maintenance');
+})->name('system-maintenance');
 
-// 任何url都會導向app.blade.php
-Route::get('{any}', function () {
-    return view('app'); // 假設 Vue/React 放在 resources/views/app.blade.php
-})->where('any', '.*');
-require __DIR__.'/auth.php';
+
