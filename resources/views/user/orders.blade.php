@@ -9,28 +9,33 @@
     <div class="w-full p-6 bg-white rounded-lg shadow-sm">
         <h1 class="text-2xl font-bold text-brandGray-normal mb-6">我的訂單</h1>
         
-        <!-- 訂單篩選 -->
-        <div class="flex flex-wrap items-center justify-between mb-6">
-            <div class="flex items-center space-x-4 mb-4 md:mb-0">
-                <span class="text-brandGray-normal">狀態：</span>
-                <div class="flex flex-wrap gap-2">
-                    <button class="px-4 py-2 bg-brandBlue-normal text-white rounded-md">全部</button>
-                    <button class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">待付款</button>
-                    <button class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">處理中</button>
-                    <button class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">已出貨</button>
-                    <button class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">已完成</button>
-                    <button class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">已取消</button>
+        <!-- 訂單篩選與搜尋 -->
+        <div class="mb-6 space-y-4">
+            <!-- 狀態篩選 -->
+            <div class="w-full">
+                <div class="flex flex-wrap items-center gap-2 mb-2">
+                    <span class="text-brandGray-normal font-medium mr-2">狀態：</span>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="px-4 py-2 bg-brandBlue-normal text-white rounded-md">全部</button>
+                        <button class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">待付款</button>
+                        <button class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">處理中</button>
+                        <button class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">已出貨</button>
+                        <button class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">已完成</button>
+                        <button class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">已取消</button>
+                    </div>
                 </div>
             </div>
-            <div class="relative">
-                <input type="text" placeholder="搜尋訂單編號" class="pl-10 pr-4 py-2 border border-brandGray-lightActive rounded-md focus:outline-none focus:ring-1 focus:ring-brandBlue-normal">
+            
+            <!-- 搜尋欄位 -->
+            <div class="relative w-full sm:max-w-md">
+                <input type="text" placeholder="搜尋訂單編號" class="w-full pl-10 pr-4 py-2 border border-brandGray-lightActive rounded-md focus:outline-none focus:ring-1 focus:ring-brandBlue-normal">
                 <i class="icon-[mdi--magnify] w-5 h-5 text-brandGray-normalLight absolute left-3 top-2.5"></i>
             </div>
         </div>
         
         <!-- 訂單列表 -->
         <div class="space-y-6">
-            <!-- 訂單 1 -->
+            <!-- 訂單 1 - 已完成 -->
             <div class="border border-brandGray-light rounded-lg overflow-hidden">
                 <div class="bg-brandGray-lightLight p-4 border-b border-brandGray-light">
                     <div class="flex flex-wrap justify-between items-center">
@@ -39,7 +44,7 @@
                             <p class="text-sm text-brandGray-normalLight">訂購日期: 2023-11-05 14:30</p>
                         </div>
                         <div class="text-right mt-2 md:mt-0">
-                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-brandRed-light text-brandRed-normal">
+                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-brandGray-light text-brandGray-normal">
                                 已完成
                             </span>
                             <p class="text-sm font-medium text-brandGray-normal mt-1">NT$ 2,580</p>
@@ -75,20 +80,20 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mt-4 flex justify-between items-center border-t border-brandGray-light pt-4">
-                        <div>
+                    <div class="mt-4 flex flex-wrap justify-between items-center border-t border-brandGray-light pt-4">
+                        <div class="mb-3 sm:mb-0">
                             <p class="text-sm text-brandGray-normalLight">付款方式: 信用卡</p>
                             <p class="text-sm text-brandGray-normalLight">配送方式: 宅配</p>
                         </div>
-                        <div class="flex space-x-2">
-                            <button class="px-4 py-2 border border-brandGray-lightActive text-brandGray-normal rounded-md hover:bg-brandGray-light">查看詳情</button>
-                            <button class="px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover">再次購買</button>
+                        <div class="flex w-full sm:w-auto space-x-2">
+                            <button class="flex-1 sm:flex-none px-4 py-2 border border-brandBlue-lightActive text-brandBlue-normal rounded-md hover:bg-brandBlue-light">查看詳情</button>
+                            <button class="flex-1 sm:flex-none px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover">再次購買</button>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- 訂單 2 -->
+            <!-- 訂單 2 - 處理中 -->
             <div class="border border-brandGray-light rounded-lg overflow-hidden">
                 <div class="bg-brandGray-lightLight p-4 border-b border-brandGray-light">
                     <div class="flex flex-wrap justify-between items-center">
@@ -97,7 +102,7 @@
                             <p class="text-sm text-brandGray-normalLight">訂購日期: 2023-10-28 09:15</p>
                         </div>
                         <div class="text-right mt-2 md:mt-0">
-                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-brandRed-light text-brandRed-normal">
+                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-brandBlue-light text-brandBlue-normal">
                                 處理中
                             </span>
                             <p class="text-sm font-medium text-brandGray-normal mt-1">NT$ 1,750</p>
@@ -120,14 +125,149 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mt-4 flex justify-between items-center border-t border-brandGray-light pt-4">
-                        <div>
+                    <div class="mt-4 flex flex-wrap justify-between items-center border-t border-brandGray-light pt-4">
+                        <div class="mb-3 sm:mb-0">
                             <p class="text-sm text-brandGray-normalLight">付款方式: LINE Pay</p>
                             <p class="text-sm text-brandGray-normalLight">配送方式: 超商取貨</p>
                         </div>
-                        <div class="flex space-x-2">
-                            <button class="px-4 py-2 border border-brandGray-lightActive text-brandGray-normal rounded-md hover:bg-brandGray-light">查看詳情</button>
-                            <button class="px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover">追蹤訂單</button>
+                        <div class="flex w-full sm:w-auto space-x-2">
+                            <button class="flex-1 sm:flex-none px-4 py-2 border border-brandBlue-lightActive text-brandBlue-normal rounded-md hover:bg-brandBlue-light">查看詳情</button>
+                            <button class="flex-1 sm:flex-none px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover">追蹤訂單</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 訂單 3 - 待付款 -->
+            <div class="border border-brandGray-light rounded-lg overflow-hidden">
+                <div class="bg-brandGray-lightLight p-4 border-b border-brandGray-light">
+                    <div class="flex flex-wrap justify-between items-center">
+                        <div>
+                            <h3 class="text-lg font-semibold text-brandGray-normal">訂單編號: ORD-20231115-003</h3>
+                            <p class="text-sm text-brandGray-normalLight">訂購日期: 2023-11-15 16:45</p>
+                        </div>
+                        <div class="text-right mt-2 md:mt-0">
+                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-brandRed-light text-brandRed-normal">
+                                待付款
+                            </span>
+                            <p class="text-sm font-medium text-brandGray-normal mt-1">NT$ 3,200</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 bg-white">
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap md:flex-nowrap items-center gap-4">
+                            <div class="w-20 h-20 bg-brandGray-light rounded-md flex-shrink-0">
+                                <img src="https://via.placeholder.com/80" alt="商品圖片" class="w-full h-full object-cover rounded-md">
+                            </div>
+                            <div class="flex-grow">
+                                <h4 class="text-md font-medium text-brandGray-normal">高級皮革外套</h4>
+                                <p class="text-sm text-brandGray-normalLight">尺寸: XL / 顏色: 棕色</p>
+                                <p class="text-sm text-brandGray-normalLight">數量: 1</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-md font-medium text-brandGray-normal">NT$ 3,200</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex flex-wrap justify-between items-center border-t border-brandGray-light pt-4">
+                        <div class="mb-3 sm:mb-0">
+                            <p class="text-sm text-brandGray-normalLight">付款方式: 待選擇</p>
+                            <p class="text-sm text-brandGray-normalLight">配送方式: 宅配</p>
+                        </div>
+                        <div class="flex w-full sm:w-auto space-x-2">
+                            <button class="flex-1 sm:flex-none px-4 py-2 border border-brandBlue-lightActive text-brandBlue-normal rounded-md hover:bg-brandBlue-light">查看詳情</button>
+                            <button class="flex-1 sm:flex-none px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover">前往付款</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 訂單 4 - 已出貨 -->
+            <div class="border border-brandGray-light rounded-lg overflow-hidden">
+                <div class="bg-brandGray-lightLight p-4 border-b border-brandGray-light">
+                    <div class="flex flex-wrap justify-between items-center">
+                        <div>
+                            <h3 class="text-lg font-semibold text-brandGray-normal">訂單編號: ORD-20231110-004</h3>
+                            <p class="text-sm text-brandGray-normalLight">訂購日期: 2023-11-10 10:20</p>
+                        </div>
+                        <div class="text-right mt-2 md:mt-0">
+                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-brandBlue-light text-brandBlue-normal">
+                                已出貨
+                            </span>
+                            <p class="text-sm font-medium text-brandGray-normal mt-1">NT$ 980</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 bg-white">
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap md:flex-nowrap items-center gap-4">
+                            <div class="w-20 h-20 bg-brandGray-light rounded-md flex-shrink-0">
+                                <img src="https://via.placeholder.com/80" alt="商品圖片" class="w-full h-full object-cover rounded-md">
+                            </div>
+                            <div class="flex-grow">
+                                <h4 class="text-md font-medium text-brandGray-normal">休閒棉質T恤</h4>
+                                <p class="text-sm text-brandGray-normalLight">尺寸: S / 顏色: 白色</p>
+                                <p class="text-sm text-brandGray-normalLight">數量: 2</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-md font-medium text-brandGray-normal">NT$ 980</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex flex-wrap justify-between items-center border-t border-brandGray-light pt-4">
+                        <div class="mb-3 sm:mb-0">
+                            <p class="text-sm text-brandGray-normalLight">付款方式: 超商付款</p>
+                            <p class="text-sm text-brandGray-normalLight">配送方式: 超商取貨</p>
+                        </div>
+                        <div class="flex w-full sm:w-auto space-x-2">
+                            <button class="flex-1 sm:flex-none px-4 py-2 border border-brandBlue-lightActive text-brandBlue-normal rounded-md hover:bg-brandBlue-light">查看詳情</button>
+                            <button class="flex-1 sm:flex-none px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover">追蹤物流</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 訂單 5 - 已取消 -->
+            <div class="border border-brandGray-light rounded-lg overflow-hidden">
+                <div class="bg-brandGray-lightLight p-4 border-b border-brandGray-light">
+                    <div class="flex flex-wrap justify-between items-center">
+                        <div>
+                            <h3 class="text-lg font-semibold text-brandGray-normal">訂單編號: ORD-20231001-005</h3>
+                            <p class="text-sm text-brandGray-normalLight">訂購日期: 2023-10-01 18:30</p>
+                        </div>
+                        <div class="text-right mt-2 md:mt-0">
+                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-brandGray-light text-brandGray-normal">
+                                已取消
+                            </span>
+                            <p class="text-sm font-medium text-brandGray-normal mt-1">NT$ 1,450</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 bg-white">
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap md:flex-nowrap items-center gap-4">
+                            <div class="w-20 h-20 bg-brandGray-light rounded-md flex-shrink-0">
+                                <img src="https://via.placeholder.com/80" alt="商品圖片" class="w-full h-full object-cover rounded-md">
+                            </div>
+                            <div class="flex-grow">
+                                <h4 class="text-md font-medium text-brandGray-normal">運動休閒鞋</h4>
+                                <p class="text-sm text-brandGray-normalLight">尺寸: 42 / 顏色: 黑白</p>
+                                <p class="text-sm text-brandGray-normalLight">數量: 1</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-md font-medium text-brandGray-normal">NT$ 1,450</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex flex-wrap justify-between items-center border-t border-brandGray-light pt-4">
+                        <div class="mb-3 sm:mb-0">
+                            <p class="text-sm text-brandGray-normalLight">取消原因: 尺寸選擇錯誤</p>
+                            <p class="text-sm text-brandGray-normalLight">取消日期: 2023-10-02</p>
+                        </div>
+                        <div class="flex w-full sm:w-auto space-x-2">
+                            <button class="flex-1 sm:flex-none px-4 py-2 border border-brandBlue-lightActive text-brandBlue-normal rounded-md hover:bg-brandBlue-light">查看詳情</button>
+                            <button class="flex-1 sm:flex-none px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover">重新購買</button>
                         </div>
                     </div>
                 </div>
