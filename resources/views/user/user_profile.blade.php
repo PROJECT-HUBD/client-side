@@ -1,8 +1,9 @@
 @extends('layouts.with_sidebar')
 
 @section('title', '個人檔案')
-@section('meta_description', '個人檔案')
-@section('meta_keywords', '個人檔案')
+@section('meta_description', '管理您的個人資料、密碼和通知設定')
+@section('meta_keywords', '個人檔案, 會員中心, 帳號設定')
+@section('breadcrumb_title', '個人檔案')
 
 @section('main_content')
     <div class="w-full space-y-5">
