@@ -6,155 +6,115 @@
 @section('breadcrumb_title', '個人檔案')
 
 @section('main_content')
-    <div class="w-full space-y-5">
-        <!-- 電子郵件設定區塊 -->
-        <div class="p-4 bg-white rounded-md shadow-sm">
-            <h2 class="mb-3 text-lg font-medium text-[#252b42]">電子郵件</h2>
+    <div class="w-full p-6 bg-white rounded-lg shadow-sm">
+        <h1 class="text-2xl font-bold text-brandGray-normal mb-6">個人檔案</h1>
+        
+        <!-- 個人資料表單 -->
+        <form>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-brandGray-normal mb-1">姓名</label>
+                    <input type="text" id="name" name="name" value="王小明" class="w-full px-4 py-2 border border-brandGray-lightActive rounded-md focus:outline-none focus:ring-1 focus:ring-brandBlue-normal">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-brandGray-normal mb-1">電子郵件</label>
+                    <input type="email" id="email" name="email" value="example@gmail.com" class="w-full px-4 py-2 border border-brandGray-lightActive rounded-md focus:outline-none focus:ring-1 focus:ring-brandBlue-normal" readonly>
+                    <p class="mt-1 text-xs text-brandGray-normalLight">電子郵件為您的登入帳號，無法修改</p>
+                </div>
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-brandGray-normal mb-1">手機號碼</label>
+                    <input type="tel" id="phone" name="phone" value="0912-345-678" class="w-full px-4 py-2 border border-brandGray-lightActive rounded-md focus:outline-none focus:ring-1 focus:ring-brandBlue-normal">
+                </div>
+                <div>
+                    <label for="birthday" class="block text-sm font-medium text-brandGray-normal mb-1">生日</label>
+                    <input type="date" id="birthday" name="birthday" value="1990-01-01" class="w-full px-4 py-2 border border-brandGray-lightActive rounded-md focus:outline-none focus:ring-1 focus:ring-brandBlue-normal">
+                </div>
+                <div>
+                    <label for="gender" class="block text-sm font-medium text-brandGray-normal mb-1">性別</label>
+                    <select id="gender" name="gender" class="w-full px-4 py-2 border border-brandGray-lightActive rounded-md focus:outline-none focus:ring-1 focus:ring-brandBlue-normal">
+                        <option value="male">男性</option>
+                        <option value="female">女性</option>
+                        <option value="other">其他</option>
+                        <option value="prefer_not_to_say">不願透露</option>
+                    </select>
+                </div>
+            </div>
             
-            <div class="flex items-center space-x-2">
-                <div class="w-full md:w-1/2">
-                    <div class="relative">
-                        <input type="email" name="email" id="email" value="{{ auth()->user()->email ?? '' }}" 
-                            class="w-full h-[50px] px-5 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500" 
-                            placeholder="Email *" readonly>
+            <div class="flex justify-end">
+                <button type="submit" class="px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal">
+                    儲存變更
+                </button>
+            </div>
+        </form>
+        
+        <hr class="my-8 border-brandGray-light">
+        
+        <!-- 密碼設定 -->
+        <h2 class="text-xl font-semibold text-brandGray-normal mb-4">密碼設定</h2>
+        <form>
+            <div class="space-y-4 mb-6">
+                <div>
+                    <label for="current_password" class="block text-sm font-medium text-brandGray-normal mb-1">目前密碼</label>
+                    <input type="password" id="current_password" name="current_password" class="w-full px-4 py-2 border border-brandGray-lightActive rounded-md focus:outline-none focus:ring-1 focus:ring-brandBlue-normal">
+                </div>
+                <div>
+                    <label for="new_password" class="block text-sm font-medium text-brandGray-normal mb-1">新密碼</label>
+                    <input type="password" id="new_password" name="new_password" class="w-full px-4 py-2 border border-brandGray-lightActive rounded-md focus:outline-none focus:ring-1 focus:ring-brandBlue-normal">
+                    <p class="mt-1 text-xs text-brandGray-normalLight">密碼必須至少包含 8 個字符，並包含字母和數字</p>
+                </div>
+                <div>
+                    <label for="confirm_password" class="block text-sm font-medium text-brandGray-normal mb-1">確認新密碼</label>
+                    <input type="password" id="confirm_password" name="confirm_password" class="w-full px-4 py-2 border border-brandGray-lightActive rounded-md focus:outline-none focus:ring-1 focus:ring-brandBlue-normal">
+                </div>
+            </div>
+            
+            <div class="flex justify-end">
+                <button type="submit" class="px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal">
+                    更新密碼
+                </button>
+            </div>
+        </form>
+        
+        <hr class="my-8 border-brandGray-light">
+        
+        <!-- 通知設定 -->
+        <h2 class="text-xl font-semibold text-brandGray-normal mb-4">通知設定</h2>
+        <form>
+            <div class="space-y-4 mb-6">
+                <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                        <input id="email_notifications" name="email_notifications" type="checkbox" checked class="h-4 w-4 text-brandBlue-normal focus:ring-brandBlue-normal border-brandGray-lightActive rounded">
+                    </div>
+                    <div class="ml-3 text-sm">
+                        <label for="email_notifications" class="font-medium text-brandGray-normal">電子郵件通知</label>
+                        <p class="text-brandGray-normalLight">接收有關訂單更新、促銷活動和新產品的電子郵件</p>
                     </div>
                 </div>
-                <button type="button" class="h-[42px] px-5 py-2 text-white bg-[#dc3545] rounded-md hover:bg-[#c82333] focus:outline-none">
-                    變更電子郵件
-                </button>
-            </div>
-            
-            <p class="mt-3 text-sm text-gray-500">變更電子郵件將寄發驗證信件，且需要重新登入。</p>
-        </div>
-        
-        <!-- 密碼設定區塊 -->
-        <div class="p-4 bg-white rounded-md shadow-sm">
-            <h2 class="mb-3 text-lg font-medium text-[#252b42]">密碼設定</h2>
-            
-            <button type="button" class="h-[42px] px-5 py-2 text-[#dc3545] border border-[#dc3545] rounded-md hover:bg-[#dc3545] hover:text-white focus:outline-none">
-                變更密碼
-            </button>
-            
-            <p class="mt-3 text-sm text-gray-500">變更密碼將寄發通知信件，且需要重新登入。</p>
-        </div>
-        
-        <!-- 電話號碼設定區塊 -->
-        <div class="p-4 bg-white rounded-md shadow-sm">
-            <h2 class="mb-3 text-lg font-medium text-[#252b42]">電話號碼</h2>
-            
-            <div class="flex items-center space-x-2">
-                <div class="w-full md:w-1/2">
-                    <div class="relative">
-                        <input type="tel" name="phone" id="phone" value="{{ auth()->user()->phone ?? '' }}" 
-                            class="w-full h-[50px] px-5 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500" 
-                            placeholder="手機號碼">
+                <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                        <input id="sms_notifications" name="sms_notifications" type="checkbox" class="h-4 w-4 text-brandBlue-normal focus:ring-brandBlue-normal border-brandGray-lightActive rounded">
+                    </div>
+                    <div class="ml-3 text-sm">
+                        <label for="sms_notifications" class="font-medium text-brandGray-normal">簡訊通知</label>
+                        <p class="text-brandGray-normalLight">接收有關訂單狀態和重要更新的簡訊</p>
                     </div>
                 </div>
-                <button type="button" class="h-[42px] px-5 py-2 text-[#62697f] border border-[#62697f] rounded-md hover:bg-[#62697f] hover:text-white focus:outline-none">
-                    更新電話號碼
-                </button>
-            </div>
-        </div>
-        
-        <!-- 生日設定區塊 -->
-        <div class="p-4 bg-white rounded-md shadow-sm">
-            <h2 class="mb-3 text-lg font-medium text-[#252b42]">生日設定</h2>
-            
-            <div class="flex items-center space-x-2">
-                <div class="flex items-center space-x-2">
-                    <input type="text" name="birth_year" id="birth_year" 
-                        class="w-[77px] h-[50px] px-5 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500" 
-                        placeholder="年">
-                    <span class="text-[#252b42]">/</span>
-                    <input type="text" name="birth_month" id="birth_month" 
-                        class="w-[54px] h-[50px] px-5 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500" 
-                        placeholder="月">
-                    <span class="text-[#252b42]">/</span>
-                    <input type="text" name="birth_day" id="birth_day" 
-                        class="w-[54px] h-[50px] px-5 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500" 
-                        placeholder="日">
-                </div>
-                <button type="button" class="h-[42px] px-5 py-2 text-[#62697f] border border-[#62697f] rounded-md hover:bg-[#62697f] hover:text-white focus:outline-none">
-                    更新生日
-                </button>
-            </div>
-            
-            <p class="mt-3 text-sm text-gray-500">生日資訊將用於提供您生日專屬優惠。</p>
-        </div>
-        
-        <!-- 社群帳號連結區塊 -->
-        <div class="p-4 bg-white rounded-md shadow-sm">
-            <h2 class="mb-3 text-lg font-medium text-[#252b42]">社群帳號</h2>
-            
-            <div class="flex items-center space-x-4 mb-3">
-                <i class="icon-[mdi--facebook] w-6 h-6 text-[#252b42]"></i>
-                <button type="button" class="h-[42px] px-5 py-2 text-[#62697f] border border-[#62697f] rounded-md hover:bg-[#62697f] hover:text-white focus:outline-none w-[425px]">
-                    連結 Facebook 帳號
-                </button>
-            </div>
-            
-            <div class="flex items-center space-x-4">
-                <i class="icon-[mdi--google] w-6 h-6 text-[#252b42]"></i>
-                <div class="flex items-center space-x-2 w-[425px]">
-                    <input type="email" name="google_email" id="google_email" 
-                        class="w-[252px] h-[42px] px-5 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none" 
-                        placeholder="Email *" readonly>
-                    <button type="button" class="h-[42px] px-5 py-2 text-white bg-[#62697f] rounded-md hover:bg-[#4e5466] focus:outline-none w-[160px]">
-                        解除連結
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 通知設定區塊 -->
-        <div class="p-4 bg-white rounded-md shadow-sm">
-            <h2 class="mb-3 text-lg font-medium text-[#252b42]">通知設定</h2>
-            
-            <div class="flex items-center">
-                <label class="flex items-center space-x-3 cursor-pointer">
-                    <div class="relative">
-                        <input type="checkbox" class="sr-only">
-                        <div class="w-[45px] h-[25px] bg-white border border-[#62697f] rounded-full"></div>
-                        <div class="absolute left-[4px] top-[3px] w-[19px] h-[19px] bg-[#62697f] rounded-full transition"></div>
+                <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                        <input id="marketing_notifications" name="marketing_notifications" type="checkbox" checked class="h-4 w-4 text-brandBlue-normal focus:ring-brandBlue-normal border-brandGray-lightActive rounded">
                     </div>
-                    <span class="text-gray-500">接收最新優惠及活動通知</span>
-                </label>
+                    <div class="ml-3 text-sm">
+                        <label for="marketing_notifications" class="font-medium text-brandGray-normal">行銷通知</label>
+                        <p class="text-brandGray-normalLight">接收有關特別優惠、折扣和促銷活動的通知</p>
+                    </div>
+                </div>
             </div>
-        </div>
+            
+            <div class="flex justify-end">
+                <button type="submit" class="px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal">
+                    儲存設定
+                </button>
+            </div>
+        </form>
     </div>
-    
-    <form id="profile-form" action="/user/user_profile/update" method="POST" class="hidden">
-        @csrf
-        @method('PUT')
-        <input type="hidden" name="email" value="{{ auth()->user()->email ?? '' }}">
-        <input type="hidden" name="phone" id="form_phone" value="{{ auth()->user()->phone ?? '' }}">
-        <input type="hidden" name="birth_date" id="form_birth_date" value="{{ auth()->user()->birth_date ?? '' }}">
-        <input type="hidden" name="notification_enabled" id="form_notification_enabled" value="{{ auth()->user()->notification_enabled ?? '0' }}">
-    </form>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 電話號碼更新
-            document.querySelector('button:contains("更新電話號碼")').addEventListener('click', function() {
-                document.getElementById('form_phone').value = document.getElementById('phone').value;
-                document.getElementById('profile-form').submit();
-            });
-            
-            // 生日更新
-            document.querySelector('button:contains("更新生日")').addEventListener('click', function() {
-                const year = document.getElementById('birth_year').value;
-                const month = document.getElementById('birth_month').value;
-                const day = document.getElementById('birth_day').value;
-                document.getElementById('form_birth_date').value = `${year}-${month}-${day}`;
-                document.getElementById('profile-form').submit();
-            });
-            
-            // 通知設定切換
-            const notificationToggle = document.querySelector('input[type="checkbox"]');
-            notificationToggle.addEventListener('change', function() {
-                document.getElementById('form_notification_enabled').value = this.checked ? '1' : '0';
-                document.getElementById('profile-form').submit();
-            });
-        });
-    </script>
 @endsection 
