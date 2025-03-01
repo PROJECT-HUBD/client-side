@@ -9,26 +9,42 @@
     <div class="w-full p-4 sm:p-6 bg-white rounded-lg shadow-sm">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
             <h1 class="text-xl sm:text-2xl font-bold text-brandGray-normal mb-3 sm:mb-0">我的優惠</h1>
-            <div class="flex flex-col sm:flex-row w-full sm:w-auto gap-2">
-                <div class="relative w-full sm:w-auto">
-                    <input type="text" placeholder="輸入優惠碼" class="w-full sm:w-auto px-4 py-2 border border-brandGray-lightActive rounded-md focus:outline-none focus:ring-1 focus:ring-brandBlue-normal">
-                    <button type="button" class="absolute right-2 top-2 text-brandBlue-normal hover:text-brandBlue-normalHover">
-                        <i class="icon-[mdi--plus-circle-outline] w-5 h-5"></i>
+            <!-- <div class="flex flex-col sm:flex-row w-full sm:w-auto gap-2">
+                <form action="{{ route('user.coupons.redeem') }}" method="POST" class="flex flex-col sm:flex-row w-full sm:w-auto gap-2">
+                    @csrf
+                    <div class="relative w-full sm:w-auto">
+                        <input type="text" name="coupon_code" placeholder="輸入優惠碼" class="w-full sm:w-auto px-4 py-2 border border-brandGray-lightActive rounded-md focus:outline-none focus:ring-1 focus:ring-brandBlue-normal">
+                        <button type="button" class="absolute right-2 top-2 text-brandBlue-normal hover:text-brandBlue-normalHover">
+                            <i class="icon-[mdi--plus-circle-outline] w-5 h-5"></i>
+                        </button>
+                    </div>
+                    <button type="submit" class="px-3 py-1.5 sm:px-4 sm:py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal whitespace-nowrap">
+                        兌換優惠碼
                     </button>
-                </div>
-                <button type="button" id="redeem-button" class="px-3 py-1.5 sm:px-4 sm:py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal whitespace-nowrap">
-                    兌換優惠碼
-                </button>
-            </div>
+                </form>
+            </div> -->
         </div>
+        
+        <!-- 顯示成功或錯誤訊息 -->
+        @if (session('success'))
+            <div class="mb-4 p-4 bg-green-100 border border-green-200 text-green-700 rounded-md">
+                {{ session('success') }}
+            </div>
+        @endif
+        
+        @if (session('error'))
+            <div class="mb-4 p-4 bg-red-100 border border-red-200 text-red-700 rounded-md">
+                {{ session('error') }}
+            </div>
+        @endif
         
         <!-- 顯示模式切換 -->
         <div class="flex justify-end mb-4">
             <div class="inline-flex rounded-md shadow-sm" role="group">
-                <button type="button" id="list-view-btn" class="px-3 py-1.5 text-sm font-medium bg-brandBlue-normal text-white rounded-l-md hover:bg-brandBlue-normalHover focus:z-10 focus:ring-2 focus:ring-brandBlue-normal">
+                <button type="button" id="list-view-btn" class="view-toggle-btn px-3 py-1.5 text-sm font-medium {{ $viewPreference == 'list' ? 'active' : '' }} rounded-l-md focus:z-10 focus:ring-2 focus:ring-brandBlue-normal">
                     <i class="icon-[mdi--format-list-bulleted] w-5 h-5"></i>
                 </button>
-                <button type="button" id="grid-view-btn" class="px-3 py-1.5 text-sm font-medium bg-brandGray-light text-brandGray-normal rounded-r-md hover:bg-brandGray-lightHover focus:z-10 focus:ring-2 focus:ring-brandBlue-normal">
+                <button type="button" id="grid-view-btn" class="view-toggle-btn px-3 py-1.5 text-sm font-medium {{ $viewPreference == 'grid' ? 'active' : '' }} rounded-r-md focus:z-10 focus:ring-2 focus:ring-brandBlue-normal">
                     <i class="icon-[mdi--grid] w-5 h-5"></i>
                 </button>
             </div>
@@ -41,89 +57,101 @@
                     <h3 class="font-medium text-brandGray-normal">可使用的優惠券</h3>
                 </div>
                 <!-- 列表/網格顯示區域 -->
-                <div id="coupon-container" class="divide-y divide-brandGray-light view-list">
-                    <!-- 優惠券 1 -->
-                    <div class="coupon-item p-4">
-                        <div class="flex flex-col justify-between">
-                            <div>
-                                <h4 class="text-lg font-semibold text-brandGray-normal">新會員首購 85 折</h4>
-                                <p class="text-sm text-brandGray-normalLight mb-1">全館商品適用</p>
-                                <p class="text-sm text-brandGray-normalLight">有效期限：2023/12/31</p>
+                <div id="coupon-container" class="{{ $viewPreference == 'grid' ? 'view-grid' : 'view-list' }}">
+                    @forelse ($activeCoupons as $coupon)
+                        <!-- 優惠券項目 -->
+                        <div class="coupon-item {{ isset($coupon['is_expiring']) && $coupon['is_expiring'] ? 'coupon-expiring' : '' }}" data-coupon-id="{{ $coupon['id'] }}" onclick="window.location.href='{{ route('user.coupons.show', $coupon['id']) }}'">
+                            @if (isset($coupon['is_expiring']) && $coupon['is_expiring'])
+                                <span class="expiring-badge">
+                                    <i class="icon-[mdi--clock-alert-outline] w-4 h-4"></i>
+                                    @if ($coupon['days_left'] == 0)
+                                        今日到期
+                                    @else
+                                        剩餘 {{ $coupon['days_left'] }} 天
+                                    @endif
+                                </span>
+                            @endif
+                            <div class="flex flex-col justify-between h-full">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-brandGray-normal">{{ $coupon['title'] }}</h4>
+                                    <p class="text-sm text-brandGray-normalLight mb-1">{{ $coupon['description'] }}</p>
+                                </div>
+                                <p class="expiry-date">有效期限：{{ $coupon['expiry_date'] }}</p>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- 優惠券 2 -->
-                    <div class="coupon-item p-4">
-                        <div class="flex flex-col justify-between">
-                            <div>
-                                <h4 class="text-lg font-semibold text-brandGray-normal">生日禮金 $100</h4>
-                                <p class="text-sm text-brandGray-normalLight mb-1">消費滿 $1,000 可使用</p>
-                                <p class="text-sm text-brandGray-normalLight">有效期限：2023/07/31</p>
-                            </div>
+                    @empty
+                        <div class="p-4 text-center text-brandGray-normalLight">
+                            目前沒有可使用的優惠券
                         </div>
-                    </div>
-                    
-                    <!-- 優惠券 3 -->
-                    <div class="coupon-item p-4">
-                        <div class="flex flex-col justify-between">
-                            <div>
-                                <h4 class="text-lg font-semibold text-brandGray-normal">夏季特惠 $200</h4>
-                                <p class="text-sm text-brandGray-normalLight mb-1">指定商品適用</p>
-                                <p class="text-sm text-brandGray-normalLight">有效期限：2023/08/31</p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
             
-            <div class="border border-brandGray-light rounded-lg overflow-hidden">
-                <div class="bg-brandGray-lightLight p-3 border-b border-brandGray-light">
-                    <h3 class="font-medium text-brandGray-normal">已使用/已過期的優惠券</h3>
-                </div>
-                <div id="expired-coupon-container" class="divide-y divide-brandGray-light view-list">
-                    <!-- 已使用優惠券 -->
-                    <div class="coupon-item p-4 opacity-60">
-                        <div class="flex flex-col justify-between">
-                            <div>
-                                <div class="flex items-center justify-between">
-                                    <h4 class="text-lg font-semibold text-brandGray-normal">週年慶全館 9 折</h4>
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brandGray-light text-brandGray-normal">
-                                        已使用
-                                    </span>
-                                </div>
-                                <p class="text-sm text-brandGray-normalLight mb-1">全館商品適用</p>
-                                <p class="text-sm text-brandGray-normalLight">使用日期：2023/05/15</p>
-                            </div>
-                        </div>
+            <!-- 已使用的優惠券 -->
+            @if (count($usedCoupons) > 0)
+                <div class="border border-brandGray-light rounded-lg overflow-hidden">
+                    <div class="bg-brandGray-lightLight p-3 border-b border-brandGray-light">
+                        <h3 class="font-medium text-brandGray-normal">已使用的優惠券</h3>
                     </div>
-                    
-                    <!-- 已過期優惠券 -->
-                    <div class="coupon-item p-4 opacity-60">
-                        <div class="flex flex-col justify-between">
-                            <div>
-                                <div class="flex items-center justify-between">
-                                    <h4 class="text-lg font-semibold text-brandGray-normal">春季特惠 $200</h4>
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brandGray-light text-brandGray-normal">
-                                        已過期
-                                    </span>
+                    <div id="used-coupon-container" class="{{ $viewPreference == 'grid' ? 'view-grid' : 'view-list' }}">
+                        @foreach ($usedCoupons as $coupon)
+                            <div class="coupon-item coupon-used">
+                                <span class="status-badge">已使用</span>
+                                <div class="flex flex-col justify-between h-full">
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-brandGray-normal">{{ $coupon['title'] }}</h4>
+                                        <p class="text-sm text-brandGray-normalLight mb-1">{{ $coupon['description'] }}</p>
+                                    </div>
+                                    <p class="expiry-date">使用日期：{{ $coupon['used_date'] }}</p>
                                 </div>
-                                <p class="text-sm text-brandGray-normalLight mb-1">消費滿 $2,000 可使用</p>
-                                <p class="text-sm text-brandGray-normalLight">有效期限：2023/04/30</p>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
-            </div>
+            @endif
+            
+            <!-- 已過期的優惠券 -->
+            @if (count($expiredCoupons) > 0)
+                <div class="border border-brandGray-light rounded-lg overflow-hidden">
+                    <div class="bg-brandGray-lightLight p-3 border-b border-brandGray-light">
+                        <h3 class="font-medium text-brandGray-normal">已過期的優惠券</h3>
+                    </div>
+                    <div id="expired-coupon-container" class="{{ $viewPreference == 'grid' ? 'view-grid' : 'view-list' }}">
+                        @foreach ($expiredCoupons as $coupon)
+                            <div class="coupon-item coupon-expired">
+                                <span class="status-badge">已過期</span>
+                                <div class="flex flex-col justify-between h-full">
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-brandGray-normal">{{ $coupon['title'] }}</h4>
+                                        <p class="text-sm text-brandGray-normalLight mb-1">{{ $coupon['description'] }}</p>
+                                    </div>
+                                    <p class="expiry-date">有效期限：{{ $coupon['expiry_date'] }}</p>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
-    
+@endsection
+
     <style>
         /* 列表視圖樣式 */
+        .view-list {
+            display: block;
+        }
+        
         .view-list .coupon-item {
             display: flex;
             flex-direction: column;
             transition: all 0.3s ease;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem;
+        }
+        
+        .view-list .coupon-item:last-child {
+            border-bottom: none;
         }
         
         .view-list .coupon-item:hover {
@@ -133,12 +161,27 @@
             cursor: pointer;
         }
         
-        /* 網格視圖樣式 */
+        .view-list .status-badge {
+            display: inline-block;
+            margin-left: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background-color: #e5e7eb;
+            color: #6b7280;
+        }
+        
+        .view-list .expiry-date {
+            margin-top: 0.5rem;
+        }
+        
+        /* 網格視圖樣式 - 改進版 */
         .view-grid {
             display: grid;
             grid-template-columns: repeat(1, 1fr);
-            gap: 1rem;
-            padding: 1rem;
+            gap: 1.25rem;
+            padding: 1.25rem;
         }
         
         @media (min-width: 640px) {
@@ -155,15 +198,53 @@
         
         .view-grid .coupon-item {
             border: 1px solid #e5e7eb;
-            border-radius: 0.5rem;
-            padding: 1rem;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(to bottom right, #ffffff, #f9fafb);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        
+        .view-grid .coupon-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, #3b82f6, #60a5fa);
+            opacity: 0.8;
         }
         
         .view-grid .coupon-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             cursor: pointer;
+        }
+        
+        .view-grid .coupon-item h4 {
+            margin-bottom: 0.75rem;
+            font-size: 1.125rem;
+            line-height: 1.4;
+            color: #374151;
+        }
+        
+        .view-grid .coupon-item p {
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .view-grid .coupon-item .expiry-date {
+            margin-top: auto;
+            padding-top: 0.75rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+            border-top: 1px dashed #e5e7eb;
         }
         
         /* 已使用/已過期優惠券樣式 */
@@ -171,104 +252,109 @@
             opacity: 0.7;
         }
         
+        .view-grid .coupon-used::before, .view-grid .coupon-expired::before {
+            background: linear-gradient(to right, #9ca3af, #d1d5db);
+        }
+        
         .coupon-used:hover, .coupon-expired:hover {
-            transform: none !important;
-            box-shadow: none !important;
-            cursor: default !important;
+            transform: none;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            cursor: default;
+        }
+        
+        /* 狀態標籤樣式 */
+        .view-grid .status-badge {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .view-grid .coupon-used .status-badge {
+            background-color: #e5e7eb;
+            color: #6b7280;
+        }
+        
+        .view-grid .coupon-expired .status-badge {
+            background-color: #e5e7eb;
+            color: #6b7280;
         }
     </style>
-    
+
+@push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 獲取元素
+            // 獲取視圖切換按鈕和容器元素
             const listViewBtn = document.getElementById('list-view-btn');
             const gridViewBtn = document.getElementById('grid-view-btn');
-            const couponContainer = document.getElementById('coupon-container');
-            const expiredCouponContainer = document.getElementById('expired-coupon-container');
-            const redeemButton = document.getElementById('redeem-button');
-            const couponInput = document.querySelector('input[placeholder="輸入優惠碼"]');
-            const activeCoupons = document.querySelectorAll('#coupon-container .coupon-item');
+            const couponContainers = document.querySelectorAll('.view-list, .view-grid');
             
             // 切換到列表視圖
-            function switchToListView() {
-                couponContainer.classList.remove('view-grid');
-                couponContainer.classList.add('view-list', 'divide-y');
-                if (expiredCouponContainer) {
-                    expiredCouponContainer.classList.remove('view-grid');
-                    expiredCouponContainer.classList.add('view-list', 'divide-y');
-                }
-                
-                // 更新按鈕樣式
-                listViewBtn.classList.remove('bg-brandGray-light', 'text-brandGray-normal');
-                listViewBtn.classList.add('bg-brandBlue-normal', 'text-white');
-                gridViewBtn.classList.remove('bg-brandBlue-normal', 'text-white');
-                gridViewBtn.classList.add('bg-brandGray-light', 'text-brandGray-normal');
-            }
-            
-            // 切換到網格視圖
-            function switchToGridView() {
-                couponContainer.classList.remove('view-list', 'divide-y');
-                couponContainer.classList.add('view-grid');
-                if (expiredCouponContainer) {
-                    expiredCouponContainer.classList.remove('view-list', 'divide-y');
-                    expiredCouponContainer.classList.add('view-grid');
-                }
-                
-                // 更新按鈕樣式
-                gridViewBtn.classList.remove('bg-brandGray-light', 'text-brandGray-normal');
-                gridViewBtn.classList.add('bg-brandBlue-normal', 'text-white');
-                listViewBtn.classList.remove('bg-brandBlue-normal', 'text-white');
-                listViewBtn.classList.add('bg-brandGray-light', 'text-brandGray-normal');
-            }
-            
-            // 添加事件監聽器
             listViewBtn.addEventListener('click', function() {
-                switchToListView();
+                switchView('list');
                 saveViewPreference('list');
             });
             
+            // 切換到網格視圖
             gridViewBtn.addEventListener('click', function() {
-                switchToGridView();
+                switchView('grid');
                 saveViewPreference('grid');
             });
             
-            // 兌換優惠碼
-            redeemButton.addEventListener('click', function() {
-                const couponCode = couponInput.value;
-                if (couponCode.trim() === '') {
-                    alert('請輸入優惠碼');
-                    return;
+            // 切換視圖函數
+            function switchView(viewType) {
+                // 更新按鈕狀態
+                if (viewType === 'list') {
+                    listViewBtn.classList.add('active');
+                    gridViewBtn.classList.remove('active');
+                } else {
+                    gridViewBtn.classList.add('active');
+                    listViewBtn.classList.remove('active');
                 }
                 
-                // 這裡可以添加兌換優惠碼的 AJAX 請求
-                alert('優惠碼兌換中...');
-            });
+                // 更新容器類名
+                couponContainers.forEach(container => {
+                    if (viewType === 'list') {
+                        container.classList.remove('view-grid');
+                        container.classList.add('view-list');
+                    } else {
+                        container.classList.remove('view-list');
+                        container.classList.add('view-grid');
+                    }
+                });
+            }
             
-            // 點擊優惠券項目
+            // 保存視圖偏好到服務器
+            function saveViewPreference(viewType) {
+                fetch('{{ route('user.coupons.switch-view') }}?view_type=' + viewType, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                }).then(response => {
+                    if (!response.ok) {
+                        console.error('保存視圖偏好失敗');
+                    }
+                }).catch(error => {
+                    console.error('保存視圖偏好出錯:', error);
+                });
+            }
+            
+            // 為可用優惠券添加點擊事件
+            const activeCoupons = document.querySelectorAll('#coupon-container .coupon-item');
             activeCoupons.forEach(coupon => {
                 coupon.addEventListener('click', function() {
-                    // 這裡可以添加點擊優惠券的邏輯，例如顯示詳情或跳轉到商品頁面
-                    window.location.href = '/categories/all';
+                    // 獲取優惠券 ID
+                    const couponId = this.dataset.couponId;
+                    if (couponId) {
+                        // 跳轉到優惠券詳情頁面
+                        window.location.href = `/user/coupons/${couponId}`;
+                    }
                 });
             });
-            
-            // 保存視圖偏好到 localStorage
-            function saveViewPreference(viewType) {
-                localStorage.setItem('couponViewPreference', viewType);
-            }
-            
-            // 從 localStorage 讀取視圖偏好
-            function loadViewPreference() {
-                const preference = localStorage.getItem('couponViewPreference');
-                if (preference === 'grid') {
-                    switchToGridView();
-                } else {
-                    switchToListView(); // 確保預設視圖也被正確應用
-                }
-            }
-            
-            // 頁面載入時讀取偏好
-            loadViewPreference();
         });
     </script>
-@endsection 
+@endpush
