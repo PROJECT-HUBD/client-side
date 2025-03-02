@@ -4,8 +4,8 @@
         <div class="leftArea flex justify-start items-center gap-10">
             <!-- Logo -->
             <a href="{{ route('home') }}" class="flex justify-center items-center">
-                <img src="{{ asset('images/logo-nav1.png') }}" class="h-8 me-[12px]" alt="logo" loading="lazy">
-                <img src="{{ asset('images/logo-nav2.png') }}" class="h-5" alt="logo" loading="lazy">
+                <img src="{{ asset('images/logo-nav1.png') }}" class="h-8 me-[12px]" alt="logo">
+                <img src="{{ asset('images/logo-nav2.png') }}" class="h-5" alt="logo">
             </a>
             <div class="text-lg prodsBtn hidden lg:block cursor-pointer">商品&nbsp;<span class="plusIcon">＋</span></div>
             <a href="" class="text-lg hidden lg:block hover:text-brandGray-normalLight active:text-brandGray-lightHover " >關於我們</a>
