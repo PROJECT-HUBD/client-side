@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\CustomForgotController;
+use App\Http\Controllers\Auth\MultiStepRegistrationController;
+use App\Http\Controllers\Auth\CustomForgotPassWordController;
 use Illuminate\Support\Facades\Route;
 
 // 首頁
@@ -31,9 +33,31 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 //自己設計的登入頁面
-Route::get('/mylogin', [AuthenticatedSessionController::class, 'create'])->name('mylogin');
-//自己設計的註冊頁面
-Route::get('/myregister', [RegisteredUserController::class, 'create'])->name('myregister');
+Route::get('/mylogin', [AuthenticatedSessionController::class, 'showLoginForm'])->name('mylogin');
+Route::post('/mylogin', [AuthenticatedSessionController::class, 'login']);
 
+//自己設計的註冊頁面
+Route::get('/myregister', [MultiStepRegistrationController::class, 'showEmailForm'])->name('myregister');
+Route::post('/myregister', [MultiStepRegistrationController::class, 'sendVerificationCode'])->name('myregister.email.send');
+
+//自己設計的驗證碼確認頁面
+Route::get('/myverify', [MultiStepRegistrationController::class, 'showVerificationForm'])->name('myverify');
+Route::post('/myverify', [MultiStepRegistrationController::class, 'verifyCode'])->name('myverify.code');
+
+//自己設計的個人資料頁面
+Route::get('/mylaststep', [MultiStepRegistrationController::class, 'showDetailsForm'])->name('mylaststep');
+Route::post('/mylaststep', [MultiStepRegistrationController::class, 'registerDetails'])->name('mylaststep.submit');
+
+// 自訂忘記密碼 - Step 1: Email 驗證
+Route::get('/myforget-password', [CustomForgotPassWordController::class, 'showEmailForm'])->name('password.email');
+Route::post('/myforget-password/email', [CustomForgotPassWordController::class, 'sendVerificationCode'])->name('password.email.send');
+
+// 自訂忘記密碼 - Step 2: 驗證碼確認
+Route::get('/myenter-confirmation-code', [CustomForgotPasswordController::class, 'showVerificationForm'])->name('password.verify');
+Route::post('/myenter-confirmation-code', [CustomForgotPasswordController::class, 'verifyCode'])->name('password.verify.code');
+
+// 自訂忘記密碼 - Step 3: 重設密碼
+Route::get('/mychange-password', [CustomForgotPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/mychange-password', [CustomForgotPasswordController::class, 'resetPassword'])->name('password.update');
 
 require __DIR__.'/auth.php';
