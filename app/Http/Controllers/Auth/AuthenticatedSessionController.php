@@ -22,13 +22,19 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
-        $request->authenticate();
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8'
+        ]);
 
-        $request->session()->regenerate();
-
-        return redirect()->intended(route('dashboard', absolute: false));
+        if(Auth::attempt($request->only('email','password'))){
+            $request->session()->regenerate();
+            
+            return redirect()->route('dashboard')->with('status','登入成功！');
+        }
+            return back()->withErrors(['email' => '帳號或密碼有誤']);
     }
 
     /**
@@ -42,6 +48,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('login')->with('status','已成功登出');
     }
 }
