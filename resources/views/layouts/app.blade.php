@@ -20,7 +20,7 @@
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    
     <!-- Vite + Tailwind -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -29,8 +29,8 @@
     <header class="w-full">
         <!-- marquerr -->
         @include('layouts.header_marquee')
-        <!-- nav -->
-        @include('layouts.navigation')
+    <!-- nav -->
+    @include('layouts.navigation')
     </header>
 
     <!-- main -->
@@ -40,7 +40,7 @@
 
     <!-- footer -->
     @include('layouts.footer')
-
+    
     @stack('scripts')
 </body>
 
