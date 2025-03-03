@@ -9,9 +9,11 @@
     <div class="w-full p-4 sm:p-6 bg-white rounded-lg shadow-sm">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
             <h1 class="text-xl sm:text-2xl font-bold text-brandGray-normal mb-2 sm:mb-0">個人檔案</h1>
-            <button type="button" class="px-3 py-1.5 sm:px-4 sm:py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal whitespace-nowrap">
+            <!-- 編輯個人資料按鈕 -->
+            <a href="{{ route('user.edit_profile') }}" class="inline-flex items-center justify-center px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal transition-colors duration-200">
+                <i class="icon-[mdi--account-edit-outline] w-5 h-5 mr-2"></i>
                 編輯個人資料
-            </button>
+            </a>
         </div>
         
         <!-- 個人資料 -->
@@ -57,9 +59,10 @@
         <div class="mt-8 pt-6 border-t border-brandGray-light">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
                 <h2 class="text-lg font-medium text-brandGray-normal mb-2 sm:mb-0">密碼管理</h2>
-                <button type="button" class="px-3 py-1.5 sm:px-4 sm:py-2 border border-brandBlue-lightActive text-brandBlue-normal rounded-md hover:bg-brandBlue-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-light whitespace-nowrap">
+                <a href="{{ route('user.change_password') }}" class="inline-flex items-center justify-center px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover hover:text-brandGray-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGray-lightActive transition-colors duration-200">
+                    <i class="icon-[mdi--lock-outline] w-5 h-5 mr-2"></i>
                     變更密碼
-                </button>
+                </a>
             </div>
             <p class="text-sm text-brandGray-normalLight">
                 上次密碼變更時間：2023/03/10

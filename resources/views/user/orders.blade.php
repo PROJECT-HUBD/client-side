@@ -10,26 +10,44 @@
         <h1 class="text-2xl font-bold text-brandGray-normal mb-6">我的訂單</h1>
         
         <!-- 訂單篩選與搜尋 -->
-        <div class="mb-6 space-y-4">
-            <!-- 狀態篩選 -->
-            <div class="w-full">
-                <div class="flex flex-wrap items-center gap-2 mb-2">
-                    <span class="text-brandGray-normal font-medium mr-2">狀態：</span>
-                    <div class="flex flex-wrap gap-2">
-                        <button class="px-4 py-2 bg-brandBlue-normal text-white rounded-md">全部</button>
-                        <button class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">待付款</button>
-                        <button class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">處理中</button>
-                        <button class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">已出貨</button>
-                        <button class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">已完成</button>
-                        <button class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">已取消</button>
+        <div class="mb-6">
+            <div class="flex flex-col md:flex-row flex-wrap">
+                <!-- 狀態篩選 -->
+                <div class="w-full md:w-auto md:flex-grow">
+                    <!-- 大螢幕用按鈕篩選 -->
+                    <div class="hidden md:block mb-4">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="text-brandGray-normal font-medium mr-2">狀態：</span>
+                            <div class="flex flex-wrap gap-2">
+                                <a href="{{ route('user.orders', ['status' => 'all']) }}" class="px-4 py-2 bg-brandBlue-normal text-white rounded-md">全部</a>
+                                <a href="{{ route('user.orders', ['status' => 'pending']) }}" class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">待付款</a>
+                                <a href="{{ route('user.orders', ['status' => 'processing']) }}" class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">處理中</a>
+                                <a href="{{ route('user.orders', ['status' => 'shipped']) }}" class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">已出貨</a>
+                                <a href="{{ route('user.orders', ['status' => 'completed']) }}" class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">已完成</a>
+                                <a href="{{ route('user.orders', ['status' => 'cancelled']) }}" class="px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover">已取消</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 小螢幕用下拉選單篩選 -->
+                    <div class="md:hidden mb-4">
+                        <label for="status_filter" class="block text-brandGray-normal font-medium mb-2">狀態：</label>
+                        <select id="status_filter" class="w-full px-3 py-2 border border-brandGray-lightActive rounded-md focus:outline-none focus:ring-1 focus:ring-brandBlue-normal pr-8" onchange="window.location.href=this.value">
+                            <option value="{{ route('user.orders', ['status' => 'all']) }}">全部</option>
+                            <option value="{{ route('user.orders', ['status' => 'pending']) }}">待付款</option>
+                            <option value="{{ route('user.orders', ['status' => 'processing']) }}">處理中</option>
+                            <option value="{{ route('user.orders', ['status' => 'shipped']) }}">已出貨</option>
+                            <option value="{{ route('user.orders', ['status' => 'completed']) }}">已完成</option>
+                            <option value="{{ route('user.orders', ['status' => 'cancelled']) }}">已取消</option>
+                        </select>
                     </div>
                 </div>
-            </div>
-            
-            <!-- 搜尋欄位 -->
-            <div class="relative w-full sm:max-w-md">
-                <input type="text" placeholder="搜尋訂單編號" class="w-full pl-10 pr-4 py-2 border border-brandGray-lightActive rounded-md focus:outline-none focus:ring-1 focus:ring-brandBlue-normal">
-                <i class="icon-[mdi--magnify] w-5 h-5 text-brandGray-normalLight absolute left-3 top-2.5"></i>
+                
+                <!-- 搜尋欄位 -->
+                <div class="relative w-full md:w-64 lg:w-72 xl:w-80 md:mt-0 md:ml-4">
+                    <input type="text" placeholder="搜尋訂單編號" class="w-full pl-10 pr-4 py-2 border border-brandGray-lightActive rounded-md focus:outline-none focus:ring-1 focus:ring-brandBlue-normal">
+                    <i class="icon-[mdi--magnify] w-5 h-5 text-brandGray-normalLight absolute left-3 top-2.5"></i>
+                </div>
             </div>
         </div>
         
@@ -86,8 +104,8 @@
                             <p class="text-sm text-brandGray-normalLight">配送方式: 宅配</p>
                         </div>
                         <div class="flex w-full sm:w-auto space-x-2">
-                            <button class="flex-1 sm:flex-none px-4 py-2 border border-brandBlue-lightActive text-brandBlue-normal rounded-md hover:bg-brandBlue-light">查看詳情</button>
-                            <button class="flex-1 sm:flex-none px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover">再次購買</button>
+                            <a href="{{ route('user.orders.detail', 1) }}" class="flex-1 sm:flex-none px-4 py-2 border border-brandBlue-lightActive text-brandBlue-normal rounded-md hover:bg-brandBlue-light">查看詳情</a>
+                            <a href="#" class="flex-1 sm:flex-none px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover">再次購買</a>
                         </div>
                     </div>
                 </div>
@@ -127,12 +145,12 @@
                     </div>
                     <div class="mt-4 flex flex-wrap justify-between items-center border-t border-brandGray-light pt-4">
                         <div class="mb-3 sm:mb-0">
-                            <p class="text-sm text-brandGray-normalLight">付款方式: LINE Pay</p>
-                            <p class="text-sm text-brandGray-normalLight">配送方式: 超商取貨</p>
+                            <p class="text-sm text-brandGray-normalLight">付款方式: 信用卡</p>
+                            <p class="text-sm text-brandGray-normalLight">配送方式: 宅配</p>
                         </div>
                         <div class="flex w-full sm:w-auto space-x-2">
-                            <button class="flex-1 sm:flex-none px-4 py-2 border border-brandBlue-lightActive text-brandBlue-normal rounded-md hover:bg-brandBlue-light">查看詳情</button>
-                            <button class="flex-1 sm:flex-none px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover">追蹤訂單</button>
+                            <a href="{{ route('user.orders.detail', 2) }}" class="flex-1 sm:flex-none px-4 py-2 border border-brandBlue-lightActive text-brandBlue-normal rounded-md hover:bg-brandBlue-light">查看詳情</a>
+                            <a href="#" class="flex-1 sm:flex-none px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover">查詢物流</a>
                         </div>
                     </div>
                 </div>
@@ -217,12 +235,12 @@
                     </div>
                     <div class="mt-4 flex flex-wrap justify-between items-center border-t border-brandGray-light pt-4">
                         <div class="mb-3 sm:mb-0">
-                            <p class="text-sm text-brandGray-normalLight">付款方式: 超商付款</p>
-                            <p class="text-sm text-brandGray-normalLight">配送方式: 超商取貨</p>
+                            <p class="text-sm text-brandGray-normalLight">付款方式: 信用卡 (未付款)</p>
+                            <p class="text-sm text-brandGray-normalLight">配送方式: 宅配</p>
                         </div>
                         <div class="flex w-full sm:w-auto space-x-2">
-                            <button class="flex-1 sm:flex-none px-4 py-2 border border-brandBlue-lightActive text-brandBlue-normal rounded-md hover:bg-brandBlue-light">查看詳情</button>
-                            <button class="flex-1 sm:flex-none px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover">追蹤物流</button>
+                            <a href="{{ route('user.orders.detail', 4) }}" class="flex-1 sm:flex-none px-4 py-2 border border-brandBlue-lightActive text-brandBlue-normal rounded-md hover:bg-brandBlue-light">查看詳情</a>
+                            <a href="#" class="flex-1 sm:flex-none px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover">前往付款</a>
                         </div>
                     </div>
                 </div>
@@ -266,8 +284,8 @@
                             <p class="text-sm text-brandGray-normalLight">取消日期: 2023-10-02</p>
                         </div>
                         <div class="flex w-full sm:w-auto space-x-2">
-                            <button class="flex-1 sm:flex-none px-4 py-2 border border-brandBlue-lightActive text-brandBlue-normal rounded-md hover:bg-brandBlue-light">查看詳情</button>
-                            <button class="flex-1 sm:flex-none px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover">重新購買</button>
+                            <a href="{{ route('user.orders.detail', 5) }}" class="flex-1 sm:flex-none px-4 py-2 border border-brandBlue-lightActive text-brandBlue-normal rounded-md hover:bg-brandBlue-light">查看詳情</a>
+                            <a href="#" class="flex-1 sm:flex-none px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover">重新購買</a>
                         </div>
                     </div>
                 </div>

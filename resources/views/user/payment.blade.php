@@ -9,9 +9,10 @@
     <div class="w-full p-4 sm:p-6 bg-white rounded-lg shadow-sm">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
             <h1 class="text-xl sm:text-2xl font-bold text-brandGray-normal mb-3 sm:mb-0">付款資訊</h1>
-            <button type="button" class="px-3 py-1.5 sm:px-4 sm:py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal whitespace-nowrap">
+            <a href="{{ route('user.payment.add') }}" class="px-3 py-1.5 sm:px-4 sm:py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal whitespace-nowrap">
+                <i class="icon-[mdi--credit-card-plus-outline] w-5 h-5 mr-2"></i>
                 新增付款方式
-            </button>
+            </a>
         </div>
         
         <!-- 付款方式列表 -->
@@ -27,12 +28,16 @@
                         </span>
                     </div>
                     <div class="flex space-x-2 mt-2 sm:mt-0">
-                        <button class="text-brandGray-normalLight hover:text-brandGray-normal">
+                        <a href="{{ route('user.payment.edit', 1) }}" class="text-brandGray-normalLight hover:text-brandGray-normal">
                             <i class="icon-[mdi--pencil] w-5 h-5"></i>
-                        </button>
-                        <button class="text-brandGray-normalLight hover:text-brandRed-normal">
-                            <i class="icon-[mdi--delete] w-5 h-5"></i>
-                        </button>
+                        </a>
+                        <form action="{{ route('user.payment.delete', 1) }}" method="POST" class="inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-brandGray-normalLight hover:text-brandRed-normal" onclick="return confirm('確定要刪除此付款方式嗎？')">
+                                <i class="icon-[mdi--delete] w-5 h-5"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class="p-4">
