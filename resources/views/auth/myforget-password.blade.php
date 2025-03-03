@@ -6,13 +6,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>忘記密碼</title>
+    <title>忘記密碼 Forget Password</title>
     <!-- Vite + Tailwind -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="font-['Lexend']">
-    <main class="flex justify-center items-center min-h-screen bg-cover bg-center h-screen w-full px-5"
+    <main class="flex justify-center items-center min-h-screen bg-cover bg-center  w-full px-5"
         style="background-image: url('{{ asset('images/bg.jpg') }}');">
 
         {{-- 遮罩 --}}
@@ -45,25 +45,17 @@
                         class="px-5 py-3 w-full text-base font-light rounded-md border border-solid border-neutral-200 text-neutral-400" />
                 </div>
 
-                <div class="mt-10 w-full">
+                <div class="mt-10 w-full flex flex-col gap-3">
                     <button type="submit"
                         class="px-0 py-3 w-full text-base font-bold tracking-wide text-center text-white bg-gray-500 rounded-md cursor-pointer border-[none] hover:bg-gray-600 transition-colors">
                         寄送驗證碼
                     </button>
-                </div>
+                    <a href="{{ route('mylogin') }}"
+                        class="px-0 py-3 w-full text-base font-bold tracking-wide text-center text-gray-500 rounded-md border border-gray-500 border-solid cursor-pointer hover:bg-gray-100 transition-colors">
+                        返回登入
+                    </a>
+                  </div>
             </form>
-
-            <div class="mt-4 w-full max-w-[320px]">
-                <a href="{{ route('mylogin') }}"
-                    class="px-0 py-3 w-full text-base font-bold tracking-wide text-center text-gray-500 rounded-md border border-gray-500 border-solid cursor-pointer hover:bg-gray-100 transition-colors">
-                    返回登入
-                </a>
-            </div>
-
-            
-                <a href="#" class="opacity-60 text-zinc-700 underline hover:opacity-100 transition-opacity mt-10 text-xs leading-5 text-center">
-                    重新寄送驗證碼
-                </a>
             
         </section>
     </main>
