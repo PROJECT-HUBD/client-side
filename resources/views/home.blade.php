@@ -209,8 +209,8 @@
     </section>
 
     <!-- banner -->
-    <section class="w-full min-h-[580px] mb-[60px]">
-        <div class="w-full h-[400px]"><img src="{{asset('images/home_banner.JPG')}}" alt="品牌橫幅" class="w-full h-full object-cover"></div>
+    <section class="w-full h-[334px] md:j-[376px] lg:h-[580px] mb-[60px]">
+        <div class="w-full h-[108px] md:h-[233px] lg:h-[400px]"><img src="{{asset('images/home_banner.JPG')}}" alt="品牌橫幅" class="w-full h-full object-cover"></div>
         <!-- 小圖示區 -->
         <div class="w-full flex justify-center items-center py-10 shadow-md">
             <div class="md:w-[760px] lg:w-[1066px] grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-[40px] lg:gap-[142px] justify-center items-center">
