@@ -85,6 +85,76 @@
     </section>
 
     <!-- 主打商品 -->
+    <section class="w-full h-[700px] md:h-[1050px] flex md:flex-col lg:flex-row justify-center items-center mb-[80px]">
+        <div class="w-[390px] h-[610px] lg:w-[50%] md:h-full flex justify-center items-center mb-[40px]">
+            <div class="w-[350px] h-full md:w-[600px] md:h-[920px] flex flex-col justify-center items-center gap-5">
+                <div class="w-full h-10 flex  justify-start items-center gap-5">
+                    <!-- 主打商品 標題 -->
+                    <p class="text-[30px] font-black text-brandGray-normal">主打商品</p>
+                    <!-- 折扣標籤 -->
+                    <div class="w-[90px] h-[36px] font-semibold bg-brandRed-normal flex justify-center items-center text-brandGray-lightLight">10% OFF</div>
+                </div>
+                <!-- 商品圖片 -->
+                <div class="w-[350px] md:w-[427px] h-[350[x] md:h-[427pxpx]">
+                    <img src="{{ asset('images/home_test5.JPG')}}" alt="主打商品" class="targetImg w-full h-full object-cover" loading="lazy">
+                </div>
+                <div class="w-full h-[266px]">
+                    <div class="md:pb-[28px]">
+                        <!-- 商品名稱 -->
+                        <p class="text-brandGray-normal text-[24px] mb-5">輕熟初秋防風純亞麻棉披風</p>
+                        <!-- 商品描述 -->
+                        <p class="hidden md:block text-brandGray-normalLight text-[14px]">
+                            Material | 925 silver | natural opal size | Metric circumference No.10（公制圍 10 號）
+                            飾品皆手工製作，誤差值 ±0.5 公分皆為正常範圍。預購商品出貨約 21 工作天（不含假日），建議與現貨商品分開下單</p>
+                    </div>
+                    <div class="pb-[28px] flex items-center gap-[10px]">
+                        <!-- 原價格（套用折扣） -->
+                        <p class="text-brandGray-normal text-[24px]">NT$ 5980</p>
+                        <!-- 折扣價（套用折扣）-->
+                        <p class="text-brandGray-lightActive text-[18px] line-through">NT$ 5980</p>
+                    </div>
+                    <div class="md:w-full md:h-[50px] flex justify-center md:justify-start items-center md:gap-5">
+                        <!-- 顏色 -->
+                        <div class="md:w-[142px] md:h-full hidden md:flex justify-start items-center gap-[10px]">
+                            <div class="w-[42px] h-[42px] bg-brandGray-light border-2 border-brandGray-normalLight rounded-full"></div>
+                            <div class="w-[42px] h-[42px] bg-brandGray-darker border-2 border-brandGray-normalLight rounded-full"></div>
+                        </div>
+                        <!-- 尺寸 -->
+                        <div class="hidden md:flex text-[24px] text-brandGray-normal justify-center items-center gap-3">
+                            <div class="w-[50px] h-[50px] flex justify-center items-center">L</div>
+                            <div class="w-[50px] h-[50px] flex justify-center items-center">M</div>
+                            <div class="w-[50px] h-[50px] flex justify-center items-center">S</div>
+                        </div>
+                        <!-- 直接購買按鈕 -->
+                        <a href="" class="w-[350px] md:w-[300px] h-[58px] text-[24px] text-semibold text-brandGray-lightLight flex justify-center items-center bg-brandRed-normal rounded-md hover:opacity-80">直接購買&nbsp;<span class="w-[24px] h-[24px] text-brandGray-lightLight icon-[ep--arrow-right-bold]"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 轉盤區 -->
+        <div class="hidden lg:block relative w-[50%] h-full ps-[55px] overflow-hidden">
+            <div class="absolute top-[108px] left-[150px] w-[790px] h-[810px] border-[85px] border-brandRed-light rounded-full"></div>
+            <div class="roulette6 cursor-pointer absolute z-30 top-0 left-[380px] w-[295px] h-[295px] bg-brandGray-lightLight border-8 border-brandRed-light rounded-full hover:opacity-80 activer:opacity-50">
+                <img src="{{asset('images/home_test7.JPG')}}" alt="主打商品圖" class="w-full h-full object-cover rounded-full">
+            </div>
+            <div class="roulette1 rouletteTarget absolute z-30 top-[190px] left-[60px] w-[295px] h-[295px] bg-brandGray-lightLight border-8 border-brandRed-normal rounded-full">
+                <img src="{{asset('images/home_test5.JPG')}}" alt="主打商品圖" class="w-full h-full object-cover rounded-full">
+            </div>
+            <div class="roulette2 cursor-pointer absolute z-30 top-[550px] left-[60px] w-[295px] h-[295px] bg-brandGray-lightLight border-8 border-brandRed-light rounded-full hover:opacity-80 activer:opacity-50">
+                <img src="{{asset('images/home_test6.JPG')}}" alt="主打商品圖" class="w-full h-full object-cover rounded-full">
+            </div>
+            <div class="roulette3 cursor-pointer absolute z-30 bottom-[30px] left-[380px] w-[295px] h-[295px] bg-brandGray-lightLight border-8 border-brandRed-light rounded-full hover:opacity-80 activer:opacity-50">
+                <img src="{{asset('images/home_test9.JPG')}}" alt="主打商品圖" class="w-full h-full object-cover rounded-full">
+            </div>
+            <div class="roulette4 cursor-pointer absolute z-30 top-[580px] left-[700px] w-[295px] h-[295px] bg-brandGray-lightLight border-8 border-brandRed-light rounded-full hover:opacity-80 activer:opacity-50">
+                <img src=" {{asset('images/home_test10.JPG')}}" alt="主打商品圖" class="w-full h-full object-cover rounded-full">
+            </div>
+            <div class="roulette5 cursor-pointer absolute z-30 top-[190px] left-[700px] w-[295px] h-[295px] bg-brandGray-lightLight border-8 border-brandRed-light rounded-full hover:opacity-80 activer:opacity-50">
+                <img src="{{asset('images/home_test11.JPG')}}" alt="主打商品圖" class="w-full h-full object-cover rounded-full">
+            </div>
+
+        </div>
+    </section>
 
 
     <!-- 分類卡片區 -->
