@@ -244,4 +244,31 @@
 
 .expiring-badge i {
     animation: pulse 1.5s infinite;
-} 
+}
+
+/* 新增：可使用的優惠券樣式 */
+.coupon-active {
+    position: relative;
+}
+
+/* .view-list .coupon-active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to right, #3b82f6, #60a5fa);
+} */
+
+.view-grid .coupon-active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    /* 使用藍色漸層 */
+    background: linear-gradient(to right, #3b82f6, #60a5fa);
+    opacity: 0.9;
+}
