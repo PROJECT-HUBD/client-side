@@ -11,7 +11,7 @@
     <section class="max-w-full h-[736px] overflow-hidden border-b-2 shadow-[0_15px_0_0_brandGray-normalLight] flex flex-col mb-[60px]">
         <div class="relative w-full h-[600px] overflow-hidden flex justify-center items-start gap-5 mb-10">
             <!-- 左側圖片 -->
-            <div class="banner1 relative  w-[720px] h-[600px] flex-shrink-0">
+            <div class="banner1 relative w-[720px] h-[600px] flex-shrink-0">
                 <img src="{{ asset('images/home_test1.JPG') }}" alt="輪播圖" class=" w-full h-full object-cover">
                 <div class="bannerMask1 hidden absolute z-20 top-0 left-0 w-full h-full bg-gradient-to-t from-brandGray-normal opacity-40"></div>
                 <div class="bannerMask1 hidden absolute z-30 bottom-0 w-full h-[208px] flex flex-col justify-center items-start px-[60px] gap-[16px] pb-14">
@@ -146,12 +146,12 @@
             <div class="roulette5 cursor-pointer absolute z-30 top-[190px] left-[700px] w-[295px] h-[295px] bg-brandGray-lightLight border-8 border-brandRed-light rounded-full hover:opacity-80 activer:opacity-50">
                 <img src="{{asset('images/home_test11.JPG')}}" alt="主打商品圖" class="w-full h-full object-cover rounded-full">
             </div>
-            
+
         </div>
     </section>
 
     <!-- 分類卡片區 -->
-    <section class="w-[1440px] h-[640px] mb-[100px]">
+    <section class="w-full h-[640px] mb-[100px] flex justify-center items-center">
         <div class="w-[1260] flex justify-center items-center gap-5">
             <div class="relative w-[620px] h-[600px]">
                 <img src="{{asset('images/lessons1.JPG')}}" alt="銀黏土課程" class="w-full h-full object-cover">
@@ -187,56 +187,59 @@
     </section>
 
     <!-- solgan -->
-    <section class="w-full h-[80px] flex justify-center items-center px-[416px] mb-[100px] gap-[95px]">
-        <div class="w-[48px] h-[48px]"><span class="w-full h-full bg-brandRed-normal icon-[mage--star-moving-fill]"></span></div>
-        <div class="h-full text-[30px] text-brandGray-dark flex flex-col justify-center items-center">
-            <p>你依舊閃閃發亮，</p>
-            <p>在非生日的364個日子裡</p>
+    <section class="w-full h-[80px] flex justify-center items-center mb-[100px]">
+        <div class="w-[608px] flex justify-center items-center">
+            <div class="w-[48px] h-[48px]"><span class="w-full h-full bg-brandRed-normal icon-[mage--star-moving-fill]"></span></div>
+            <div class="w-full h-full text-[30px] text-brandGray-dark flex flex-col justify-center items-center">
+                <p>你依舊閃閃發亮，</p>
+                <p>在非生日的364個日子裡</p>
+            </div>
+            <div class="w-[48px] h-[48px]"><span class="w-full h-full bg-brandRed-normal icon-[mage--star-moving-fill]"></span></div>
         </div>
-        <div class="w-[48px] h-[48px]"><span class="w-full h-full bg-brandRed-normal icon-[mage--star-moving-fill]"></span></div>
     </section>
 
     <!-- banner 2 -->
     <section class="w-full h-[580px] pt-10 mb-[60px]">
         <div class="w-full h-[400px]"><img src="{{asset('images/home_banner.JPG')}}" alt="品牌橫幅" class="w-full h-full object-cover"></div>
         <!-- 小圖示區 -->
-        <div class="w-full px-[187px] grid grid-cols-4 gap-[142px] justify-center items-center py-10 shadow-md">
-            <div class="col-span-1 w-[170px] h-[60px] flex justify-center items-center gap-2">
-                <div class="w-[56px] h-[56px] flex justify-center items-center"><span class="w-[42px] h-[42px] bg-brandBlue-normal icon-[ion--gift-outline]"></span></div>
-                <div class="text-brandBlue-normal flex flex-col justify-center items-start">
-                    <p>Handmade</p>
-                    <p>Craft</p>
+        <div class="w-full flex justify-center items-center py-10 shadow-md">
+            <div class="w-[1066px] grid grid-cols-4 gap-[142px] justify-center items-center">
+                <div class="col-span-1 w-[170px] h-[60px] flex justify-center items-center gap-2">
+                    <div class="w-[56px] h-[56px] flex justify-center items-center"><span class="w-[42px] h-[42px] bg-brandBlue-normal icon-[ion--gift-outline]"></span></div>
+                    <div class="text-brandBlue-normal flex flex-col justify-center items-start">
+                        <p>Handmade</p>
+                        <p>Craft</p>
+                    </div>
+                </div>
+                <div class="col-span-1 w-[170px] h-[60px] flex justify-center items-center gap-2">
+                    <div class="w-[56px] h-[56px] flex justify-center items-center"><span class="w-[42px] h-[42px] bg-brandBlue-normal icon-[hugeicons--honour-star]"></span></div>
+                    <div class="text-brandBlue-normal flex flex-col justify-center items-start">
+                        <p>Hight</p>
+                        <p>Quantity</p>
+                    </div>
+                </div>
+                <div class="col-span-1 w-[170px] h-[60px] flex justify-center items-center gap-2">
+                    <div class="w-[56px] h-[56px] flex justify-center items-center"><span class="w-[35px] h-[35px] bg-brandBlue-normal icon-[garden--smiley-stroke-12]"></span></div>
+                    <div class="text-brandBlue-normal flex flex-col justify-center items-start">
+                        <p>Hight</p>
+                        <p>Satsification</p>
+                    </div>
+                </div>
+                <div class="col-span-1 w-[170px] h-[60px] flex justify-center items-center gap-2">
+                    <div class="w-[56px] h-[56px] flex justify-center items-center"><span class="w-[42px] h-[42px] bg-brandBlue-normal icon-[la--shipping-fast]"></span></div>
+                    <div class="text-brandBlue-normal flex flex-col justify-center items-start">
+                        <p>Flexable</p>
+                        <p>Shipping</p>
+                    </div>
                 </div>
             </div>
-            <div class="col-span-1 w-[170px] h-[60px] flex justify-center items-center gap-2">
-                <div class="w-[56px] h-[56px] flex justify-center items-center"><span class="w-[42px] h-[42px] bg-brandBlue-normal icon-[hugeicons--honour-star]"></span></div>
-                <div class="text-brandBlue-normal flex flex-col justify-center items-start">
-                    <p>Hight</p>
-                    <p>Quantity</p>
-                </div>
-            </div>
-            <div class="col-span-1 w-[170px] h-[60px] flex justify-center items-center gap-2">
-                <div class="w-[56px] h-[56px] flex justify-center items-center"><span class="w-[35px] h-[35px] bg-brandBlue-normal icon-[garden--smiley-stroke-12]"></span></div>
-                <div class="text-brandBlue-normal flex flex-col justify-center items-start">
-                    <p>Hight</p>
-                    <p>Satsification</p>
-                </div>
-            </div>
-            <div class="col-span-1 w-[170px] h-[60px] flex justify-center items-center gap-2">
-                <div class="w-[56px] h-[56px] flex justify-center items-center"><span class="w-[42px] h-[42px] bg-brandBlue-normal icon-[la--shipping-fast]"></span></div>
-                <div class="text-brandBlue-normal flex flex-col justify-center items-start">
-                    <p>Flexable</p>
-                    <p>Shipping</p>
-                </div>
-            </div>
-
         </div>
     </section>
 
     <!-- 商品卡片區 飾品 -->
-    <section class="w-full h-[494px] mb-[60px] flex flex-col justify-center items-center px-[105px]">
+    <section class="w-full h-[494px] mb-[60px] flex flex-col justify-center items-center">
         <!-- 標題 -->
-        <div class="w-full h-[56px] flex item-center gap-5 mb-[28px]">
+        <div class="w-[1230px] h-[56px] flex item-center gap-5 mb-[28px]">
             <div class="w-full flex justify-start items-center font-semibold text-brandGray-normal text-[30px]">
                 <p>飾品&nbsp;&nbsp;<span>Accessories</span></p>
             </div>
@@ -245,7 +248,7 @@
             </div>
         </div>
         <!-- 商品四個 -->
-        <div class="grid grid-cols-4 justify-center items-center full h-[418px] gap-5">
+        <div class="grid grid-cols-4 justify-center items-center w-[1230px] h-[418px] gap-5">
             <div class="col-span-1 flex flex-col justify-center items-center relative">
                 <a href="" class="hover:opacity-80 flex flex-col justify-center items-center gap-5">
                     <div class="relative w-[300px] h-[300px]">
@@ -301,7 +304,7 @@
     <!-- 商品卡片區 服飾 -->
     <section class="w-full h-[494px] mb-[120px] flex flex-col justify-center items-center px-[105px]">
         <!-- 標題 -->
-        <div class="w-full h-[56px] flex item-center gap-5 mb-[28px]">
+        <div class="w-[1230px] h-[56px] flex item-center gap-5 mb-[28px]">
             <div class="w-full flex justify-start items-center font-semibold text-brandGray-normal text-[30px]">
                 <p>服飾&nbsp;&nbsp;<span>Clothes</span></p>
             </div>
@@ -310,7 +313,7 @@
             </div>
         </div>
         <!-- 商品四個 -->
-        <div class="grid grid-cols-4 justify-center items-center full h-[418px] gap-5">
+        <div class="grid grid-cols-4 justify-center items-center w-[1230px] h-[418px] gap-5">
             <div class="col-span-1 flex flex-col justify-center items-center relative ">
                 <a href="" class="hover:opacity-80 flex flex-col justify-center items-center gap-5">
                     <div class="relative w-[300px] h-[300px]">
@@ -442,7 +445,7 @@
             currentRoulette.animate({
                 top: $(nextPosition).css("top"),
                 left: $(nextPosition).css("left"),
-            }, 300, function () {
+            }, 300, function() {
                 // 調整邊框
                 currentRoulette.removeClass("border-brandRed-normal border-brandRed-light").addClass(nextBorder);
 
@@ -459,13 +462,11 @@
     }
 
     // 綁定點擊事件
-    $(".roulette1, .roulette2, .roulette3, .roulette4, .roulette5, .roulette6").on("click", function () {
+    $(".roulette1, .roulette2, .roulette3, .roulette4, .roulette5, .roulette6").on("click", function() {
         let clickedNumber = parseInt($(this).attr("class").match(/roulette(\d)/)[1]); // 取得點擊的 roulette 編號
         if (clickedNumber !== rouletteOrder[0]) { // 避免點擊目標位置的 roulette
             updateRoulette(clickedNumber);
         }
     });
-
-
 </script>
 @endpush
