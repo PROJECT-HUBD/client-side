@@ -73,7 +73,7 @@
                     <div class="space-y-4">
                         <div class="flex flex-wrap md:flex-nowrap items-center gap-4">
                             <div class="w-20 h-20 bg-brandGray-light rounded-md flex-shrink-0">
-                                <img src="https://via.placeholder.com/80" alt="商品圖片" class="w-full h-full object-cover rounded-md">
+                                <img src="https://via.placeholder.com/80" alt="商品圖片" class="w-full h-full object-cover rounded-md" loading="lazy">
                             </div>
                             <div class="flex-grow">
                                 <h4 class="text-md font-medium text-brandGray-normal">簡約風格長袖上衣</h4>
@@ -86,7 +86,7 @@
                         </div>
                         <div class="flex flex-wrap md:flex-nowrap items-center gap-4">
                             <div class="w-20 h-20 bg-brandGray-light rounded-md flex-shrink-0">
-                                <img src="https://via.placeholder.com/80" alt="商品圖片" class="w-full h-full object-cover rounded-md">
+                                <img src="https://via.placeholder.com/80" alt="商品圖片" class="w-full h-full object-cover rounded-md" loading="lazy">
                             </div>
                             <div class="flex-grow">
                                 <h4 class="text-md font-medium text-brandGray-normal">休閒寬鬆牛仔褲</h4>
@@ -131,7 +131,7 @@
                     <div class="space-y-4">
                         <div class="flex flex-wrap md:flex-nowrap items-center gap-4">
                             <div class="w-20 h-20 bg-brandGray-light rounded-md flex-shrink-0">
-                                <img src="https://via.placeholder.com/80" alt="商品圖片" class="w-full h-full object-cover rounded-md">
+                                <img src="https://via.placeholder.com/80" alt="商品圖片" class="w-full h-full object-cover rounded-md" loading="lazy">
                             </div>
                             <div class="flex-grow">
                                 <h4 class="text-md font-medium text-brandGray-normal">時尚針織毛衣</h4>
@@ -176,7 +176,7 @@
                     <div class="space-y-4">
                         <div class="flex flex-wrap md:flex-nowrap items-center gap-4">
                             <div class="w-20 h-20 bg-brandGray-light rounded-md flex-shrink-0">
-                                <img src="https://via.placeholder.com/80" alt="商品圖片" class="w-full h-full object-cover rounded-md">
+                                <img src="https://via.placeholder.com/80" alt="商品圖片" class="w-full h-full object-cover rounded-md" loading="lazy">
                             </div>
                             <div class="flex-grow">
                                 <h4 class="text-md font-medium text-brandGray-normal">高級皮革外套</h4>
@@ -221,7 +221,7 @@
                     <div class="space-y-4">
                         <div class="flex flex-wrap md:flex-nowrap items-center gap-4">
                             <div class="w-20 h-20 bg-brandGray-light rounded-md flex-shrink-0">
-                                <img src="https://via.placeholder.com/80" alt="商品圖片" class="w-full h-full object-cover rounded-md">
+                                <img src="https://via.placeholder.com/80" alt="商品圖片" class="w-full h-full object-cover rounded-md" loading="lazy">
                             </div>
                             <div class="flex-grow">
                                 <h4 class="text-md font-medium text-brandGray-normal">休閒棉質T恤</h4>
@@ -266,7 +266,7 @@
                     <div class="space-y-4">
                         <div class="flex flex-wrap md:flex-nowrap items-center gap-4">
                             <div class="w-20 h-20 bg-brandGray-light rounded-md flex-shrink-0">
-                                <img src="https://via.placeholder.com/80" alt="商品圖片" class="w-full h-full object-cover rounded-md">
+                                <img src="https://via.placeholder.com/80" alt="商品圖片" class="w-full h-full object-cover rounded-md" loading="lazy">
                             </div>
                             <div class="flex-grow">
                                 <h4 class="text-md font-medium text-brandGray-normal">運動休閒鞋</h4>
