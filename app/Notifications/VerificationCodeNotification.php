@@ -24,6 +24,8 @@ class VerificationCodeNotification extends Notification
 
     public function toMail($notifiable)
     {
+      
+
         return (new MailMessage)
             ->subject('您的註冊驗證碼')
             ->line('您好！您的註冊驗證碼如下：')

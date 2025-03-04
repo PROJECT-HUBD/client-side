@@ -26,6 +26,10 @@ Route::get('/categories_accessories', function () {
 Route::get('/categories_clothes', function () {
     return view('categories_clothes');
 })->name('categories_clothes');
+//關於我們
+Route::get('/AboutUs', function() {
+    return view('AboutUs');
+})->name('AboutUs');
 
 // 登入才看得到頁
 Route::get('/dashboard', function () {
