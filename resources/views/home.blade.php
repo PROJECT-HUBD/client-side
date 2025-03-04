@@ -6,7 +6,7 @@
 
 
 @section('content')
-<section class="mt-[200px] w-full">
+<section class="mt-[200px] md:mt-[260px] lg:mt-[200px] w-full">
     <!-- banner 輪播圖 -->
     <section class="w-full h-[415px] md:h-[440px] lg:h-[736px] overflow-hidden border-b-2 shadow-[0_15px_0_0_brandGray-normalLight] flex flex-col mb-[60px]">
         <div class="relative w-full h-[325px]  md:h-[350px] lg:h-[600px] overflow-hidden flex justify-center items-start gap-5">
@@ -86,8 +86,8 @@
 
     <!-- 主打商品 -->
     <section class="w-full h-[610px] md:h-[773px] lg:h-[1050px] flex md:flex-col lg:flex-row justify-center items-center mb-[60px]">
-        <div class="w-full h-full md:w-[660px] lg:w-[50%] flex justify-center items-center">
-            <div class="w-[350px] h-full md:w-[600px] md:h-[920px] flex flex-col justify-center items-center gap-5">
+        <div class="w-[610px] h-full md:w-[660px] lg:w-[50%] flex justify-center items-center lg:ps-[90px]">
+            <div class=" h-full md:w-[600px] md:h-[920px] flex flex-col justify-center items-center gap-5">
                 <div class="w-full h-10 flex justify-start items-center gap-5">
                     <!-- 主打商品 標題 -->
                     <p class="text-[30px] font-black text-brandGray-normal">主打商品</p>
@@ -95,8 +95,8 @@
                     <div class="w-[90px] h-[36px] font-semibold bg-brandRed-normal flex justify-center items-center text-brandGray-lightLight">10% OFF</div>
                 </div>
                 <!-- 商品圖片 -->
-                <div class="w-[350px] md:w-[427px] h-[350px] md:h-[427px]">
-                    <img src="{{ asset('images/home_test5.JPG')}}" alt="主打商品" class="targetImg w-full h-full object-cover" loading="lazy">
+                <div class="w-[350px] md:w-[427px] lg:w-[580px] h-[350px] md:h-[427px] lg:h-[580px]">
+                    <img src="{{asset('images/home_test5.JPG')}}" alt="主打商品" class="targetImg w-full h-full object-cover" loading="lazy">
                 </div>
                 <div class="w-full h-full md:h-[266px]">
                     <div class="md:pb-[28px]">
@@ -155,7 +155,7 @@
     </section>
 
     <!-- 分類卡片區 -->
-    <section class="w-full min-h-[1220px] md:min-h-[600px] md:h-[600px] flex justify-center items-center mb-[60px]">
+    <section class="w-full min-h-[1220px] md:min-h-[600px] md:h-[600px] flex justify-center items-center mb-[80px]">
         <div class="w-full h-full flex flex-col md:flex-row justify-center items-center gap-5">
             <!-- 左邊 單張 -->
             <div class="relative w-full md:w-[360px] lg:w-[620px] h-full">
@@ -197,7 +197,7 @@
     </section>
 
     <!-- slogan -->
-    <section class="w-full h-[52px] md:h-[80px] flex justify-center items-center mb-[60px]">
+    <section class="w-full h-[52px] md:h-[80px] flex justify-center items-center mb-[80px]">
         <div class="w-full h-full flex justify-center items-center gap-6 md:gap-20">
             <div class="w-[32px] md:w-[48px] h-[32px] md:h-[48px]"><span class="w-full h-full bg-brandRed-normal icon-[mage--star-moving-fill]"></span></div>
             <div class="w-[220px] md:w-[380px] h-full text-[18px] md:text-[30px] text-brandGray-dark flex flex-col justify-center items-center">
@@ -209,7 +209,7 @@
     </section>
 
     <!-- banner -->
-    <section class="w-full h-[334px] md:j-[376px] lg:h-[580px] mb-[60px]">
+    <section class="w-full h-[334px] md:h-[376px] lg:h-[580px] mb-[60px]">
         <div class="w-full h-[108px] md:h-[233px] lg:h-[400px]"><img src="{{asset('images/home_banner.JPG')}}" alt="品牌橫幅" class="w-full h-full object-cover"></div>
         <!-- 小圖示區 -->
         <div class="w-full flex justify-center items-center py-10 shadow-md">
@@ -247,10 +247,10 @@
     </section>
 
     <!-- 商品卡片區 飾品 -->
-    <section class="w-full h-[1170px] md:h-[494px] flex flex-col justify-center items-center mb-[60px] ">
+    <section class="w-full h-[1170px] md:h-[420px] lg:h-[494px] flex flex-col justify-center items-center mb-[60px]">
         <!-- 標題 -->
-        <div class="w-[390px] md:w-[770px] lg:w-[1230px] h-[50px] md:h-[56px] flex item-center md:gap-5 px-10 md:px-0 mb-[28px]">
-            <div class="w-full flex justify-start items-center font-semibold text-brandGray-normal text-[24px] md:text-[30px]">
+        <div class="w-[250px] md:w-[770px] lg:w-[1230px] h-[50px] md:h-[56px] flex item-center mb-[28px]">
+            <div class="w-full flex justify-start items-center font-semibold text-brandGray-normal text-[28px] md:text-[30px]">
                 <p>飾品&nbsp;&nbsp;<span class="hidden md:inline-block">Accessories</span></p>
             </div>
             <a href="" class="w-full text-[20px] flex justify-end items-center font-normal text-brandGray-normal md:text-[24px] hover:opacity-80 active:opacity-50">
@@ -316,11 +316,11 @@
 
 
     <!-- 商品卡片區 服飾 -->
-    <section class="w-full h-[1170px] md:h-[494px] flex flex-col justify-center items-center mb-[60px] ">
+    <section class="w-full h-[1170px] md:h-[420px] lg:h-[494px] flex flex-col justify-center items-center mb-[60px]">
         <!-- 標題 -->
-        <div class="w-[390px] md:w-[770px] lg:w-[1230px] h-[50px] md:h-[56px] flex item-center md:gap-5 px-10 md:px-0 mb-[28px]">
-            <div class="w-full flex justify-start items-center font-semibold text-brandGray-normal text-[24px] md:text-[30px]">
-                <p>飾品&nbsp;&nbsp;<span class="hidden md:inline-block">Accessories</span></p>
+        <div class="w-[250px] md:w-[770px] lg:w-[1230px] h-[50px] md:h-[56px] flex item-center mb-[28px]">
+            <div class="w-full flex justify-start items-center font-semibold text-brandGray-normal text-[28px] md:text-[30px]">
+                <p>服飾&nbsp;&nbsp;<span class="hidden md:inline-block">Accessories</span></p>
             </div>
             <a href="" class="w-full text-[20px] flex justify-end items-center font-normal text-brandGray-normal md:text-[24px] hover:opacity-80 active:opacity-50">
                 <p class="hover:text-brandRed-normal flex justify-center items-center">更多商品&nbsp;&nbsp;<span class="w-6 h-6 icon-[ep--arrow-right-bold]"></span></p>
