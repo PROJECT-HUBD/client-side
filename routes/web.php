@@ -17,6 +17,11 @@ Route::get('/test1', function () {
     return view('test1');
 })->name('test1');
 
+//關於我們
+Route::get('/AboutUs', function() {
+    return view('AboutUs');
+})->name('AboutUs');
+
 // 登入才看得到頁
 Route::get('/dashboard', function () {
     return view('dashboard');

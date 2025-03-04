@@ -25,10 +25,14 @@ class MultiStepRegistrationController extends Controller
 
     public function sendVerificationCode(Request $request)
     {
-       
+      
+
         $request->validate([
             'email' => 'required|email|unique:users,email',
         ]);
+
+        // 測試是否有進入這個函數
+    //  dd('✅ sendVerificationCode() 方法執行成功', $request->email);
 
         // 防止短時間內重複發送 前端檢測先不用
         if (Session::has('last_verification_request_time') && now()->diffInSeconds(Session::get('last_verification_request_time')) < 60) {
@@ -38,10 +42,10 @@ class MultiStepRegistrationController extends Controller
         $verificationCode = random_int(100000, 999999);
 
         Session::put('registration_verification_code', $verificationCode);
-        Session::put('registration_expires_at',now()->addMinuter(10));
+        Session::put('registration_expires_at',now()->addMinutes(10));
         Session::put('last_verification_request_time', now());
 
-        Notification::route('mail', $request->email)->notify(new VerificationCodeNotification($verificationCode));
+        Notification::route('mail', $request->email)->notifyNow(new VerificationCodeNotification($verificationCode));
 
         return redirect()->route('myverify');
     }
@@ -67,7 +71,7 @@ class MultiStepRegistrationController extends Controller
 
         // 取得 session 中存的驗證碼
         $sessionCode = Session::get('registration_verification_code');
-        $expiresAt = Session::get('registration_codr_expires_at');
+        $expiresAt = Session::get('registration_expires_at');
 
         if (!$sessionCode || now()->greaterThan($sessionCode['$expiresAt'])) {
             return back()->withErrors(['verification_code' => '驗證碼已過期，請重新請求']);
