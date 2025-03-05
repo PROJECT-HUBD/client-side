@@ -8,7 +8,7 @@
 @section('content')
 <section class="mt-[200px] md:mt-[260px] lg:mt-[200px] w-full">
     <!-- banner 輪播圖 -->
-    <section class="w-full h-[415px] md:h-[440px] lg:h-[736px] overflow-hidden border-b-2 shadow-[0_15px_0_0_brandGray-normalLight] flex flex-col mb-[60px]">
+    <section class="w-full h-[415px] md:h-[440px] lg:h-[600px] overflow-hidden border-b-2 shadow-[0_15px_0_0_brandGray-normalLight] flex flex-col mb-[60px]">
         <div class="relative w-full h-[325px]  md:h-[350px] lg:h-[600px] overflow-hidden flex justify-center items-start gap-5">
             <!-- 左側圖片 -->
             <div class="banner1 relative w-[390px] md:w-[420px] lg:w-[720px] h-full flex-shrink-0">
@@ -253,7 +253,7 @@
             <div class="w-full flex justify-start items-center font-semibold text-brandGray-normal text-[28px] md:text-[30px]">
                 <p>飾品&nbsp;&nbsp;<span class="hidden md:inline-block">Accessories</span></p>
             </div>
-            <a href="" class="w-full text-[20px] flex justify-end items-center font-normal text-brandGray-normal md:text-[24px] hover:opacity-80 active:opacity-50">
+            <a href="" class="w-full text-[20px] flex justify-end items-center font-normal text-brandGray-normal md:text-[20px] hover:opacity-80 active:opacity-50">
                 <p class="hover:text-brandRed-normal flex justify-center items-center">更多商品&nbsp;&nbsp;<span class="w-6 h-6 icon-[ep--arrow-right-bold]"></span></p>
             </a>
         </div>
@@ -320,9 +320,9 @@
         <!-- 標題 -->
         <div class="w-[250px] md:w-[770px] lg:w-[1230px] h-[50px] md:h-[56px] flex item-center mb-[28px]">
             <div class="w-full flex justify-start items-center font-semibold text-brandGray-normal text-[28px] md:text-[30px]">
-                <p>服飾&nbsp;&nbsp;<span class="hidden md:inline-block">Accessories</span></p>
+                <p>服飾&nbsp;&nbsp;<span class="hidden md:inline-block">Clothes</span></p>
             </div>
-            <a href="" class="w-full text-[20px] flex justify-end items-center font-normal text-brandGray-normal md:text-[24px] hover:opacity-80 active:opacity-50">
+            <a href="" class="w-full text-[20px] flex justify-end items-center font-normal text-brandGray-normal md:text-[20px] hover:opacity-80 active:opacity-50">
                 <p class="hover:text-brandRed-normal flex justify-center items-center">更多商品&nbsp;&nbsp;<span class="w-6 h-6 icon-[ep--arrow-right-bold]"></span></p>
             </a>
         </div>

@@ -34,7 +34,7 @@
     </header>
 
     <!-- main -->
-    <main class="min-w-[390px] mx-auto mt-6">
+    <main class="max-w-full min-w-[390px] mx-auto mt-6">
         @yield('content')
     </main>
 
