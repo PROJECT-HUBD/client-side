@@ -198,13 +198,13 @@
 
     <!-- slogan -->
     <section class="w-full h-[52px] md:h-[80px] flex justify-center items-center mb-[80px]">
-        <div class="w-full h-full flex justify-center items-center gap-6 md:gap-20">
-            <div class="w-[32px] md:w-[48px] h-[32px] md:h-[48px]"><span class="w-full h-full bg-brandRed-normal icon-[mage--star-moving-fill]"></span></div>
-            <div class="w-[220px] md:w-[380px] h-full text-[18px] md:text-[30px] text-brandGray-dark flex flex-col justify-center items-center">
+        <div class="w-full h-full flex justify-center items-center gap-6 md:gap-14">
+            <div class="w-[28px] md:w-[40px] h-[28px] md:h-[40px]"><span class="w-full h-full bg-brandRed-normal icon-[mage--star-moving-fill]"></span></div>
+            <div class="w-[220px] md:w-[380px] h-full text-[18px] md:text-[24px] text-brandGray-dark flex flex-col justify-center items-center">
                 <p>你依舊閃閃發亮，</p>
                 <p>在非生日的 364 個日子裡</p>
             </div>
-            <div class="w-[32px] md:w-[48px] h-[32px] md:h-[48px]"><span class="w-full h-full bg-brandRed-normal icon-[mage--star-moving-fill]"></span></div>
+            <div class="w-[28px] md:w-[40px] h-[28px] md:h-[40px]"><span class="w-full h-full bg-brandRed-normal icon-[mage--star-moving-fill]"></span></div>
         </div>
     </section>
 
