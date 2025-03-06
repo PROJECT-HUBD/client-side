@@ -179,4 +179,17 @@ Route::get('/user_profile', function () {
     return redirect()->route('user.user_profile');
 })->name('user_profile');
 
+// 購物車頁
+Route::get('/cart', function () {
+    return view('cart');
+})->name('cart');
+// 購物清單頁
+Route::get('/check-out', function () {
+    return view('check-out');
+})->name('checkOut');
+
+// 任何url都會導向app.blade.php
+Route::get('{any}', function () {
+    return view('app'); // 假設 Vue/React 放在 resources/views/app.blade.php
+})->where('any', '.*');
 require __DIR__.'/auth.php';
