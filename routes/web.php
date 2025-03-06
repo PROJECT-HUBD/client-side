@@ -36,7 +36,7 @@ Route::get('/cart', function () {
 // 購物清單頁
 Route::get('/check-out', function () {
     return view('check-out');
-})->name('cart');
+})->name('checkOut');
 
 // 任何url都會導向app.blade.php
 Route::get('{any}', function () {

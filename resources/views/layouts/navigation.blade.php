@@ -27,7 +27,7 @@
                     <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[mynaui--heart]"></span>
                 </a>
                 <!-- cart -->
-                <a href="" class="flex items-center justify-center">
+                <a href="{{route('cart')}}" class="flex items-center justify-center">
                     <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[iconoir--cart]"></span>
                 </a>
                 <!-- account -->
