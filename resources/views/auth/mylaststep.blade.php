@@ -32,8 +32,7 @@
               <h1 class="text-2xl font-semibold leading-9 text-gray-500">Last Step</h1>
           </header>
 
-          <form method="POST" action="{{ route('mylaststep.submit') }}"
-              class="flex flex-col w-full max-w-[320px] mx-auto">
+          <form method="POST" action="{{ route('mylaststep.submit') }}"class="flex flex-col w-full max-w-[320px] mx-auto">
               @csrf
               <p class="mb-3 text-base tracking-widest leading-6 text-black opacity-50 text-left">
                   請輸入你的個人資料以完成註冊流程！

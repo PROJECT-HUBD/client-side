@@ -58,18 +58,18 @@
                     <div class="absolute right-0 text-xs opacity-50 bottom-[-18px] text-zinc-700">
                         <a href="{{ route('password.email.send') }}" class="underline">忘記密碼</a>
                     </div>
-                </form>
+                    <div class="mt-11 w-full">
+                        <button type="submit" 
+                            class="p-2.5 mb-4 font-bold text-center text-white bg-gray-500 hover:bg-gray-600 rounded-md w-full">
+                            登入
+                        </button>
+                        <a href="{{ route('myregister') }}"
+                            class="p-2.5 font-bold text-center text-gray-500 hover:bg-gray-100 rounded-md border border-solid border-[#626981] w-full block text-center">
+                            註冊會員
+                        </a>
+                    </div>
 
-                <div class="mt-11 w-full">
-                    <button type="button"
-                        class="p-2.5 mb-4 font-bold text-center text-white bg-gray-500 hover:bg-gray-600 rounded-md w-full">
-                        登入
-                    </button>
-                    <a href="{{ route('myregister') }}"
-                        class="p-2.5 font-bold text-center text-gray-500 hover:bg-gray-100 rounded-md border border-solid border-[#626981] w-full block text-center">
-                        註冊會員
-                    </a>
-                </div>
+                </form>    
 
 
 

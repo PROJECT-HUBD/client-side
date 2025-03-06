@@ -127,9 +127,9 @@
         <section class="flex flex-col items-center w-full font-light text-center text-zinc-700 max-md:max-w-full max-md:px-6"
             style="margin-bottom: 6.25rem;">
             <div class="max-w-full w-[305px]">
-
+               
                 <h2 class="text-3xl leading-loose font-bold">364<br />HAPPY UNBIRTHDAY<br /> </h2>
-
+               
                 <p class="mt-4 text-xl leading-9">since 2020</p>
 
             </div>
@@ -154,17 +154,17 @@
         <section class="flex flex-wrap justify-between items-center w-full gap-2.5 max-md:flex-col max-md:items-center"
             style="margin-bottom: 100px;">
 
-            <figure class="w-[420px] h-[460px] flex-shrink-0 max-md:w-[80%] max-md:h-auto">
+            <figure class="w-[30%] h-[460px] flex-shrink-0 max-md:w-[80%] max-md:h-auto">
                 <img src="https://cdn.builder.io/api/v1/image/assets/fff8f95ab9b14906ad7fee76d4c8586f/cbefd3aed4daf175f120182b73b291ce9b6e8e4bf4f31695abdef7b63c6241fd?placeholderIfAbsent=true"
                     alt="Brand image 1" class="w-full h-full object-cover rounded-xl" />
             </figure>
 
-            <figure class="w-[420px] h-[460px] flex-shrink-0 max-md:w-[80%] max-md:h-auto">
+            <figure class="w-[30%] h-[460px] flex-shrink-0 max-md:w-[80%] max-md:h-auto">
                 <img src="https://cdn.builder.io/api/v1/image/assets/fff8f95ab9b14906ad7fee76d4c8586f/594f8bbf49e2000eb3d0c1db379670cb85c65f32e87d28e69580cd7c7eda6eb7?placeholderIfAbsent=true"
                     alt="Brand image 2" class="w-full h-full object-cover rounded-xl" />
             </figure>
 
-            <figure class="w-[420px] h-[460px] flex-shrink-0 max-md:w-[80%] max-md:h-auto">
+            <figure class="w-[30%] h-[460px] flex-shrink-0 max-md:w-[80%] max-md:h-auto">
                 <img src="https://cdn.builder.io/api/v1/image/assets/fff8f95ab9b14906ad7fee76d4c8586f/351e68aacce29594dd601472fc3944d0efc20ce281fd7656670f99454cf1aebb?placeholderIfAbsent=true"
                     alt="Brand image 3" class="w-full h-full object-cover rounded-xl" />
             </figure>
@@ -205,38 +205,36 @@
             </figure>
         </section>
 
+     <!-- Workspace Section -->
+<section style="margin-bottom:6.25rem;">
+    <div class="flex items-center gap-10 max-md:flex-col max-md:items-center max-md:space-y-6">
         
-        <!-- Workspace Section -->
-        <section style="margin-bottom:6.25rem;">
-            <div class="flex items-center gap-10 max-md:flex-col max-md:items-center max-md:space-y-6">
+        <!-- 圖片 -->
+        <img src="https://cdn.builder.io/api/v1/image/assets/fff8f95ab9b14906ad7fee76d4c8586f/2c965e66c4fc625573d8fcf9c38cdbd541277e7ff3e459222341cdec8b0752d4"
+            alt="Workspace image" 
+            class="object-cover w-[499px] flex-shrink-0 rounded-xl max-md:w-[90%] max-md:h-auto lg:ml-0"
+            style="height: 584px;" />
 
-                <!-- 圖片 -->
-                <img src="https://cdn.builder.io/api/v1/image/assets/fff8f95ab9b14906ad7fee76d4c8586f/2c965e66c4fc625573d8fcf9c38cdbd541277e7ff3e459222341cdec8b0752d4"
-                    alt="Workspace image"
-                    class="object-cover w-[499px] flex-shrink-0 rounded-xl max-md:w-[90%] max-md:h-auto lg:ml-10"
-                    style="height: 584px;" />
+        <!-- 文字區塊 -->
+        <div
+            class="w-full lg:min-w-[750px] text-xl font-normal leading-9 text-zinc-700 max-md:mt-10 max-md:max-w-full max-md:px-6 max-md:pl-0 lg:pl-16">
+            <h3 class="font-normal">靈感誕生的空間</h3>
+           
+            <p class="mt-6">364HUBD 的工作室位於淡水，鄰近海邊，</p>
+            
+            <p class="mt-6">將現代簡約風格，沒有過多修飾，純粹且貼近日常。</p>
+            
+            <p class="mt-6">微鹹的海風與淡水獨有的悠閒氛圍，成為我們靈感的泉源。</p>
+           
+            <p class="mt-6">無論是靜謐的夕陽還是波光粼粼的水面，都激發著我們對設計的熱情。 </p>
+           
+            <p class="mt-6">在這片連結自然與創意的空間裡，我們將每一個想法化為現實，</p>
+           
+            <p class="mt-6">讓每位造訪者都能感受無限可能與純粹熱情。</p>
+        </div>
 
-                <!-- 文字區塊 -->
-                <div class="w-full lg:w-[600px] text-xl font-normal leading-9 text-zinc-700 max-md:mt-10 max-md:max-w-full max-md:px-6 max-md:pl-0"
-                    style="margin-left: 100px;">
-                    <h3 class="font-normal text-2xl">靈感誕生的空間</h3>
-
-                    <p class="mt-6">364HUBD 的工作室位於淡水，鄰近海邊，</p>
-
-                    <p class="mt-6">將現代簡約風格，沒有過多修飾，純粹且貼近日常。</p>
-
-                    <p class="mt-6">微鹹的海風與淡水獨有的悠閒氛圍，成為我們靈感的泉源。</p>
-
-                    <p class="mt-6">無論是靜謐的夕陽還是波光粼粼的水面，都激發著我們對設計的熱情。</p>
-
-                    <p class="mt-6">在這片連結自然與創意的空間裡，我們將每一個想法化為現實，</p>
-
-                    <p class="mt-6">讓每位造訪者都能感受無限可能與純粹熱情。</p>
-                </div>
-
-            </div>
-        </section>
-
+    </div>
+</section>
 
         <!-- Google Maps -->
         <section class="flex justify-center">

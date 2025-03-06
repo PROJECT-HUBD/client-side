@@ -16,7 +16,6 @@ class MultiStepRegistrationController extends Controller
 {
 
 
-
     //顯示email輸入頁面
     public function showEmailForm()
     {
@@ -25,14 +24,14 @@ class MultiStepRegistrationController extends Controller
 
     public function sendVerificationCode(Request $request)
     {
-      
+
 
         $request->validate([
             'email' => 'required|email|unique:users,email',
         ]);
 
         // 測試是否有進入這個函數
-    //  dd('✅ sendVerificationCode() 方法執行成功', $request->email);
+        //  dd('✅ sendVerificationCode() 方法執行成功', $request->email);
 
         // 防止短時間內重複發送 前端檢測先不用
         if (Session::has('last_verification_request_time') && now()->diffInSeconds(Session::get('last_verification_request_time')) < 60) {
@@ -42,8 +41,10 @@ class MultiStepRegistrationController extends Controller
         $verificationCode = random_int(100000, 999999);
 
         Session::put('registration_verification_code', $verificationCode);
-        Session::put('registration_expires_at',now()->addMinutes(10));
+        Session::put('registration_expires_at', now()->addMinutes(10));
+        Session::put('registration_email', $request->email);
         Session::put('last_verification_request_time', now());
+
 
         Notification::route('mail', $request->email)->notifyNow(new VerificationCodeNotification($verificationCode));
 
@@ -73,14 +74,19 @@ class MultiStepRegistrationController extends Controller
         $sessionCode = Session::get('registration_verification_code');
         $expiresAt = Session::get('registration_expires_at');
 
-        if (!$sessionCode || now()->greaterThan($sessionCode['$expiresAt'])) {
+        if (!$sessionCode || ($expiresAt && now()->greaterThan($expiresAt))) {
             return back()->withErrors(['verification_code' => '驗證碼已過期，請重新請求']);
         }
 
         // 檢查驗證碼是否匹配
         if ($request->verification_code == $sessionCode) {
+
+            // ✅ 確認驗證成功後，將驗證狀態存入 Session
+            Session::put('email_verified', true);
+
             // 驗證成功，清除 session 中的驗證碼
             Session::forget('registration_verification_code');
+            Session::forget('registration_expires_at');
 
             return redirect()->route('mylaststep');
         } else {
@@ -100,19 +106,24 @@ class MultiStepRegistrationController extends Controller
 
     public function registerDetails(Request $request)
     {
-
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'birthday' => 'required|date',
-            'phone' => 'required|string|min:10|max:15',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
+       
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'birthday' => 'required|date',
+        //     'phone' => 'required|string|min:10|max:15',
+        //     'password' => 'required|string|min:8|confirmed',
+        // ]);
 
         // 確保 session 中的 email 存在，避免 session 遺失
-        $email = Session::get('reset_email');
+        $email = Session::get('registration_email');
         if (!$email) {
-            return back()->withErrors(['email' => 'Session 遺失，請重新註冊']);
+            return back()->withErrors(['email' => '信件遺失，請重新註冊']);
         };
+
+        // ✅ 確保 Email 已驗證
+        if (!Session::get('email_verified')) {
+            return back()->withErrors(['email' => 'Email 尚未驗證，請重新驗證']);
+        }
 
         // 創建新用戶
         $user = User::create([
@@ -121,11 +132,12 @@ class MultiStepRegistrationController extends Controller
             'birthday' => $request->birthday,
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
+            'email_verified_at' => now(), //將email設為已驗證
         ]);
 
 
         // 清除 Session 中的驗證碼與 Email
-        Session::forget(['registration_verification_code', 'registration_email']);
+        Session::forget(['registration_verification_code', 'registration_email','email_verified']);
 
         //自動登入用戶
         Auth::login($user);

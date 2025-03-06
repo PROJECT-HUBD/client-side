@@ -11,10 +11,28 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
+
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->route('dashboard'); // ✅ 登入成功後跳轉
+        }
+
+        return back()->withErrors([
+            'email' => '登入失敗，請檢查您的帳號與密碼。',
+        ]);
+    }
+
     /**
      * Display the login view.
      */
-    public function showLoginForm(): View
+    public function showLoginForm()
     {
         return view('auth.mylogin');
     }
@@ -48,6 +66,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('login')->with('status','已成功登出');
+        return redirect()->route('mylogin')->with('status','已成功登出');
     }
 }
