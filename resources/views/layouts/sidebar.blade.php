@@ -61,7 +61,7 @@
         
         <!-- 第2個按鈕：個人檔案 -->
         <div class="flex items-center justify-center w-full">
-            <a href="/user/user_profile" class="flex items-center justify-start w-[60px] px-4 py-3 {{ request()->is('user/user_profile') ? 'text-brandBlue-normal' : 'text-brandGray-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
+            <a href="{{ route('user.user_profile') }}" class="flex items-center justify-start w-[60px] px-4 py-3 {{ Route::currentRouteName() == 'user.user_profile' ? 'text-brandBlue-normal' : 'text-brandGray-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
                 <div class="flex items-center justify-center w-8 h-8">
                     <i class="icon-[mdi--account-circle-outline] w-6 h-6 flex-shrink-0"></i>
                 </div>
@@ -74,7 +74,7 @@
         
         <!-- 第3個按鈕：我的訂單 -->
         <div class="flex items-center justify-center w-full">
-            <a href="/user/orders" class="flex items-center justify-start w-[60px] px-4 py-3 {{ request()->is('user/orders') ? 'text-brandBlue-normal' : 'text-brandGray-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
+            <a href="{{ route('user.orders') }}" class="flex items-center justify-start w-[60px] px-4 py-3 {{ Route::currentRouteName() == 'user.orders' ? 'text-brandBlue-normal' : 'text-brandGray-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
                 <div class="flex items-center justify-center w-8 h-8">
                     <i class="icon-[mdi--package-variant-closed] w-6 h-6 flex-shrink-0"></i>
                 </div>
@@ -87,7 +87,7 @@
         
         <!-- 第4個按鈕：收件地址 - 水平居中對齊 -->
         <div class="flex items-center justify-center w-full">
-            <a href="/user/address" class="flex items-center justify-start w-[60px] px-4 py-3 {{ request()->is('user/address') ? 'text-brandBlue-normal' : 'text-brandGray-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
+            <a href="{{ route('user.address') }}" class="flex items-center justify-start w-[60px] px-4 py-3 {{ Route::currentRouteName() == 'user.address' ? 'text-brandBlue-normal' : 'text-brandGray-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
                 <div class="flex items-center justify-center w-8 h-8">
                     <i class="icon-[mdi--map-marker-outline] w-6 h-6 flex-shrink-0"></i>
                 </div>
@@ -100,7 +100,7 @@
         
         <!-- 第5個按鈕：付款資訊 -->
         <div class="flex items-center justify-center w-full">
-            <a href="/user/payment" class="flex items-center justify-start w-[60px] px-4 py-3 {{ request()->is('user/payment') ? 'text-brandBlue-normal' : 'text-brandGray-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
+            <a href="{{ route('user.payment') }}" class="flex items-center justify-start w-[60px] px-4 py-3 {{ Route::currentRouteName() == 'user.payment' ? 'text-brandBlue-normal' : 'text-brandGray-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
                 <div class="flex items-center justify-center w-8 h-8">
                     <i class="icon-[mdi--credit-card-outline] w-6 h-6 flex-shrink-0"></i>
                 </div>
@@ -113,7 +113,7 @@
         
         <!-- 第6個按鈕：我的優惠 -->
         <div class="flex items-center justify-center w-full">
-            <a href="/user/coupons" class="flex items-center justify-start w-[60px] px-4 py-3 {{ request()->is('user/coupons') ? 'text-brandBlue-normal' : 'text-brandGray-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
+            <a href="{{ route('user.coupons') }}" class="flex items-center justify-start w-[60px] px-4 py-3 {{ Route::currentRouteName() == 'user.coupons' ? 'text-brandBlue-normal' : 'text-brandGray-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
                 <div class="flex items-center justify-center w-8 h-8">
                     <i class="icon-[mdi--ticket-percent-outline] w-6 h-6 flex-shrink-0"></i>
                 </div>
