@@ -16,10 +16,13 @@
         ]" />
     </div>
 
-    <main class=" md:flex mx-auto lg:w-[1320px] lg:h-[580px]  lg:px-[60px] lg:gap-10 md:gap-5 md:w-[720px] md:h-[375px] sm:w-[390px] sm:h-[1292px] md:flex-row sm:flex-col md:mt-[0px] sm:mt-[139px] ">
-        <section class="flex lg:gap-7 lg:w-[600px] lg:h-[580px] md:gap-[14px] md:w-[360px] md:h-[375px] sm:w-[350px] sm:h-[280px]  "
+    <main
+        class=" flex mx-auto lg:w-[1320px] lg:h-[580px]  lg:px-[60px] lg:gap-10 md:gap-5 sm:gap-[20px] md:w-[720px] md:h-[375px] sm:w-[350px] sm:h-full md:flex-row sm:flex-col md:mt-[0px] sm:mt-[139px] ">
+        <section
+            class="flex lg:gap-7 lg:w-[600px] lg:h-[580px] md:gap-[14px] md:w-[360px] md:h-[375px] sm:w-[350px] sm:h-[380px]  "
             aria-label="Product Gallery">
-            <div class=" flex-col lg:gap-5 lg:h-[580px] lg:w-[118px] md:w-[71px] md:h-[375px] md:gap-2.5 md:flex sm:hidden ">
+            <div
+                class=" flex-col lg:gap-5 lg:h-[580px] lg:w-[118px] md:w-[71px] md:h-[375px] md:gap-2.5 md:flex sm:hidden ">
                 <button
                     class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 lg:h-[180px] md:h-[118.33px] rounded-[5px]">
                     <img src="https://img.ltn.com.tw/Upload/auto/page/2016/08/26/160826-6128-3-3jKzt.jpg"
@@ -40,18 +43,19 @@
                 </button>
             </div>
 
-            <div class="relative lg:w-[454px] lg:h-[580px] md:w-[275px] md:h-[375px] rounded-[5px] ">
+            <div
+                class="relative lg:w-[454px] lg:h-[580px] md:w-[275px] md:h-[375px] rounded-[5px] sm:w-[350px] sm:h-[380px] ">
                 <button class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     <div>
                         <img id="mainProductImage"
                             src="https://cdn.builder.io/api/v1/image/assets/TEMP/6dc01ffd33242c3e120b0f6350dbbb031bd1dddf"
                             alt="Main product view"
-                            class="object-cover lg:w-[454px] rounded-md lg:h-[580px] md:w-[275px] md:h-[375px]"
+                            class="object-cover lg:w-[454px] rounded-md lg:h-[580px] md:w-[275px] md:h-[375px] sm:w-[350px] sm:h-[380px]"
                             loading="lazy" />
                     </div>
                 </button>
                 <button
-                    class="prev-btn flex absolute lg:left-6 md:left-3 top-2/4 justify-center items-center w-10 h-10 rounded-full -translate-y-2/4 cursor-pointer bg-white bg-opacity-80"
+                    class="prev-btn flex absolute lg:left-6 md:left-3 sm:left-0 top-2/4 justify-center items-center w-10 h-10 rounded-full -translate-y-2/4 cursor-pointer bg-white bg-opacity-80"
                     aria-label="Previous image">
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M25 30L15 20L25 10" stroke="black" stroke-width="3.33333" stroke-linecap="round"
@@ -60,7 +64,7 @@
                 </button>
 
                 <button
-                    class="next-btn flex absolute lg:right-6 md:right-3 top-2/4 justify-center items-center w-10 h-10 rounded-full -translate-y-2/4 cursor-pointer bg-white bg-opacity-80"
+                    class="next-btn flex absolute lg:right-6 md:right-3 sm:right-0 top-2/4 justify-center items-center w-10 h-10 rounded-full -translate-y-2/4 cursor-pointer bg-white bg-opacity-80"
                     aria-label="Next image">
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15 30L25 20L15 10" stroke="black" stroke-width="3.33333" stroke-linecap="round"
@@ -70,13 +74,13 @@
             </div>
         </section>
         <div
-            class="lg:w-[560px] lg:h-[580px] md:w-[340px] md:h-[375px]  flex-col justify-start items-start lg:gap-11 md:gap-4 inline-flex">
+            class="lg:w-[560px] lg:h-[580px] md:w-[340px] md:h-[375px]   flex-col justify-start items-start lg:gap-11 md:gap-4 sm:gap-[20px] inline-flex">
             <div class="self-stretch md:h-[116px] flex-col justify-start items-start gap-5 flex">
                 <div class="self-stretch justify-between items-center inline-flex">
-                    <div class="lg:h-[30px] lg:pb-[6.82px] justify-center items-center flex">
+                    <div class=" lg:pb-[6.82px] justify-center items-center flex">
                         <div
-                            class="lg:w-[502px] lg:h-[23.18px] md:w-[230.28px]  md:h-[23px] text-brandGray-normal lg:text-2xl md:text-xl font-light font-['Lexend'] lg:leading-9 md:leading-[30px]">
-                            Navajo 綠松石十字星戒<br /><br /></div>
+                            class=" break-all break-words lg:w-[502px]  md:w-[300px] sm:w-[275px]  relative  text-brandGray-normal lg:text-2xl sm:text-xl font-light font-['Lexend'] lg:leading-9 sm:leading-[30px]">
+                            Navajo 綠松石十字星戒 </div>
                     </div>
                     <button id="likeBtn" class="relative focus:outline-none">
                         <svg id="likeIcon" width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +92,7 @@
                     </button>
                 </div>
                 <div
-                    class="lg:w-[428px] md:w-[340px] opacity-60 text-brandGray-normal lg:text-sm  md:text-xs font-light font-['Lexend'] lg:leading-snug md:leading-[18px]">
+                class="opacity-60 text-brandGray-normal lg:text-sm sm:text-xs font-light font-['Lexend'] lg:leading-snug md:leading-[18px] max-h-[120px] overflow-hidden hover:overflow-visible">
                     ·Material |
                     925 silver | natural opal size | Metric circumference No.10 (公制圍10號)
                     飾品皆手工製作，誤差值 ±0.5公分皆為正常範圍
@@ -96,98 +100,133 @@
             </div>
             <div class="justify-start items-center gap-2.5 inline-flex">
                 <div
-                    class="text-brandGray-normal lg:text-2xl md:text-lg md:font-light font-['Lexend'] lg:leading-9 md:leading-relaxed">
+                    class="text-brandGray-normal lg:text-2xl sm:text-lg font-light font-['Lexend'] lg:leading-9 sm:leading-relaxed">
                     NT$ 5980</div>
                 <div
-                    class="text-brandGray-normalLight lg:text-lg md:text-sm md:font-light font-['Lexend'] line-through lg:leading-relaxed md:leading-snug">
+                    class="text-brandGray-normalLight lg:text-lg md:text-sm font-light font-['Lexend'] line-through lg:leading-relaxed sm:leading-snug">
                     NT$
                     5980</div>
             </div>
-            <div class="flex-col justify-start items-start lg:gap-9 md:gap-4 flex">
-                <div class="lg:w-[257px] lg:h-[50px] md:w-[177px] md:h-[32px]  relative">
-                    <div
-                        class="lg:w-[55px] md:w-[41px]  lg:top-[7px] md:top-[1px] absolute text-center text-brandGray-normal lg:text-2xl md:text-lg font-light font-['Lexend'] lg:leading-9 md:leading-relaxed">
-                        顏色:</div>
-                    <div data-svg-wrapper class="lg:left-[73px] md:left-[57px] top-0 absolute">
-                        <svg id="svgcolor" width="183" height="52"  viewBox="0 0 183 52"
-                            class="lg:w-[183px] lg:h-[52px] md:w-[123px] md:h-[32px] md:gap-[16px]" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <rect x="0.5" y="0.5" width="51" height="51" rx="25.5" stroke="#484848" />
-                            <path id="color1" class="cursor-pointer"
-                                d="M26.0013 46.8333C37.5072 46.8333 46.8346 37.5059 46.8346 26C46.8346 14.494 37.5072 5.16663 26.0013 5.16663C14.4954 5.16663 5.16797 14.494 5.16797 26C5.16797 37.5059 14.4954 46.8333 26.0013 46.8333Z"
-                                fill="#484848" />
-                            <path id="color2" class="cursor-pointer"
-                                d="M92.0013 46.8333C103.507 46.8333 112.835 37.5059 112.835 26C112.835 14.494 103.507 5.16663 92.0013 5.16663C80.4954 5.16663 71.168 14.494 71.168 26C71.168 37.5059 80.4954 46.8333 92.0013 46.8333Z"
-                                fill="#C6C6C6" />
-                            <path id="color3" class="cursor-pointer"
-                                d="M158.001 46.8333C169.507 46.8333 178.835 37.5059 178.835 26C178.835 14.494 169.507 5.16663 158.001 5.16663C146.495 5.16663 137.168 14.494 137.168 26C137.168 37.5059 146.495 46.8333 158.001 46.8333Z"
-                                fill="#F7F7F7" />
-                            <path id="color4"
-                                d="M158.001 46.8333C169.507 46.8333 178.835 37.5059 178.835 26C178.835 14.494 169.507 5.16663 158.001 5.16663C146.495 5.16663 137.168 14.494 137.168 26C137.168 37.5059 146.495 46.8333 158.001 46.8333Z"
-                                stroke="#C6C6C6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <div class="flex flex-col lg:gap-9 md:gap-4 sm:gap-[10px] w-full">
+                <!-- 顏色選擇區 -->
+                <div class="flex items-center gap-3">
+                    <span
+                        class="text-brandGray-normal lg:text-2xl sm:text-lg font-['Lexend'] lg:leading-9 sm:leading-relaxed font-light">顏色:</span>
+                    <div data-svg-wrapper class="flex gap-3">
+                        <svg id="svgcolor" class="w-auto h-auto sm:w-[107px] sm:h-[32px] lg:w-[183px] lg:h-[52px]"
+                            viewBox="0 0 183 52">
+                            <g class="cursor-pointer">
+                                <path id="color1"
+                                    d="M26 46.8C37.5 46.8 46.8 37.5 46.8 26C46.8 14.5 37.5 5.2 26 5.2C14.5 5.2 5.2 14.5 5.2 26C5.2 37.5 14.5 46.8 26 46.8Z"
+                                    fill="#484848" />
+                            </g>
+                            <g class="cursor-pointer">
+                                <path id="color2"
+                                    d="M92 46.8C103.5 46.8 112.8 37.5 112.8 26C112.8 14.5 103.5 5.2 92 5.2C80.5 5.2 71.2 14.5 71.2 26C71.2 37.5 80.5 46.8 92 46.8Z"
+                                    fill="#C6C6C6" />
+                            </g>
+                            <g class="cursor-pointer">
+                                <path id="color3"
+                                    d="M158 46.8C169.5 46.8 178.8 37.5 178.8 26C178.8 14.5 169.5 5.2 158 5.2C146.5 5.2 137.2 14.5 137.2 26C137.2 37.5 146.5 46.8 158 46.8Z"
+                                    fill="#F7F7F7" />
+                            </g>
+                            <g>
+                                <path id="color4"
+                                    d="M158 46.8C169.5 46.8 178.8 37.5 178.8 26C178.8 14.5 169.5 5.2 158 5.2C146.5 5.2 137.2 14.5 137.2 26C137.2 37.5 146.5 46.8 158 46.8Z"
+                                    fill="none" stroke="#C6C6C6" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </g>
                         </svg>
                     </div>
+                </div>
 
-                </div>
-                <div class="justify-start items-center lg:gap-[18px] md:gap-[17px] inline-flex">
-                    <div
-                        class="lg:w-[55px] md:w-[41px] text-center text-brandGray-normal lg:text-2xl md:text-lg font-light font-['Lexend'] lg:leading-9 md:leading-relaxed">
-                        尺寸:
-                    </div>
-                    <div class="size-option lg:w-[50px] lg:h-[50px] md:w-[30px] md:h-[30px] lg:py-[15px] rounded-[5px] 
-                                border border-brandBlue-normal flex-col justify-center items-center gap-2.5 
-                                inline-flex overflow-hidden cursor-pointer">
-                        <div class="text-center text-brandBlue-normal lg:text-2xl md:text-lg font-light font-['Lexend'] leading-9">L</div>
-                    </div>
-                    <div class="size-option lg:w-[50px] lg:h-[50px] md:w-[30px] md:h-[30px] lg:py-[15px] rounded-[5px] border border-brandBlue-normal 
-                                flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
-                        <div class="text-center text-brandBlue-normal lg:text-2xl md:text-lg font-light font-['Lexend'] leading-9">M</div>
-                    </div>
-                    <div class="size-option lg:w-[50px] lg:h-[50px] md:w-[30px] md:h-[30px] lg:py-[15px] rounded-[5px] border border-brandBlue-normal 
-                                flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
-                        <div class="text-center text-brandBlue-normal lg:text-2xl md:text-lg font-light font-['Lexend'] leading-9">S</div>
+                <!-- 尺寸選擇區 -->
+                <div class="flex items-center lg:gap-4 sm:gap-3 ">
+                    <span
+                        class="text-brandGray-normal lg:text-2xl sm:text-lg font-light font-['Lexend'] lg:leading-9 sm:leading-relaxed">尺寸:</span>
+                    <div class="grid grid-cols-3 lg:gap-4 sm:gap-3 ">
+                        <button
+                            class="size-option lg:w-12 lg:h-12 sm:w-7 sm:h-7 border border-brandBlue-normal flex items-center justify-center rounded-md">
+                            <span
+                                class="text-brandBlue-normal lg:text-2xl md:text-lg font-light font-['Lexend'] leading-9">L</span>
+                        </button>
+                        <button
+                            class="size-option lg:w-12 lg:h-12 sm:w-7 sm:h-7 border border-brandBlue-normal flex items-center justify-center rounded-md">
+                            <span
+                                class="text-brandBlue-normal lg:text-2xl md:text-lg font-light font-['Lexend'] leading-9">M</span>
+                        </button>
+                        <button
+                            class="size-option lg:w-12 lg:h-12 sm:w-7 sm:h-7 border border-brandBlue-normal flex items-center justify-center rounded-md">
+                            <span
+                                class="text-brandBlue-normal lg:text-2xl md:text-lg font-light font-['Lexend'] leading-9">S</span>
+                        </button>
                     </div>
                 </div>
             </div>
-            <div class="lg:w-[330px] lg:h-[58px] md:h-[40px] justify-start items-center gap-4 inline-flex">
-                <div class="justify-start items-center flex">
-                    <div id="decrese"
-                        class="lg:w-[58px] lg:h-[58px] md:w-10 md:h-10 p-2.5 rounded-tl rounded-bl border border-brandGray-lightHover flex-col justify-center items-center gap-2.5 inline-flex cursor-pointer">
-                        <div
-                            class="self-stretch text-center text-brandGray-normal lg:text-[25.02px] font-medium font-['Poppins'] capitalize">
-                            -</div>
-                    </div>
+            <div class="w-full lg:h-[58px] md:h-[40px] justify-start items-center gap-4 inline-flex">
+                <div class="grid grid-cols-5 lg:w-[216px] sm:w-[177px]  border border-brandGray-lightHover rounded-md">
+                    <!-- 減少數量按鈕 -->
+                    <button id="decrese"
+                        class="col-span-1 flex justify-center items-center bg-white hover:bg-gray-200 lg:h-[58px] sm:h-10 cursor-pointer">
+                        <span class="text-brandGray-normal lg:text-2xl sm:text-lg font-medium">-</span>
+                    </button>
+
+                    <!-- 數量顯示 -->
                     <div
-                        class="lg:w-[100px] lg:h-[58px] md:w-[97px] md:h-10 :p-2.5 border border-brandGray-lightHover flex-col justify-center items-center gap-2.5 inline-flex">
-                        <div id="quantity"
-                            class="self-stretch text-center text-brandGray-normalLight md:text-2xl md:font-light font-['Lexend'] leading-9">
-                            01</div>
+                        class="col-span-3 flex justify-center items-center border-x border-brandGray-lightHover bg-white lg:h-[58px] sm:h-10">
+                        <span id="quantity" class="text-brandGray-normal lg:text-2xl sm:text-lg font-light">01</span>
                     </div>
-                    <div id="add"
-                        class="lg:w-[58px] lg:h-[58px] md:w-10 md:h-10 p-2.5 rounded-tr rounded-br border border-brandGray-lightHover flex-col justify-center items-center gap-2.5 inline-flex cursor-pointer">
-                        <div
-                            class="self-stretch text-center text-brandGray-normal lg:text-[25.02px] font-medium font-['Poppins'] capitalize">
-                            +</div>
-                    </div>
+
+                    <!-- 增加數量按鈕 -->
+                    <button id="add"
+                        class="col-span-1 flex justify-center items-center bg-white hover:bg-gray-200 lg:h-[58px] sm:h-10 cursor-pointer">
+                        <span class="text-brandGray-normal lg:text-2xl sm:text-lg font-medium">+</span>
+                    </button>
                 </div>
-                <div class="text-brandGray-normalLight lg:text-lg md:text-sm font-light font-['Lexend'] lg:leading-relaxed md:leading-snug">庫存剩12件
+                <div
+                    class="text-brandGray-normalLight lg:text-lg sm:text-sm font-light font-['Lexend'] lg:leading-relaxed sm:leading-snug">
+                    庫存剩12件
                 </div>
             </div>
-            <div class="lg:w-[558px] md:w-[340px] justify-start items-start gap-2.5 inline-flex">
-                <div
-                    class="grow shrink basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] bg-brandBlue-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
-                    <div class="text-center text-white lg:text-2xl md:text-base font-light font-['Lexend'] lg:leading-9 md:leading-normal">加入購物車</div>
-                </div>
-                <div
-                    class="grow shrink basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] bg-brandRed-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
-                    <div class="text-center text-white lg:text-2xl md:text-base font-light font-['Lexend'] lg:leading-9 md:leading-normal">直接購買</div>
-                </div>
+            <!-- <div
+                    class="lg:w-[558px] md:w-[340px] sm:w-full justify-start items-start md:gap-2.5 sm:gap-4 inline-flex max-md:flex-col ">
+                    <div
+                        class="md:grow md:shrink md:basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] sm:w-full sm:h-7 bg-brandBlue-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
+                        <div
+                            class="text-center text-white lg:text-2xl sm:text-base md:font-light sm:font-bold font-['Lexend'] lg:leading-9 md:leading-normal sm:leading-loose">
+                            加入購物車</div>
+                    </div>
+                    <div
+                        class="md:grow md:shrink md:basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] sm:w-full sm:h-7 bg-brandRed-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
+                        <div
+                            class="text-center text-white lg:text-2xl sm:text-base md:font-light sm:font-bold font-['Lexend'] lg:leading-9 md:leading-normal sm:leading-loose">
+                            直接購買</div>
+                    </div>
+                </div> -->
+            <div class="flex flex-col md:flex-row items-center w-full gap-4 md:gap-6">
+                <!-- 加入購物車按鈕 -->
+                <button
+                    class="flex-1 lg:h-[58px] md:h-[47.5px] sm:h-10 bg-brandBlue-normal rounded-md flex justify-center items-center cursor-pointer w-full">
+                    <span
+                        class="text-white lg:text-2xl sm:text-base md:font-light sm:font-bold lg:leading-9 md:leading-normal sm:leading-loose">
+                        加入購物車
+                    </span>
+                </button>
+
+                <!-- 直接購買按鈕 -->
+                <button
+                    class="flex-1 lg:h-[58px] md:h-[47.5px] sm:h-10 bg-brandRed-normal rounded-md flex justify-center items-center cursor-pointer w-full">
+                    <span
+                        class="text-white lg:text-2xl sm:text-base md:font-light sm:font-bold lg:leading-9 md:leading-normal sm:leading-loose">
+                        直接購買
+                    </span>
+                </button>
             </div>
         </div>
     </main>
 
     <div
-        class=" flex mx-auto  lg:w-[1320px]  md:w-[720px]  flex-col justify-start items-center gap-5  lg:mt-[100px] md:mt-[55px]">
+        class=" flex mx-auto  lg:w-[1320px]  md:w-[720px] sm:w-[390px]  flex-col justify-start items-center gap-5  lg:mt-[100px] md:mt-[55px] sm:mt-10">
         <div class="md:h-[54px] border-b border-brandGray-lightHover w-full justify-center items-start gap-10 inline-flex">
             <div id="info"
                 class="md:px-4 md:py-3  shadow-[inset_0px_-3px_0px_0px_rgba(220,53,69,1.00)] justify-start items-start gap-2 flex cursor-pointer">
@@ -206,70 +245,46 @@
                     alt="Image description" class="object-contain w-full aspect-[1.5]" />
             </figure>
         </div>
-        <div id="info-content"
-            class="self-stretch  lg:px-[180px] md:px-10 md:pt-10 md:pb-[60px] bg-brandGray-light flex-col justify-start items-start flex ">
+        <div id="info-content" class="w-full lg:px-[180px] sm:px-10 pt-10 pb-[60px] bg-neutral-50 flex flex-col gap-6">
 
-            <div class="lg:w-[928px] md:w-[640px] md:h-[93px] relative  overflow-hidden">
-                <div
-                    class="md:w-[39px] md:h-[21px] md:px-[3px] py-px md:left-[10px] md:top-[9px] absolute bg-brandGray-normal rounded-[5px] justify-center items-center inline-flex overflow-hidden ">
-                    <div
-                        class="md:w-[33px] md:h-[19px] text-center text-white md:text-sm md:font-light font-['Lexend'] leading-snug">
-                        材質
-                    </div>
+            <!-- 材質 -->
+            <div class="w-full flex flex-col gap-2 border-b border-[#c6c6c6] pb-4">
+                <div class="bg-[#484848] text-white text-sm font-light px-3 py-1 rounded-md w-fit">
+                    材質
                 </div>
-                <div
-                    class="lg:w-[915px] md:w-[627px] md:pt-[7px] md:pb-0.5 md:left-[13px] md:top-[35px] absolute justify-center items-center inline-flex overflow-hidden">
-                    <div class="lg:w-[915px] md:w-[627px] text-brandGray-normal md:text-sm font-light font-['Lexend'] leading-snug">
-                        純銀92.5%
-                        (925
-                        silver)、天然綠松石(natural turquoise)</div>
-                </div>
-                <div class="lg:w-[915px] md:w-[627px] h-[0px] md:left-[13px] md:top-[77px] absolute border border-brandGray-lightActive">
-                </div>
+                <p class="text-[#484848] text-sm font-light leading-snug">
+                    純銀92.5% (925 silver)、天然綠松石(natural turquoise)
+                </p>
             </div>
-            <div class="lg:w-[928px] md:w-[640px] md:h-[93px] relative  overflow-hidden">
-                <div
-                    class="lg:w-[915px] md:w-[39px] md:h-[21px] md:px-[3px] py-px md:left-[13px] md:top-[7px] absolute bg-brandGray-normal rounded-[5px] justify-center items-center inline-flex overflow-hidden">
-                    <div
-                        class="md:w-[33px] md:h-[19px] text-center text-white text-sm font-light font-['Lexend'] leading-snug">
-                        規格<br /></div>
+
+            <!-- 規格 -->
+            <div class="w-full flex flex-col gap-2 border-b border-[#c6c6c6] pb-4">
+                <div class="bg-[#484848] text-white text-sm font-light px-3 py-1 rounded-md w-fit">
+                    規格
                 </div>
-                <div
-                    class="lg:w-[915px] md:w-[627px] md:pt-[7px] md:pb-0.5 md:left-[13px] md:top-[35px] absolute justify-center items-center inline-flex overflow-hidden">
-                    <div class="lg:w-[915px] md:w-[627px] text-brandGray-normal md:text-sm md:font-light font-['Lexend'] leading-snug">
-                        公制圍10號
-                        (Metric
-                        circumference No.10 )</div>
-                </div>
-                <div class="lg:w-[915px] md:w-[627px] h-[0px] md:left-[13px] md:top-[77px] absolute border border-brandGray-lightActive">
-                </div>
+                <p class="text-[#484848] text-sm font-light leading-snug">
+                    公制圍10號 (Metric circumference No.10 )
+                </p>
             </div>
-            <div class="lg:w-[928px] md:w-[640px] md:h-[93px] relative  overflow-hidden">
-                <div
-                    class="md:left-[16px] md:top-[8px] absolute bg-brandGray-normal rounded-[5px] flex-col justify-start items-start gap-2.5 inline-flex overflow-hidden">
-                    <div class="text-center text-white md:text-sm md:font-light font-['Lexend'] leading-snug">出貨說明</div>
+
+            <!-- 出貨說明 -->
+            <div class="w-full flex flex-col gap-2 border-b border-[#c6c6c6] pb-4">
+                <div class="bg-[#484848] text-white text-sm font-light px-3 py-1 rounded-md w-fit">
+                    出貨說明
                 </div>
-                <div
-                    class="lg:w-[915px] md:w-[627px] md:pt-[7px] md:pb-0.5 md:left-[13px] md:top-[35px] absolute justify-center items-center inline-flex overflow-hidden">
-                    <div class="lg:w-[915px] md:w-[627px] text-brandGray-normal md:text-sm md:font-light font-['Lexend'] leading-snug">
-                        預購商品出貨約21工作天(不含假日)，建議與現貨商品分開下單</div>
-                </div>
-                <div class="lg:w-[915px] md:w-[627px] h-[0px] md:left-[13px] md:top-[77px] absolute border border-brandGray-lightActive">
-                </div>
+                <p class="text-[#484848] text-sm font-light leading-snug">
+                    預購商品出貨約21工作天(不含假日)，建議與現貨商品分開下單
+                </p>
             </div>
-            <div class="lg:w-[928px] md:w-[640px] md:h-[93px] relative  overflow-hidden">
-                <div
-                    class="md:px-[3px] py-px md:left-[13px] md:top-[7px] absolute bg-brandGray-normal rounded-[5px] justify-center items-center gap-2.5 inline-flex overflow-hidden">
-                    <div class="text-center text-white md:text-sm md:font-light font-['Lexend'] leading-snug">其他補充</div>
+
+            <!-- 其他補充 -->
+            <div class="w-full flex flex-col gap-2 border-b border-[#c6c6c6] pb-4">
+                <div class="bg-[#484848] text-white text-sm font-light px-3 py-1 rounded-md w-fit">
+                    其他補充
                 </div>
-                <div
-                    class="lg:w-[915px] md:w-[627px] md:pt-[7px] md:pb-0.5 md:left-[13px] md:top-[35px] absolute justify-center items-center inline-flex overflow-hidden">
-                    <div class="lg:w-[915px] md:w-[627px] text-brandGray-normal md:text-sm md:font-light font-['Lexend'] leading-snug">
-                        飾品皆手工製作，誤差值
-                        ±0.5公分皆為正常範圍</div>
-                </div>
-                <div class="lg:w-[915px] md:w-[627px] h-[0px] md:left-[13px] md:top-[77px] absolute border border-brandGray-lightActive">
-                </div>
+                <p class="text-[#484848] text-sm font-light leading-snug">
+                    飾品皆手工製作，誤差值 ±0.5公分皆為正常範圍
+                </p>
             </div>
         </div>
     </div>
@@ -282,13 +297,17 @@
             $("[data-svg-wrapper] rect").remove();
 
             function updatePath() {
-                
 
-                
+
+
 
                 if (window.innerWidth < 768) {
                     // 當螢幕小於 768px (手機) 時，使用這個 `d` 值
-                    // pathElement.setAttribute("d", "M10 10L40 40");
+                    $("#svgcolor").attr("viewBox", "0 0 107 32"); // 縮小 viewBox 適應小螢幕
+                    $("#color1").attr("d", "M16 28.5C22.9036 28.5 28.5 22.9036 28.5 16C28.5 9.09644 22.9036 3.5 16 3.5C9.09644 3.5 3.5 9.09644 3.5 16C3.5 22.9036 9.09644 28.5 16 28.5Z");
+                    $("#color2").attr("d", "M54 28.5C60.9036 28.5 66.5 22.9036 66.5 16C66.5 9.09644 60.9036 3.5 54 3.5C47.0964 3.5 41.5 9.09644 41.5 16C41.5 22.9036 47.0964 28.5 54 28.5Z");
+                    $("#color3").attr("d", "M92 28.5C98.9036 28.5 104.5 22.9036 104.5 16C104.5 9.09644 98.9036 3.5 92 3.5C85.0964 3.5 79.5 9.09644 79.5 16C79.5 22.9036 85.0964 28.5 92 28.5Z");
+                    $("#color4").attr("d", "M92 28.5C98.9036 28.5 104.5 22.9036 104.5 16C104.5 9.09644 98.9036 3.5 92 3.5C85.0964 3.5 79.5 9.09644 79.5 16C79.5 22.9036 85.0964 28.5 92 28.5Z");
                 } else if (window.innerWidth < 1200) {
                     // 當螢幕 768px ~ 1023px (平板) 時，使用這個 `d` 值
                     $("#svgcolor").attr("viewBox", "0 0 123 32");
@@ -296,7 +315,7 @@
                     $("#color2").attr("d", "M62 28.5C68.9036 28.5 74.5 22.9036 74.5 16C74.5 9.09644 68.9036 3.5 62 3.5C55.0964 3.5 49.5 9.09644 49.5 16C49.5 22.9036 55.0964 28.5 62 28.5Z");
                     $("#color3").attr("d", "M108 28.5C114.904 28.5 120.5 22.9036 120.5 16C120.5 9.09644 114.904 3.5 108 3.5C101.096 3.5 95.5 9.09644 95.5 16C95.5 22.9036 101.096 28.5 108 28.5Z");
                     $("#color4").attr("d", "M108 28.5C114.904 28.5 120.5 22.9036 120.5 16C120.5 9.09644 114.904 3.5 108 3.5C101.096 3.5 95.5 9.09644 95.5 16C95.5 22.9036 101.096 28.5 108 28.5Z");
-                
+
                 } else {
                     // 當螢幕 >= 1024px (桌面) 時，使用這個 `d` 值
                     $("#svgcolor").attr("viewBox", "0 0 183 52");
@@ -384,19 +403,17 @@
 
             // 監聽尺寸按鈕點擊事件
             $(".size-option").click(function () {
-                // 移除所有尺寸按鈕的背景與字體顏色
-                $(".size-option").removeClass("bg-brandBlue-normal ")
-                    .addClass("border border-brandBlue-normal");
-                $(".size-option div").removeClass("text-white").addClass("text-brandBlue-normal");
+                // 移除所有尺寸按鈕的選中狀態
+                $(".size-option").removeClass("bg-brandBlue-normal text-white")
+                    .addClass("border border-brandBlue-normal text-brandBlue-normal");
 
-                //  為當前點擊的按鈕添加選中狀態
-                $(this).addClass("bg-brandBlue-normal ")
-                    .removeClass("border border-brandBlue-normal");
-                $(this).children("div").addClass("text-white").removeClass("text-brandBlue-normal");
+                // 為當前點擊的按鈕添加選中狀態
+                $(this).addClass("bg-brandBlue-normal text-white")
+                    .removeClass("border border-brandBlue-normal text-brandBlue-normal");
 
-                //  取得選中的尺寸
-                let selectedSize = $(this).text().trim();
-                console.log("選中的尺寸:", selectedSize);
+                // **改變內部文字顏色**
+                $(".size-option span").removeClass("text-white").addClass("text-brandBlue-normal");
+                $(this).find("span").removeClass("text-brandBlue-normal").addClass("text-white");
             });
 
             let quantity = 0
