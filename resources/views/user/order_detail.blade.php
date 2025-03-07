@@ -266,47 +266,47 @@
         <!-- 操作按鈕 -->
         <div class="flex flex-wrap justify-end gap-3">
             @if ($id == 1)
-                <a href="{{ route('user.orders.review', $id) }}" class="px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal">
+                <a href="{{ route('user.orders.review', $id) }}" class="flex items-center justify-center px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal">
                     <i class="icon-[mdi--star-outline] w-5 h-5 mr-1 inline-block"></i>
                     評價商品
                 </a>
-                <a href="{{ route('user.orders.return', $id) }}" class="px-4 py-2 border border-brandGray-lightActive text-brandGray-normal rounded-md hover:bg-brandGray-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGray-light">
-                    <i class="icon-[mdi--package-return-outline] w-5 h-5 mr-1 inline-block"></i>
+                <a href="{{ route('user.orders.return', $id) }}" class="flex items-center justify-center px-4 py-2 border border-brandGray-lightActive text-brandGray-normal rounded-md hover:bg-brandGray-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGray-light">
+                    <i class="icon-[mdi--cash-refund] w-5 h-5 mr-1 inline-block"></i>
                     申請退貨
                 </a>
             @elseif ($id == 2)
-                <a href="#" class="px-4 py-2 border border-brandGray-lightActive text-brandGray-normal rounded-md hover:bg-brandGray-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGray-light">
+                <a href="#" class="flex items-center justify-center px-4 py-2 border border-brandGray-lightActive text-brandGray-normal rounded-md hover:bg-brandGray-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGray-light">
                     <i class="icon-[mdi--truck-outline] w-5 h-5 mr-1 inline-block"></i>
                     查詢物流
                 </a>
             @elseif ($id == 3)
                 <form action="{{ route('user.orders.cancel', $id) }}" method="POST" class="inline">
                     @csrf
-                    <button type="submit" class="px-4 py-2 border border-brandGray-lightActive text-brandGray-normal rounded-md hover:bg-brandGray-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGray-light" onclick="return confirm('確定要取消此訂單嗎？')">
+                    <button type="submit" class="flex items-center justify-center px-4 py-2 border border-brandGray-lightActive text-brandGray-normal rounded-md hover:bg-brandGray-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGray-light" onclick="return confirm('確定要取消此訂單嗎？')">
                         <i class="icon-[mdi--close-circle-outline] w-5 h-5 mr-1 inline-block"></i>
                         取消訂單
                     </button>
                 </form>
             @elseif ($id == 4)
-                <a href="#" class="px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal">
+                <a href="#" class="flex items-center justify-center px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal">
                     <i class="icon-[mdi--credit-card-outline] w-5 h-5 mr-1 inline-block"></i>
                     前往付款
                 </a>
                 <form action="{{ route('user.orders.cancel', $id) }}" method="POST" class="inline">
                     @csrf
-                    <button type="submit" class="px-4 py-2 border border-brandGray-lightActive text-brandGray-normal rounded-md hover:bg-brandGray-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGray-light" onclick="return confirm('確定要取消此訂單嗎？')">
+                    <button type="submit" class="flex items-center justify-center px-4 py-2 border border-brandGray-lightActive text-brandGray-normal rounded-md hover:bg-brandGray-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGray-light" onclick="return confirm('確定要取消此訂單嗎？')">
                         <i class="icon-[mdi--close-circle-outline] w-5 h-5 mr-1 inline-block"></i>
                         取消訂單
                     </button>
                 </form>
             @elseif ($id == 5)
-                <a href="#" class="px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal">
+                <a href="#" class="flex items-center justify-center px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal">
                     <i class="icon-[mdi--cart-outline] w-5 h-5 mr-1 inline-block"></i>
                     重新購買
                 </a>
             @endif
             
-            <a href="#" class="px-4 py-2 border border-brandGray-lightActive text-brandGray-normal rounded-md hover:bg-brandGray-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGray-light">
+            <a href="#" class="flex items-center justify-center px-4 py-2 border border-brandGray-lightActive text-brandGray-normal rounded-md hover:bg-brandGray-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGray-light">
                 <i class="icon-[mdi--printer-outline] w-5 h-5 mr-1 inline-block"></i>
                 列印訂單
             </a>
