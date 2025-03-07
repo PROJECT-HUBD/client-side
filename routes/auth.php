@@ -15,8 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
 
-
-
     // 🔹 自訂登入
     Route::get('mylogin', [AuthenticatedSessionController::class, 'showLoginForm'])->name('mylogin');
     Route::post('mylogin', [AuthenticatedSessionController::class, 'store']);

@@ -42,7 +42,7 @@
                 <form method="POST" action="{{ route('mylogin') }}"
                     class="flex relative flex-col gap-6 mt-11 w-full max-w-[299px]">
                     @csrf
-                    <input  type="text" placeholder="信箱" name="email"
+                    <input type="text" placeholder="信箱" name="email"
                         class="px-5 py-2.5 w-full rounded-md border border-solid border-[#e4e4e4] text-neutral-400"
                         aria-label="Email or phone number" />
 

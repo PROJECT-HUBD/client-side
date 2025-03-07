@@ -25,7 +25,6 @@ class MultiStepRegistrationController extends Controller
     public function sendVerificationCode(Request $request)
     {
 
-
         $request->validate([
             'email' => 'required|email|unique:users,email',
         ]);

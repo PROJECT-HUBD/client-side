@@ -26,8 +26,6 @@ class CustomForgotPassWordController extends Controller
 
 
 
-
-
     //寄送驗證碼
     public function sendVerificationCode(Request $request)
     {
@@ -53,20 +51,12 @@ class CustomForgotPassWordController extends Controller
 
 
 
-
-
     //確認驗證碼頁面
     public function showVerificationForm()
     {
         // 對應 resources/views/auth/myenter-confirmation-code.blade.php
         return view('auth.myenter-confirmation-code');
     }
-
-
-
-
-
-
 
     //確認驗證碼
     public function verifyCode(Request $request)
@@ -94,11 +84,6 @@ class CustomForgotPassWordController extends Controller
         }
     }
 
-
-
-
-
-
     //重新發送驗證碼
     public function resendCode()
     {
@@ -121,7 +106,6 @@ class CustomForgotPassWordController extends Controller
             ['email' => $email],
             ['token' => $newCode, 'created_at' => now()]
         );
-
 
         // 發送驗證碼到信箱 發送忘記密碼驗證碼
         Notification::route('mail', $email)->notifyNow(new PasswordResetCodeNotification($newCode));
