@@ -79,7 +79,7 @@
                 <div class="self-stretch justify-between items-center inline-flex">
                     <div class=" lg:pb-[6.82px] justify-center items-center flex">
                         <div
-                            class=" break-all lg:w-[502px]  md:w-[300px] sm:w-[275px]  relative  text-brandGray-normal lg:text-2xl sm:text-xl font-light font-['Lexend'] lg:leading-9 sm:leading-[30px]">
+                            class=" break-all break-words lg:w-[502px]  md:w-[300px] sm:w-[275px]  relative  text-brandGray-normal lg:text-2xl sm:text-xl font-light font-['Lexend'] lg:leading-9 sm:leading-[30px]">
                             Navajo 綠松石十字星戒 </div>
                     </div>
                     <button id="likeBtn" class="relative focus:outline-none">
@@ -92,7 +92,7 @@
                     </button>
                 </div>
                 <div
-                    class=" opacity-60 text-brandGray-normal lg:text-sm  sm:text-xs font-light font-['Lexend'] lg:leading-snug md:leading-[18px]">
+                class="opacity-60 text-brandGray-normal lg:text-sm sm:text-xs font-light font-['Lexend'] lg:leading-snug md:leading-[18px] max-h-[120px] overflow-hidden hover:overflow-visible">
                     ·Material |
                     925 silver | natural opal size | Metric circumference No.10 (公制圍10號)
                     飾品皆手工製作，誤差值 ±0.5公分皆為正常範圍
@@ -107,64 +107,11 @@
                     NT$
                     5980</div>
             </div>
-            <!-- <div class="flex-col justify-start items-start lg:gap-9 md:gap-4 sm:gap-[10px] w-full flex">
-                                <div class="lg:w-[257px] lg:h-[50px] md:w-[177px] md:h-[32px] sm:w-full sm:h-9  relative">
-                                    <div
-                                        class="lg:w-[55px] md:w-[41px] sm:w-[42px]  lg:top-[7px] md:top-[1px] absolute text-center text-brandGray-normal lg:text-2xl sm:text-lg  font-light font-['Lexend'] lg:leading-9 sm:leading-relaxed">
-                                        顏色:</div>
-                                    <div data-svg-wrapper class="lg:left-[73px] md:left-[57px] sm:left-[60px] top-0 absolute">
-                                        <svg id="svgcolor" width="183" height="52" viewBox="0 0 183 52"
-                                            class="lg:w-[183px] lg:h-[52px] md:w-[123px] md:h-[32px] sm:w-[107px] sm:h-[32px] md:gap-[16px] sm:gap-[8px]"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="0.5" y="0.5" width="51" height="51" rx="25.5" stroke="#484848" />
-                                            <path id="color1" class="cursor-pointer"
-                                                d="M26.0013 46.8333C37.5072 46.8333 46.8346 37.5059 46.8346 26C46.8346 14.494 37.5072 5.16663 26.0013 5.16663C14.4954 5.16663 5.16797 14.494 5.16797 26C5.16797 37.5059 14.4954 46.8333 26.0013 46.8333Z"
-                                                fill="#484848" />
-                                            <path id="color2" class="cursor-pointer"
-                                                d="M92.0013 46.8333C103.507 46.8333 112.835 37.5059 112.835 26C112.835 14.494 103.507 5.16663 92.0013 5.16663C80.4954 5.16663 71.168 14.494 71.168 26C71.168 37.5059 80.4954 46.8333 92.0013 46.8333Z"
-                                                fill="#C6C6C6" />
-                                            <path id="color3" class="cursor-pointer"
-                                                d="M158.001 46.8333C169.507 46.8333 178.835 37.5059 178.835 26C178.835 14.494 169.507 5.16663 158.001 5.16663C146.495 5.16663 137.168 14.494 137.168 26C137.168 37.5059 146.495 46.8333 158.001 46.8333Z"
-                                                fill="#F7F7F7" />
-                                            <path id="color4"
-                                                d="M158.001 46.8333C169.507 46.8333 178.835 37.5059 178.835 26C178.835 14.494 169.507 5.16663 158.001 5.16663C146.495 5.16663 137.168 14.494 137.168 26C137.168 37.5059 146.495 46.8333 158.001 46.8333Z"
-                                                stroke="#C6C6C6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </div>
-
-                                </div>
-                                <div class="justify-start items-center lg:gap-[18px] md:gap-[17px]  inline-flex">
-                                    <div
-                                        class="lg:w-[55px] md:w-[41px] text-center text-brandGray-normal lg:text-2xl sm:text-lg font-light font-['Lexend'] lg:leading-9 sm:leading-relaxed">
-                                        尺寸:
-                                    </div>
-                                    <div class="size-option lg:w-[50px] lg:h-[50px] sm:w-[30px] sm:h-[30px] lg:py-[15px] rounded-[5px] 
-                                                                        border border-brandBlue-normal flex-col justify-center items-center gap-2.5 max-md:relative  max-md:left-[20px]
-                                                                        inline-flex overflow-hidden cursor-pointer">
-                                        <div
-                                            class="text-center text-brandBlue-normal lg:text-2xl md:text-lg font-light font-['Lexend'] leading-9">
-                                            L</div>
-                                    </div>
-                                    <div
-                                        class="size-option lg:w-[50px] lg:h-[50px] sm:w-[30px] sm:h-[30px] lg:py-[15px] rounded-[5px] border max-md:relative  max-md:left-[30px] border-brandBlue-normal 
-                                                                        flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
-                                        <div
-                                            class="text-center text-brandBlue-normal lg:text-2xl md:text-lg font-light font-['Lexend'] leading-9">
-                                            M</div>
-                                    </div>
-                                    <div
-                                        class="size-option lg:w-[50px] lg:h-[50px] sm:w-[30px] sm:h-[30px] lg:py-[15px] rounded-[5px] border max-md:relative  max-md:left-[40px] border-brandBlue-normal 
-                                                                        flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
-                                        <div
-                                            class="text-center text-brandBlue-normal lg:text-2xl md:text-lg font-light font-['Lexend'] leading-9">
-                                            S</div>
-                                    </div>
-                                </div>
-                            </div> -->
             <div class="flex flex-col lg:gap-9 md:gap-4 sm:gap-[10px] w-full">
                 <!-- 顏色選擇區 -->
                 <div class="flex items-center gap-3">
-                    <span class="text-brandGray-normal lg:text-2xl sm:text-lg font-['Lexend'] lg:leading-9 sm:leading-relaxed font-light">顏色:</span>
+                    <span
+                        class="text-brandGray-normal lg:text-2xl sm:text-lg font-['Lexend'] lg:leading-9 sm:leading-relaxed font-light">顏色:</span>
                     <div data-svg-wrapper class="flex gap-3">
                         <svg id="svgcolor" class="w-auto h-auto sm:w-[107px] sm:h-[32px] lg:w-[183px] lg:h-[52px]"
                             viewBox="0 0 183 52">
@@ -195,19 +142,23 @@
 
                 <!-- 尺寸選擇區 -->
                 <div class="flex items-center lg:gap-4 sm:gap-3 ">
-                    <span class="text-brandGray-normal lg:text-2xl sm:text-lg font-light font-['Lexend'] lg:leading-9 sm:leading-relaxed">尺寸:</span>
+                    <span
+                        class="text-brandGray-normal lg:text-2xl sm:text-lg font-light font-['Lexend'] lg:leading-9 sm:leading-relaxed">尺寸:</span>
                     <div class="grid grid-cols-3 lg:gap-4 sm:gap-3 ">
                         <button
                             class="size-option lg:w-12 lg:h-12 sm:w-7 sm:h-7 border border-brandBlue-normal flex items-center justify-center rounded-md">
-                            <span class="text-brandBlue-normal lg:text-2xl md:text-lg font-light font-['Lexend'] leading-9">L</span>
+                            <span
+                                class="text-brandBlue-normal lg:text-2xl md:text-lg font-light font-['Lexend'] leading-9">L</span>
                         </button>
                         <button
                             class="size-option lg:w-12 lg:h-12 sm:w-7 sm:h-7 border border-brandBlue-normal flex items-center justify-center rounded-md">
-                            <span class="text-brandBlue-normal lg:text-2xl md:text-lg font-light font-['Lexend'] leading-9">M</span>
+                            <span
+                                class="text-brandBlue-normal lg:text-2xl md:text-lg font-light font-['Lexend'] leading-9">M</span>
                         </button>
                         <button
                             class="size-option lg:w-12 lg:h-12 sm:w-7 sm:h-7 border border-brandBlue-normal flex items-center justify-center rounded-md">
-                            <span class="text-brandBlue-normal lg:text-2xl md:text-lg font-light font-['Lexend'] leading-9">S</span>
+                            <span
+                                class="text-brandBlue-normal lg:text-2xl md:text-lg font-light font-['Lexend'] leading-9">S</span>
                         </button>
                     </div>
                 </div>
@@ -237,20 +188,39 @@
                     庫存剩12件
                 </div>
             </div>
-            <div
-                class="lg:w-[558px] md:w-[340px] sm:w-full justify-start items-start md:gap-2.5 sm:gap-4 inline-flex max-md:flex-col ">
-                <div
-                    class="md:grow md:shrink md:basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] sm:w-full sm:h-7 bg-brandBlue-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
+            <!-- <div
+                    class="lg:w-[558px] md:w-[340px] sm:w-full justify-start items-start md:gap-2.5 sm:gap-4 inline-flex max-md:flex-col ">
                     <div
-                        class="text-center text-white lg:text-2xl sm:text-base md:font-light sm:font-bold font-['Lexend'] lg:leading-9 md:leading-normal sm:leading-loose">
-                        加入購物車</div>
-                </div>
-                <div
-                    class="md:grow md:shrink md:basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] sm:w-full sm:h-7 bg-brandRed-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
+                        class="md:grow md:shrink md:basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] sm:w-full sm:h-7 bg-brandBlue-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
+                        <div
+                            class="text-center text-white lg:text-2xl sm:text-base md:font-light sm:font-bold font-['Lexend'] lg:leading-9 md:leading-normal sm:leading-loose">
+                            加入購物車</div>
+                    </div>
                     <div
-                        class="text-center text-white lg:text-2xl sm:text-base md:font-light sm:font-bold font-['Lexend'] lg:leading-9 md:leading-normal sm:leading-loose">
-                        直接購買</div>
-                </div>
+                        class="md:grow md:shrink md:basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] sm:w-full sm:h-7 bg-brandRed-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
+                        <div
+                            class="text-center text-white lg:text-2xl sm:text-base md:font-light sm:font-bold font-['Lexend'] lg:leading-9 md:leading-normal sm:leading-loose">
+                            直接購買</div>
+                    </div>
+                </div> -->
+            <div class="flex flex-col md:flex-row items-center w-full gap-4 md:gap-6">
+                <!-- 加入購物車按鈕 -->
+                <button
+                    class="flex-1 lg:h-[58px] md:h-[47.5px] sm:h-10 bg-brandBlue-normal rounded-md flex justify-center items-center cursor-pointer w-full">
+                    <span
+                        class="text-white lg:text-2xl sm:text-base md:font-light sm:font-bold lg:leading-9 md:leading-normal sm:leading-loose">
+                        加入購物車
+                    </span>
+                </button>
+
+                <!-- 直接購買按鈕 -->
+                <button
+                    class="flex-1 lg:h-[58px] md:h-[47.5px] sm:h-10 bg-brandRed-normal rounded-md flex justify-center items-center cursor-pointer w-full">
+                    <span
+                        class="text-white lg:text-2xl sm:text-base md:font-light sm:font-bold lg:leading-9 md:leading-normal sm:leading-loose">
+                        直接購買
+                    </span>
+                </button>
             </div>
         </div>
     </main>
