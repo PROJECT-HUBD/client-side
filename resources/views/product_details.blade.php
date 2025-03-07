@@ -6,13 +6,12 @@
 
 
 @section('content')
-    <div class="lg:mt-[120px] lg:w-[1440px] mx-auto  md:mt-[189px] md:w-[960px]  ">
+    <div class="lg:mt-[150px] lg:w-[1440px] mx-auto  md:mt-[189px] md:w-[960px]  ">
         <x-breadcrumb :items="[
             ['name' => '首頁', 'url' => route('home')],
-            ['name' => '首頁', 'url' => route('home')],
-            ['name' => '首頁', 'url' => route('home')],
-            ['name' => '首頁', 'url' => route('home')],
-            ['name' => '飾品'],
+            ['name' => '飾品', 'url' => route('categories_accessories')],
+            ['name' => '異世界2000', 'url' => route('categories_accessories')],
+            ['name' => 'Navajo 綠松石十字星戒'],
         ]" />
     </div>
 
