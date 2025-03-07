@@ -25,6 +25,16 @@ Route::get('/categories_clothes', function () {
     return view('categories_clothes');
 })->name('categories_clothes');
 
+// 商品內頁
+Route::get('/product_details', function () {
+    return view('product_details');
+})->name('product_details');
+
+// 商品內頁
+Route::get('/account', function () {
+    return view('account');
+})->name('account');
+
 // 登入才看得到頁
 Route::get('/dashboard', function () {
     return view('dashboard');
