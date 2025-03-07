@@ -71,7 +71,7 @@
             </div>
         </form>
         
-        <form method="POST" action="{{ route('resend-confirmation-code') }}">
+        <form method="POST" action="{{ route('resend-verification-code') }}">
             @csrf
             <button type="submit"
                 class="block mt-2 text-sm font-medium hover:underline text-center text-gray-500">

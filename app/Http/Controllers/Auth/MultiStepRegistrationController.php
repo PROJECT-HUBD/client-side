@@ -51,6 +51,36 @@ class MultiStepRegistrationController extends Controller
     }
 
 
+    //重新寄送驗證碼
+    public function resendVerificationCode(Request $request)
+    {
+        $email = Session::get('registration_email');
+
+        if (!$email) {
+            return back()->withErrors(['email' => '無法重寄，請重新註冊']);
+        }
+
+        // 防止短時間內重複發送
+        if (Session::has('last_verification_request_time') && now()->diffInSeconds(Session::get('last_verification_request_time')) < 60) {
+            return back()->withErrors(['email' => '請等待 60 秒後再發送']);
+        }
+
+        $verificationCode = random_int(100000, 999999);
+
+        // 存入 Session
+        Session::put('registration_verification_code', $verificationCode);
+        Session::put('registration_expires_at', now()->addMinutes(10));
+        Session::put('last_verification_request_time', now());
+
+        // 發送驗證碼
+        Notification::route('mail', $email)->notifyNow(new VerificationCodeNotification($verificationCode));
+
+        return back()->with('status', '驗證碼已重新寄送');
+    }
+
+
+
+
     // Step 2: 顯示驗證碼輸入頁面
 
     public function showVerificationForm()
@@ -105,7 +135,7 @@ class MultiStepRegistrationController extends Controller
 
     public function registerDetails(Request $request)
     {
-       
+
         // $request->validate([
         //     'name' => 'required|string|max:255',
         //     'birthday' => 'required|date',
@@ -136,7 +166,7 @@ class MultiStepRegistrationController extends Controller
 
 
         // 清除 Session 中的驗證碼與 Email
-        Session::forget(['registration_verification_code', 'registration_email','email_verified']);
+        Session::forget(['registration_verification_code', 'registration_email', 'email_verified']);
 
         //自動登入用戶
         Auth::login($user);

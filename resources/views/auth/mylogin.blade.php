@@ -67,7 +67,7 @@
                             登入
                         </button>
                         <a href="{{ route('myregister') }}"
-                            class="p-2.5 font-bold text-center text-gray-500 hover:bg-gray-100 rounded-md border border-solid border-[#626981] w-full block text-center">
+                            class="p-2.5 font-bold text-center text-gray-500 hover:bg-gray-100 rounded-md border border-solid border-[#626981] w-full block">
                             註冊會員
                         </a>
                     </div>

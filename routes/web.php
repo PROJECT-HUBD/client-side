@@ -25,9 +25,13 @@ Route::get('/categories_clothes', function () {
     return view('categories_clothes');
 })->name('categories_clothes');
 //關於我們
-Route::get('/AboutUs', function() {
-    return view('AboutUs');
-})->name('AboutUs');
+Route::get('/aboutus', function() {
+    return view('aboutus');
+})->name('aboutus');
+//收藏清單
+Route::get('/lovelist', function() {
+    return view('lovelist');
+})->name('lovelist');
 
 // 登入才看得到頁
 Route::get('/dashboard', function () {
