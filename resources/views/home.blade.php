@@ -259,7 +259,7 @@
             <div class="w-full flex justify-start items-center font-semibold text-brandGray-normal text-[28px] md:text-[30px]">
                 <p>飾品&nbsp;&nbsp;<span class="hidden md:inline-block">Accessories</span></p>
             </div>
-            <a href="" class="w-full text-[20px] flex justify-end items-center font-normal text-brandGray-normal md:text-[20px] hover:opacity-80 active:opacity-50">
+            <a href="{{route('product_details')}}" class="w-full text-[20px] flex justify-end items-center font-normal text-brandGray-normal md:text-[20px] hover:opacity-80 active:opacity-50">
                 <p class="hover:text-brandRed-normal flex justify-center items-center">更多商品&nbsp;&nbsp;<span class="w-6 h-6 icon-[ep--arrow-right-bold]"></span></p>
             </a>
         </div>
@@ -319,7 +319,7 @@
             <div class="w-full flex justify-start items-center font-semibold text-brandGray-normal text-[28px] md:text-[30px]">
                 <p>服飾&nbsp;&nbsp;<span class="hidden md:inline-block">Clothes</span></p>
             </div>
-            <a href="" class="w-full text-[20px] flex justify-end items-center font-normal text-brandGray-normal md:text-[20px] hover:opacity-80 active:opacity-50">
+            <a href="{{route('product_details')}}" class="w-full text-[20px] flex justify-end items-center font-normal text-brandGray-normal md:text-[20px] hover:opacity-80 active:opacity-50">
                 <p class="hover:text-brandRed-normal flex justify-center items-center">更多商品&nbsp;&nbsp;<span class="w-6 h-6 icon-[ep--arrow-right-bold]"></span></p>
             </a>
         </div>
