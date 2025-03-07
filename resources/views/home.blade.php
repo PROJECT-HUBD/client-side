@@ -7,6 +7,9 @@
 
 @section('content')
 <section class="mt-[200px] md:mt-[260px] lg:mt-[200px] w-full">
+    <!-- go top btn -->
+
+
     <!-- banner 輪播圖 -->
     <section class="w-full h-[415px] md:h-[440px] lg:h-[600px] overflow-hidden border-b-2 shadow-[0_15px_0_0_brandGray-normalLight] flex flex-col mb-[60px]">
         <div class="relative w-full h-[325px]  md:h-[350px] lg:h-[600px] overflow-hidden flex justify-center items-start gap-5">
@@ -85,17 +88,22 @@
     </section>
 
     <!-- 主打商品 -->
-    <section class="w-full h-[610px] md:h-[773px] lg:h-[1050px] flex md:flex-col lg:flex-row justify-center items-center mb-[60px]">
-        <div class="w-[610px] h-full md:w-[660px] lg:w-[50%] flex justify-center items-center lg:ps-[90px]">
-            <div class=" h-full md:w-[600px] md:h-[920px] flex flex-col justify-center items-center gap-5">
-                <div class="w-full h-10 flex justify-start items-center gap-5">
+    <section class="w-full h-[680px] md:h-[820px] lg:h-[960px] flex md:flex-col lg:flex-row justify-center items-center mb-[60px]">
+        <div class="w-[550px] h-full md:w-[550px] lg:w-[50%] flex justify-center items-start lg:ps-[90px]">
+            <div class="md:w-[550px] h-full md:h-[820px] flex flex-col justify-center items-center gap-14">
+                <div class="w-full h-10 flex justify-start items-center">
                     <!-- 主打商品 標題 -->
-                    <p class="text-[30px] font-black text-brandGray-normal">主打商品</p>
+                    <p class="text-[32px] font-semibold text-brandGray-normal">主打商品&nbsp;&nbsp;<span class="font-normal">Hit Items</span></p>
                 </div>
-                <!-- 商品圖片 -->
-                <div class="w-[350px] md:w-[427px] lg:w-[580px] h-[350px] md:h-[427px] lg:h-[580px]">
-                    <img src="{{asset('images/home_test5.JPG')}}" alt="主打商品" class="targetImg w-full h-full object-cover" loading="lazy">
+                <div class="w-full flex justify-between lg:justify-center items-center">
+                    <button type="button" class="lg:hidden preBtn w-[50px] h-[50px] border-2 rounded-full border-brandRed-normal flex justify-center items-center active:opacity-50"><span class="w-5 h-5 text-brandRed-normal icon-[ep--arrow-left-bold]"></span></button>
+                    <!-- 商品圖片 -->
+                    <div class="flex justify-center items-center w-[350px] md:w-[400px] lg:w-[400px] h-[350px] md:h-[400px] lg:h-[400px]">
+                        <img src="{{asset('images/home_test5.JPG')}}" alt="主打商品" class="targetImg w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <button type="button" class="lg:hidden nextBtn w-[50px] h-[50px] border-2 rounded-full border-brandRed-normal flex justify-center items-center active:opacity-50"><span class="w-5 h-5 text-brandRed-normal icon-[ep--arrow-right-bold]"></span></button>
                 </div>
+
                 <div class="w-full h-full md:h-[266px]">
                     <div class="md:pb-[28px]">
                         <!-- 商品名稱 -->
@@ -109,7 +117,7 @@
                         <!-- 價格 -->
                         <p>NT$&nbsp;<span>5980</span></p>
                     </div>
-                    <div class="md:w-full md:h-[50px] flex justify-center md:justify-start items-center md:gap-5">
+                    <div class="md:w-full md:h-[50px] flex justify-center md:justify-between items-center md:gap-5">
                         <!-- 顏色 -->
                         <div class="md:h-full hidden md:flex justify-start items-center gap-[10px]">
                             <div class="w-[38px] h-[38px] bg-brandGray-light border-2 border-brandGray-normalLight rounded-full"></div>
@@ -121,34 +129,34 @@
                             <div class="w-[50px] h-[50px] flex justify-center items-center">M</div>
                             <div class="w-[50px] h-[50px] flex justify-center items-center">S</div>
                         </div>
-                        <!-- 直接購買按鈕 -->
-                        <a href="" class="w-[350px] md:w-[300px] h-[58px] text-[24px] text-semibold text-brandGray-lightLight flex justify-center items-center bg-brandRed-normal rounded-md hover:opacity-80">直接購買&nbsp;<span class="w-[24px] h-[24px] text-brandGray-lightLight icon-[ep--arrow-right-bold]"></span></a>
+                        <!-- 查看商品按鈕 -->
+                        <a href="" class="w-full md:w-[250px] h-[50px] text-[20px] text-semibold text-brandGray-lightLight flex justify-center items-center bg-brandRed-normal rounded-md hover:opacity-80">商品詳情&nbsp;<span class="w-[20px] h-[20px] text-brandGray-lightLight icon-[ep--arrow-right-bold]"></span></a>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- 轉盤區 -->
         <div class="hidden lg:block relative w-[50%] h-full ps-[55px] overflow-hidden">
-            <div class="absolute top-[108px] left-[150px] w-[790px] h-[810px] border-[85px] border-brandRed-light rounded-full"></div>
-            <div class="roulette6 cursor-pointer absolute z-30 top-0 left-[380px] w-[295px] h-[295px] bg-brandGray-lightLight border-8 border-brandRed-light rounded-full hover:opacity-80 activer:opacity-50">
+            <div class="absolute top-[80px] left-[120px] w-[750px] h-[750px] border-[95px] border-brandRed-light rounded-full"></div>
+            <div class="roulette6 cursor-pointer absolute z-30 top-0 left-[380px] w-[250px] h-[250px] bg-brandGray-lightLight border-8 border-brandRed-light rounded-full hover:opacity-80 activer:opacity-50">
                 <img src="{{asset('images/home_test7.JPG')}}" alt="主打商品圖" class="w-full h-full object-cover rounded-full">
             </div>
-            <div class="roulette1 rouletteTarget absolute z-30 top-[190px] left-[60px] w-[295px] h-[295px] bg-brandGray-lightLight border-8 border-brandRed-normal rounded-full">
+            <div class="roulette1 rouletteTarget absolute z-30 top-[150px] left-[80px] w-[250px] h-[250px] bg-brandGray-lightLight border-8 border-brandRed-normal rounded-full">
                 <img src="{{asset('images/home_test5.JPG')}}" alt="主打商品圖" class="w-full h-full object-cover rounded-full">
             </div>
-            <div class="roulette2 cursor-pointer absolute z-30 top-[550px] left-[60px] w-[295px] h-[295px] bg-brandGray-lightLight border-8 border-brandRed-light rounded-full hover:opacity-80 activer:opacity-50">
+            <div class="roulette2 cursor-pointer absolute z-30 top-[500px] left-[80px] w-[250px] h-[250px] bg-brandGray-lightLight border-8 border-brandRed-light rounded-full hover:opacity-80 activer:opacity-50">
                 <img src="{{asset('images/home_test6.JPG')}}" alt="主打商品圖" class="w-full h-full object-cover rounded-full">
             </div>
-            <div class="roulette3 cursor-pointer absolute z-30 bottom-[30px] left-[380px] w-[295px] h-[295px] bg-brandGray-lightLight border-8 border-brandRed-light rounded-full hover:opacity-80 activer:opacity-50">
+            <div class="roulette3 cursor-pointer absolute z-30 bottom-[40px] left-[380px] w-[250px] h-[250px] bg-brandGray-lightLight border-8 border-brandRed-light rounded-full hover:opacity-80 activer:opacity-50">
                 <img src="{{asset('images/home_test9.JPG')}}" alt="主打商品圖" class="w-full h-full object-cover rounded-full">
             </div>
-            <div class="roulette4 cursor-pointer absolute z-30 top-[580px] left-[700px] w-[295px] h-[295px] bg-brandGray-lightLight border-8 border-brandRed-light rounded-full hover:opacity-80 activer:opacity-50">
+            <div class="roulette4 cursor-pointer absolute z-30 top-[500px] left-[700px] w-[250px] h-[250px] bg-brandGray-lightLight border-8 border-brandRed-light rounded-full hover:opacity-80 activer:opacity-50">
                 <img src=" {{asset('images/home_test10.JPG')}}" alt="主打商品圖" class="w-full h-full object-cover rounded-full">
             </div>
-            <div class="roulette5 cursor-pointer absolute z-30 top-[190px] left-[700px] w-[295px] h-[295px] bg-brandGray-lightLight border-8 border-brandRed-light rounded-full hover:opacity-80 activer:opacity-50">
+            <div class="roulette5 cursor-pointer absolute z-30 top-[150px] left-[700px] w-[250px] h-[250px] bg-brandGray-lightLight border-8 border-brandRed-light rounded-full hover:opacity-80 activer:opacity-50">
                 <img src="{{asset('images/home_test11.JPG')}}" alt="主打商品圖" class="w-full h-full object-cover rounded-full">
             </div>
-
         </div>
     </section>
 
@@ -175,7 +183,7 @@
                     <div class="absolute w-full md:w-[348px] h-[153px] left-0 bottom-0 bg-[#DC7881] opacity-80 flex justify-center items-center pt-[35px]">
                         <div class="w-[225px] h-[136px] text-brandGray-lightLight">
                             <p class="text-[24px] mb-5"><span class="font-semibold">飾品</span>&nbsp;&nbsp;<span class="font-nornal">Accessories</span></p>
-                            <a href=""><button tpe="button" class="w-[137px] h-[52px] font-semibold  border-2 border-brandGray-lightLight rounded-lg hover:bg-brandRed-normal active:opacity-50">了解更多</button></a>
+                            <a href="{{ route('categories_accessories')}}"><button tpe="button" class="w-[137px] h-[52px] font-semibold  border-2 border-brandGray-lightLight rounded-lg hover:bg-brandRed-normal active:opacity-50">了解更多</button></a>
                         </div>
                     </div>
                 </div>
@@ -186,7 +194,7 @@
                     <div class="absolute w-full md:w-[348px] h-[153px] left-0 bottom-0 bg-[#DC7881] opacity-80 flex justify-center items-center pt-[35px]">
                         <div class="w-[225px] h-[136px] text-brandGray-lightLight">
                             <p class="text-[24px] mb-5"><span class="font-semibold">服飾</span>&nbsp;&nbsp;<span class="font-nornal">Clothes</span></p>
-                            <a href=""><button type="button" class="w-[137px] h-[52px] font-semibold  border-2 border-brandGray-lightLight rounded-lg hover:bg-brandRed-normal active:opacity-50">了解更多</button></a>
+                            <a href="{{ route('categories_clothes')}}"><button type="button" class="w-[137px] h-[52px] font-semibold  border-2 border-brandGray-lightLight rounded-lg hover:bg-brandRed-normal active:opacity-50">了解更多</button></a>
                         </div>
                     </div>
                 </div>
@@ -242,7 +250,6 @@
                 </div>
             </div>
         </div>
-
     </section>
 
     <!-- 商品卡片區 飾品 -->
@@ -259,41 +266,44 @@
         <!-- 商品四個 -->
         <div class="w-full md:w-[770px] h-full lg:w-[1230px] lg:h-[418px] grid md:grid-cols-3 lg:grid-cols-4 justify-center items-center gap-5">
             <!-- 商品1 -->
-            <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full col-span-1 flex flex-col justify-center items-center hover:opacity-80 gap-5">
+            <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
                 <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
                     <img src="{{asset('images/home_test6.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
                 </div>
-                <div class="w-full h-[74px] flex flex-col justify-center item-center gap-5 text-[20px]">
+                <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
                     <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
                     <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
                 </div>
             </a>
+
             <!-- 商品2 -->
-            <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full col-span-1 flex flex-col justify-center items-center hover:opacity-80 gap-5">
+            <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
                 <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
                     <img src="{{asset('images/home_test6.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
                 </div>
-                <div class="w-full h-[74px] flex flex-col justify-center item-center gap-5 text-[20px]">
+                <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
                     <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
                     <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
                 </div>
             </a>
+
             <!-- 商品3 -->
-            <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full col-span-1 flex flex-col justify-center items-center hover:opacity-80 gap-5">
+            <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
                 <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
                     <img src="{{asset('images/home_test6.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
                 </div>
-                <div class="w-full h-[74px] flex flex-col justify-center item-center gap-5 text-[20px]">
+                <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
                     <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
                     <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
                 </div>
             </a>
+
             <!-- 商品4 -->
-            <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full col-span-1 flex flex-col justify-center items-center hover:opacity-80 gap-5">
+            <a href="" class="lg:flex w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
                 <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
                     <img src="{{asset('images/home_test6.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
                 </div>
-                <div class="w-full h-[74px] flex flex-col justify-center item-center gap-5 text-[20px]">
+                <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
                     <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
                     <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
                 </div>
@@ -316,48 +326,47 @@
         <!-- 商品四個 -->
         <div class="w-full md:w-[770px] h-full lg:w-[1230px] lg:h-[418px] grid md:grid-cols-3 lg:grid-cols-4 justify-center items-center gap-5">
             <!-- 商品1 -->
-            <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full col-span-1 flex flex-col justify-center items-center hover:opacity-80 gap-5">
+            <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
                 <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
                     <img src="{{asset('images/home_test4.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
                 </div>
-                <div class="w-full h-[74px] flex flex-col justify-center item-center gap-5 text-[20px]">
+                <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
                     <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
                     <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
                 </div>
             </a>
             <!-- 商品2 -->
-            <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full col-span-1 flex flex-col justify-center items-center hover:opacity-80 gap-5">
+            <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
                 <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
                     <img src="{{asset('images/home_test4.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
                 </div>
-                <div class="w-full h-[74px] flex flex-col justify-center item-center gap-5 text-[20px]">
+                <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
                     <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
                     <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
                 </div>
             </a>
             <!-- 商品3 -->
-            <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full col-span-1 flex flex-col justify-center items-center hover:opacity-80 gap-5">
+            <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
                 <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
                     <img src="{{asset('images/home_test4.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
                 </div>
-                <div class="w-full h-[74px] flex flex-col justify-center item-center gap-5 text-[20px]">
+                <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
                     <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
                     <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
                 </div>
             </a>
             <!-- 商品4 -->
-            <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full col-span-1 flex flex-col justify-center items-center hover:opacity-80 gap-5">
+            <a href="" class="lg:flex w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
                 <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
                     <img src="{{asset('images/home_test4.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
                 </div>
-                <div class="w-full h-[74px] flex flex-col justify-center item-center gap-5 text-[20px]">
+                <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
                     <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
                     <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
                 </div>
             </a>
         </div>
     </section>
-
 </section>
 @endsection
 
@@ -450,7 +459,6 @@
                 }
             });
         });
-
         // 更新順序
         rouletteOrder = rotatedOrder;
     }
