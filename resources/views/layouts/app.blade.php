@@ -25,7 +25,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-lexend antialiased bg-white w-screen">
+<body class="font-lexend antialiased bg-white w-full min-w-[320px] overflow-x-hidden">
     <header class="w-full">
         <!-- marquee -->
         @include('layouts.header_marquee')
