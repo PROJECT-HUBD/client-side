@@ -3,7 +3,7 @@
 @section('title', 'Home')
 
 @section('content')
-<section class="mt-[170px]">
+<section class="mt-[150px]">
   <!-- 麵包屑 -->
   <x-breadcrumb :items="[
              ['name' => '首頁', 'url' => route('home')],
