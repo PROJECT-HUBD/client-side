@@ -54,12 +54,6 @@
                     @if ($errors->has('verification_code'))
                         <p class="text-red-500">{{ $errors->first('verification_code') }}</p>
                     @endif
-
-                    <!-- 重新寄送驗證碼 -->
-                    <a href="/"
-                        class="block mt-2 text-sm font-medium text-blue-500 hover:underline text-center text-gray-500">
-                        重新寄送驗證碼
-                    </a>
                 </div>
 
                 <div class="flex flex-col gap-2.5 w-full max-w-[320px]">
@@ -68,14 +62,22 @@
                         class="px-0 py-3 w-full text-base font-bold tracking-wide text-center text-white bg-gray-500 rounded-md cursor-pointer border-[none] hover:bg-gray-600 transition-colors">
                         驗證
                     </button>
-
+                    
                     <!-- 返回上一步 (高度統一) -->
                     <a href="{{ route('myregister') }}"
-                        class="px-0 py-3 w-full text-base font-bold tracking-wide text-center text-gray-500 rounded-md border border-gray-500 border-solid cursor-pointer hover:bg-gray-100 transition-colors">
-                        返回上一步
-                    </a>
-                </div>
-            </form>
+                    class="px-0 py-3 w-full text-base font-bold tracking-wide text-center text-gray-500 rounded-md border border-gray-500 border-solid cursor-pointer hover:bg-gray-100 transition-colors">
+                    返回上一步
+                </a>
+            </div>
+        </form>
+        
+        <form method="POST" action="{{ route('resend-confirmation-code') }}">
+            @csrf
+            <button type="submit"
+                class="block mt-2 text-sm font-medium hover:underline text-center text-gray-500">
+                重新寄送驗證碼
+            </button>
+        </form>
         </section>
     </main>
 </body>

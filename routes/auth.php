@@ -19,7 +19,7 @@ Route::middleware('guest')->group(function () {
 
     // 🔹 自訂登入
     Route::get('mylogin', [AuthenticatedSessionController::class, 'showLoginForm'])->name('mylogin');
-    Route::post('mylogin', [AuthenticatedSessionController::class, 'login']);
+    Route::post('mylogin', [AuthenticatedSessionController::class, 'store']);
 
     // 🔹 自訂註冊（多步驟）
     Route::get('myregister', [MultiStepRegistrationController::class, 'showEmailForm'])->name('myregister');

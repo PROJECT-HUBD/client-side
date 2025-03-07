@@ -12,22 +12,22 @@ use Illuminate\View\View;
 class AuthenticatedSessionController extends Controller
 {
 
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+    // public function login(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'email' => 'required|email',
+    //         'password' => 'required',
+    //     ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->route('dashboard'); // ✅ 登入成功後跳轉
-        }
+    //     if (Auth::attempt($credentials)) {
+    //         $request->session()->regenerate();
+    //         return redirect()->route('dashboard'); // ✅ 登入成功後跳轉
+    //     }
 
-        return back()->withErrors([
-            'email' => '登入失敗，請檢查您的帳號與密碼。',
-        ]);
-    }
+    //     return back()->withErrors([
+    //         'email' => '登入失敗，請檢查您的帳號與密碼。',
+    //     ]);
+    // }
 
     /**
      * Display the login view.
@@ -41,19 +41,23 @@ class AuthenticatedSessionController extends Controller
      * Handle an incoming authentication request.
      */
     public function store(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:8'
-        ]);
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required|min:8'
+    ]);
 
-        if(Auth::attempt($request->only('email','password'))){
-            $request->session()->regenerate();
-            
-            return redirect()->route('dashboard')->with('status','登入成功！');
-        }
-            return back()->withErrors(['email' => '帳號或密碼有誤']);
+    if (!Auth::attempt($request->only('email', 'password'))) {
+        return back()->withErrors([
+            'email' => '帳號或密碼有誤',
+            'password' => '帳號或密碼有誤', // 🔥 讓密碼輸入框也顯示錯誤訊息
+        ]);
     }
+
+    $request->session()->regenerate();
+
+    return redirect()->route('dashboard')->with('status', '登入成功！');
+}
 
     /**
      * Destroy an authenticated session.
