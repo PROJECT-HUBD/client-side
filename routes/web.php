@@ -25,6 +25,16 @@ Route::get('/categories_clothes', function () {
     return view('categories_clothes');
 })->name('categories_clothes');
 
+// 商品內頁
+Route::get('/product_details', function () {
+    return view('product_details');
+})->name('product_details');
+
+
+Route::get('/account', function () {
+    return view('account');
+})->name('account');
+
 // 登入才看得到頁
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -189,7 +199,7 @@ Route::get('/check-out', function () {
 })->name('checkOut');
 
 // 任何url都會導向app.blade.php
-Route::get('{any}', function () {
-    return view('app'); // 假設 Vue/React 放在 resources/views/app.blade.php
-})->where('any', '.*');
+// Route::get('{any}', function () {
+//     return view('app'); // 假設 Vue/React 放在 resources/views/app.blade.php
+// })->where('any', '.*');
 require __DIR__.'/auth.php';
