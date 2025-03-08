@@ -25,16 +25,16 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-lexend antialiased bg-white w-screen">
+<body class="font-lexend antialiased bg-white w-full min-w-[320px] overflow-x-hidden">
     <header class="w-full">
-        <!-- marquerr -->
+        <!-- marquee -->
         @include('layouts.header_marquee')
         <!-- nav -->
         @include('layouts.navigation')
     </header>
 
     <!-- main -->
-    <main class="min-w-[390px] mx-auto mt-6">
+    <main class="max-w-full min-w-[390px] mx-auto mt-6">
         @yield('content')
     </main>
 
