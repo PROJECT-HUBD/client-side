@@ -9,9 +9,9 @@
 
 
 
-    <body >
-       
-        
+    <body>
+
+
 
         <!-- Main Content -->
         <main class="px-32 pt-20 pb-5 max-md:px-5 max-md:py-10">
@@ -228,11 +228,11 @@
             </section>
         </main>
 
-        
-
-              @endsection
 
 
-@push('scripts')
-    <!-- <script type="module" src="{{ asset('resources/js/home.js') }}"></script> -->
-@endpush
+    @endsection
+
+
+    @push('scripts')
+        <!-- <script type="module" src="{{ asset('resources/js/home.js') }}"></script> -->
+    @endpush
