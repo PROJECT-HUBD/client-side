@@ -31,9 +31,12 @@
                     <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[iconoir--cart]"></span>
                 </a>
                 <!-- account -->
-                <a href="" class="flex items-center justify-center">
-                    <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[qlementine-icons--user-16]"></span>
-                </a>
+                <form method="POST" action="{{route('logout')}}" >
+                    @csrf
+                    <button type="submit"  class="flex items-center justify-center">
+                        <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[qlementine-icons--user-16]"></span>
+                    </button>
+                </form>
                 <!-- hamMenu -->
                 <div id="hamBtn" class="block md:hidden cursor-pointer">
                     <div class="flex items-center justify-center">

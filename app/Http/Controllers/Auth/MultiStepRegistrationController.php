@@ -135,12 +135,6 @@ class MultiStepRegistrationController extends Controller
     public function registerDetails(Request $request)
     {
 
-        // $request->validate([
-        //     'name' => 'required|string|max:255',
-        //     'birthday' => 'required|date',
-        //     'phone' => 'required|string|min:10|max:15',
-        //     'password' => 'required|string|min:8|confirmed',
-        // ]);
 
         // 確保 session 中的 email 存在，避免 session 遺失
         $email = Session::get('registration_email');

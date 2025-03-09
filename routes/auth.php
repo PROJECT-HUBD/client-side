@@ -51,24 +51,6 @@ Route::middleware('guest')->group(function () {
 
 
 Route::middleware('auth')->group(function () {
-    // Route::get('verify-email', EmailVerificationPromptController::class)
-    //     ->name('verification.notice');
-
-    // Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
-    //     ->middleware(['signed', 'throttle:6,1'])
-    //     ->name('verification.verify');
-
-    // Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-    //     ->middleware('throttle:1,1')
-    //     ->name('verification.send');
-
-
-    //敏感操作要輸入密碼的路由
-    // Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
-    //     ->name('password.confirm');
-
-    // Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
-
 
     //使用者登入後想更新密碼
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');

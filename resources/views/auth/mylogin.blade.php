@@ -34,8 +34,11 @@
                 <!-- 標題和 LOGO -->
                 <header
                     class="flex flex-row items-center w-full max-w-[299px] text-2xl font-semibold text-gray-500 xl:self-start lg:self-start ml-[-5px]">
-                    <img src="https://cdn.builder.io/api/v1/image/assets/fff8f95ab9b14906ad7fee76d4c8586f/159e9f4ecf610330c5c778310757bf2a24227f9b658abbd411d0cc73d44f8cfa?placeholderIfAbsent=true"
-                        alt="Logo" class="object-contain h-[46px] rounded-[800px] w-[46px]" />
+                    <a href="{{route('home')}}">
+
+                        <img src="https://cdn.builder.io/api/v1/image/assets/fff8f95ab9b14906ad7fee76d4c8586f/159e9f4ecf610330c5c778310757bf2a24227f9b658abbd411d0cc73d44f8cfa?placeholderIfAbsent=true"
+                            alt="Logo" class="object-contain h-[46px] rounded-[800px] w-[46px]" />
+                    </a>
                     <h1 class="ml-2 text-2xl">Login</h1>
                 </header>
 
