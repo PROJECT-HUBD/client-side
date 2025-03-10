@@ -37,8 +37,10 @@
 
                 <!-- 標題和 LOGO -->
                 <header class="flex flex-row items-center w-full max-w-[299px] text-2xl font-semibold text-gray-500">
-                    <img src="https://cdn.builder.io/api/v1/image/assets/fff8f95ab9b14906ad7fee76d4c8586f/159e9f4ecf610330c5c778310757bf2a24227f9b658abbd411d0cc73d44f8cfa?placeholderIfAbsent=true"
-                        alt="Logo" class="object-contain h-[46px] rounded-[800px] w-[46px]" />
+                    <a href="{{ route('home') }}">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/fff8f95ab9b14906ad7fee76d4c8586f/159e9f4ecf610330c5c778310757bf2a24227f9b658abbd411d0cc73d44f8cfa?placeholderIfAbsent=true"
+                            alt="Logo" class="object-contain h-[46px] rounded-[800px] w-[46px]" />
+                    </a>
                     <h1 class="ml-2 text-2xl">Register</h1>
                 </header>
 
@@ -48,16 +50,16 @@
                     @csrf
                     {{-- email輸入框 --}}
                     <div>
-                        <input type="email" name="email" placeholder="請輸入電子信箱" value="{{old('email')}}"
+                        <input type="email" name="email" placeholder="請輸入電子信箱" value="{{ old('email') }}"
                             class="px-5 py-2.5 w-full rounded-md border border-solid border-[#e4e4e4] text-neutral-400"
                             required />
                         @error('email')
-                            <p class="text-red-500 text-xs mt-2">{{$message}}</p>
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </div>
 
 
-                        {{-- 隱私政策 --}}
+                    {{-- 隱私政策 --}}
                     <div
                         class="flex gap-3.5 items-center self-start mt-2 text-base tracking-wide leading-7 text-zinc-500">
                         <input type="checkbox" id="privacy-policy"
@@ -82,7 +84,7 @@
                         </a>
                     </div>
                 </form>
-                
+
             </div>
         </section>
     </main>

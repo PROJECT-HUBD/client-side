@@ -27,8 +27,10 @@
             <header
                 class="flex items-center gap-2 mb-6 text-2xl font-semibold text-gray-500 max-md:mb-5 max-sm:mb-4 
                      w-full max-w-[320px]">
-                <img src="https://cdn.builder.io/api/v1/image/assets/fff8f95ab9b14906ad7fee76d4c8586f/159e9f4ecf610330c5c778310757bf2a24227f9b658abbd411d0cc73d44f8cfa?placeholderIfAbsent=true"
-                    class="object-contain h-[46px] w-[46px] rounded-full" alt="Verify Logo" />
+                <a href="{{ route('home') }}">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/fff8f95ab9b14906ad7fee76d4c8586f/159e9f4ecf610330c5c778310757bf2a24227f9b658abbd411d0cc73d44f8cfa?placeholderIfAbsent=true"
+                        class="object-contain h-[46px] w-[46px] rounded-full" alt="Verify Logo" />
+                </a>
                 <h1 class="text-2xl font-semibold leading-9 text-gray-500">Verify</h1>
             </header>
 
@@ -89,15 +91,15 @@
     </main>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             var countdownElement = document.getElementById("countdown");
             var resendButton = document.getElementById("resend-button");
             var resendText = document.getElementById("resend-text");
             var resendForm = resendButton.closest("form"); // 找到對應的表單
-        
+
             function startCountdown(cooldown) {
                 resendButton.disabled = true; // 禁用按鈕
-                var interval = setInterval(function () {
+                var interval = setInterval(function() {
                     if (cooldown > 1) {
                         cooldown--;
                         countdownElement.textContent = cooldown; // 更新 UI
@@ -108,25 +110,25 @@
                     }
                 }, 1000);
             }
-        
+
             // 確保 `session('resend_cooldown')` 讀取正確
             var cooldown = parseInt("{{ session('resend_cooldown', 0) }}", 10);
-        
+
             if (!isNaN(cooldown) && cooldown > 0 && cooldown <= 60) {
                 startCountdown(cooldown);
             } else {
                 resendButton.disabled = false;
                 resendText.textContent = "重新發送驗證碼";
             }
-        
+
             // 當用戶點擊「重新發送驗證碼」，確保 Laravel 可以處理請求
-            resendButton.addEventListener("click", function () {
+            resendButton.addEventListener("click", function() {
                 resendButton.disabled = true; // 立即禁用按鈕，防止多次點擊
                 countdownElement.textContent = "60"; // 設定 UI 倒數
                 startCountdown(60); // 啟動倒數計時
-    
+
                 // 讓 Laravel 處理請求
-                setTimeout(function () {
+                setTimeout(function() {
                     resendForm.submit(); // 提交表單，讓 Laravel 發送驗證碼
                 }, 100); // 延遲 100ms 確保按鈕 UI 更新
             });

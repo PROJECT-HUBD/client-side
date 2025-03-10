@@ -244,6 +244,20 @@ class MultiStepRegistrationController extends Controller
             return back()->withErrors(['email' => 'Email 尚未驗證，請重新驗證'])->withInput();
         }
 
+
+
+        // ✅ 使用語系檔案來處理錯誤訊息
+        $request->validate([
+            'name' => 'required|string|max:100|regex:/^[\p{Han}]+$/u',
+            'phone' => 'required|digits:10|regex:/^09\d{8}$/',
+            'password' => 'required|min:6|max:32',
+            'year' => 'nullable|integer|min:1900|max:' . date('Y'),
+            'month' => 'nullable|integer|min:1|max:12',
+            'day' => 'nullable|integer|min:1|max:31',
+        ]);
+
+
+
         // 創建新用戶
         $user = User::create([
             'name' => $request->name,
