@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 // 首頁
@@ -20,23 +21,25 @@ Route::get('/dashboard', function () {
 
 
 // 購物車頁
-Route::get('/cart', function () {
+Route::match(['get', 'post'],'/cart', function () {
     return view('cart');
 })->name('cart');
+//購物車獲取資料
+Route::get('/products', [ProductController::class, 'getProductData']);
 // 購物清單頁
-Route::get('/checkOut', function () {
+Route::match(['get', 'post'],'/checkOut', function () {
     return view('checkOut');
 })->name('checkOut');
 // 成功頁
-Route::get('/successful_transaction', function () {
+Route::match(['get', 'post'],'/successful_transaction', function () {
     return view('successful_transaction');
 })->name('successful_transaction');
 // 失敗頁
-Route::get('/failed_transaction', function () {
+Route::match(['get', 'post'],'/failed_transaction', function () {
     return view('failed_transaction');
 })->name('failed_transaction');
 // 維護頁
-Route::get('/system-maintenance', function () {
+Route::match(['get', 'post'],'/system-maintenance', function () {
     return view('system-maintenance');
 })->name('system-maintenance');
 
