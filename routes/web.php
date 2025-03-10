@@ -1,14 +1,13 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\CouponController;
 use Illuminate\Http\Request;
 
 // 首頁
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [ProductController::class, 'home'])->name('home');
 
 // 測試頁
 Route::get('/test1', function () {
