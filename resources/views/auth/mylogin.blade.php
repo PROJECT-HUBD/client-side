@@ -7,6 +7,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
+
 <body class="font-['Lexend']">
     <main
         class="flex overflow-hidden relative flex-col justify-center items-center px-56 py-48 min-h-screen  bg-cover bg-center  h-screen w-full  max-md:px-5 max-md:py-24 max-sm:px-5 max-sm:py-12"
@@ -34,7 +35,7 @@
                 <!-- 標題和 LOGO -->
                 <header
                     class="flex flex-row items-center w-full max-w-[299px] text-2xl font-semibold text-gray-500 xl:self-start lg:self-start ml-[-5px]">
-                    <a href="{{route('home')}}">
+                    <a href="{{ route('home') }}">
 
                         <img src="https://cdn.builder.io/api/v1/image/assets/fff8f95ab9b14906ad7fee76d4c8586f/159e9f4ecf610330c5c778310757bf2a24227f9b658abbd411d0cc73d44f8cfa?placeholderIfAbsent=true"
                             alt="Logo" class="object-contain h-[46px] rounded-[800px] w-[46px]" />
@@ -42,24 +43,30 @@
                     <h1 class="ml-2 text-2xl">Login</h1>
                 </header>
 
+
                 <form method="POST" action="{{ route('mylogin') }}"
                     class="flex relative flex-col gap-6 mt-11 w-full max-w-[299px]">
                     @csrf
-                    <input type="text" placeholder="信箱" name="email"
-                        class="px-5 py-2.5 w-full rounded-md border border-solid border-[#e4e4e4] text-neutral-400"
-                        aria-label="Email or phone number" />
+
+                    <!-- Email 輸入框 -->
+                    <div>
+                        <input type="text" placeholder="信箱" name="email"
+                            class="px-5 py-2.5 w-full rounded-md border border-solid border-[#e4e4e4] text-neutral-400"
+                            aria-label="Email" />
+                        
+                    </div>
 
                     <div class="relative">
                         <input id="password" type="password" placeholder="密碼" name="password"
                             class="px-5 py-2.5 w-full rounded-md border border-solid border-[#e4e4e4] text-neutral-400"
                             aria-label="Password" />
-                        <img  id="togglePassword" src="https://cdn.builder.io/api/v1/image/assets/fff8f95ab9b14906ad7fee76d4c8586f/da6d51fd298722d7d87f4c2d819667fe6bb826fc0609ee1eea9369ae1e77c8af?placeholderIfAbsent=true"
+                        <img id="togglePassword"
+                            src="https://cdn.builder.io/api/v1/image/assets/fff8f95ab9b14906ad7fee76d4c8586f/da6d51fd298722d7d87f4c2d819667fe6bb826fc0609ee1eea9369ae1e77c8af?placeholderIfAbsent=true"
                             alt="顯示、隱藏密碼" class="absolute right-3 w-4 h-4 top-[10px] cursor-pointer" />
+                        @error('password')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
-
-                    @error('password')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                    @enderror
 
                     <div class="absolute right-0 text-xs opacity-50 bottom-[-18px] text-zinc-700">
                         <a href="{{ route('password.email.send') }}" class="underline">忘記密碼</a>
@@ -87,14 +94,14 @@
     </main>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             var passwordField = document.getElementById("password");
             var toggleIcon = document.getElementById("togglePassword");
-        
-            toggleIcon.addEventListener("click", function () {
+
+            toggleIcon.addEventListener("click", function() {
                 // 只切換密碼顯示/隱藏，不改變圖示
                 passwordField.type = passwordField.type === "password" ? "text" : "password";
             });
         });
-        </script>
+    </script>
 </body>
