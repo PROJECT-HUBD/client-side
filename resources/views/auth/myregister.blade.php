@@ -46,10 +46,18 @@
                 <form method="POST" action="{{ route('myregister.email.send') }}"
                     class="flex flex-col mt-11 w-full max-w-[299px]">
                     @csrf
-                    <input type="email" name="email" placeholder="請輸入電子信箱"
-                        class="px-5 py-2.5 w-full rounded-md border border-solid border-[#e4e4e4] text-neutral-400"
-                        required />
+                    {{-- email輸入框 --}}
+                    <div>
+                        <input type="email" name="email" placeholder="請輸入電子信箱" value="{{old('email')}}"
+                            class="px-5 py-2.5 w-full rounded-md border border-solid border-[#e4e4e4] text-neutral-400"
+                            required />
+                        @error('email')
+                            <p class="text-red-500 text-xs mt-2">{{$message}}</p>
+                        @enderror
+                    </div>
 
+
+                        {{-- 隱私政策 --}}
                     <div
                         class="flex gap-3.5 items-center self-start mt-2 text-base tracking-wide leading-7 text-zinc-500">
                         <input type="checkbox" id="privacy-policy"
