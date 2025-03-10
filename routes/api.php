@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Cart;
 
 // 首頁
 Route::get('/', function () {
@@ -20,10 +21,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
+
 // 購物車頁
 Route::match(['get', 'post'],'/cart', function () {
     return view('cart');
 })->name('cart');
+
+
 //購物車獲取資料
 Route::get('/cartTest', [CartController::class, 'getProductData']);
 
