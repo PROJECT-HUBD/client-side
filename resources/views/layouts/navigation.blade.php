@@ -31,7 +31,7 @@
                     <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[iconoir--cart]"></span>
                 </a>
                 <!-- account -->
-                <a href="" class="flex items-center justify-center">
+                <a href="{{route('user_profile')}}" class="flex items-center justify-center">
                     <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[qlementine-icons--user-16]"></span>
                 </a>
                 <!-- hamMenu -->
