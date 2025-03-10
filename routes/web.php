@@ -197,8 +197,5 @@ Route::get('/check-out', function () {
     return view('check-out');
 })->name('checkOut');
 
-// 任何url都會導向app.blade.php
-// Route::get('{any}', function () {
-//     return view('app'); // 假設 Vue/React 放在 resources/views/app.blade.php
-// })->where('any', '.*');
+
 require __DIR__.'/auth.php';
