@@ -60,7 +60,7 @@
                 <div id="coupon-container" class="{{ $viewPreference == 'grid' ? 'view-grid' : 'view-list' }}">
                     @forelse ($activeCoupons as $coupon)
                         <!-- 優惠券項目 -->
-                        <div class="coupon-item {{ isset($coupon['is_expiring']) && $coupon['is_expiring'] ? 'coupon-expiring' : '' }}" data-coupon-id="{{ $coupon['id'] }}" onclick="window.location.href='{{ route('user.coupons.show', $coupon['id']) }}'">
+                        <div class="coupon-item {{ isset($coupon['is_expiring']) && $coupon['is_expiring'] ? 'coupon-expiring' : 'coupon-active' }}" data-coupon-id="{{ $coupon['id'] }}" onclick="window.location.href='{{ route('user.coupons.show', $coupon['id']) }}'">
                             @if (isset($coupon['is_expiring']) && $coupon['is_expiring'])
                                 <span class="expiring-badge">
                                     <i class="icon-[mdi--clock-alert-outline] w-4 h-4"></i>

@@ -17,23 +17,4 @@ class ProductController extends Controller
 
         return view('home', compact('accessories', 'clothes'));
     }
-
-    // 分類_飾品頁 顯示商品
-    // public function categoriesAcc(Request $request){
-
-    //     // 取得 `category_id = 201` 的商品，並進行分頁（每頁顯示 12 件）
-    //     $products = Product::where('category_id', 201)
-    //     ->orderBy('product_id', 'asc')
-    //     ->paginate(12); // Laravel 內建的分頁
-
-    //     return view('categories_accessories', compact('products'));
-    // }
-
-    // 分類_服飾頁 顯示商品
-    public function categoriesClo(){}
-
-    // 新增...
-    public function test(){
-        // 新增商品的增刪修查
-    }
 }
