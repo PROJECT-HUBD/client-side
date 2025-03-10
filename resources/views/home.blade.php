@@ -6,10 +6,7 @@
 
 
 @section('content')
-<section class="mt-[200px] md:mt-[260px] lg:mt-[200px] w-full">
-    <!-- go top btn -->
-
-
+<section class="relative mt-[200px] md:mt-[260px] lg:mt-[200px] w-full h-full">
     <!-- banner 輪播圖 -->
     <section class="w-full h-[415px] md:h-[440px] lg:h-[600px] overflow-hidden border-b-2 shadow-[0_15px_0_0_brandGray-normalLight] flex flex-col mb-[60px]">
         <div class="relative w-full h-[325px]  md:h-[350px] lg:h-[600px] overflow-hidden flex justify-center items-start gap-5">
@@ -88,17 +85,17 @@
     </section>
 
     <!-- 主打商品 -->
-    <section class="w-full h-[680px] md:h-[820px] lg:h-[960px] flex md:flex-col lg:flex-row justify-center items-center mb-[60px]">
+    <section class="w-full h-[650px] md:h-[820px] lg:h-[960px] flex md:flex-col lg:flex-row justify-center items-center mb-[60px]">
         <div class="w-[550px] h-full md:w-[550px] lg:w-[50%] flex justify-center items-start lg:ps-[90px]">
             <div class="md:w-[550px] h-full md:h-[820px] flex flex-col justify-center items-center gap-14">
                 <div class="w-full h-10 flex justify-start items-center">
                     <!-- 主打商品 標題 -->
                     <p class="text-[32px] font-semibold text-brandGray-normal">主打商品&nbsp;&nbsp;<span class="font-normal">Hit Items</span></p>
                 </div>
-                <div class="w-full flex justify-between lg:justify-center items-center">
+                <div class="w-full flex justify-between lg:justify-center items-center gap-5">
                     <button type="button" class="lg:hidden preBtn w-[50px] h-[50px] border-2 rounded-full border-brandRed-normal flex justify-center items-center active:opacity-50"><span class="w-5 h-5 text-brandRed-normal icon-[ep--arrow-left-bold]"></span></button>
                     <!-- 商品圖片 -->
-                    <div class="flex justify-center items-center w-[350px] md:w-[400px] lg:w-[400px] h-[350px] md:h-[400px] lg:h-[400px]">
+                    <div class="flex justify-center items-center w-[300px] md:w-[400px] lg:w-[400px] h-[300px] md:h-[400px] lg:h-[400px]">
                         <img src="{{asset('images/home_test5.JPG')}}" alt="主打商品" class="targetImg w-full h-full object-cover" loading="lazy">
                     </div>
                     <button type="button" class="lg:hidden nextBtn w-[50px] h-[50px] border-2 rounded-full border-brandRed-normal flex justify-center items-center active:opacity-50"><span class="w-5 h-5 text-brandRed-normal icon-[ep--arrow-right-bold]"></span></button>
@@ -142,7 +139,7 @@
             <div class="roulette6 cursor-pointer absolute z-30 top-0 left-[380px] w-[250px] h-[250px] bg-brandGray-lightLight border-8 border-brandRed-light rounded-full hover:opacity-80 activer:opacity-50">
                 <img src="{{asset('images/home_test7.JPG')}}" alt="主打商品圖" class="w-full h-full object-cover rounded-full">
             </div>
-            <div class="roulette1 rouletteTarget absolute z-30 top-[150px] left-[80px] w-[250px] h-[250px] bg-brandGray-lightLight border-8 border-brandRed-normal rounded-full">
+            <div class="roulette1 cursor-pointer rouletteTarget absolute z-30 top-[150px] left-[80px] w-[250px] h-[250px] bg-brandGray-lightLight border-8 border-brandRed-normal rounded-full hover:opacity-80 activer:opacity-50">
                 <img src="{{asset('images/home_test5.JPG')}}" alt="主打商品圖" class="w-full h-full object-cover rounded-full">
             </div>
             <div class="roulette2 cursor-pointer absolute z-30 top-[500px] left-[80px] w-[250px] h-[250px] bg-brandGray-lightLight border-8 border-brandRed-light rounded-full hover:opacity-80 activer:opacity-50">
@@ -259,7 +256,7 @@
             <div class="w-full flex justify-start items-center font-semibold text-brandGray-normal text-[28px] md:text-[30px]">
                 <p>飾品&nbsp;&nbsp;<span class="hidden md:inline-block">Accessories</span></p>
             </div>
-            <a href="{{route('product_details')}}" class="w-full text-[20px] flex justify-end items-center font-normal text-brandGray-normal md:text-[20px] hover:opacity-80 active:opacity-50">
+            <a href="{{route('categories_accessories')}}" class="w-full text-[20px] flex justify-end items-center font-normal text-brandGray-normal md:text-[20px] hover:opacity-80 active:opacity-50">
                 <p class="hover:text-brandRed-normal flex justify-center items-center">更多商品&nbsp;&nbsp;<span class="w-6 h-6 icon-[ep--arrow-right-bold]"></span></p>
             </a>
         </div>
@@ -275,7 +272,6 @@
                     <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
                 </div>
             </a>
-
             <!-- 商品2 -->
             <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
                 <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
@@ -299,7 +295,7 @@
             </a>
 
             <!-- 商品4 -->
-            <a href="" class="lg:flex w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
+            <a href="" class="hidden lg:block w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
                 <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
                     <img src="{{asset('images/home_test6.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
                 </div>
@@ -319,7 +315,7 @@
             <div class="w-full flex justify-start items-center font-semibold text-brandGray-normal text-[28px] md:text-[30px]">
                 <p>服飾&nbsp;&nbsp;<span class="hidden md:inline-block">Clothes</span></p>
             </div>
-            <a href="{{route('product_details')}}" class="w-full text-[20px] flex justify-end items-center font-normal text-brandGray-normal md:text-[20px] hover:opacity-80 active:opacity-50">
+            <a href="{{route('categories_clothes')}}" class="w-full text-[20px] flex justify-end items-center font-normal text-brandGray-normal md:text-[20px] hover:opacity-80 active:opacity-50">
                 <p class="hover:text-brandRed-normal flex justify-center items-center">更多商品&nbsp;&nbsp;<span class="w-6 h-6 icon-[ep--arrow-right-bold]"></span></p>
             </a>
         </div>
@@ -356,7 +352,7 @@
                 </div>
             </a>
             <!-- 商品4 -->
-            <a href="" class="lg:flex w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
+            <a href="" class="hidden lg:block w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
                 <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
                     <img src="{{asset('images/home_test4.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
                 </div>
