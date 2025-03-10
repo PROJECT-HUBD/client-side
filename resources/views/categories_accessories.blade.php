@@ -20,18 +20,6 @@
             <p class="text-[20px] font-light">SINCE 2020</p>
         </div>
 
-        <!-- tabs -->
-        <div class="w-full h-[54px] flex justify-center items-center mb-10">
-            @php
-            $tabs = ['異世界2000', '水晶晶戒指'];
-            @endphp
-
-            <x-tabs :tabs="$tabs">
-                <div class="tab-content mb-10" id="tab-0"></div>
-                <div class="tab-content mb-10 hidden" id="tab-1"></div>
-            </x-tabs>
-        </div>
-
         <!-- 商品卡片區 -->
         <section class="w-full h-[4800px] md:h-[1580px] lg:h-[1240px] flex flex-col justify-start items-center mb-[60px]">
             <!-- 商品十二個 -->
