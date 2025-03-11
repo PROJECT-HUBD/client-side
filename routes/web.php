@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\CustomForgotController;
@@ -8,9 +9,7 @@ use App\Http\Controllers\User\CouponController;
 use Illuminate\Http\Request;
 
 // 首頁
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [ProductController::class, 'home'])->name('home');
 
 // 測試頁
 Route::get('/test1', function () {
@@ -208,8 +207,5 @@ Route::get('/check-out', function () {
     return view('check-out');
 })->name('checkOut');
 
-// 任何url都會導向app.blade.php
-// Route::get('{any}', function () {
-//     return view('app'); // 假設 Vue/React 放在 resources/views/app.blade.php
-// })->where('any', '.*');
+
 require __DIR__.'/auth.php';
