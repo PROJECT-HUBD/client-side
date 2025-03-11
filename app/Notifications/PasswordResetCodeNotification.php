@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class VerificationCodeNotification extends Notification
+class PasswordResetCodeNotification extends Notification
 {
     use Queueable;
     protected $verificationCode;
@@ -19,14 +19,13 @@ class VerificationCodeNotification extends Notification
 
     public function via($notifiable)
     {
-        return ['mail']; //確保email是啟用的通道 ['sms'] 可以用簡訊
+        return ['mail']; // 使用 Email 來寄送通知
     }
 
     public function toMail($notifiable)
     {
-      
         return (new MailMessage)
-        ->subject('您的註冊驗證碼')
-        ->view('emails.verification-code', ['code' => $this->verificationCode]); // ✅ 改用自訂模板
+        ->subject('您的密碼重設驗證碼')
+        ->view('emails.password-reset', ['code' => $this->verificationCode]); // ✅ 使用自訂模板
     }
 }

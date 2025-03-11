@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\CustomForgotController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\CouponController;
 use Illuminate\Http\Request;
@@ -23,6 +25,14 @@ Route::get('/categories_accessories', function () {
 Route::get('/categories_clothes', function () {
     return view('categories_clothes');
 })->name('categories_clothes');
+//關於我們
+Route::get('/aboutus', function() {
+    return view('aboutus');
+})->name('aboutus');
+//收藏清單
+Route::get('/lovelist', function() {
+    return view('lovelist');
+})->name('lovelist');
 
 // 商品內頁
 Route::get('/product_details', function () {
