@@ -193,10 +193,13 @@ Route::prefix('user')->name('user.')->group(function () {  // 暫時移除 middl
     })->name('orders.review.store');
 });
 
-// 保留原有的 user_profile 路由以避免衝突
-Route::get('/user_profile', function () {
-    return redirect()->route('user.user_profile');
-})->name('user_profile');
+
+//確保 /user_profile 只能在登入 (auth) 狀態下訪問，如果未登入，Laravel 會自動導向 mylogin。
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user_profile', function () {
+        return view('user.user_profile');
+    })->name('user_profile');
+});
 
 // 購物車頁
 Route::get('/cart', function () {

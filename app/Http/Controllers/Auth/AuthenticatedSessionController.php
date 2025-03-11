@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use function Pest\Laravel\withHeader;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -45,9 +46,13 @@ class AuthenticatedSessionController extends Controller
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
-        return redirect()->route('home')->with('status','已成功登出');
+
+        return redirect()->route('home')->withHeader([
+            'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+        'Pragma' => 'no-cache',
+        'Expires' => 'Sat, 01 Jan 2000 00:00:00 GMT'//刪除快取
+        ]);
     }
 }
