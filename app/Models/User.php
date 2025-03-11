@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'email_verified_at',
     ];
 
     /**
@@ -44,5 +45,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    
+    // ✅ 新增方法：檢查 Email 是否已驗證
+    public function isVerified()
+    {
+        return !is_null($this->email_verified_at);
     }
 }

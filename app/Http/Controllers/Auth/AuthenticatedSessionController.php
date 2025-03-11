@@ -29,7 +29,9 @@ class AuthenticatedSessionController extends Controller
         'password' => 'required|min:6'
     ]);
 
-    if (!Auth::attempt($request->only('email', 'password'))) {
+    $remember = $request->has('remember');//檢查有沒有勾記住我
+
+    if (!Auth::attempt($request->only('email', 'password'), $remember)) {
         return back()->withErrors([
             'email' => '帳號或密碼有誤',
             'password' => '帳號或密碼有誤', // 🔥 讓密碼輸入框也顯示錯誤訊息
@@ -43,6 +45,16 @@ class AuthenticatedSessionController extends Controller
 
     public function destroy(Request $request): RedirectResponse
     {
+        
+        $user = Auth::user(); // 取得目前登入的使用者
+
+    if ($user) {
+        $user->remember_token = null; // 清除 remember_token
+        $user->save();
+    }
+        
+        
+        
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
