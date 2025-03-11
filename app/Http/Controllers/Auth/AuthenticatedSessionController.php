@@ -37,7 +37,7 @@ class AuthenticatedSessionController extends Controller
 
     $request->session()->regenerate();
 
-    return redirect()->route('dashboard')->with('status', '登入成功！');
+    return redirect()->route('user_profile');
 }
 
     public function destroy(Request $request): RedirectResponse
@@ -48,6 +48,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('mylogin')->with('status','已成功登出');
+        return redirect()->route('home')->with('status','已成功登出');
     }
 }

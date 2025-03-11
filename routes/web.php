@@ -48,7 +48,7 @@ Route::get('/account', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })
-// ->middleware(['auth', 'verified'])  // 暫時註解掉驗證中間件
+//->middleware(['auth', 'verified'])  // 暫時註解掉驗證中間件
 ->name('dashboard');
 
 // 用戶相關頁面
