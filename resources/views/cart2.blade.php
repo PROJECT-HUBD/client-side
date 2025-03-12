@@ -175,41 +175,41 @@
     });
   });
    // <---------------------接收商品資料_local端模擬------------------------->
-      // var productList = [{
-      //     product_img: "{{ asset('images/products/clothes/shorts/ps001_01_01.jpg') }}",
-      //     product_name: "女裝百褶拼接寬鬆上衣",
-      //     product_size: "S",
-      //     product_color: "Black",
-      //     quantity: 3,
-      //     product_price: 1640,
+      var productList = [{
+          product_img: "{{ asset('images/products/clothes/shorts/ps001_01_01.jpg') }}",
+          product_name: "女裝百褶拼接寬鬆上衣",
+          product_size: "S",
+          product_color: "Black",
+          quantity: 3,
+          product_price: 1640,
 
-      //   },
-      //   {
-      //     product_img: "{{ asset('images/products/clothes/shorts/ps002_01_01.jpg') }}",
-      //     product_name: "女裝百褶拼接寬鬆上衣",
-      //     product_size: "L",
-      //     product_color: "Black",
-      //     quantity: 3,
-      //     product_price: 1380,
-
-      //   },
-
-      // ];
-
-      // console.log(productList);
-  // <---------------------接收商品資料_from_productAPI------------------------->
-  $(document).ready(function() {
-    $.ajax({
-        url: 'http://localhost/client-side/public/cartTest', // 修改為正確的 URL
-        method: 'GET',
-        success: function(productList) {
-          console.log(productList); // 顯示返回的商品數據
         },
-        error: function(error) {
-          console.log(error); // 如果有錯誤，顯示錯誤訊息
-        }
-      })
-      .done(function(productList) {
+        {
+          product_img: "{{ asset('images/products/clothes/shorts/ps002_01_01.jpg') }}",
+          product_name: "女裝百褶拼接寬鬆上衣",
+          product_size: "L",
+          product_color: "Black",
+          quantity: 3,
+          product_price: 1380,
+
+        },
+
+      ];
+
+      console.log(productList);
+  // <---------------------接收商品資料_from_productAPI------------------------->
+
+    // $.ajax({
+    //     url: 'http://localhost/client-side/public/cartTest', // 修改為正確的 URL
+    //     method: 'GET',
+    //     success: function(productList) {
+    //       console.log(productList); // 顯示返回的商品數據
+    //     },
+    //     error: function(error) {
+    //       console.log(error); // 如果有錯誤，顯示錯誤訊息
+    //     }
+    //   })
+      // .done(function(productList) {
          console.log(productList);            
         for (let i = 0; i < productList.length; i++) {
           // console.log(i);
@@ -281,29 +281,25 @@
           resultHTML += `</article>`;
           // 將結果累加到容器中
           $(".productRow").append(resultHTML);
-          
         
         }
-      });
+      // });
   
 
   // <-----------------------------totalPriceWithDiscount+deleteProduct--------------------------------->
-  
+  $(document).ready(function() {
     function updatePrices() {
       let totalPrice = 0;
     
-      console.log(totalPrice);
-      // 遍歷所有 .productRow，計算總價
+    
       $(".productRow>article").each(function() {
         // 檢查當前商品的 checkbox 是否被勾選
-        console.log($(this));
-        console.log("OK"
-        )
+        // console.log($(this));
         if ($(this).find("input[type='checkbox']").is(":checked")) {
           let count = parseInt($(this).find(".quantity").text()); // 獲取數量
-          console.log(count);
+          // console.log(count);
           let product_price = parseFloat($(this).find(".product_price").text().replace('$', '')); // 獲取商品價格並去除$符號
-          console.log(product_price);
+          // console.log(product_price);
           let price = product_price * count; // 計算該商品的總價
 
           totalPrice += price; // 累加所有被選中的商品的價格

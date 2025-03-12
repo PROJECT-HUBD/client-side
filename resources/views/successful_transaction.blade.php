@@ -10,7 +10,7 @@
 </style>
 
 <div class="flex flex-col items-center justify-center w-full  min-h-full gap-5">
-    <img class="h-[260px]" src="{{ asset('images/views/success.png')   }}" alt="">
+    <img class="h-[260px]" src="{{ asset('images/successful_transaction/success.png')   }}" alt="">
     <p class="text-[36px] text-brandGrey-normal font-lexend font-semibold">交易成功~</p>
     <p class="text-[24px] text-brandGrey-normal font-normal">恭喜你買到本日份的幸福時光</p>
     <a href="{{ route('home') }}"

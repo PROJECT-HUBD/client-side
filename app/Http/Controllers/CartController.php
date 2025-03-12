@@ -29,13 +29,13 @@ class CartController extends Controller
                 'product_size' => $productSpec ? $productSpec->product_size : null,
                 'product_color' => $productSpec ? $productSpec->product_color : null,
                 'quantity' => $cartItem->quantity,
-                'original_price' => $productMain ? $productMain->product_price : null,
+                'product_price' => $productMain ? $productMain->product_price : null,
                 
             ];
           
         }
          // 使用 dd() 來調試並檢查 productData 是否正確
-         dd($productData);
+        //  dd($productData);
 
         // 返回資料
         return response()->json($productData);

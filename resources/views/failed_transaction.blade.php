@@ -10,7 +10,7 @@
 </style>
 
 <div class="flex flex-col items-center justify-center w-full  min-h-full gap-5">
-    <img class="h-[260px]" src="{{ asset('images/views/fail.png')   }}" alt="">
+    <img class="h-[260px]" src="{{ asset('images/failed_transaction/fail.png')   }}" alt="">
     <p class="text-[36px] text-brandGrey-normal font-lexend font-semibold">交易失敗</p>
     <p class="text-[24px] text-brandGrey-normal font-normal">付款未成功，請重新下訂單</p>
     <a href="{{ route('cart') }}"
