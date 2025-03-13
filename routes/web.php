@@ -2,17 +2,15 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\CustomForgotController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\CouponController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Http\Request;
 
 // 首頁
-Route::get('/', [ProductController::class, 'home'])->name('home');
-
-// 測試頁
-Route::get('/test1', function () {
-    return view('test1');
-})->name('test1');
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
 // 商品分類_飾品
 Route::get('/categories_accessories', function () {
@@ -23,6 +21,15 @@ Route::get('/categories_accessories', function () {
 Route::get('/categories_clothes', function () {
     return view('categories_clothes');
 })->name('categories_clothes');
+
+//關於我們
+Route::get('/aboutus', function() {
+    return view('aboutus');
+})->name('aboutus');
+//收藏清單
+Route::get('/lovelist', function() {
+    return view('lovelist');
+})->name('lovelist');
 
 // 商品內頁
 Route::get('/product_details', function () {

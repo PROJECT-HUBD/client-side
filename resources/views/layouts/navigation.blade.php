@@ -30,10 +30,34 @@
                 <a href="{{route('cart')}}" class="flex items-center justify-center">
                     <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[iconoir--cart]"></span>
                 </a>
-                <!-- account -->
-                <a href="{{route('user_profile')}}" class="flex items-center justify-center">
-                    <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[qlementine-icons--user-16]"></span>
-                </a>
+                
+                <!-- account 帳號按鈕 -->
+                <div class="relative">
+                    <!-- 帳號按鈕 -->
+                    <button id="account-btn" class="flex items-center justify-center">
+                        <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[qlementine-icons--user-16]"></span>
+                    </button>
+                
+                    <!-- 下拉選單 -->
+                    <div id="account-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-lg py-2 z-50 border border-gray-300">
+                        @auth
+                            <!-- 已登入顯示「登出」 -->
+                            <form method="POST" action="{{ route('logout') }}" class="block w-full">
+                                @csrf
+                                <button type="submit" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                    登出
+                                </button>
+                            </form>
+                        @else
+                            <!-- 未登入顯示「登入」 -->
+                            <a href="{{ route('mylogin') }}" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                登入
+                            </a>
+                        @endauth
+                    </div>
+                </div>
+                
+
                 <!-- hamMenu -->
                 <div id="hamBtn" class="block md:hidden cursor-pointer">
                     <div class="flex items-center justify-center">
@@ -72,7 +96,7 @@
         <div class="w-full h-full flex flex-col justify-center items-center py-[12px]">
             <div class="md:hidden w-[350px] h-[30px]  mb-[12px]">
                 <div class="relative flex justify-center items-center">
-                    <input type="text" placeholder="搜尋商品" class="flex w-[350px] h-[30px] px-4 ps-10 py-3 items-center gap-2 rounded-[20px] border border-[#484848] bg-white">
+                    <input type="submit" placeholder="搜尋商品" class="flex w-[350px] h-[30px] px-4 ps-10 py-3 items-center gap-2 rounded-[20px] border border-[#484848] bg-white">
                     <span class="absolute top-2 left-4 w-[16px] h-[16px] icon-[basil--search-outline]"></span>
                 </div>
             </div>
@@ -161,6 +185,27 @@
                 $(".plusIcon").html("－");
             }
         })
+    });
+
+
+
+    //下拉式選單 登入登出用
+    document.addEventListener("DOMContentLoaded", function () {
+        const accountBtn = document.getElementById("account-btn");
+        const dropdown = document.getElementById("account-dropdown");
+
+        // 點擊帳號按鈕時顯示/隱藏下拉選單
+        accountBtn.addEventListener("click", function (event) {
+            event.stopPropagation(); // 防止點擊事件冒泡
+            dropdown.classList.toggle("hidden");
+        });
+
+        // 點擊其他地方時關閉選單
+        document.addEventListener("click", function (event) {
+            if (!dropdown.contains(event.target) && !accountBtn.contains(event.target)) {
+                dropdown.classList.add("hidden");
+            }
+        });
     });
 </script>
 @endpush

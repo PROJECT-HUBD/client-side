@@ -11,29 +11,35 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
-    public function create(): View
+
+
+    
+    public function showLoginForm()
     {
-        return view('auth.login');
+        return view('auth.mylogin');
     }
 
-    /**
-     * Handle an incoming authentication request.
-     */
-    public function store(LoginRequest $request): RedirectResponse
-    {
-        $request->authenticate();
+    
+    
+    public function store(Request $request): RedirectResponse
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required|min:6'
+    ]);
 
-        $request->session()->regenerate();
-
-        return redirect()->intended(route('home', absolute: false));
+    if (!Auth::attempt($request->only('email', 'password'))) {
+        return back()->withErrors([
+            'email' => '帳號或密碼有誤',
+            'password' => '帳號或密碼有誤', // 🔥 讓密碼輸入框也顯示錯誤訊息
+        ]);
     }
 
-    /**
-     * Destroy an authenticated session.
-     */
+    $request->session()->regenerate();
+
+    return redirect()->route('user_profile')->with('status', '登入成功！');
+}
+
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
@@ -42,6 +48,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('mylogin')->with('status','已成功登出');
     }
 }
