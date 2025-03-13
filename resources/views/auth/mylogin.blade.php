@@ -53,7 +53,7 @@
                         <input type="text" placeholder="信箱" name="email"
                             class="px-5 py-2.5 w-full rounded-md border border-solid border-[#e4e4e4] text-neutral-400"
                             aria-label="Email" />
-                        
+
                     </div>
 
                     <div class="relative">
@@ -68,9 +68,26 @@
                         @enderror
                     </div>
 
-                    <div class="absolute right-0 text-xs opacity-50 bottom-[-18px] text-zinc-700">
-                        <a href="{{ route('password.email.send') }}" class="underline">忘記密碼</a>
+                    <!-- 記住我 -->
+                    <div class="flex items-center justify-between w-full max-w-[299px] mt-2">
+                        <label for="remember"
+                            class="flex items-center cursor-pointer select-none text-sm text-gray-500">
+                            <input type="checkbox" name="remember" id="remember" class="hidden peer">
+                            <div
+                                class="w-5 h-5 border-2 border-[#e4e4e4] rounded-md flex items-center justify-center transition-all duration-200 peer-checked:border-gray-700 peer-checked:bg-[#100d0d]">
+                            </div>
+                            <span class="ml-2">記住我</span>
+                        </label>
+
+                        <!-- 忘記密碼 -->
+                        <a href="{{ route('password.email.send') }}"
+                            class="text-xs text-gray-500 hover:underline opacity-80">
+                            忘記密碼？
+                        </a>
                     </div>
+
+
+
                     <div class="mt-11 w-full">
                         <button type="submit"
                             class="p-2.5 mb-4 font-bold text-center text-white bg-gray-500 hover:bg-gray-600 rounded-md w-full">

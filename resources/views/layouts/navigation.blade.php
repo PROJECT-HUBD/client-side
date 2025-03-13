@@ -30,7 +30,6 @@
                 <a href="{{route('cart')}}" class="flex items-center justify-center">
                     <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[iconoir--cart]"></span>
                 </a>
-                
                 <!-- account 帳號按鈕 -->
                 <div class="relative">
                     <!-- 帳號按鈕 -->
@@ -102,7 +101,7 @@
             </div>
             <div class="cursor-pointer w-[350px h-[30px] flex justify-center gap-[30px]">
                 <div id="prodsBtnPhone" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">商品&nbsp;<span class="plusIcon">＋</span></div>
-                <a href="" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">關於我們</a>
+                <a href="{{route('aboutus')}}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">關於我們</a>
             </div>
         </div>
     </div>
