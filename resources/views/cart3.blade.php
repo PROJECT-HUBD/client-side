@@ -174,124 +174,144 @@
       $(".checkbox").prop("checked", $(this).prop("checked"));
     });
   });
-   // <---------------------接收商品資料_local端模擬------------------------->
-      // var productList = [{
-      //     product_img: "{{ asset('images/products/clothes/shorts/ps001_01_01.jpg') }}",
-      //     product_name: "女裝百褶拼接寬鬆上衣",
-      //     product_size: "S",
-      //     product_color: "Black",
-      //     quantity: 3,
-      //     product_price: 1640,
+  // <---------------------接收商品資料------------------------->
+  // var productList = [{
+  //     product_img: "{{ asset('images/products/clothes/shorts/ps001_01_01.jpg') }}",
+  //     product_name: "女裝百褶拼接寬鬆上衣",
+  //     product_size: "S",
+  //     product_color: "Black",
+  //     quantity: 3,
+  //     product_price: 1640,
 
-      //   },
-      //   {
-      //     product_img: "{{ asset('images/products/clothes/shorts/ps002_01_01.jpg') }}",
-      //     product_name: "女裝百褶拼接寬鬆上衣",
-      //     product_size: "L",
-      //     product_color: "Black",
-      //     quantity: 3,
-      //     product_price: 1380,
+  //   },
+  //   {
+  //     product_img: "{{ asset('images/products/clothes/shorts/ps002_01_01.jpg') }}",
+  //     product_name: "女裝百褶拼接寬鬆上衣",
+  //     product_size: "L",
+  //     product_color: "Black",
+  //     quantity: 3,
+  //     product_price: 1380,
 
-      //   },
+  //   },
 
-      // ];
+  // ];
 
-      // console.log(productList);
+  // console.log(productList);
   // <---------------------接收商品資料_from_productAPI------------------------->
-
-    $.ajax({
-        url: 'http://localhost/client-side/public/cartTest', // 修改為正確的 URL
-        method: 'GET',
-        success: function(productList) {
-          console.log(productList); // 顯示返回的商品數據
-        },
-        error: function(error) {
-          console.log(error); // 如果有錯誤，顯示錯誤訊息
-        }
-      })
-      .done(function(productList) {
-         console.log(productList);            
-        for (let i = 0; i < productList.length; i++) {
-          // console.log(i);
-          let resultHTML = "";
-
-          // 開始 article 標籤
-          resultHTML += `<article class="flex overflow-hidden flex-wrap gap-10 justify-between items-center px-8  py-8 bg-white rounded shadow-sm  max-w-full　lg:gap-auto">`;
-
-          // 開始 row-left-part
-          resultHTML += `<div class="row-left-part flex gap-5 items-center self-stretch my-auto min-w-60">`;
-
-          // checkbox
-          resultHTML += `<div class="flex gap-3.5 items-center self-stretch my-auto w-[25px]">`;
-          resultHTML += `<input class="checkbox rounded h-[25px] w-[25px]" type="checkbox" checked>`;
-          resultHTML += `</div>`;
-
-          // 商品圖片與詳細資訊
-          resultHTML += `<div class="flex gap-6 items-center self-stretch my-auto min-w-60 text-neutral-700">`;
-          resultHTML += `<img class="product_img flex shrink-0 cover my-auto h-[104px] w-[104px]" src="${productList[i].product_img}" alt="Product Image">`;
-
-          // 產品資訊
-          resultHTML += `<div class="self-stretch my-auto w-[213px]">`;
-          resultHTML += `<h3 class="product_name text-lg leading-none">${productList[i].product_name}</h3>`;
-
-          // 產品選擇
-          resultHTML += `<div class="flex flex-col items-start mt-3 max-w-full text-sm whitespace-flexwrap w-[100px] rounded">`;
-          resultHTML += `<select class="flex gap-10 justify-between items-center px-3 py-1 w-32 rounded bg-neutral-100 max-w-40 border border-none">`;
-          resultHTML += `<option class="product_color" value="${productList[i].product_color}"  hidden>${productList[i].product_color}</option>`;
-          resultHTML += `<option class="product_color" value="Black">Black</option>`;
-          resultHTML += `<option class="product_color" value="Grey">Grey</option>`;
-          resultHTML += `<option class="product_color" value="White">White</option>`;
-          resultHTML += `</select>`;
-          resultHTML += `<select class="flex gap-10 justify-between items-center mt-2 px-3 py-1 w-32 rounded bg-neutral-100 max-w-40 border border-none">`;
-          resultHTML += `<option class="product_size" value="${productList[i].product_size}" hidden>${productList[i].product_size}</option>`;
-          resultHTML += `<option class="product_size"value="S">S</option>`;
-          resultHTML += `<option class="product_size"value="M">M</option>`;
-          resultHTML += `<option class="product_size"value="L">L</option>`;
-          resultHTML += `</select>`;
-          resultHTML += `</div>`; // 關閉選擇框
-
-          resultHTML += `</div>`; // 關閉產品資訊
-          resultHTML += `</div>`; // 關閉產品圖片與資訊
-
-          resultHTML += `</div>`; // 關閉 row-left-part
-
-          // 開始 row-right-part
-          resultHTML += `<div class="row-right-part flex gap-10 items-center self-stretch my-auto min-w-60">`;
-
-          // 數量調整
-          resultHTML += `<div class="flex items-center self-stretch my-auto text-2xl font-medium text-center whitespace-nowrap text-zinc-700">`;
-
-          resultHTML += `<button class="buttonMinus self-stretch px-2.5 py-3 my-auto capitalize border border-solid border-[color:var(--grey-light-hover,#E4E4E4)] h-[58px] w-[58px]" aria-label="Decrease quantity">-</button>`;
-
-          resultHTML += `<div type="text" value="01" class="quantity self-stretch p-2.5 py-4 my-auto border border-solid border-[color:var(--grey-light-hover,#E4E4E4)] text-zinc-500 w-[100px] text-center" aria-label="Quantity">${Number(productList[i].quantity)}</div>`;
-
-          resultHTML += `<button class="buttonPlus self-stretch px-2.5 my-auto capitalize border border-solid border-[color:var(--grey-light-hover,#E4E4E4)] h-[58px] w-[58px]" aria-label="Increase quantity">+</button>`;
-
-          resultHTML += `</div>`; // 關閉數量調整
-
-          // 價格顯示
-          resultHTML += `<div class="flex flex-col justify-center self-stretch my-auto text-base">`;
-          // resultHTML += `<p class="discount_price text-red-700">$${Number(productList[i].discount_price)}</p>`; // 强制转换为数字并格式化为两位小数
-          resultHTML += `<p class="product_price mt-3 text-zinc-700" >$${Number(productList[i].product_price)}</p>`; // 强制转换为数字并格式化为两位小数
-          resultHTML += `</div>`; // 關閉價格區塊
-
-          resultHTML += `</div>`; // 關閉 row-right-part
-
-          // 結束 article
-          resultHTML += `</article>`;
-          // 將結果累加到容器中
-          $(".productRow").append(resultHTML);
-        
-        }
-      });
-  
-
-  // <-----------------------------totalPriceWithDiscount+deleteProduct--------------------------------->
   $(document).ready(function() {
+    $.ajax({
+      url: 'http://localhost/client-side/public/cartTest', // 修改為正確的 URL
+      method: 'GET',
+      success: function(productList) {
+        console.log(productList); // 顯示返回的商品數據
+        // 將資料存入 localStorage
+        localStorage.setItem("productList", JSON.stringify(productList));
+
+      },
+      error: function(error) {
+        console.log(error); // 如果有錯誤，顯示錯誤訊息
+      }
+    })
+    // .done(
+    //   function renderProductList(productList) {
+  
+    function renderProductList(productList) {
+      //  console.log(productList);            
+      for (let i = 0; i < productList.length; i++) {
+        // console.log(i);
+        let resultHTML = "";
+
+        // 開始 article 標籤
+        resultHTML += `<article class="flex overflow-hidden flex-wrap gap-10 justify-between items-center px-8  py-8 bg-white rounded shadow-sm  max-w-full　lg:gap-auto">`;
+
+        // 開始 row-left-part
+        resultHTML += `<div class="row-left-part flex gap-5 items-center self-stretch my-auto min-w-60">`;
+
+        // checkbox
+        resultHTML += `<div class="flex gap-3.5 items-center self-stretch my-auto w-[25px]">`;
+        resultHTML += `<input class="checkbox rounded h-[25px] w-[25px]" type="checkbox" checked>`;
+        resultHTML += `</div>`;
+
+        // 商品圖片與詳細資訊
+        resultHTML += `<div class="flex gap-6 items-center self-stretch my-auto min-w-60 text-neutral-700">`;
+        resultHTML += `<img class="product_img flex shrink-0 cover my-auto h-[104px] w-[104px]" src="${productList[i].product_img}" alt="Product Image">`;
+
+        // 產品資訊
+        resultHTML += `<div class="self-stretch my-auto w-[213px]">`;
+        resultHTML += `<h3 class="product_name text-lg leading-none">${productList[i].product_name}</h3>`;
+        resultHTML += `<p class="product_id ">${productList[i].product_id}</p>`;
+
+        // 產品選擇
+        resultHTML += `<div class="flex flex-col items-start mt-3 max-w-full text-sm whitespace-flexwrap w-[100px] rounded">`;
+        resultHTML += `<select class="flex gap-10 justify-between items-center px-3 py-1 w-32 rounded bg-neutral-100 max-w-40 border border-none">`;
+        resultHTML += `<option class="product_color" value="${productList[i].product_color}"  hidden>${productList[i].product_color}</option>`;
+        resultHTML += `<option class="product_color" value="Black">Black</option>`;
+        resultHTML += `<option class="product_color" value="Grey">Grey</option>`;
+        resultHTML += `<option class="product_color" value="White">White</option>`;
+        resultHTML += `</select>`;
+        resultHTML += `<select class="flex gap-10 justify-between items-center mt-2 px-3 py-1 w-32 rounded bg-neutral-100 max-w-40 border border-none">`;
+        resultHTML += `<option class="product_size" value="${productList[i].product_size}" hidden>${productList[i].product_size}</option>`;
+        resultHTML += `<option class="product_size"value="S">S</option>`;
+        resultHTML += `<option class="product_size"value="M">M</option>`;
+        resultHTML += `<option class="product_size"value="L">L</option>`;
+        resultHTML += `</select>`;
+        resultHTML += `</div>`; // 關閉選擇框
+
+        resultHTML += `</div>`; // 關閉產品資訊
+        resultHTML += `</div>`; // 關閉產品圖片與資訊
+
+        resultHTML += `</div>`; // 關閉 row-left-part
+
+        // 開始 row-right-part
+        resultHTML += `<div class="row-right-part flex gap-10 items-center self-stretch my-auto min-w-60">`;
+
+        // 數量調整
+        resultHTML += `<div class="flex items-center self-stretch my-auto text-2xl font-medium text-center whitespace-nowrap text-zinc-700">`;
+
+        resultHTML += `<button class="buttonMinus self-stretch px-2.5 py-3 my-auto capitalize border border-solid border-[color:var(--grey-light-hover,#E4E4E4)] h-[58px] w-[58px]" aria-label="Decrease quantity">-</button>`;
+
+        resultHTML += `<div type="text" value="01" class="quantity self-stretch p-2.5 py-4 my-auto border border-solid border-[color:var(--grey-light-hover,#E4E4E4)] text-zinc-500 w-[100px] text-center" aria-label="Quantity">${Number(productList[i].quantity)}</div>`;
+
+        resultHTML += `<button class="buttonPlus self-stretch px-2.5 my-auto capitalize border border-solid border-[color:var(--grey-light-hover,#E4E4E4)] h-[58px] w-[58px]" aria-label="Increase quantity">+</button>`;
+
+        resultHTML += `</div>`; // 關閉數量調整
+
+        // 價格顯示
+        resultHTML += `<div class="flex flex-col justify-center self-stretch my-auto text-base">`;
+        // resultHTML += `<p class="discount_price text-red-700">$${Number(productList[i].discount_price)}</p>`; // 强制转换为数字并格式化为两位小数
+        resultHTML += `<p class="product_price mt-3 text-zinc-700" >$${Number(productList[i].product_price)}</p>`; // 强制转换为数字并格式化为两位小数
+        resultHTML += `</div>`; // 關閉價格區塊
+
+        resultHTML += `</div>`; // 關閉 row-right-part
+
+        // 結束 article
+        resultHTML += `</article>`;
+        // 將結果累加到容器中
+        $(".productRow").append(resultHTML);
+
+      }
+    }
+
+    // );
+
+    // <----------------------------- 將頁面內容localStorage資料 ------------------------------>
+
+
+
+    let storedProductList = localStorage.getItem("productList");
+
+    if (storedProductList) {
+      console.log("從 localStorage 讀取的 productList:", JSON.parse(storedProductList));
+      renderProductList(JSON.parse(storedProductList));
+      updatePrices(); // 確保價格也會更新
+    }
+
+    // <-----------------------------totalPriceWithDiscount+deleteProduct--------------------------------->
+
     function updatePrices() {
       let totalPrice = 0;
-    
-    
+
+
       $(".productRow>article").each(function() {
         // 檢查當前商品的 checkbox 是否被勾選
         // console.log($(this));
@@ -349,8 +369,9 @@
 
     // 初始化時先計算一次價格
     updatePrices();
-  });
-  // <-----------------------------local storage--------------------------------->
+
+  }); //end of doucument ready
+  // <-----------------------------click&saveLocalStorage--------------------------------->
 
   $(document).ready(function() {
     // 點擊 "繼續購物" 按鈕

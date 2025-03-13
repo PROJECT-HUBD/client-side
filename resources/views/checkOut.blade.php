@@ -18,10 +18,10 @@
         <h2 class="gap-2.5 self-stretch my-auto text-3xl text-zinc-700">
           確認收件人地址
         </h2>
-        <button
+        <a  
           class=" self-stretch pt-2.5 my-auto text-base font-bold tracking-wide leading-none  text-gray-500 underline  underline-offset-auto">
           變更收件人與地址
-        </button>
+        </a>
       </header>
 
       <select class="mt-4 py-4 w-full text-base text-zinc-500 max-md:max-w-full flex flex-wrap gap-5 justify-between max-md:px-5">
@@ -37,10 +37,10 @@
         <h2 class="gap-2.5 self-stretch my-auto text-3xl text-zinc-700">
           付款方式
         </h2>
-        <button
+        <a 
           class="overflow-hidden justify-end self-stretch pt-2.5  text-base font-bold  leading-none  text-gray-500 underline  underline-offset-auto ">
           變更付款方式
-        </button>
+        </a>
       </header>
       <select class="mt-4 w-full max-md:max-w-full text-base text-zinc-500">
 
