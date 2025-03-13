@@ -44,15 +44,16 @@
       </header>
       <select class="mt-4 w-full max-md:max-w-full text-base text-zinc-500">
 
-        <option selected hidden>請選擇付款方式</option>
-        <option value="">信用卡付款</option>
-        <option value="">ATM轉帳</option>
+        <option hidden>請選擇付款方式</option>
+        <option class="payment_type" value="信用卡付款">信用卡付款</option>
+        <option class="payment_type" value="ATM轉帳">ATM轉帳</option>
 
       </select>
     </section>
 
-    <a href="{{ route('successful_transaction') }}"
-      class="flex justify-center items-center px-10 py-4 mt-12 w-full text-2xl font-bold tracking-normal leading-none text-center text-white  bg-red-500 rounded-md max-md:px-5 max-md:mt-10 max-md:max-w-full">
+    <!-- <a href="{{ route('successful_transaction') }}" -->
+    <a
+      class="makeOrder flex justify-center items-center px-10 py-4 mt-12 w-full text-2xl font-bold tracking-normal leading-none text-center text-white  bg-red-500 rounded-md max-md:px-5 max-md:mt-10 max-md:max-w-full">
       一鍵下訂
     </a>
   </section>
@@ -85,7 +86,7 @@
           <p class="text-red-700">$650</p>
         </div>
       </div> -->
-    </article> 
+    </article>
     <!-- countDetail -->
     <section
       class="checkoutDetail overflow-hidden self-center py-8 w-full rounded max-w-[560px] max-md:px-5 max-md:max-w-full">
@@ -130,7 +131,7 @@
 
     // 顯示商品資料
     for (let i = 0; i < productList.length; i++) {
-      console.log(i);
+      // console.log(i);
       let resultHTML = "";
 
       // Add the initial empty string before each HTML element
@@ -175,179 +176,150 @@
 
       $(".productDetail").append(resultHTML); // Append the generated HTML to the container
     }
- 
-
-  //     <-------------------------------------------checkoutDetail---------------------------------------------------->
-let result_checkoutDetail = ""; 
 
 
-result_checkoutDetail += `<section >`;
+    //     <-------------------------------------------checkoutDetail---------------------------------------------------->
+    let result_checkoutDetail = "";
 
-result_checkoutDetail += `<div class="flex flex-wrap gap-10 justify-between items-start w-full text-base whitespace-nowrap text-zinc-700 max-md:max-w-full">`;
 
-result_checkoutDetail += `<p class="gap-1 self-stretch w-[171px]">商品金額</p>`;
+    result_checkoutDetail += `<section >`;
 
-result_checkoutDetail += `<p>$${(cartPrice.totalPrice)}</p>`;
+    result_checkoutDetail += `<div class="flex flex-wrap gap-10 justify-between items-start w-full text-base whitespace-nowrap text-zinc-700 max-md:max-w-full">`;
 
-result_checkoutDetail += `</div>`; // Closing the item price section
+    result_checkoutDetail += `<p class="gap-1 self-stretch w-[171px]">商品金額</p>`;
 
-result_checkoutDetail += `<div class="flex flex-wrap gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap max-md:max-w-full">`;
+    result_checkoutDetail += `<p>$${(cartPrice.totalPrice)}</p>`;
 
-result_checkoutDetail += `<p class="text-zinc-700">活動特惠</p>`;
+    result_checkoutDetail += `</div>`; // Closing the item price section
 
-result_checkoutDetail += `<p class="text-red-700">${cartPrice.festivalMinus < 0 ? `-$${Math.abs(cartPrice.festivalMinus)}` :`$${cartPrice.festivalMinus}`}</p>`;
+    result_checkoutDetail += `<div class="flex flex-wrap gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap max-md:max-w-full">`;
 
-result_checkoutDetail += `</div>`; // Closing the festivalMinus section
-result_checkoutDetail += `<div class="flex flex-wrap gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap max-md:max-w-full">`;
+    result_checkoutDetail += `<p class="text-zinc-700">活動特惠</p>`;
 
-result_checkoutDetail += `<p class="text-zinc-700">優惠券折扣</p>`;
+    result_checkoutDetail += `<p class="text-red-700">${cartPrice.festivalMinus < 0 ? `-$${Math.abs(cartPrice.festivalMinus)}` :`$${cartPrice.festivalMinus}`}</p>`;
 
-result_checkoutDetail += `<p class="text-red-700">${cartPrice.couponMinus < 0 ? `-$${Math.abs(cartPrice.couponMinus)}` :`$${cartPrice.couponMinus}`}</p>`;
+    result_checkoutDetail += `</div>`; // Closing the festivalMinus section
+    result_checkoutDetail += `<div class="flex flex-wrap gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap max-md:max-w-full">`;
 
-result_checkoutDetail += `</div>`; // Closing the CouponMinus section
+    result_checkoutDetail += `<p class="text-zinc-700">優惠券折扣</p>`;
 
-result_checkoutDetail += `<div class="flex flex-wrap gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap text-zinc-700 max-md:max-w-full">`;
+    result_checkoutDetail += `<p class="text-red-700">${cartPrice.couponMinus < 0 ? `-$${Math.abs(cartPrice.couponMinus)}` :`$${cartPrice.couponMinus}`}</p>`;
 
-result_checkoutDetail += `<p class="gap-2.5 self-stretch w-16">運費</p>`;
+    result_checkoutDetail += `</div>`; // Closing the CouponMinus section
 
-result_checkoutDetail += `<p class="text-right">Free</p>`;
+    result_checkoutDetail += `<div class="flex flex-wrap gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap text-zinc-700 max-md:max-w-full">`;
 
-result_checkoutDetail += `</div>`; // Closing the shipping section
+    result_checkoutDetail += `<p class="gap-2.5 self-stretch w-16">運費</p>`;
 
-result_checkoutDetail += `<div class="mt-5 w-full rotate-[8.742277657347563e-8rad] max-md:max-w-full">`;
+    result_checkoutDetail += `<p class="text-right">Free</p>`;
 
-result_checkoutDetail += `<hr class="z-10 shrink-0 h-px border border-solid bg-zinc-700 border-zinc-700 max-md:max-w-full" />`;
+    result_checkoutDetail += `</div>`; // Closing the shipping section
 
-result_checkoutDetail += `</div>`; // Closing the divider
+    result_checkoutDetail += `<div class="mt-5 w-full rotate-[8.742277657347563e-8rad] max-md:max-w-full">`;
 
-result_checkoutDetail += `<div class="flex flex-wrap gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap max-md:max-w-full">`;
+    result_checkoutDetail += `<hr class="z-10 shrink-0 h-px border border-solid bg-zinc-700 border-zinc-700 max-md:max-w-full" />`;
 
-result_checkoutDetail += `<p class="gap-2.5 self-stretch w-16 text-zinc-700">小計</p>`;
+    result_checkoutDetail += `</div>`; // Closing the divider
 
-result_checkoutDetail += `<p class="text-red-700">$${(cartPrice.totalPriceWithDiscount)}</p>`;
+    result_checkoutDetail += `<div class="flex flex-wrap gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap max-md:max-w-full">`;
 
-result_checkoutDetail += `</div>`; // Closing the subtotal section
+    result_checkoutDetail += `<p class="gap-2.5 self-stretch w-16 text-zinc-700">小計</p>`;
 
-$(".checkoutDetail").append(result_checkoutDetail);
-}
+    result_checkoutDetail += `<p class="text-red-700">$${(cartPrice.totalPriceWithDiscount)}</p>`;
+
+    result_checkoutDetail += `</div>`; // Closing the subtotal section
+
+    $(".checkoutDetail").append(result_checkoutDetail);
+  }
   // 頁面加載時顯示資料
   displayDataFromLocalStorage();
 
-  // <-----------------------------testing:get-data-from-cart--------------------------------->
+  // <-----------------------------post-data-to-database--------------------------------->
+
+  $(document).ready(function() {
+    $(".makeOrder").on("click", function() {
+      // Generate random trade_No (6 digits) and order_id (8 digits)
+      const trade_No = Math.floor(Math.random() * 900000 + 100000); // Random 6 digits
+      const order_id = Math.floor(Math.random() * 90000000 + 10000000); // Random 8 digits
+
+      // Get data from localStorage
+      const member_id = localStorage.getItem("member_id");
+      const payment_type = $(".payment_type:selected").val();
+      // console.log(payment_type)
+      const trade_status = "交易成功"; // Default value
+      const productList = JSON.parse(localStorage.getItem("productList"));
+      const cartPrice = JSON.parse(localStorage.getItem("cartPrice"));
+      console.log(productList)
+      // console.log(cartPrice)
+
+      // 給OrderMain資料表的資料Prepare data for InsertOrderMain API
+      const orderMainData = {
+        trade_No: trade_No,
+        member_id: member_id,
+        total_price_with_discount: cartPrice.totalPriceWithDiscount,
+        payment_type: payment_type,
+        trade_status: trade_status,
+        order_id: order_id,
+      };
+      // console.log(orderMainData);
 
 
-  // let productList = [{
-  //   product_img: "{{ asset('images/products/clothes/shorts/ps001_01_01.jpg') }}",
-  //   product_name: "122334女裝百褶拼接寬鬆上衣",
-  //   product_size: "S",
-  //   product_color: "Black",
-  //   quantity: 3,
-  //   product_price: 950,
-  //   totalPrice: 1050,
-  //   festivalMinus: -105,
-  //   couponMinus: -100,
-  //   totalPriceWithDiscount: 950,
-  // }]
-  // console.log(productList);
+     
 
-  // for (let i = 0; i < productList.length; i++) {
-  //   let resultHTML = "";
- 
-  //   resultHTML += ``;
+      // 給Orderdetail資料表的資料Prepare data for InsertOrderDetail API
+      const orderDetailData = productList.map(product => ({
+        product_id: product.product_id,
+        product_size: product.product_size,
+        product_color: product.product_color,
+        quantity: product.quantity,
+        product_price: product.product_price
+      }));
+ console.log(orderDetailData);
 
-  //   resultHTML += `<article
-  //     class="flex overflow-hidden flex-wrap gap-4 justify-between items-center px-6 py-4 w-full bg-white rounded border border-solid border-[color:var(--grey-light-hover,#E4E4E4)] max-md:px-5 max-md:max-w-full">`;
+  // Insert order main data (InsertOrderMain)
+  $.ajax({
+        url: 'http://localhost/client-side/public/InsertOrderMain',
+        method: 'POST',
+        data: orderMainData,
+        success: function(response) {
+          console.log("Order Main Inserted Successfully:", response);
+        },
+        error: function(error) {
+          console.error("Error inserting order main:", error);
+        }
+      });
+      // Insert order details (InsertOrderDetail)
+      $.ajax({
+        url: 'http://localhost/client-side/public/InsertOrderDetail',
+        method: 'POST',
+        data: {
+          productList: orderDetailData
+        },
+        success: function(response) {
+          console.log("Order Details Inserted Successfully:", response);
+        },
+        error: function(error) {
+          console.error("Error inserting order details:", error);
+        }
+      });
 
-  //   resultHTML += `<div class="flex gap-5 items-center self-stretch my-auto text-sm min-w-60 text-zinc-700">`;
+      // Delete cart items (DeleteCart)
+      const product_ids = productList.map(product => product.product_id);
 
-  //   resultHTML += `<div class="flex gap-6 items-center self-stretch my-auto min-w-60">`;
-
-  //   resultHTML += `<img class="flex shrink-0 self-stretch my-auto h-[104px] w-[104px]" src=${(productList[i].product_img)}></img>`;
-
-  //   resultHTML += `<div class="self-stretch my-auto w-[214px]">`;
-
-  //   resultHTML += `<h3 class="text-lg leading-none text-neutral-700">${(productList[i].product_name)}</h3>`;
-
-  //   resultHTML += `<div class="flex flex-col items-start mt-1 max-w-full whitespace-nowrap w-[191px]">`;
-
-  //   resultHTML += `<div class="self-stretch py-1 w-40 rounded max-w-40">${(productList[i]. product_color)} - ${(productList[i]. product_size)}</div>`;
-
-  //   resultHTML += `</div>`; 
-
-  //   resultHTML += `<p class="mt-1 leading-6">X ${(productList[i].quantity)}</p>`;
-  //   resultHTML += `</div>`; 
-  //   resultHTML += `</div>`; 
-  //   resultHTML += `</div>`; 
-
-  //   resultHTML += `<div class="flex gap-10 items-center self-stretch my-auto text-base">`;
-
-  //   resultHTML += `<div class="flex flex-col justify-center self-stretch my-auto">`;
-
- 
-
-  //   resultHTML += `<p class="mt-3 text-zinc-700">`;
-
-  //   resultHTML += `<span >$${(productList[i].product_price)}</span>`;
-
-  //   resultHTML += `</p>`; 
-  //   resultHTML += `</div>`; 
-  //   resultHTML += `</div>`; 
-
-  //   resultHTML += `</article>`; 
-  //   resultHTML += `<!--count-->`;
-
-  //   resultHTML += `<section class="overflow-hidden self-center px-6 py-8 w-full rounded  max-md:px-5 max-md:max-w-full">`;
-
-  //   resultHTML += `<div class="flex flex-wrap gap-10 justify-between items-start w-full text-base whitespace-nowrap text-zinc-700 max-md:max-w-full">`;
-
-  //   resultHTML += `<p class="gap-1 self-stretch w-[171px]">商品金額</p>`;
-
-  //   resultHTML += `<p>$${(productList[i].totalPrice)}</p>`;
-
-  //   resultHTML += `</div>`; 
-
-  //   resultHTML += `<div class="flex flex-wrap gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap max-md:max-w-full">`;
-
-  //   resultHTML += `<p class="text-zinc-700">活動特惠</p>`;
-
-  //   resultHTML += `<p class="text-red-700">${productList[i].festivalMinus < 0 ? `-$${Math.abs(productList[i].festivalMinus)}` :`$${productList[i].festivalMinus}`}</p>`;
-
-  //   resultHTML += `</div>`; 
-  //   resultHTML += `<div class="flex flex-wrap gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap max-md:max-w-full">`;
-
-  //   resultHTML += `<p class="text-zinc-700">優惠券折扣</p>`;
-
-  //   resultHTML += `<p class="text-red-700">${productList[i].couponMinus < 0 ? `-$${Math.abs(productList[i].couponMinus)}` :`$${productList[i].couponMinus}`}</p>`;
-
-  //   resultHTML += `</div>`; 
-
-  //   resultHTML += `<div class="flex flex-wrap gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap text-zinc-700 max-md:max-w-full">`;
-
-  //   resultHTML += `<p class="gap-2.5 self-stretch w-16">運費</p>`;
-
-  //   resultHTML += `<p class="text-right">Free</p>`;
-
-  //   resultHTML += `</div>`;
-
-  //   resultHTML += `<div class="mt-5 w-full rotate-[8.742277657347563e-8rad] max-md:max-w-full">`;
-
-  //   resultHTML += `<hr class="z-10 shrink-0 h-px border border-solid bg-zinc-700 border-zinc-700 max-md:max-w-full" />`;
-
-  //   resultHTML += `</div>`; 
-
-  //   resultHTML += `<div class="flex flex-wrap gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap max-md:max-w-full">`;
-
-  //   resultHTML += `<p class="gap-2.5 self-stretch w-16 text-zinc-700">小計</p>`;
-
-  //   resultHTML += `<p class="text-red-700">$${(productList[i].totalPriceWithDiscount)}</p>`;
-
-  //   resultHTML += `</div>`; 
-
-  //   resultHTML += `</section>`; 
-  //   resultHTML += `</section>`; 
-
-    // $(".productDetail").append(resultHTML); // Append the generated HTML to the container
-  // }
-  // <-----------------------------post-data-to-ECcay--------------------------------->
+      $.ajax({
+        url: 'http://localhost/client-side/public/DeleteCart',
+        method: 'POST',
+        data: {
+          product_ids: product_ids
+        },
+        success: function(response) {
+          console.log("Cart Items Deleted Successfully:", response);
+        },
+        error: function(error) {
+          console.error("Error deleting cart items:", error);
+        }
+      });
+    });
+  });
 </script>
 @endpush

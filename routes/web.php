@@ -24,10 +24,17 @@ Route::get('/dashboard', function () {
 Route::match(['get', 'post'],'/cart', function () {
     return view('cart');
 })->name('cart');
-// 購物車頁
+// 購物車頁_Ajax但count抓不到
 Route::match(['get', 'post'],'/cart2', function () {
     return view('cart2');
 })->name('cart2');
+// 購物車頁_Ajax測試頁
+Route::match(['get', 'post'],'/cart3', function () {
+    return view('cart3');
+})->name('cart3');
+
+
+
 //購物車獲取資料
 Route::get('/cartTest', [CartController::class, 'getProductData']);
 

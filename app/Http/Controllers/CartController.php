@@ -30,6 +30,7 @@ class CartController extends Controller
                 'product_color' => $productSpec ? $productSpec->product_color : null,
                 'quantity' => $cartItem->quantity,
                 'product_price' => $productMain ? $productMain->product_price : null,
+                'product_id' => $cartItem->product_id,
                 
             ];
           
