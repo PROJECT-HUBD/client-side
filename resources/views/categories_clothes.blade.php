@@ -13,7 +13,7 @@
          ]" />
 
     <!-- 標題文字 -->
-    <section class="w-[1440px]">
+    <section class="w-full">
         <div class="w-full flex flex-col justify-center items-center text-brandGray-normal mb-[100px]">
             <p class="text-[30px]">364</p>
             <p class="text-[30px] mb-[20px]">HAPPY UNBIRTHDAY</p>
