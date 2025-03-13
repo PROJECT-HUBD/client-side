@@ -74,21 +74,21 @@
                             class="px-5 py-3 flex-1 text-base font-light rounded-md border border-solid border-neutral-200 text-neutral-400">
                             <option value="">選擇年</option>
                             @for ($i = date('Y'); $i >= 1900; $i--)
-                                <option value="{{ $i }}">{{ $i }}</option>
+                            <option value="{{ $i }}" {{ old('year') == $i ? 'selected' : '' }}>{{ $i }}</option>
                             @endfor
                         </select>
                         <select name="month"
                             class="px-5 py-3 flex-1 text-base font-light rounded-md border border-solid border-neutral-200 text-neutral-400">
                             <option value="">選擇月</option>
                             @for ($i = 1; $i <= 12; $i++)
-                                <option value="{{ $i }}">{{ $i }}</option>
+                            <option value="{{ $i }}" {{ old('month') == $i ? 'selected' : '' }}>{{ $i }}</option>
                             @endfor
                         </select>
                         <select name="day"
                             class="px-5 py-3 flex-1 text-base font-light rounded-md border border-solid border-neutral-200 text-neutral-400">
                             <option value="">選擇日</option>
                             @for ($i = 1; $i <= 31; $i++)
-                                <option value="{{ $i }}">{{ $i }}</option>
+                            <option value="{{ $i }}" {{ old('day') == $i ? 'selected' : '' }}>{{ $i }}</option>
                             @endfor
                         </select>
                     </div>
