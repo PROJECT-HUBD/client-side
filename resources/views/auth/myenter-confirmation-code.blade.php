@@ -39,7 +39,10 @@
                 <div class="mb-6 w-full">
                     <input type="text" placeholder="請輸入驗證碼" name="code"
                         class="px-5 py-3 w-full text-base font-light rounded-md border border-solid border-neutral-200 text-neutral-400" />
-                </div>
+                @error('code')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+                    </div>
 
                 <div class="mt-10 w-full flex flex-col gap-3">
                     <button type="submit"
