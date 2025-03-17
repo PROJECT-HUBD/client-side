@@ -4,8 +4,8 @@
         <div class="leftArea flex justify-start items-center gap-10">
             <!-- Logo -->
             <a href="{{ route('home') }}" class="flex justify-center items-center">
-                <img src="{{ asset('images/layouts_imgs/logo-nav1.png') }}" class="h-8 me-[12px]" alt="logo">
-                <img src="{{ asset('images/layouts_imgs/logo-nav2.png') }}" class="h-5" alt="logo">
+                <img src="{{ asset('images/layouts/logo_nav1.jpg') }}" class="h-8 me-[12px]" alt="logo">
+                <img src="{{ asset('images/layouts/logo_nav2.jpg') }}" class="h-5" alt="logo">
             </a>
             <div id="prodsBtnPc" class="text-lg hidden lg:block cursor-pointer">商品&nbsp;<span class="plusIconPc">＋</span></div>
             <a href="" class="text-lg hidden lg:block hover:text-brandGray-normalLight active:text-brandGray-lightHover ">關於我們</a>
@@ -24,11 +24,15 @@
             <!-- wishList -->
             <div class="flex justify-center items-center gap-[24px] md:gap-10">
                 <a href="" class="flex items-center justify-center">
-                    <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[mynaui--heart]"></span>
+                    <!-- 空心愛心 -->
+                    <!-- <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[mynaui--heart]"></span> -->
+                    <!-- 實心愛心 -->
+                    <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[mynaui--heart-solid]"></span>
                 </a>
                 <!-- cart -->
                 <a href="{{route('cart')}}" class="flex items-center justify-center">
-                    <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[iconoir--cart]"></span>
+                    <!-- 實心購物車 -->
+                    <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[fluent-mdl2--shopping-cart-solid]"></span>
                 </a>
 
                 <!-- 帳號按鈕 -->

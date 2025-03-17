@@ -2,21 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ProductMain extends Model
 {
-    use HasFactory;
-
     protected $table = 'product_main';
     protected $primaryKey = 'product_id';
     protected $keyType = 'string';
-    public $timestamps = true;
+    public $timestamps = false;
+    public $incrementing = false;
 
-    public $incrementing = false; // 禁止 Eloquent 自動遞增
-
-    // 允許被批量填充的欄位
     protected $fillable = [
         'product_id',
         'category_id',
@@ -25,4 +21,10 @@ class ProductMain extends Model
         'product_description',
         'product_img'
     ];
+
+    // 一對多關聯到 ProductSpec（規格）
+    public function specs(): HasMany
+    {
+        return $this->hasMany(ProductSpec::class, 'product_id', 'product_id');
+    }
 }
