@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Cart;
+
 
 // 首頁
 Route::get('/', function () {
@@ -22,7 +22,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-// 購物車頁
+// 購物車頁_Ajax成功
 Route::match(['get', 'post'],'/cart', function () {
     return view('cart');
 })->name('cart');
@@ -30,15 +30,11 @@ Route::match(['get', 'post'],'/cart', function () {
 Route::match(['get', 'post'],'/cart2', function () {
     return view('cart2');
 })->name('cart2');
-// 購物車頁_Ajax測試頁
-Route::match(['get', 'post'],'/cart3', function () {
-    return view('cart3');
-})->name('cart3');
-
-
 
 //購物車獲取資料
-Route::get('/cartTest', [CartController::class, 'getProductData']);
+Route::get('/getCartData', [CartController::class, 'getCartData']);
+//購物車更新資料
+Route::match(['get', 'post'],'/insertCart', [CartController::class, 'insertCart']);
 
 // 購物清單頁
 Route::match(['get', 'post'],'/checkOut', function () {
