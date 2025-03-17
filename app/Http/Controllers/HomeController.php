@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProductMain;
+use App\Models\Banner;
 
 class HomeController extends Controller
 {
     public function home()
     {
+        // 取得 banner
+        $banners = Banner::whereIn('banner_id',[1, 2, 3])->orderBy('banner_id')->get();
+
         // 取得主打商品（外套6件）
         $hitItems = ProductMain::with(['specs' => function ($query) {
             $query->select('product_id', 'product_color')->distinct();
@@ -32,6 +36,6 @@ class HomeController extends Controller
         $clothes = ProductMain::whereBetween('product_id', ['pl001', 'pl004'])
             ->orderBy('product_id', 'asc')->get();
 
-        return view('home', compact('accessories', 'clothes', 'hitItems'));
+        return view('home', compact('banners', 'accessories', 'clothes', 'hitItems'));
     }
 }

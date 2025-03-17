@@ -8,7 +8,7 @@
                 <img src="{{ asset('images/layouts/logo_nav2.jpg') }}" class="h-5" alt="logo">
             </a>
             <div id="prodsBtnPc" class="text-lg hidden lg:block cursor-pointer">商品&nbsp;<span class="plusIconPc">＋</span></div>
-            <a href="" class="text-lg hidden lg:block hover:text-brandGray-normalLight active:text-brandGray-lightHover ">關於我們</a>
+            <a href="{{route('about_us')}}" class="text-lg hidden lg:block hover:text-brandGray-normalLight active:text-brandGray-lightHover ">關於我們</a>
         </div>
         <!-- 右側區塊 -->
         <div class="rightArea flex justify-end items-center gap-10">
@@ -56,7 +56,7 @@
     <!-- 平板版 變版 -->
     <div id="prodsBtnTablet" class="hidden text-lg md:block lg:hidden h-[50px] px-[60px] border-b border-b-normalLight">
         <span class="me-10 cursor-pointer">商品&nbsp;<span class="plusIcon">＋</span></span>
-        <a href="" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">關於我們</a>
+        <a href="{{route('about_us')}}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">關於我們</a>
     </div>
 
     <!-- 電腦 下拉式選單 -->
@@ -87,7 +87,7 @@
             </div>
             <div class="cursor-pointer w-[350px h-[30px] flex justify-center gap-[30px]">
                 <div id="prodsBtnPhone" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">商品&nbsp;<span class="plusIcon">＋</span></div>
-                <a href="{{route('aboutus')}}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">關於我們</a>
+                <a href="{{route('about_us')}}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">關於我們</a>
             </div>
         </div>
     </div>

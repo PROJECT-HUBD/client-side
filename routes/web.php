@@ -7,46 +7,35 @@ use App\Http\Controllers\Auth\CustomForgotController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\CouponController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CategoriesAccController;
 use Illuminate\Http\Request;
 
 // 首頁
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
-// 商品分類_飾品
-Route::get('/categories_accessories', function () {
-    return view('categories_accessories');
-})->name('categories_accessories');
+// 商品分類 飾品
+Route::get('/categories_accessories', [CategoriesAccController::class, 'categoriesAcc'])
+    ->name('categories_accessories');
 
-// 商品分類_服飾
+// 商品分類 服飾
 Route::get('/categories_clothes', function () {
     return view('categories_clothes');
 })->name('categories_clothes');
 
 //關於我們
-Route::get('/aboutus', function() {
-    return view('aboutus');
-})->name('aboutus');
+Route::get('/about_us', function () {
+    return view('about_us');
+})->name('about_us');
+
 //收藏清單
-Route::get('/lovelist', function() {
-    return view('lovelist');
-})->name('lovelist');
+Route::get('/love_ist', function () {
+    return view('love_list');
+})->name('love_list');
 
 // 商品內頁
 Route::get('/product_details', function () {
     return view('product_details');
 })->name('product_details');
-
-
-Route::get('/account', function () {
-    return view('account');
-})->name('account');
-
-// 登入才看得到頁
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})
-//->middleware(['auth', 'verified'])  // 暫時註解掉驗證中間件
-->name('dashboard');
 
 // 用戶相關頁面
 // Route::prefix('user')->name('user.')->middleware(['auth'])->group(function () {
@@ -55,45 +44,45 @@ Route::prefix('user')->name('user.')->group(function () {  // 暫時移除 middl
     Route::get('/user_profile', function () {
         return view('user.user_profile');
     })->name('user_profile');
-    
+
     // 更新個人資料
     Route::put('/user_profile/update', function () {
         // 處理更新邏輯
         return redirect()->back()->with('success', '個人資料已更新');
     })->name('user_profile.update');
-    
+
     // 編輯個人資料頁面
     Route::get('/edit_profile', function () {
         return view('user.edit_profile');
     })->name('edit_profile');
-    
+
     // 變更密碼頁面
     Route::get('/change_password', function () {
         return view('user.change_password');
     })->name('change_password');
-    
+
     // 處理密碼變更
     Route::post('/change_password', function () {
         // 處理密碼變更邏輯
         return redirect()->route('user.user_profile')->with('success', '密碼已成功變更');
     })->name('change_password.update');
-    
+
     // 我的訂單
     Route::get('/orders', function (Request $request) {
         $status = $request->query('status', 'all');
         return view('user.orders', compact('status'));
     })->name('orders');
-    
+
     // 收件地址
     Route::get('/address', function () {
         return view('user.address');
     })->name('address');
-    
+
     // 付款資訊
     Route::get('/payment', function () {
         return view('user.payment');
     })->name('payment');
-    
+
     // 新增付款方式頁面
     Route::get('/payment/add', function () {
         return view('user.payment_add');
@@ -121,7 +110,7 @@ Route::prefix('user')->name('user.')->group(function () {  // 暫時移除 middl
         // 處理刪除付款方式邏輯
         return redirect()->route('user.payment')->with('success', '付款方式已成功刪除');
     })->name('payment.delete');
-    
+
     // 我的優惠
     Route::get('/coupons', [CouponController::class, 'index'])->name('coupons');
     Route::get('/coupons/switch-view', [CouponController::class, 'switchView'])->name('coupons.switch-view');
@@ -190,7 +179,6 @@ Route::prefix('user')->name('user.')->group(function () {  // 暫時移除 middl
     })->name('orders.review.store');
 });
 
-
 //確保 /user_profile 只能在登入 (auth) 狀態下訪問，如果未登入，Laravel 會自動導向 mylogin。
 Route::middleware(['auth'])->group(function () {
     Route::get('/user_profile', function () {
@@ -202,10 +190,11 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
+
 // 購物清單頁
-Route::get('/check-out', function () {
-    return view('check-out');
-})->name('checkOut');
+Route::get('/check_out', function () {
+    return view('check_out');
+})->name('check_out');
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

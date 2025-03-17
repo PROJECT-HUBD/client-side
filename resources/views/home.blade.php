@@ -9,58 +9,27 @@
 <section class="relative mt-[200px] md:mt-[260px] lg:mt-[200px] w-full h-full">
     <!-- banner 輪播圖 -->
     <section class="w-full h-[415px] md:h-[440px] lg:h-[600px] overflow-hidden border-b-2 shadow-[0_15px_0_0_brandGray-normalLight] flex flex-col mb-[60px]">
-        <div class="relative w-full h-[325px]  md:h-[350px] lg:h-[600px] overflow-hidden flex justify-center items-start gap-5">
-            <!-- 左側圖片 -->
-            <div class="banner1 relative w-[390px] md:w-[420px] lg:w-[720px] h-full flex-shrink-0">
-                <img src="{{ asset('images/home/banner_top1.jpg') }}" alt="輪播圖" class="w-full h-full  min-w-[390px] md:min-w-full md:max-h-full max-h-[325px] object-cover">
-                <div class="bannerMask1 hidden lg:visible invisible absolute z-20 top-0 left-0 w-full h-full bg-gradient-to-t from-brandGray-normal opacity-40"></div>
-                <div class="bannerMask1 hidden lg:visible invisible absolute z-30 bottom-0 w-full h-[208px] flex flex-col justify-center items-start lg:px-[60px] md:px-[20px] gap-[16px] pb-14">
+        <div class="relative w-full h-[325px] md:h-[350px] lg:h-[600px] overflow-hidden flex justify-center items-start gap-5">
+            @foreach ($banners as $index => $banner)
+            <div class="banner{{ $index + 1 }} relative w-[390px] md:w-[420px] lg:w-[720px] h-full flex-shrink-0">
+                <img src="{{ asset($banner->banner_img) }}" alt="{{ $banner->banner_title }}" class="w-full h-full min-w-[390px] md:min-w-full max-h-[325px] md:max-h-full object-cover">
+                <div class="bannerMask{{ $index + 1 }} hidden lg:visible invisible absolute z-20 top-0 left-0 w-full h-full bg-gradient-to-t from-brandGray-normal opacity-40"></div>
+                <div class="bannerMask{{ $index + 1 }} hidden lg:visible invisible absolute z-30 bottom-0 w-full h-[208px] flex flex-col justify-center items-start lg:px-[60px] md:px-[20px] gap-[16px] pb-14">
                     <div class="text-brandGray-lightLight flex flex-col justify-center items-start gap-2">
-                        <p class="lg:text-[26px] font-semibold">【 New 】＋寶石吊墜課程＋</p>
-                        <p class="lg:text-[18px] break-words text-wrap px-4">不受型態拘束！獨一無二！比百變怪還百變的課程來了，快快呼朋引伴手牽手一起來 364 把屬於自己的吊墜帶回家吧！</p>
+                        <p class="lg:text-[26px] font-semibold">{{ $banner->banner_title }}</p>
+                        <p class="lg:text-[18px] break-words text-wrap px-4">{{ $banner->banner_description }}</p>
                     </div>
-                    <a href="">
+                    <a href="{{ $banner->banner_link }}">
                         <div class="w-[140px] h-[50px] flex justify-start items-center ms-3 hover:opacity-80">
-                            <div class="md:w-[40px] lg:w-[50px] md:h-[40px] lg:h-[50px] flex justify-center items-center rounded-full bg-brandRed-normal me-3"><span class="w-[9xp] h-[16px] bg-brandGray-lightLight icon-[ep--arrow-right-bold]"></span></div>
+                            <div class="md:w-[40px] lg:w-[50px] md:h-[40px] lg:h-[50px] flex justify-center items-center rounded-full bg-brandRed-normal me-3">
+                                <span class="w-[9xp] h-[16px] bg-brandGray-lightLight icon-[ep--arrow-right-bold]"></span>
+                            </div>
                             <p class="text-brandGray-lightLight font-semibold lg:text-[18px]">了解更多</p>
                         </div>
                     </a>
                 </div>
             </div>
-            <!-- 中間圖片 -->
-            <div class="banner2 relative w-[390px] md:w-[420px] lg:w-[720px] h-full flex-shrink-0">
-                <img src="{{ asset('images/home/banner_top2.jpg') }}" alt="輪播圖" class="w-full h-full min-w-[390px] md:min-w-full max-h-[325px] md:max-h-full object-cover">
-                <div class="bannerMask2 hidden lg:visible invisible absolute z-20 top-0 left-0 w-full h-full bg-gradient-to-t from-brandGray-normal opacity-40"></div>
-                <div class="bannerMask2 hidden lg:visible invisible absolute z-30 bottom-0 w-full h-[208px] flex flex-col justify-center items-start px-[60px] gap-[16px] pb-14">
-                    <div class="text-brandGray-lightLight flex flex-col justify-center items-start gap-2">
-                        <p class="lg:text-[26px] font-semibold">【 New 】＋寶石吊墜課程＋</p>
-                        <p class="lg:text-[18px] break-words text-wrap px-4">不受型態拘束！獨一無二！比百變怪還百變的課程來了，快快呼朋引伴手牽手一起來 364 把屬於自己的吊墜帶回家吧！</p>
-                    </div>
-                    <a href="">
-                        <div class="w-[140px] h-[50px] flex justify-start items-center ms-3 hover:opacity-80">
-                            <div class="md:w-[40px] lg:w-[50px] md:h-[40px] lg:h-[50px] flex justify-center items-center rounded-full bg-brandRed-normal me-3"><span class="w-[9xp] h-[16px] bg-brandGray-lightLight icon-[ep--arrow-right-bold]"></span></div>
-                            <p class="text-brandGray-lightLight font-semibold lg:text-[18px]">了解更多</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <!-- 右側圖片 -->
-            <div class="banner3 relative w-[390px] md:w-[420px] lg:w-[720px] h-full flex-shrink-0">
-                <img src="{{ asset('images/home/banner_top3.jpg') }}" alt="輪播圖" class="w-full h-full min-w-[390px] md:min-w-full max-h-[325px] md:max-h-full  object-cover">
-                <div class="bannerMask3 hidden lg:visible invisible absolute z-20 top-0 left-0 w-full h-full bg-gradient-to-t from-brandGray-normal opacity-40"></div>
-                <div class="bannerMask3 hidden lg:visible invisible absolute z-30 bottom-0 w-full h-[208px] flex flex-col justify-center items-start px-[60px] gap-[16px] pb-14">
-                    <div class="text-brandGray-lightLight flex flex-col justify-center items-start gap-2">
-                        <p class="lg:text-[26px] font-semibold">【 New 】＋寶石吊墜課程＋</p>
-                        <p class="lg:text-[18px] break-words text-wrap px-4">不受型態拘束！獨一無二！比百變怪還百變的課程來了，快快呼朋引伴手牽手一起來 364 把屬於自己的吊墜帶回家吧！</p>
-                    </div>
-                    <a href="">
-                        <div class="w-[140px] h-[50px] flex justify-start items-center ms-3 hover:opacity-80">
-                            <div class="lg:w-[50px] lg:h-[50px] md:w-[40px] md:h-[40px] flex justify-center items-center rounded-full bg-brandRed-normal me-3"><span class="w-[9xp] h-[16px] bg-brandGray-lightLight icon-[ep--arrow-right-bold]"></span></div>
-                            <p class="text-brandGray-lightLight font-semibold lg:text-[18px]">了解更多</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            @endforeach
         </div>
 
         <!-- progress + btn -->
