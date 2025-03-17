@@ -3,26 +3,26 @@
     <nav class="p-2">
         <div class="space-y-1">
             <div class="py-2">
-                <a href="/user/user_profile" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/user_profile') ? 'bg-brandGray-lightLight text-brandBlue-normal' : 'text-brandGray-normal hover:bg-brandGray-lightLight hover:text-brandBlue-normal' }}">
+                <a href="{{ route('user.user_profile') }}" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/user_profile') ? 'bg-brandGray-lightLight text-brandBlue-normal' : 'text-brandGray-normal hover:bg-brandGray-lightLight hover:text-brandBlue-normal' }}">
                     <i class="icon-[mdi--account-circle-outline] w-5 h-5 mr-2 flex-shrink-0 {{ request()->is('user/user_profile') ? 'text-brandBlue-normal' : 'text-brandGray-normalLight group-hover:text-brandBlue-normal' }}"></i>
                     <span class="truncate">個人檔案</span>
                 </a>
-                <a href="/user/orders" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/orders') ? 'bg-brandGray-lightLight text-brandBlue-normal' : 'text-brandGray-normal hover:bg-brandGray-lightLight hover:text-brandBlue-normal' }}">
+                <a href="{{ route('user.orders') }}" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/orders') ? 'bg-brandGray-lightLight text-brandBlue-normal' : 'text-brandGray-normal hover:bg-brandGray-lightLight hover:text-brandBlue-normal' }}">
                     <i class="icon-[mdi--package-variant-closed] w-5 h-5 mr-2 flex-shrink-0 {{ request()->is('user/orders') ? 'text-brandBlue-normal' : 'text-brandGray-normalLight group-hover:text-brandBlue-normal' }}"></i>
                     <span class="truncate">我的訂單</span>
                 </a>
             </div>
             
             <div class="py-2">
-                <a href="/user/address" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/address') ? 'bg-brandGray-lightLight text-brandBlue-normal' : 'text-brandGray-normal hover:bg-brandGray-lightLight hover:text-brandBlue-normal' }}">
+                <a href="{{ route('user.address') }}" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/address') ? 'bg-brandGray-lightLight text-brandBlue-normal' : 'text-brandGray-normal hover:bg-brandGray-lightLight hover:text-brandBlue-normal' }}">
                     <i class="icon-[mdi--map-marker-outline] w-5 h-5 mr-2 flex-shrink-0 {{ request()->is('user/address') ? 'text-brandBlue-normal' : 'text-brandGray-normalLight group-hover:text-brandBlue-normal' }}"></i>
                     <span class="truncate">收件地址</span>
                 </a>
-                <a href="/user/payment" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/payment') ? 'bg-brandGray-lightLight text-brandBlue-normal' : 'text-brandGray-normal hover:bg-brandGray-lightLight hover:text-brandBlue-normal' }}">
+                <a href="{{ route('user.payment') }}" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/payment') ? 'bg-brandGray-lightLight text-brandBlue-normal' : 'text-brandGray-normal hover:bg-brandGray-lightLight hover:text-brandBlue-normal' }}">
                     <i class="icon-[mdi--credit-card-outline] w-5 h-5 mr-2 flex-shrink-0 {{ request()->is('user/payment') ? 'text-brandBlue-normal' : 'text-brandGray-normalLight group-hover:text-brandBlue-normal' }}"></i>
                     <span class="truncate">付款資訊</span>
                 </a>
-                <a href="/user/coupons" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/coupons') ? 'bg-brandGray-lightLight text-brandBlue-normal' : 'text-brandGray-normal hover:bg-brandGray-lightLight hover:text-brandBlue-normal' }}">
+                <a href="{{ route('user.coupons') }}" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/coupons') ? 'bg-brandGray-lightLight text-brandBlue-normal' : 'text-brandGray-normal hover:bg-brandGray-lightLight hover:text-brandBlue-normal' }}">
                     <i class="icon-[mdi--ticket-percent-outline] w-5 h-5 mr-2 flex-shrink-0 {{ request()->is('user/coupons') ? 'text-brandBlue-normal' : 'text-brandGray-normalLight group-hover:text-brandBlue-normal' }}"></i>
                     <span class="truncate">我的優惠</span>
                 </a>

@@ -53,7 +53,8 @@ Route::get('/dashboard', function () {
 
 // 用戶相關頁面
 // Route::prefix('user')->name('user.')->middleware(['auth'])->group(function () {
-Route::prefix('user')->name('user.')->group(function () {  // 暫時移除 middleware(['auth'])
+// Route::prefix('user')->name('user.')->group(function () {  // 暫時移除 middleware(['auth'])
+Route::prefix('user')->name('user.')->middleware(['auth'])->group(function () {  // 恢復 auth 中間件
     // 個人檔案
     Route::get('/user_profile', function () {
         return view('user.user_profile');
