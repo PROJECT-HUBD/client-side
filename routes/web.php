@@ -35,7 +35,7 @@ Route::match(['get', 'post'],'/cart2', function () {
 
 //購物車獲取資料
 Route::get('/getCartData', [CartController::class, 'getCartData']);
-// //購物車更新資料
+// 購物車更新資料
 Route::match(['get', 'post'],'/insertCart', [CartController::class, 'insertCart']);
 
 
@@ -43,6 +43,15 @@ Route::match(['get', 'post'],'/insertCart', [CartController::class, 'insertCart'
 Route::match(['get', 'post'],'/checkOut', function () {
     return view('checkOut');
 })->name('checkOut');
+
+//購物清單頁_新增一筆訂單_orderMain
+Route::post('/InsertOrderMain', [CheckoutController::class, 'InsertOrderMain']);
+//購物清單頁_新增一筆訂單_orderdetail
+Route::post('/InsertOrderDetail', [CheckoutController::class, 'InsertOrderDetail']);
+//購物清單頁_刪除購物車
+Route::post('/DeleteCart', [CheckoutController::class, 'DeleteCart']);
+
+
 // 成功頁
 Route::match(['get', 'post'],'/successful_transaction', function () {
     return view('successful_transaction');

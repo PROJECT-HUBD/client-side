@@ -18,7 +18,7 @@
         <h2 class="gap-2.5 self-stretch my-auto text-3xl text-zinc-700">
           確認收件人地址
         </h2>
-        <a  
+        <a
           class=" self-stretch pt-2.5 my-auto text-base font-bold tracking-wide leading-none  text-gray-500 underline  underline-offset-auto">
           變更收件人與地址
         </a>
@@ -37,7 +37,7 @@
         <h2 class="gap-2.5 self-stretch my-auto text-3xl text-zinc-700">
           付款方式
         </h2>
-        <a 
+        <a
           class="overflow-hidden justify-end self-stretch pt-2.5  text-base font-bold  leading-none  text-gray-500 underline  underline-offset-auto ">
           變更付款方式
         </a>
@@ -45,7 +45,8 @@
       <select class="mt-4 w-full max-md:max-w-full text-base text-zinc-500">
 
         <option hidden>請選擇付款方式</option>
-        <option class="payment_type" value="信用卡付款">信用卡付款</option>
+        <option class="payment_type" value="信用卡付款">信用卡付款 - 劉尚廉-**** **** **** 5678</option>
+        <option class="payment_type" value="信用卡付款">信用卡付款 - 陳文宣-**** **** **** 3764</option>
         <option class="payment_type" value="ATM轉帳">ATM轉帳</option>
 
       </select>
@@ -123,7 +124,7 @@
 @push('scripts')
 <!-- jQuery 內容 -->
 <script>
-  // <------------------------------------get-data-from-localstorage-------------------------------------------->
+  // <------------------------------------display-data-from-localstorage-------------------------------------------->
   function displayDataFromLocalStorage() {
     // 讀取 localStorage 中儲存的資料
     let productList = JSON.parse(localStorage.getItem("productList"));
@@ -238,24 +239,24 @@
 
   $(document).ready(function() {
     $(".makeOrder").on("click", function() {
-      // Generate random trade_No (6 digits) and order_id (8 digits)
-      const trade_No = Math.floor(Math.random() * 900000 + 100000); // Random 6 digits
-      const order_id = Math.floor(Math.random() * 90000000 + 10000000); // Random 8 digits
+      // Generate random trade_No ( digits) and order_id (8 digits)
+      const order_id = Math.floor(Math.random() * 900 + 100); // Random 3 digits
+      const trade_No = Math.floor(Math.random() * 90000000 + 10000000); // Random 8 digits
 
-      // Get data from localStorage
-      const member_id = localStorage.getItem("member_id");
+      // Get data from localstorage & views
+      const id = "19";
       const payment_type = $(".payment_type:selected").val();
       // console.log(payment_type)
       const trade_status = "交易成功"; // Default value
       const productList = JSON.parse(localStorage.getItem("productList"));
       const cartPrice = JSON.parse(localStorage.getItem("cartPrice"));
-      console.log(productList)
+      // console.log(productList)
       // console.log(cartPrice)
 
-      // 給OrderMain資料表的資料Prepare data for InsertOrderMain API
+      // <------------------------------給OrderMain資料表的資料Prepare data for InsertOrderMain API------------------------------>
       const orderMainData = {
         trade_No: trade_No,
-        member_id: member_id,
+        id: id,
         total_price_with_discount: cartPrice.totalPriceWithDiscount,
         payment_type: payment_type,
         trade_status: trade_status,
@@ -266,21 +267,17 @@
 
      
 
-      // 給Orderdetail資料表的資料Prepare data for InsertOrderDetail API
-      const orderDetailData = productList.map(product => ({
-        product_id: product.product_id,
-        product_size: product.product_size,
-        product_color: product.product_color,
-        quantity: product.quantity,
-        product_price: product.product_price
-      }));
- console.log(orderDetailData);
-
-  // Insert order main data (InsertOrderMain)
-  $.ajax({
+      // <------------------------------Insert order main data (InsertOrderMain)<------------------------------>
+      $.ajax({
         url: 'http://localhost/client-side/public/InsertOrderMain',
         method: 'POST',
-        data: orderMainData,
+        contentType: "application/json", // 以 JSON 格式發送資料
+        data: JSON.stringify({
+          orderMainData:orderMainData
+        }), // 傳遞 JSON 格式的購物車資料
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // 取得 CSRF Token
+        },
         success: function(response) {
           console.log("Order Main Inserted Successfully:", response);
         },
@@ -288,37 +285,57 @@
           console.error("Error inserting order main:", error);
         }
       });
-      // Insert order details (InsertOrderDetail)
+       //  <-----------------------------給Orderdetail資料表的資料Prepare data for InsertOrderDetail API------------------------------>
+       const orderDetailData = {
+        order_id: order_id,
+        products: productList.map(product => ({
+          product_name: product.product_name,
+          product_size: product.product_size,
+          product_color: product.product_color,
+          quantity: product.quantity,
+          product_price: product.product_price
+        }))
+      };
+      // console.log(orderDetailData);
+      // <------------------------------Insert order details (InsertOrderDetail)--------------------------->
       $.ajax({
         url: 'http://localhost/client-side/public/InsertOrderDetail',
         method: 'POST',
-        data: {
+        contentType: "application/json", // 以 JSON 格式發送資料
+        data: JSON.stringify({
           productList: orderDetailData
+        }), // 傳遞 JSON 格式的購物車資料
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // 取得 CSRF Token
         },
         success: function(response) {
-          console.log("Order Details Inserted Successfully:", response);
+          console.log("Success inserting order details::", response);
         },
         error: function(error) {
           console.error("Error inserting order details:", error);
         }
       });
 
-      // Delete cart items (DeleteCart)
+      // <------------------------------Delete cart items (DeleteCart)--------------------------->
       const product_ids = productList.map(product => product.product_id);
 
-      $.ajax({
-        url: 'http://localhost/client-side/public/DeleteCart',
-        method: 'POST',
-        data: {
-          product_ids: product_ids
-        },
-        success: function(response) {
-          console.log("Cart Items Deleted Successfully:", response);
-        },
-        error: function(error) {
-          console.error("Error deleting cart items:", error);
-        }
-      });
+      // $.ajax({
+      //   url: 'http://localhost/client-side/public/DeleteCart',
+      //   method: 'POST',
+      //   contentType: "application/json", // 以 JSON 格式發送資料
+      //   data: JSON.stringify({
+      //     product_ids: product_ids
+      //   }), // 傳遞 JSON 格式的購物車資料
+      //   headers: {
+      //       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // 取得 CSRF Token
+      //   },
+      //   success: function(response) {
+      //     console.log("Cart Items Deleted Successfully:", response);
+      //   },
+      //   error: function(error) {
+      //     console.error("Error deleting cart items:", error);
+      //   }
+      // });
     });
   });
 </script>

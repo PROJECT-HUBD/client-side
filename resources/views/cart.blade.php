@@ -384,6 +384,7 @@
         let productData = {
           product_img: $(this).find(".product_img").attr("src"), // 獲取商品圖片的 URL
           product_name: $(this).find(".product_name").text(),
+          product_id: $(this).find(".product_id").text(),
           product_size: $(this).find(".product_size:selected").val(),
           product_color: $(this).find(".product_color:selected").val(),
           quantity: parseInt($(this).find(".quantity").text()), // 確保是數字

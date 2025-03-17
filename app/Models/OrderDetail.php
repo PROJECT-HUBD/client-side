@@ -9,4 +9,6 @@ class OrderDetail extends Model
 {
     protected $table = 'order_detail';
     protected $fillable = ['product_id', 'product_size', 'product_color', 'quantity', 'product_price'];
+// Disable timestamps
+public $timestamps = false;
 }
