@@ -20,18 +20,18 @@
                 <p>123</p>
             </div>
             <div x-show="activeTab === 1">
-                <!-- 商品卡片區 -->
-                <section class="product-section w-full h-[4800px] md:h-[1580px] lg:h-[1240px] flex flex-col justify-start items-center mt-20 mb-[60px]">
+                <!-- 商品卡片區 長袖 -->
+                <section class="product-section w-full flex flex-col justify-start items-center mt-36 md:mt-20">
                     <div class="w-full md:w-[770px] lg:w-[1230px] h-[418px] grid md:grid-cols-3 lg:grid-cols-4 justify-center items-center gap-5">
-                        @foreach($clothes as $index => $cloth)
+                        @foreach($longs as $index => $long)
                         <!-- 商品 -->
-                        <a href="{{route('product_details')}}" class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-10 mb-32 md:mb-20">
+                        <a href="{{route('product_details')}}" class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-10 mb-52 md:mb-20">
                             <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                                <img src="{{$cloth->product_img}}" alt="{{$cloth->product_name}}" class="w-full h-[250px] md:h-full object-cover">
+                                <img src="{{$long->product_img}}" alt="{{$long->product_name}}" class="w-full h-[250px] md:h-full object-cover">
                             </div>
                             <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
-                                <p class="text-brandGray-darker">{{$cloth->product_name}}</p>
-                                <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">{{$cloth->product_price}}</span></p>
+                                <p class="text-brandGray-darker">{{$long->product_name}}</p>
+                                <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">{{$long->product_price}}</span></p>
                             </div>
                         </a>
                         @endforeach
@@ -39,7 +39,23 @@
                 </section>
             </div>
             <div x-show="activeTab === 2">
-                <p>這是標籤 3 的內容</p>
+                <!-- 商品卡片區 外套 -->
+                <section class="product-section w-full flex flex-col justify-start items-center mt-36 md:mt-20">
+                    <div class="w-full md:w-[770px] lg:w-[1230px] h-[418px] grid md:grid-cols-3 lg:grid-cols-4 justify-center items-center gap-5">
+                        @foreach($jackets as $index => $jacket)
+                        <!-- 商品 -->
+                        <a href="{{route('product_details')}}" class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-10 mb-52 md:mb-20">
+                            <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
+                                <img src="{{$jacket->product_img}}" alt="{{$jacket->product_name}}" class="w-full h-[250px] md:h-full object-cover">
+                            </div>
+                            <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
+                                <p class="text-brandGray-darker">{{$jacket->product_name}}</p>
+                                <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">{{$jacket->product_price}}</span></p>
+                            </div>
+                        </a>
+                        @endforeach
+                    </div>
+                </section>
             </div>
         </x-tabs>
     </section>
@@ -64,7 +80,7 @@
 
             // 計算行數（無條件進位）
             let totalRows = Math.ceil(totalItems / itemsPerRow);
-            let newHeight = totalRows * 450; // 每列 1600px
+            let newHeight = totalRows * 250; // 每列 1600px
 
             // 設定高度
             $(".product-section").css("height", newHeight + "px");

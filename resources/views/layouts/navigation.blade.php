@@ -81,7 +81,7 @@
         <div class="w-full h-full flex flex-col justify-center items-center py-[12px]">
             <div class="md:hidden w-[350px] h-[30px]  mb-[12px]">
                 <div class="relative flex justify-center items-center">
-                    <input type="submit" placeholder="搜尋商品" class="flex w-[350px] h-[30px] px-4 ps-10 py-3 items-center gap-2 rounded-[20px] border border-[#484848] bg-white">
+                    <input type="text" placeholder="搜尋商品" class="flex w-[350px] h-[30px] px-4 ps-10 py-3 items-center gap-2 rounded-[20px] border border-[#484848] bg-white">
                     <span class="absolute top-2 left-4 w-[16px] h-[16px] icon-[basil--search-outline]"></span>
                 </div>
             </div>
