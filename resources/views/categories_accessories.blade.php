@@ -14,18 +14,11 @@
 
     <!-- 標題文字 -->
     <section class="w-full mt-5 pt-10 flex justify-center items-center">
-        <!-- <div class="w-full flex flex-col justify-center items-center text-brandGray-normal mb-[100px]">
-            <p class="text-[30px]">364</p>
-            <p class="text-[30px] mb-[20px]">HAPPY UNBIRTHDAY</p>
-            <p class="text-[20px] font-light">SINCE 2020</p>
-        </div> -->
-
         <!-- 商品卡片區 -->
         <section class="product-section w-full h-[4800px] md:h-[1580px] lg:h-[1240px] flex flex-col justify-start items-center mb-[60px]">
-            <!-- 商品十二個 -->
             <div class="w-full md:w-[770px] lg:w-[1230px] h-[418px] grid md:grid-cols-3 lg:grid-cols-4 justify-center items-center gap-5">
                 @foreach($accessories as $index => $accessory)
-                <!-- 商品1 -->
+                <!-- 商品 -->
                 <a href="{{route('product_details')}}" class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5 mb-32 md:mb-14">
                     <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
                         <img src="{{asset($accessory->product_img)}}" alt="{{$accessory->product_name}}" class="w-full h-[250px] md:h-full object-cover">

@@ -1,14 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\CustomForgotController;
+namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\CouponController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\CategoriesAccController;
-use App\Http\Controllers\CategoriesCloController;
 use Illuminate\Http\Request;
 
 // 首頁
@@ -22,12 +16,12 @@ Route::get('/categories_accessories', [CategoriesAccController::class, 'categori
 Route::get('/categories_clothes', [CategoriesCloController::class, 'categoriesClo'])
     ->name('categories_clothes');
 
-//關於我們
+// 關於我們
 Route::get('/about_us', function () {
     return view('about_us');
 })->name('about_us');
 
-//收藏清單
+// 收藏清單
 Route::get('/love_ist', function () {
     return view('love_list');
 })->name('love_list');
