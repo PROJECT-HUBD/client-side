@@ -60,7 +60,7 @@
 
             // 計算行數（無條件進位）
             let totalRows = Math.ceil(totalItems / itemsPerRow);
-            let newHeight = totalRows * 450; // 每列 1600px
+            let newHeight = totalRows * 450; // 每列 450px
 
             // 設定高度
             $(".product-section").css("height", newHeight + "px");

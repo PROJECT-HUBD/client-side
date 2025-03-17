@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\CouponController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoriesAccController;
+use App\Http\Controllers\CategoriesCloController;
 use Illuminate\Http\Request;
 
 // 首頁
@@ -18,9 +19,8 @@ Route::get('/categories_accessories', [CategoriesAccController::class, 'categori
     ->name('categories_accessories');
 
 // 商品分類 服飾
-Route::get('/categories_clothes', function () {
-    return view('categories_clothes');
-})->name('categories_clothes');
+Route::get('/categories_clothes', [CategoriesCloController::class, 'categoriesClo'])
+    ->name('categories_clothes');
 
 //關於我們
 Route::get('/about_us', function () {

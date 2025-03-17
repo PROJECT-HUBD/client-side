@@ -17,26 +17,26 @@
         <!-- tabs -->
         <x-tabs :tabs="['短袖', '長袖／毛衣', '外套／夾克']">
             <div x-show="activeTab === 0">
-                <!-- 商品卡片區 -->
-                <section class="product-section w-full h-[4800px] md:h-[1580px] lg:h-[1240px] flex flex-col justify-start items-center mb-[60px]">
-                    <div class="w-full md:w-[770px] lg:w-[1230px] h-[418px] grid md:grid-cols-3 lg:grid-cols-4 justify-center items-center gap-5">
-                        
-                        <!-- 商品1 -->
-                        <a href="{{route('product_details')}}" class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5 mb-32 md:mb-14">
-                            <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                                <img src="" alt="product_name" class="w-full h-[250px] md:h-full object-cover">
-                            </div>
-                            <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
-                                <p class="text-brandGray-darker">product_name</p>
-                                <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">product_price</span></p>
-                            </div>
-                        </a>
-                        
-                    </div>
-                </section>
+                <p>123</p>
             </div>
             <div x-show="activeTab === 1">
-                <p>這是標籤 2 的內容</p>
+                <!-- 商品卡片區 -->
+                <section class="product-section w-full h-[4800px] md:h-[1580px] lg:h-[1240px] flex flex-col justify-start items-center mt-20 mb-[60px]">
+                    <div class="w-full md:w-[770px] lg:w-[1230px] h-[418px] grid md:grid-cols-3 lg:grid-cols-4 justify-center items-center gap-5">
+                        @foreach($clothes as $index => $cloth)
+                        <!-- 商品 -->
+                        <a href="{{route('product_details')}}" class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-10 mb-32 md:mb-20">
+                            <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
+                                <img src="{{$cloth->product_img}}" alt="{{$cloth->product_name}}" class="w-full h-[250px] md:h-full object-cover">
+                            </div>
+                            <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
+                                <p class="text-brandGray-darker">{{$cloth->product_name}}</p>
+                                <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">{{$cloth->product_price}}</span></p>
+                            </div>
+                        </a>
+                        @endforeach
+                    </div>
+                </section>
             </div>
             <div x-show="activeTab === 2">
                 <p>這是標籤 3 的內容</p>
