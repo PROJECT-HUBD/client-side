@@ -21,9 +21,9 @@
             </div>
 
             <!-- icons -->
-            <!-- wishList -->
+            <!-- wish lists -->
             <div class="flex justify-center items-center gap-[24px] md:gap-10">
-                <a href="" class="flex items-center justify-center">
+                <a href="{{route('wish_lists')}}" class="flex items-center justify-center">
                     <!-- 空心愛心 -->
                     <!-- <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[mynaui--heart]"></span> -->
                     <!-- 實心愛心 -->
@@ -173,24 +173,21 @@
     });
 
 
+    let lastScrollTop = 0;
+    let $nav = $("nav"); // 選擇導覽列
 
-    //下拉式選單 登入登出用
-    document.addEventListener("DOMContentLoaded", function() {
-        const accountBtn = document.getElementById("account-btn");
-        const dropdown = document.getElementById("account-dropdown");
+    $(window).on("scroll", function() {
+        let scrollTop = $(this).scrollTop(); // 取得當前捲動位置
 
-        // 點擊帳號按鈕時顯示/隱藏下拉選單
-        accountBtn.addEventListener("click", function(event) {
-            event.stopPropagation(); // 防止點擊事件冒泡
-            dropdown.classList.toggle("hidden");
-        });
+        if (scrollTop > lastScrollTop) {
+            // 使用者往下滑 -> 隱藏導覽列
+            $nav.slideUp(10);
+        } else {
+            // 使用者往上滑 -> 顯示導覽列
+            $nav.slideDown(10);
+        }
 
-        // 點擊其他地方時關閉選單
-        document.addEventListener("click", function(event) {
-            if (!dropdown.contains(event.target) && !accountBtn.contains(event.target)) {
-                dropdown.classList.add("hidden");
-            }
-        });
+        lastScrollTop = scrollTop; // 更新上次的滾動位置
     });
 </script>
 @endpush

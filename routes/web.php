@@ -22,9 +22,9 @@ Route::get('/about_us', function () {
 })->name('about_us');
 
 // 收藏清單
-Route::get('/love_ist', function () {
-    return view('love_list');
-})->name('love_list');
+Route::get('/wish_lists', function () {
+    return view('wish_lists');
+})->name('wish_lists');
 
 // 商品內頁
 Route::get('/product_details', function () {

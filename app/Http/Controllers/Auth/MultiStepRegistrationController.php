@@ -231,7 +231,7 @@ class MultiStepRegistrationController extends Controller
     public function registerDetails(Request $request)
     {
 
-
+       
         // 確保 session 中的 email 存在，避免 session 遺失
         $email = Session::get('registration_email');
 
@@ -257,27 +257,35 @@ class MultiStepRegistrationController extends Controller
         ]);
 
 
-
-        // 創建新用戶
-        $user = User::create([
-            'name' => $request->name,
-            'email' => Session::get('registration_email'),
-            'birthday' => $request->birthday,
-            'phone' => $request->phone,
-            'password' => Hash::make($request->password),
-            'email_verified_at' => now(), //將email設為已驗證
-        ]);
+        //檢查生日是否完整，並轉換成 YYYY-MM-DD 格式
+        $birthday = null;
+        if ($request->filled(['year', 'month', 'day'])) {
+            $birthday = sprintf('%04d-%02d-%02d', $request->year, $request->month, $request->day);
+        }
+        
 
 
-        // 清除 Session 中的驗證碼與 Email
-        Session::forget(['registration_verification_code', 'registration_email', 'email_verified']);
+            // 創建新用戶
+            $user = User::create([
+                'name' => $request->name,
+                'email' => Session::get('registration_email'),
+                'birthday' => $birthday,
+                'phone' => $request->phone,
+                'password' => Hash::make($request->password),
+                'email_verified_at' => now(), //將email設為已驗證
+            ]);
 
-        //自動登入用戶
-        Auth::login($user);
 
-        return redirect()->route('dashboard');
+            // 清除 Session 中的驗證碼與 Email
+            Session::forget(['registration_verification_code', 'registration_email', 'email_verified']);
 
-        // ✅ 直接跳轉到「註冊成功」頁面 (dashboard)
-        // return redirect()->route('dashboard')->with('success', '模擬註冊成功');
+            //自動登入用戶
+            Auth::login($user);
+
+            return redirect()->route('user_profile');
+
+            // ✅ 直接跳轉到「註冊成功」頁面 (dashboard)
+            // return redirect()->route('dashboard')->with('success', '模擬註冊成功');
+        }
     }
-}
+

@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class ProductSpec extends Model
 {
     protected $table = 'product_spec';
-    protected $primaryKey = 'spec_id';
-    protected $keyType = 'int';
     public $timestamps = true;
     public $incrementing = true;
 

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', '首頁')
 @section('meta_description', '首頁')
 @section('meta_keywords', '首頁, home')
 
@@ -68,7 +68,7 @@
                     </button>
                     <!-- 主打商品圖片 -->
                     <div class="flex justify-center items-center w-[300px] md:w-[400px] lg:w-[400px] h-[300px] md:h-[400px] lg:h-[400px]">
-                        <img src="{{ asset($firstItem->product_img) }}" alt="{{ $firstItem->product_name }}" class="targetImg w-full h-full object-contain" loading="lazy">
+                        <img src="{{ asset($firstItem->product_img) }}" alt="{{ $firstItem->product_name }}" class="targetImg w-full h-full object-cover" loading="lazy">
                     </div>
                     <button type="button" class="lg:hidden nextBtn w-[50px] h-[50px] border-2 rounded-full border-brandRed-normal flex justify-center items-center active:opacity-50">
                         <span class="w-5 h-5 text-brandRed-normal icon-[ep--arrow-right-bold]"></span>
@@ -86,15 +86,9 @@
                     <div class="md:w-full md:h-[50px] flex justify-center md:justify-between items-center md:gap-5">
                         <!-- 顏色 -->
                         <div class="md:h-full hidden md:flex justify-start items-center gap-[20px]">
-                            @foreach ($firstItem->specs->pluck('product_color')->filter()->map(fn($c) => strtolower(trim($c)))->unique() as $color)
-                            <div class="w-[38px] h-[38px] 
-                                @if ($color === 'black') bg-brandGray-darker
-                                @elseif ($color === 'grey') bg-brandGray-normal
-                                @elseif ($color === 'white') bg-brandGray-light
-                                @else bg-gray-200 {{-- 預設顏色 --}}
-                                @endif
-                                border-2 border-brandGray-normalLight rounded-full"></div>
-                            @endforeach
+                            <div class="w-[35px] h-[35px]  bg-brandGray-darker border-2 border-brandGray-normalLight rounded-full"></div>
+                            <div class="w-[35px] h-[35px]  bg-brandGray-normal border-2 border-brandGray-normalLight rounded-full"></div>
+                            <div class="w-[35px] h-[35px]  bg-brandGray-lightlLight border-2 border-brandGray-normalLight rounded-full"></div>
                         </div>
                         <!-- 尺寸 -->
                         <div class="hidden md:flex text-[24px] text-brandGray-normal justify-center items-center">

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'about us')
+@section('title', '關於我們')
 @section('meta_description', '關於我們')
 @section('meta_keywords', '關於我們')
 
@@ -32,19 +32,11 @@
     <!-- Brand Story -->
     <section class="text-xl font-normal leading-9 text-center text-zinc-700 max-md:text-lg max-md:px-6"
         style="margin-bottom: 6.25rem;">
-
         <p class="mt-6">一年中有364天不是生日，但在這些「非生日」的日子裡，我們依舊選擇閃耀發光。</p>
-
         <p class="mt-6">364HUBD的誕生，源自對日常的熱愛與不妥協的態度，讓平凡的每一天都值得被慶祝。</p>
-
         <p class="mt-6">在這裡，我們不僅僅創造設計更創造一種生活方式——提醒每個人，</p>
-
         <p class="mt-6">即使沒有特別的理由，今天依然值得用心生活！</p>
-
     </section>
-
-
-
 
     <section
         class="flex flex-wrap justify-between items-center lg:w-[1270px] mx-auto gap-12 
@@ -67,8 +59,6 @@
         </figure>
 
     </section>
-
-
 
     <section
         class="flex flex-col pt-1.5 pr-20 pb-5 w-full text-xl font-normal leading-9 text-zinc-700 
@@ -111,20 +101,13 @@
                 class="w-full lg:min-w-[750px] text-xl font-normal leading-9 text-zinc-700 
                            max-md:mt-10 max-md:max-w-full max-md:px-6 max-md:pl-0 lg:pl-20">
                 <h3 class="font-normal">靈感誕生的空間</h3>
-
                 <p class="mt-6">364HUBD 的工作室位於淡水，鄰近海邊，</p>
-
                 <p class="mt-6">將現代簡約風格，沒有過多修飾，純粹且貼近日常。</p>
-
                 <p class="mt-6">微鹹的海風與淡水獨有的悠閒氛圍，成為我們靈感的泉源。</p>
-
                 <p class="mt-6">無論是靜謐的夕陽還是波光粼粼的水面，都激發著我們對設計的熱情。</p>
-
                 <p class="mt-6">在這片連結自然與創意的空間裡，我們將每一個想法化為現實，</p>
-
                 <p class="mt-6">讓每位造訪者都能感受無限可能與純粹熱情。</p>
             </div>
-
         </div>
     </section>
 
