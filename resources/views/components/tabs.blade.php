@@ -2,12 +2,13 @@
 $tabIndex = 0;
 @endphp
 
-<div class="w-full flex flex-col justify-center items-center">
+<div x-data="{ activeTab: 0 }" class="w-full flex flex-col justify-center items-center">
     <!-- Tabs 標籤區 -->
     <div class="flex space-x-4 mb-5" id="tabs-nav">
         @foreach($tabs as $index => $tab)
-        <button data-index="{{ $index }}"
-            class="tab-button px-4 py-2 focus:outline-none text-brandGray-normalLight hover:text-brandRed-normal">
+        <button @click="activeTab = {{ $index }}"
+            class="tab-button px-4 py-2 focus:outline-none"
+            :class="activeTab === {{ $index }} ? 'text-brandRed-normal' : 'text-brandGray-normalLight hover:text-brandRed-normal'">
             {{ $tab }}
         </button>
         @endforeach
@@ -15,10 +16,11 @@ $tabIndex = 0;
     <div class="w-full h-[0.5px] bg-brandGray-lightHover"></div>
 
     <!-- Tabs 內容區 -->
-    <div class="mt-4" id="tabs-content">
+    <div class="mt-4 w-full">
         {{ $slot }}
     </div>
 </div>
+
 
 @push('scripts')
 <script>
