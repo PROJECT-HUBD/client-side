@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', '購物車')
+@section('meta_description', '購物車')
+@section('meta_keywords', '購物車')
 
 @section('content')
 <section class="mt-[150px]">

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'about us')
+@section('title', '關於我們')
 @section('meta_description', '關於我們')
 @section('meta_keywords', '關於我們')
 
