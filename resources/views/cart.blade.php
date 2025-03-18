@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', '購物車')
+@section('meta_description', '購物車')
+@section('meta_keywords', '購物車')
 
 @section('content')
 <section class="mt-[150px]">
@@ -140,7 +142,7 @@
         <span class="self-stretch my-auto">繼續購物</span>
       </a>
       <!-- 去買單 -->
-      <a href="{{route('checkOut')}}"
+      <a href="{{route('check_out')}}"
         class="flex overflow-hidden gap-4 items-center py-4 pr-5 pl-8 font-bold text-white bg-red-500 rounded-md min-h-[62px] w-[150px] max-md:pl-5">
         <span class="self-stretch my-auto">去買單</span>
         <img
