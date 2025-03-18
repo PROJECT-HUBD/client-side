@@ -25,4 +25,9 @@ class Product extends Model
         'product_description',
         'product_img'
     ];
+
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class, 'product_id');//關聯wishlist Model  收藏清單用的
+    }
 }
