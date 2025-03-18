@@ -151,7 +151,7 @@
     </a>
     <!-- 去買單 -->
 
-    <a href="{{ route('checkOut') }}"
+    <a href="{{ route('check_out') }}"
 
       class="goToCheckOut flex overflow-hidden gap-4 items-center py-4 pr-5 pl-8 font-bold text-white bg-red-500 rounded-md min-h-[62px] w-[150px] max-md:pl-5">
       <span class=" self-stretch my-auto">去買單</span>
