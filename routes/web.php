@@ -26,9 +26,9 @@ Route::get('/categories_clothes', function () {
     return view('categories_clothes');
 })->name('categories_clothes');
 //關於我們
-Route::get('/aboutus', function() {
-    return view('aboutus');
-})->name('aboutus');
+Route::get('/about_us', function() {
+    return view('about_us');
+})->name('about_us');
 //收藏清單
 Route::get('/wish_list', function() {
     return view('wish_list');
