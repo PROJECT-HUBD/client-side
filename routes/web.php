@@ -40,9 +40,9 @@ Route::match(['get', 'post'],'/insertCart', [CartController::class, 'insertCart'
 
 
 // 購物清單頁
-Route::match(['get', 'post'],'/checkOut', function () {
-    return view('checkOut');
-})->name('checkOut');
+Route::match(['get', 'post'],'/check_out', function () {
+    return view('check_out');
+})->name('check_out');
 
 //購物清單頁_新增一筆訂單_orderMain
 Route::post('/InsertOrderMain', [CheckoutController::class, 'InsertOrderMain']);
