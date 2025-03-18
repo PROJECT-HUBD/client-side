@@ -8,7 +8,7 @@
                 <img src="{{ asset('images/layouts_imgs/logo-nav2.png') }}" class="h-5" alt="logo">
             </a>
             <div id="prodsBtnPc" class="text-lg hidden lg:block cursor-pointer">商品&nbsp;<span class="plusIconPc">＋</span></div>
-            <a href="" class="text-lg hidden lg:block hover:text-brandGray-normalLight active:text-brandGray-lightHover ">關於我們</a>
+            <a href="{{route('about_us')}}" class="text-lg hidden lg:block hover:text-brandGray-normalLight active:text-brandGray-lightHover ">關於我們</a>
         </div>
         <!-- 右側區塊 -->
         <div class="rightArea flex justify-end items-center gap-10">
@@ -23,7 +23,7 @@
             <!-- icons -->
             <!-- wishList -->
             <div class="flex justify-center items-center gap-[24px] md:gap-10">
-                <a href="" class="flex items-center justify-center">
+                <a href={{route('wish_list')}} class="flex items-center justify-center">
                     <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[mynaui--heart]"></span>
                 </a>
                 <!-- cart -->
@@ -102,7 +102,7 @@
             </div>
             <div class="cursor-pointer w-[350px h-[30px] flex justify-center gap-[30px]">
                 <div id="prodsBtnPhone" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">商品&nbsp;<span class="plusIcon">＋</span></div>
-                <a href="{{route('aboutus')}}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">關於我們</a>
+                <a href="{{route('about_us')}}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">關於我們</a>
             </div>
         </div>
     </div>
