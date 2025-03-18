@@ -3,7 +3,7 @@
 @section('title', 'Product_Details')
 @section('meta_description', '商品內頁')
 @section('meta_keywords', '首頁, home, homepage')
-
+@livewire('wishlist-component')
 
 @section('content')
     <div class="lg:mt-[150px] lg:w-[1440px] mx-auto  md:mt-[189px] md:w-[960px]  ">
@@ -80,7 +80,7 @@
                             class=" break-all break-words lg:w-[502px]  md:w-[300px] sm:w-[275px]  relative  text-brandGray-normal lg:text-2xl sm:text-xl font-light font-['Lexend'] lg:leading-9 sm:leading-[30px]">
                             Navajo 綠松石十字星戒 </div>
                     </div>
-                    <button id="likeBtn" class="relative focus:outline-none">
+                    <button id="likeBtn" wire:click="toggleWishlist('{{ $product->product_id }}')" class="relative focus:outline-none">
                         <svg id="likeIcon" width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"
                             class="transition duration-300 ease-in-out text-brandGray-normal fill-none">
                             <path

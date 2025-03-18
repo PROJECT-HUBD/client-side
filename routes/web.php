@@ -27,9 +27,7 @@ Route::get('/wish_lists', function () {
 })->name('wish_lists');
 
 // 商品內頁
-Route::get('/product_details', function () {
-    return view('product_details');
-})->name('product_details');
+Route::get('/product{id}', [ProductController::class, 'show'])->name('product_details');
 
 // 用戶相關頁面
 // Route::prefix('user')->name('user.')->middleware(['auth'])->group(function () {
