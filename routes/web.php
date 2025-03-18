@@ -30,9 +30,9 @@ Route::get('/aboutus', function() {
     return view('aboutus');
 })->name('aboutus');
 //收藏清單
-Route::get('/wishlist', function() {
-    return view('wishlist');
-})->name('wishlist');
+Route::get('/wish_list', function() {
+    return view('wish_list');
+})->name('wish_list');
 
 // 商品內頁
 Route::get('/product_details', function () {
