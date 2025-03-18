@@ -2,7 +2,7 @@
     @if ($wishlistItems->isEmpty())
         <div class="flex flex-col items-center justify-center h-[400px] text-center">
             <p class="text-3xl font-semibold text-neutral-700">目前沒有收藏的商品</p>
-            <a href="{{ route('home') }}" class="mt-6 px-6 py-3 text-lg text-white bg-red-500 rounded-lg hover:bg-red-600 transition">
+            <a href="{{ route('home') }}" class="mt-6 px-6 py-3 text-lg text-white bg-[#d40404] rounded-lg hover:bg-red-800 transition">
                 回到商店
             </a>
         </div>
@@ -15,7 +15,7 @@
                     </div>
                     <div class="flex-1">
                         <h2 class="mb-3 text-xl font-medium text-neutral-800">{{ $item->product->product_name }}</h2>
-                        <p class="text-lg text-red-600">${{ $item->product->product_price }}</p>
+                        <p class="text-lg text-[#d40404]">${{ $item->product->product_price }}</p>
                     </div>
                     <div class="flex items-center">
                         <button wire:click="removeFromWishlist('{{ $item->product->product_id }}')"
