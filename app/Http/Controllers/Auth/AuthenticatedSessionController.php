@@ -50,7 +50,7 @@ class AuthenticatedSessionController extends Controller
 
     if ($user) {
         $user->remember_token = null; // 清除 remember_token
-        $user->save();
+        $user-> save();
     }
         
         

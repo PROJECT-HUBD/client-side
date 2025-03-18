@@ -27,4 +27,9 @@ class ProductMain extends Model
     {
         return $this->hasMany(ProductSpec::class, 'product_id', 'product_id');
     }
+
+    public function wishlists(): HasMany
+    {
+        return $this->hasMany(Wishlist::class, 'product_id'); //關聯wishlist Model  收藏清單用的
+    }
 }
