@@ -3,7 +3,7 @@
 @section('title', 'Product_Details')
 @section('meta_description', '商品內頁')
 @section('meta_keywords', '首頁, home, homepage')
-@livewire('wishlist-component')
+
 
 @section('content')
     <div class="lg:mt-[150px] lg:w-[1440px] mx-auto  md:mt-[189px] md:w-[960px]  ">
