@@ -21,14 +21,6 @@ class HomeController extends Controller
             ->orderBy('product_id', 'asc')
             ->get();
 
-        // 確保所有顏色統一轉小寫，避免大小寫問題
-        $hitItems->each(function ($item) {
-            $item->specs->transform(function ($spec) {
-                $spec->product_color = strtolower(trim($spec->product_color)); // 轉小寫 + 去除空格
-                return $spec;
-            });
-        });
-
         // 首頁 顯示商品（飾品＋服飾各4個） 
         $accessories = ProductMain::whereBetween('product_id', ['pa001', 'pa004'])
             ->orderBy('product_id', 'asc')->get();

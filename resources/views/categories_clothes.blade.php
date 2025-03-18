@@ -16,11 +16,27 @@
     <section class="w-full">
         <!-- tabs -->
         <x-tabs :tabs="['短袖', '長袖／毛衣', '外套／夾克']">
+            <!-- 商品卡片區 短袖 -->
             <div x-show="activeTab === 0">
-                <p>123</p>
+                <section class="product-section w-full flex flex-col justify-start items-center mt-36 md:mt-20">
+                    <div class="w-full md:w-[770px] lg:w-[1230px] h-[418px] grid md:grid-cols-3 lg:grid-cols-4 justify-center items-center gap-5">
+                        @foreach($shorts as $index => $short)
+                        <!-- 商品 -->
+                        <a href="{{route('product_details')}}" class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-10 mb-52 md:mb-20">
+                            <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
+                                <img src="{{$short->product_img}}" alt="{{$short->product_name}}" class="w-full h-[250px] md:h-full object-cover">
+                            </div>
+                            <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
+                                <p class="text-brandGray-darker">{{$short->product_name}}</p>
+                                <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">{{$short->product_price}}</span></p>
+                            </div>
+                        </a>
+                        @endforeach
+                    </div>
+                </section>
             </div>
+            <!-- 商品卡片區 長袖 -->
             <div x-show="activeTab === 1">
-                <!-- 商品卡片區 長袖 -->
                 <section class="product-section w-full flex flex-col justify-start items-center mt-36 md:mt-20">
                     <div class="w-full md:w-[770px] lg:w-[1230px] h-[418px] grid md:grid-cols-3 lg:grid-cols-4 justify-center items-center gap-5">
                         @foreach($longs as $index => $long)
@@ -38,8 +54,8 @@
                     </div>
                 </section>
             </div>
+            <!-- 商品卡片區 外套 -->
             <div x-show="activeTab === 2">
-                <!-- 商品卡片區 外套 -->
                 <section class="product-section w-full flex flex-col justify-start items-center mt-36 md:mt-20">
                     <div class="w-full md:w-[770px] lg:w-[1230px] h-[418px] grid md:grid-cols-3 lg:grid-cols-4 justify-center items-center gap-5">
                         @foreach($jackets as $index => $jacket)
@@ -66,7 +82,8 @@
 <script>
     $(document).ready(function() {
         function updateSectionHeight() {
-            let totalItems = $(".product-card").length; // 取得商品總數
+            let activeTab = $(".product-section:visible"); // 取得當前可見的 tab
+            let totalItems = activeTab.find(".product-card").length; // 取得當前 tab 內的商品總數
             let itemsPerRow = 4; // 預設一列 4 個商品（對應 lg:grid-cols-4）
             let windowWidth = $(window).width();
 
@@ -80,16 +97,21 @@
 
             // 計算行數（無條件進位）
             let totalRows = Math.ceil(totalItems / itemsPerRow);
-            let newHeight = totalRows * 250; // 每列 1600px
+            let newHeight = totalRows * 480; // 每列 480px
 
-            // 設定高度
-            $(".product-section").css("height", newHeight + "px");
+            // 只調整當前 `tab` 內的 `product-section` 高度
+            activeTab.css("height", newHeight + "px");
         }
 
-        // 初始化
+        // **初始化：設定當前顯示的 `tab` 高度**
         updateSectionHeight();
 
-        // 監聽視窗縮放，調整高度
+        // **監聽 `tabs` 切換**
+        $(".tab-button").click(function() {
+            setTimeout(updateSectionHeight, 100); // 讓 DOM 更新後再計算
+        });
+
+        // **監聽視窗縮放**
         $(window).resize(function() {
             updateSectionHeight();
         });
