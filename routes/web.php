@@ -24,7 +24,8 @@ Route::get('/about_us', function () {
 // 收藏清單
 Route::get('/wish_lists', function () {
     return view('wish_lists');
-})->name('wish_lists');
+})->middleware('auth')->name('wish_lists');
+
 
 // 商品內頁
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product_details');

@@ -1,8 +1,14 @@
 <div class="py-10">
+    @if (session()->has('error'))
+        <div class="p-2 mb-2 text-red-700 bg-red-100 rounded text-center">
+            {{ session('error') }}
+        </div>
+    @endif
     @if ($wishlistItems->isEmpty())
         <div class="flex flex-col items-center justify-center h-[400px] text-center">
             <p class="text-3xl font-semibold text-neutral-700">目前沒有收藏的商品</p>
-            <a href="{{ route('home') }}" class="mt-6 px-6 py-3 text-lg text-white bg-[#d40404] rounded-lg hover:bg-red-800 transition">
+            <a href="{{ route('home') }}"
+                class="mt-6 px-6 py-3 text-lg text-white bg-[#d40404] rounded-lg hover:bg-red-800 transition">
                 回到商店
             </a>
         </div>
@@ -11,7 +17,8 @@
             @foreach ($wishlistItems as $item)
                 <article class="flex px-8 py-4 bg-white rounded-lg shadow-md">
                     <div class="mr-6 bg-gray-300 h-[104px] w-[104px] rounded-lg overflow-hidden">
-                        <img src="{{ $item->product->product_img }}" alt="{{ $item->product->product_name }}" class="w-full h-full object-cover">
+                        <img src="{{ $item->product->product_img }}" alt="{{ $item->product->product_name }}"
+                            class="w-full h-full object-cover">
                     </div>
                     <div class="flex-1">
                         <h2 class="mb-3 text-xl font-medium text-neutral-800">{{ $item->product->product_name }}</h2>
@@ -19,7 +26,7 @@
                     </div>
                     <div class="flex items-center">
                         <button wire:click="removeFromWishlist('{{ $item->product->product_id }}')"
-                                class="ml-4 px-4 py-2 text-white bg-gray-500 rounded-lg hover:bg-gray-600 transition">
+                            class="ml-4 px-4 py-2 text-white bg-gray-500 rounded-lg hover:bg-gray-600 transition">
                             移除
                         </button>
                     </div>
