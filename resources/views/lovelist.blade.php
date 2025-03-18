@@ -34,11 +34,7 @@
                     <div class="mr-6 bg-zinc-700 h-[104px] w-[104px]"></div>
                     <div class="flex-1">
                         <h2 class="mb-3 text-lg text-neutral-700">LCD MonitorLCD Monitor</h2>
-                        <div
-                            class="inline-flex gap-2 items-center px-3 py-1 mb-3 text-sm rounded bg-neutral-100 text-neutral-700">
-                            <span>淺粉-100</span>
-                            <i class="ti ti-chevron-down"></i>
-                        </div>
+                       
                         <p class="text-base text-stone-300">備註:請分開包裝，獨立出貨</p>
                     </div>
                     <div class="flex flex-col justify-between items-end max-sm:items-center">
@@ -67,11 +63,7 @@
                     <div class="mr-6 bg-zinc-700 h-[104px] w-[104px]"></div>
                     <div class="flex-1">
                         <h2 class="mb-3 text-lg text-neutral-700">LCD MonitorLCD Monitor</h2>
-                        <div
-                            class="inline-flex gap-2 items-center px-3 py-1 mb-3 text-sm rounded bg-neutral-100 text-neutral-700">
-                            <span>淺粉-100</span>
-                            <i class="ti ti-chevron-down"></i>
-                        </div>
+                        
                         <p class="text-base text-stone-300">備註:請分開包裝，獨立出貨</p>
                     </div>
                     <div class="flex flex-col justify-between items-end max-sm:items-center">
@@ -100,11 +92,7 @@
                     <div class="mr-6 bg-zinc-700 h-[104px] w-[104px]"></div>
                     <div class="flex-1">
                         <h2 class="mb-3 text-lg text-neutral-700">LCD MonitorLCD Monitor</h2>
-                        <div
-                            class="inline-flex gap-2 items-center px-3 py-1 mb-3 text-sm rounded bg-neutral-100 text-neutral-700">
-                            <span>淺粉-100</span>
-                            <i class="ti ti-chevron-down"></i>
-                        </div>
+                        
                         <p class="text-base text-stone-300">備註:請分開包裝，獨立出貨</p>
                     </div>
                     <div class="flex flex-col justify-between items-end max-sm:items-center">
@@ -133,11 +121,7 @@
                     <div class="mr-6 bg-zinc-700 h-[104px] w-[104px]"></div>
                     <div class="flex-1">
                         <h2 class="mb-3 text-lg text-neutral-700">LCD MonitorLCD Monitor</h2>
-                        <div
-                            class="inline-flex gap-2 items-center px-3 py-1 mb-3 text-sm rounded bg-neutral-100 text-neutral-700">
-                            <span>淺粉-100</span>
-                            <i class="ti ti-chevron-down"></i>
-                        </div>
+                        
                         <p class="text-base text-stone-300">備註:請分開包裝，獨立出貨</p>
                     </div>
                     <div class="flex flex-col justify-between items-end max-sm:items-center">
@@ -166,11 +150,7 @@
                     <div class="mr-6 bg-zinc-700 h-[104px] w-[104px]"></div>
                     <div class="flex-1">
                         <h2 class="mb-3 text-lg text-neutral-700">LCD MonitorLCD Monitor</h2>
-                        <div
-                            class="inline-flex gap-2 items-center px-3 py-1 mb-3 text-sm rounded bg-neutral-100 text-neutral-700">
-                            <span>淺粉-100</span>
-                            <i class="ti ti-chevron-down"></i>
-                        </div>
+                       
                         <p class="text-base text-stone-300">備註:請分開包裝，獨立出貨</p>
                     </div>
                     <div class="flex flex-col justify-between items-end max-sm:items-center">
@@ -199,11 +179,7 @@
                     <div class="mr-6 bg-zinc-700 h-[104px] w-[104px]"></div>
                     <div class="flex-1">
                         <h2 class="mb-3 text-lg text-neutral-700">LCD MonitorLCD Monitor</h2>
-                        <div
-                            class="inline-flex gap-2 items-center px-3 py-1 mb-3 text-sm rounded bg-neutral-100 text-neutral-700">
-                            <span>淺粉-100</span>
-                            <i class="ti ti-chevron-down"></i>
-                        </div>
+                        
                         <p class="text-base text-stone-300">備註:請分開包裝，獨立出貨</p>
                     </div>
                     <div class="flex flex-col justify-between items-end max-sm:items-center">
