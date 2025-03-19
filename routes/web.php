@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\WishlistController;
 // 首頁
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
@@ -22,9 +22,11 @@ Route::get('/about_us', function () {
 })->name('about_us');
 
 // 收藏清單
-Route::get('/wish_lists', function () {
-    return view('wish_lists');
-})->middleware('auth')->name('wish_lists');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/wish-lists', [WishlistController::class, 'index'])->name('wish_lists');
+    Route::post('/wishlist/toggle', [WishlistController::class, 'toggleWishlist'])->name('wishlist.toggle');
+    Route::post('/wishlist/remove', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
+});
 
 
 // 商品內頁

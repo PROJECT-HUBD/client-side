@@ -6,6 +6,8 @@
 
 
 @section('content')
+
+
     <div class="lg:mt-[150px] lg:w-[1440px] mx-auto  md:mt-[189px] md:w-[960px]  ">
         <x-breadcrumb :items="[
             ['name' => '首頁', 'url' => route('home')],
@@ -80,7 +82,7 @@
                             class=" break-all break-words lg:w-[502px]  md:w-[300px] sm:w-[275px]  relative  text-brandGray-normal lg:text-2xl sm:text-xl font-light font-['Lexend'] lg:leading-9 sm:leading-[30px]">
                             Navajo 綠松石十字星戒 </div>
                     </div>
-                    <button id="likeBtn" wire:click="toggleWishlist('{{ $product->product_id }}')" class="relative focus:outline-none">
+                    <button id="likeBtn" data-product-id="{{ $product->product_id }}" class="relative focus:outline-none">
                         <svg id="likeIcon" width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"
                             class="transition duration-300 ease-in-out text-brandGray-normal fill-none">
                             <path
@@ -286,6 +288,7 @@
             </div>
         </div>
     </div>
+    
 @endsection
 
 @push('scripts')
@@ -330,11 +333,33 @@
             // 頁面載入時先執行一次
             updatePath();
 
+            // 點擊我的最愛Icon，透過 AJAX 切換收藏狀態
+            document.getElementById("likeBtn")?.addEventListener("click", function () {
+                let productId = this.dataset.productId;
+                let likeIcon = document.getElementById("likeIcon");
 
-            // 點擊我的最愛Icon，切換成紅色
-            $("#likeBtn").click(function () {
-                $("#likeIcon").toggleClass("text-brandRed-normal fill-brandRed-normal  fill-none")
-            })
+
+                fetch("{{ route('wishlist.toggle') }}", {
+                    method: "POST",
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ product_id: productId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "added") {
+                        likeIcon.classList.add("text-brandRed-normal", "fill-brandRed-normal");
+                        likeIcon.classList.remove("text-brandGray-normal", "fill-none");
+                    } else if (data.status === "removed") {
+                        likeIcon.classList.add("text-brandGray-normal", "fill-none");
+                        likeIcon.classList.remove("text-brandRed-normal", "fill-brandRed-normal");
+                    }
+                })
+                .catch(error => console.error("錯誤:", error));
+            });
+
 
             let images = $("button img").map(function () {
                 return $(this).attr("src"); // 取得所有縮圖的 src

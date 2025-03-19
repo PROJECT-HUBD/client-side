@@ -3,61 +3,56 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Wishlist;
+use App\Models\ProductMain;
 
 
 class WishlistController extends Controller
 {
-    // 取得使用者的收藏清單
-    public function index()
-    {
-        //未登入，Laravel 會拋出錯誤
-        if (!Auth::check()) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
+  // 顯示收藏清單
+  public function index()
+  {
+      if (!Auth::check()) {
+          return redirect()->route('login')->with('error', '請先登入');
+      }
 
+      $wishlistItems = Wishlist::where('member_id', Auth::id())->with('product')->get();
+      return view('wish_lists', compact('wishlistItems'));
+  }
 
-        $wishlistItems = Wishlist::where('member_id', Auth::id())->with('product')->get();
-        return response()->json($wishlistItems);
-    }
+  // 加入或移除收藏
+  public function toggleWishlist(Request $request)
+  {
+      if (!Auth::check()) {
+          return response()->json(['error' => '請先登入'], 401);
+      }
 
-    
-    // 新增收藏
-    public function store(Request $request)
-    {
-        //未登入，Laravel 會拋出錯誤
-        if (!Auth::check()) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
+      $productId = $request->input('product_id');
+      $wishlistItem = Wishlist::where('member_id', Auth::id())->where('product_id', $productId)->first();
 
-        $request->validate([
-            'product_id' => 'required|exists:products,product_id',
-        ]);
+      if ($wishlistItem) {
+          $wishlistItem->delete();
+          return response()->json(['status' => 'removed']);
+      } else {
+          Wishlist::create([
+              'member_id' => Auth::id(),
+              'product_id' => $productId,
+          ]);
+          return response()->json(['status' => 'added']);
+      }
+  }
 
-        Wishlist::firstOrCreate([
-            'member_id' => Auth::id(),
-            'product_id' => $request->product_id,
-        ]);
+  // 移除收藏
+  public function removeFromWishlist(Request $request)
+  {
+      if (!Auth::check()) {
+          return response()->json(['error' => '請先登入'], 401);
+      }
 
-        return response()->json(['success' => true, 'message' => '已加入收藏清單']);
-    }
+      $productId = $request->input('product_id');
+      Wishlist::where('member_id', Auth::id())->where('product_id', $productId)->delete();
 
-    // 移除收藏
-    public function destroy($id)
-    {
-        if (!Auth::check()) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-    
-        $wishlistItem = Wishlist::where('member_id', Auth::id())->where('product_id', $id)->first();
-    
-        if (!$wishlistItem) {
-            return response()->json(['error' => '收藏項目不存在'], 404);
-        }
-    
-        $wishlistItem->delete();
-    
-        return response()->json(['success' => true, 'message' => '已移除收藏']);
-    }
+      return response()->json(['status' => 'removed']);
+  }
 }

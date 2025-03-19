@@ -1,9 +1,10 @@
 <div class="py-10">
-    @if (session()->has('error'))
+    @if(session('error'))
         <div class="p-2 mb-2 text-red-700 bg-red-100 rounded text-center">
             {{ session('error') }}
         </div>
     @endif
+
     @if ($wishlistItems->isEmpty())
         <div class="flex flex-col items-center justify-center h-[400px] text-center">
             <p class="text-3xl font-semibold text-neutral-700">目前沒有收藏的商品</p>
@@ -25,8 +26,8 @@
                         <p class="text-lg text-[#d40404]">${{ $item->product->product_price }}</p>
                     </div>
                     <div class="flex items-center">
-                        <button wire:click="removeFromWishlist('{{ $item->product->product_id }}')"
-                            class="ml-4 px-4 py-2 text-white bg-gray-500 rounded-lg hover:bg-gray-600 transition">
+                        <button class="remove-wishlist-btn ml-4 px-4 py-2 text-white bg-gray-500 rounded-lg hover:bg-gray-600 transition" 
+                                data-product-id="{{ $item->product->product_id }}">
                             移除
                         </button>
                     </div>
