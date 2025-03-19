@@ -24,7 +24,7 @@
                         <!-- 商品 -->
                         <a href="{{route('product_details')}}" class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-10 mb-52 md:mb-20">
                             <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                                <img src="{{$short->product_img}}" alt="{{$short->product_name}}" class="w-full h-[250px] md:h-full object-cover">
+                                <img src="{{ 'http://localhost:8000/storage/' . $short->product_img}}" alt="{{$short->product_name}}" class="w-full h-[250px] md:h-full object-cover">
                             </div>
                             <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
                                 <p class="text-brandGray-darker">{{$short->product_name}}</p>
@@ -43,7 +43,7 @@
                         <!-- 商品 -->
                         <a href="{{route('product_details')}}" class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-10 mb-52 md:mb-20">
                             <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                                <img src="{{$long->product_img}}" alt="{{$long->product_name}}" class="w-full h-[250px] md:h-full object-cover">
+                                <img src="{{'http://localhost:8000/storage/' . $long->product_img}}" alt="{{$long->product_name}}" class="w-full h-[250px] md:h-full object-cover">
                             </div>
                             <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
                                 <p class="text-brandGray-darker">{{$long->product_name}}</p>
@@ -62,7 +62,7 @@
                         <!-- 商品 -->
                         <a href="{{route('product_details')}}" class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-10 mb-52 md:mb-20">
                             <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                                <img src="{{$jacket->product_img}}" alt="{{$jacket->product_name}}" class="w-full h-[250px] md:h-full object-cover">
+                                <img src="{{'http://localhost:8000/storage/' . $jacket->product_img}}" alt="{{$jacket->product_name}}" class="w-full h-[250px] md:h-full object-cover">
                             </div>
                             <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
                                 <p class="text-brandGray-darker">{{$jacket->product_name}}</p>

@@ -12,7 +12,7 @@
         <div class="relative w-full h-[325px] md:h-[350px] lg:h-[600px] overflow-hidden flex justify-center items-start gap-5">
             @foreach ($banners as $index => $banner)
             <div class="banner{{ $index + 1 }} relative w-[390px] md:w-[420px] lg:w-[720px] h-full flex-shrink-0">
-                <img src="{{ asset($banner->banner_img) }}" alt="{{ $banner->banner_title }}" class="w-full h-full min-w-[390px] md:min-w-full max-h-[325px] md:max-h-full object-cover">
+                <img src="{{ 'http://localhost:8000/storage/' . $banner->banner_img}}" alt="{{ $banner->banner_title }}" class="w-full h-full min-w-[390px] md:min-w-full max-h-[325px] md:max-h-full object-cover">
                 <div class="bannerMask{{ $index + 1 }} hidden lg:visible invisible absolute z-20 top-0 left-0 w-full h-full bg-gradient-to-t from-brandGray-normal opacity-40"></div>
                 <div class="bannerMask{{ $index + 1 }} hidden lg:visible invisible absolute z-30 bottom-0 w-full h-[208px] flex flex-col justify-center items-start lg:px-[60px] md:px-[20px] gap-[16px] pb-14">
                     <div class="text-brandGray-lightLight flex flex-col justify-center items-start gap-2">
@@ -68,7 +68,7 @@
                     </button>
                     <!-- 主打商品圖片 -->
                     <div class="flex justify-center items-center w-[300px] md:w-[400px] lg:w-[400px] h-[300px] md:h-[400px] lg:h-[400px]">
-                        <img src="{{ asset($firstItem->product_img) }}" alt="{{ $firstItem->product_name }}" class="targetImg w-full h-full object-cover" loading="lazy">
+                        <img src="{{ 'http://localhost:8000/storage/' . $firstItem->product_img }}" alt="{{ $firstItem->product_name }}" class="targetImg w-full h-full object-cover" loading="lazy">
                     </div>
                     <button type="button" class="lg:hidden nextBtn w-[50px] h-[50px] border-2 rounded-full border-brandRed-normal flex justify-center items-center active:opacity-50">
                         <span class="w-5 h-5 text-brandRed-normal icon-[ep--arrow-right-bold]"></span>
@@ -115,7 +115,7 @@
                 data-name="{{ $item->product_name }}"
                 data-desc="{{ $item->product_description }}"
                 data-price="{{ $item->product_price }}"
-                data-img="{{ asset($item->product_img) }}"
+                data-img="{{ 'http://localhost:8000/storage/' . $item->product_img }}"
                 @click="updateTarget({{ $index + 1 }})"
                 style="
                 @if($index == 0) top: 150px; left: 80px;
@@ -133,7 +133,7 @@
                 hover:opacity-80;
                 active:opacity-50;
             ">
-                <img src="{{ asset($item->product_img) }}" alt="{{ $item->product_name }}" class="w-full h-full object-cover rounded-full">
+                <img src="{{ 'http://localhost:8000/storage/' . $item->product_img }}" alt="{{ $item->product_name }}" class="w-full h-full object-cover rounded-full">
             </div>
             @endforeach
         </div>
@@ -248,7 +248,7 @@
             @foreach($accessories as $index => $accessory)
             <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5 {{$index === 3 ? 'hidden lg:flex' : ''}}">
                 <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                    <img src="{{ asset($accessory->product_img) }}" alt="{{$accessory->product_name}}" class="w-full h-full object-cover">
+                    <img src="{{ 'http://localhost:8000/storage/' . $accessory->product_img }}" alt="{{$accessory->product_name}}" class="w-full h-full object-cover">
                 </div>
                 <div class="w-full h-[74px] flex flex-col justify-center items-start gap-3 text-[20px]">
                     <p class="text-brandGray-darker">{{$accessory->product_name}}</p>
@@ -276,7 +276,7 @@
             @foreach($clothes as $index => $cloth)
             <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5 {{$index === 3 ? 'hidden lg:flex' : ''}}">
                 <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                    <img src="{{ asset($cloth->product_img) }}" alt="{{$cloth->product_name}}" class="w-full h-full object-cover">
+                    <img src="{{ 'http://localhost:8000/storage/' . $cloth->product_img }}" alt="{{$cloth->product_name}}" class="w-full h-full object-cover">
                 </div>
                 <div class="w-full h-[74px] flex flex-col justify-center items-start gap-3 text-[20px]">
                     <p class="text-brandGray-darker">{{$cloth->product_name}}</p>

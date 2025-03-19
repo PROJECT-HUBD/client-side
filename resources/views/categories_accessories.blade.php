@@ -21,7 +21,7 @@
                 <!-- 商品 -->
                 <a href="{{route('product_details')}}" class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5 mb-32 md:mb-14">
                     <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                        <img src="{{asset($accessory->product_img)}}" alt="{{$accessory->product_name}}" class="w-full h-[250px] md:h-full object-cover">
+                        <img src="{{ 'http://localhost:8000/storage/' . $accessory->product_img}}" alt="{{$accessory->product_name}}" class="w-full h-[250px] md:h-full object-cover">
                     </div>
                     <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
                         <p class="text-brandGray-darker">{{$accessory->product_name}}</p>
