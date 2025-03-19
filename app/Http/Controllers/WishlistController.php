@@ -56,3 +56,6 @@ class WishlistController extends Controller
       return response()->json(['status' => 'removed']);
   }
 }
+
+
+// https://www.104.com.tw/job/5qwcs?jobsource=index_job_r
