@@ -11,4 +11,6 @@ class cart extends Model
 
     protected $table = 'cart'; // 确保模型与表名一致
     protected $fillable = [ 'product_id', 'quantity', 'product_color', 'product_size']; // 填充属性
+
+    public $timestamps = false;
 }

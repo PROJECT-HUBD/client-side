@@ -98,8 +98,8 @@
       class="overflow-hidden py-8 pr-6 pl-6 rounded min-w-60 w-[470px] max-md:px-5">
 
       <select class="flex overflow-hidden gap-5 justify-between px-6 py-3 w-full text-sm tracking-wide leading-7 whitespace-nowrap bg-white rounded-md border border-solid border-zinc-300 text-neutral-500 max-md:pr-5 decoration-none">
-        <option value="" selected hidden>請選擇折扣券</option>
-        <option value="生日券">生日券</option>
+        <!-- <option value="" selected hidden>請選擇折扣券</option> -->
+        <option value="生日券" selected hidden>生日券</option>
         <option value="折一百">折一百</option>
       </select>
 
@@ -167,13 +167,12 @@
 @push('scripts')
 
 <!-- jQuery 內容 -->
-<script >
-
+<script>
   // <---------------------全選------------------------->
   // $(document).ready(function() {
-    $(".allCheckbox").change(function() {
-      $(".checkbox").prop("checked", $(this).prop("checked"));
-    });
+  $(".allCheckbox").change(function() {
+    $(".checkbox").prop("checked", $(this).prop("checked"));
+  });
   // });
   // <---------------------接收商品資料------------------------->
   // var productList = [{
@@ -276,17 +275,17 @@
 
         // 產品選擇
         resultHTML += `<div class="flex flex-col items-start mt-3 max-w-full text-sm whitespace-flexwrap w-[100px] rounded">`;
-        resultHTML += `<select class="flex gap-10 justify-between items-center px-3 py-1 w-32 rounded bg-neutral-100 max-w-40 border border-none">`;
-        resultHTML += `<option class="product_color" value="${productList[i].product_color}"  hidden>${productList[i].product_color}</option>`;
-        resultHTML += `<option class="product_color" value="Black">Black</option>`;
-        resultHTML += `<option class="product_color" value="Grey">Grey</option>`;
-        resultHTML += `<option class="product_color" value="White">White</option>`;
+        resultHTML += `<select name="product_color"  class="product_color flex gap-10 justify-between items-center px-3 py-1 w-32 rounded bg-neutral-100 max-w-40 border border-none">`;
+        resultHTML += `<option  value="${productList[i].product_color}"  hidden>${productList[i].product_color}</option>`;
+        resultHTML += `<option  value="Black">Black</option>`;
+        resultHTML += `<option  value="Grey">Grey</option>`;
+        resultHTML += `<option  value="White">White</option>`;
         resultHTML += `</select>`;
-        resultHTML += `<select class="flex gap-10 justify-between items-center mt-2 px-3 py-1 w-32 rounded bg-neutral-100 max-w-40 border border-none">`;
-        resultHTML += `<option class="product_size" value="${productList[i].product_size}" hidden>${productList[i].product_size}</option>`;
-        resultHTML += `<option class="product_size"value="S">S</option>`;
-        resultHTML += `<option class="product_size"value="M">M</option>`;
-        resultHTML += `<option class="product_size"value="L">L</option>`;
+        resultHTML += `<select name="product_size"  class="product_size flex gap-10 justify-between items-center mt-2 px-3 py-1 w-32 rounded bg-neutral-100 max-w-40 border border-none">`;
+        resultHTML += `<option value="${productList[i].product_size}" hidden>${productList[i].product_size}</option>`;
+        resultHTML += `<option value="S">S</option>`;
+        resultHTML += `<option value="M">M</option>`;
+        resultHTML += `<option value="L">L</option>`;
         resultHTML += `</select>`;
         resultHTML += `</div>`; // 關閉選擇框
 
@@ -331,16 +330,13 @@
 
 
       $(".productRow>article").each(function() {
-        // 檢查當前商品的 checkbox 是否被勾選
-        // console.log($(this));
-        if ($(this).find("input[type='checkbox']").is(":checked")) {
-          let count = parseInt($(this).find(".quantity").text()); // 獲取數量
-          // console.log(count);
-          let product_price = parseFloat($(this).find(".product_price").text().replace('$', '')); // 獲取商品價格並去除$符號
-          // console.log(product_price);
-          let price = product_price * count; // 計算該商品的總價
+        let checkbox = $(this).find("input[type='checkbox']");
 
-          totalPrice += price; // 累加所有被選中的商品的價格
+        if (checkbox.is(":checked")) {
+          let count = parseInt($(this).find(".quantity").text());
+          let product_price = parseFloat($(this).find(".product_price").text().replace('$', ''));
+          let price = product_price * count;
+          totalPrice += price;
         }
       });
 
@@ -358,40 +354,40 @@
       $(".totalPriceWithDiscount").text(`$${totalPriceWithDiscount.toFixed(0)}`); // 更新折扣後的總金額
     } //end of updatePrices()
 
-
+    // **監聽 Checkbox 變更**
+    $(document).on("change", "input[type='checkbox']", function() {
+      updatePrices(); // ✅ 當 Checkbox 勾選/取消時，立即重新計算總價
+    });
   }); //end of doucument ready
   // <-----------------------------click&SaveLocalStorage--------------------------------->
-
+  
   $(document).ready(function() {
     // 點擊 "繼續購物" 按鈕
     $(".keepShoping").on('click', function() {
       saveDataToLocalStorage();
-      saveDataToDataBase();
     });
 
     // 點擊 "結帳" 按鈕
     $(".goToCheckOut").on('click', function() {
       saveDataToLocalStorage();
-      saveDataToDataBase();
     });
+
 
     // <----------------------------------儲存資料到 localStorage 的通用函數------------------------------------->
     function saveDataToLocalStorage() {
       let productList = [];
 
-      // 遍歷每個商品行，獲取商品資料
       $(".productRow>article").each(function() {
         let productData = {
-          product_img: $(this).find(".product_img").attr("src"), // 獲取商品圖片的 URL
+          product_img: $(this).find(".product_img").attr("src"),
           product_name: $(this).find(".product_name").text(),
-          product_id: $(this).find(".product_id").text(),
-          product_size: $(this).find(".product_size:selected").val(),
-          product_color: $(this).find(".product_color:selected").val(),
-          quantity: parseInt($(this).find(".quantity").text()), // 確保是數字
-          product_price: parseFloat($(this).find(".product_price").text().replace('$', '')) // 去掉 `$` 符號並轉換為數字
+          product_id: $(this).find(".product_id").text().trim(),
+          product_size: $(this).find(".product_size").val(),
+          product_color: $(this).find(".product_color").val(),
+          quantity: parseInt($(this).find(".quantity").text()),
+          product_price: parseFloat($(this).find(".product_price").text().replace('$', ''))
         };
 
-        // 將每個商品資料加入到 productList
         productList.push(productData);
       });
 
@@ -410,53 +406,64 @@
       // 用來檢查儲存的資料（開發測試時使用）
       console.log("Product List: ", JSON.parse(localStorage.getItem("productList")));
       console.log("Cart Price: ", JSON.parse(localStorage.getItem("cartPrice")));
-    }
+    }//saveCartToLocalStorage
 
+  }); //end of doucument ready
+  //  <----------------------------------儲存購物車資料到資料庫------------------------------------->
+  $(document).ready(function() {
+    // **監聽數量變更**
+    $(document).on("click", ".buttonPlus, .buttonMinus", function() {
+      let article = $(this).closest("article");
+      let productId = article.find(".product_id").text().trim();
+      let quantity = parseInt(article.find(".quantity").text());
+      article.find(".quantity").text(quantity);
+      updateCart(productId, quantity, article);
+    });
 
-    //  <----------------------------------儲存購物車資料到資料庫------------------------------------->
-    function saveDataToDataBase() {
-      let cartData = [];
+    // **監聽尺寸變更**
+    $(document).on("change", ".product_size", function() {
+      let article = $(this).closest("article");
+      let productId = article.find(".product_id").text().trim();
+      let quantity = parseInt(article.find(".quantity").text());
+      updateCart(productId, quantity, article);
+    });
 
-      // 遍歷所有商品，獲取購物車資訊
-      $(".productRow>article").each(function() {
-        let productId = $(this).find(".product_id").text().trim(); // 確保 product_id 存在
-        let quantity = parseInt($(this).find(".quantity").text()); // 取得數量
-        let productSize = $(this).find(".product_size").val(); // 取得尺寸
-        let productColor = $(this).find(".product_color").val(); // 取得顏色
+    // **監聽顏色變更**
+    $(document).on("change", ".product_color", function() {
+      let article = $(this).closest("article");
+      let productId = article.find(".product_id").text().trim();
+      let quantity = parseInt(article.find(".quantity").text());
+      updateCart(productId, quantity, article);
+    });
 
-        if (productId) {
-          cartData.push({
-            product_id: productId,
-            quantity: quantity,
-            product_size: productSize,
-            product_color: productColor
-          });
-        }
-      });
+    // **更新購物車資訊**
+    function updateCart(productId, quantity, article) {
+      let productSize = article.find(".product_size").val();
+      let productColor = article.find(".product_color").val();
 
-      console.log("準備送出的購物車資料:", cartData);
-
-      // **AJAX POST 請求**
       $.ajax({
-        url: 'http://localhost/client-side/public/insertCart', // 修改為正確的 API
+        url: 'http://localhost/client-side/public/updateCart',
         method: 'POST',
-        contentType: "application/json", // 以 JSON 格式發送資料
+        contentType: "application/json",
         data: JSON.stringify({
-          cartItems: cartData
-        }), // 傳遞 JSON 格式的購物車資料
+          product_id: productId,
+          quantity: quantity,
+          product_size: productSize,
+          product_color: productColor
+        }),
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // 取得 CSRF Token
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function(response) {
-          console.log("購物車資料成功更新到資料庫:", response);
+          console.log("✅ 購物車更新成功:", response);
         },
         error: function(xhr, status, error) {
           console.error("❌ 更新購物車失敗:", status, error);
           console.error("📢 詳細錯誤訊息:", xhr.responseText);
         }
-      }); //end of Ajax
+      });
     }
-  }); //end of doucument ready
+  });
 </script>
 
 @endpush

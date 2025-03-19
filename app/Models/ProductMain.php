@@ -10,5 +10,5 @@ class ProductMain extends Model
     use HasFactory;
 
     protected $table = 'product_main';
-    protected $fillable = ['product_id', 'product_name', 'product_price'];
+    protected $fillable = ['product_id', 'product_name', 'product_price', 'product_img'];
 }

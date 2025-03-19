@@ -6,6 +6,8 @@ use App\Models\ProductSpec;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
 
 
 class CartController extends Controller
@@ -52,7 +54,7 @@ class CartController extends Controller
         foreach ($cartItems as $item) {
             DB::table('cart')->updateOrInsert(
                 // ['product_id' => $item['product_id'], 'product_size' => $item['product_size'], 'product_color' => $item['product_color']],
-                // ['quantity' => $item['quantity']]
+                // ['quantity' => $item['quantity']
                 ['product_id' => $item['product_id']],
                 [
                     'quantity' => $item['quantity'],
@@ -66,4 +68,44 @@ class CartController extends Controller
     
         return response()->json(['message' => '購物車更新成功！'], 200);
     }
+
+
+
+    public function updateCart(Request $request)
+    {
+        // 確保請求不是空的
+        $cartData = $request->json()->all();
+
+        if (empty($cartData)) {
+            Log::error("❌ cartData 為空或 null！");
+            return response()->json(['message' => '無效的請求！'], 400);
+        }
+
+        // 解析請求數據
+        $productId = $cartData['product_id'] ?? null;
+        $quantity = $cartData['quantity'] ?? null;
+        $productSize = $cartData['product_size'] ?? null;
+        $productColor = $cartData['product_color'] ?? null;
+
+        if (!$productId || !$quantity || !$productSize || !$productColor) {
+            return response()->json(['message' => '缺少必要參數！'], 400);
+        }
+
+        // 更新資料庫
+        $updated = DB::table('cart')
+            ->where('product_id', $productId)
+            ->update([
+                'quantity' => $quantity,
+                'product_size' => $productSize,
+                'product_color' => $productColor
+            ]);
+
+        if ($updated) {
+            Log::info("✅ 商品 {$productId} 更新成功！", $cartData);
+            return response()->json(['message' => '購物車更新成功！'], 200);
+        } else {
+            return response()->json(['message' => '購物車更新失敗或無變更！'], 500);
+        }
+    }
 }
+
