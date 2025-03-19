@@ -16,6 +16,11 @@ Route::get('/categories_accessories', [CategoriesAccController::class, 'categori
 Route::get('/categories_clothes', [CategoriesCloController::class, 'categoriesClo'])
     ->name('categories_clothes');
 
+//銀黏土課程
+Route::get('/lessons',function () {
+    return view('lessons');
+})->name('lessons');
+
 // 關於我們
 Route::get('/about_us', function () {
     return view('about_us');
