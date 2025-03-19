@@ -77,12 +77,12 @@
                 <div class="self-stretch justify-between items-center inline-flex">
                     <div class=" lg:pb-[6.82px] justify-center items-center flex">
                         <div
-                            class=" break-all break-words lg:w-[502px]  md:w-[300px] sm:w-[275px]  relative  text-brandGray-normal lg:text-2xl sm:text-xl font-light font-['Lexend'] lg:leading-9 sm:leading-[30px]">
+                            class=" break-all break-words lg:w-[502px]  md:w-[300px] sm:w-[275px]  relative  text-brandGrey-normal lg:text-2xl sm:text-xl font-light font-['Lexend'] lg:leading-9 sm:leading-[30px]">
                             Navajo 綠松石十字星戒 </div>
                     </div>
                     <button id="likeBtn" class="relative focus:outline-none">
                         <svg id="likeIcon" width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"
-                            class="transition duration-300 ease-in-out text-brandGray-normal fill-none">
+                            class="transition duration-300 ease-in-out text-brandGrey-normal fill-none">
                             <path
                                 d="M21.25 8.125C22.6307 8.125 23.75 9.24429 23.75 10.625M15 7.12817L15.8563 6.25C18.52 3.51839 22.8386 3.51839 25.5023 6.25C28.0944 8.90825 28.174 13.1923 25.6826 15.9499L18.5246 23.8727C16.623 25.9775 13.3769 25.9775 11.4753 23.8727L4.31741 15.9499C1.82598 13.1923 1.90563 8.90828 4.49775 6.25002C7.1614 3.51841 11.48 3.51841 14.1437 6.25002L15 7.12817Z"
                                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -90,7 +90,7 @@
                     </button>
                 </div>
                 <div
-                class="opacity-60 text-brandGray-normal lg:text-sm sm:text-xs font-light font-['Lexend'] lg:leading-snug md:leading-[18px] max-h-[120px] overflow-hidden hover:overflow-visible">
+                class="opacity-60 text-brandGrey-normal lg:text-sm sm:text-xs font-light font-['Lexend'] lg:leading-snug md:leading-[18px] max-h-[120px] overflow-hidden hover:overflow-visible">
                     ·Material |
                     925 silver | natural opal size | Metric circumference No.10 (公制圍10號)
                     飾品皆手工製作，誤差值 ±0.5公分皆為正常範圍
@@ -98,10 +98,10 @@
             </div>
             <div class="justify-start items-center gap-2.5 inline-flex">
                 <div
-                    class="text-brandGray-normal lg:text-2xl sm:text-lg font-light font-['Lexend'] lg:leading-9 sm:leading-relaxed">
+                    class="text-brandGrey-normal lg:text-2xl sm:text-lg font-light font-['Lexend'] lg:leading-9 sm:leading-relaxed">
                     NT$ 5980</div>
                 <div
-                    class="text-brandGray-normalLight lg:text-lg md:text-sm font-light font-['Lexend'] line-through lg:leading-relaxed sm:leading-snug">
+                    class="text-brandGrey-normalLight lg:text-lg md:text-sm font-light font-['Lexend'] line-through lg:leading-relaxed sm:leading-snug">
                     NT$
                     5980</div>
             </div>
@@ -109,7 +109,7 @@
                 <!-- 顏色選擇區 -->
                 <div class="flex items-center gap-3">
                     <span
-                        class="text-brandGray-normal lg:text-2xl sm:text-lg font-['Lexend'] lg:leading-9 sm:leading-relaxed font-light">顏色:</span>
+                        class="text-brandGrey-normal lg:text-2xl sm:text-lg font-['Lexend'] lg:leading-9 sm:leading-relaxed font-light">顏色:</span>
                     <div data-svg-wrapper class="flex gap-3">
                         <svg id="svgcolor" class="w-auto h-auto sm:w-[107px] sm:h-[32px] lg:w-[183px] lg:h-[52px]"
                             viewBox="0 0 183 52">
@@ -141,7 +141,7 @@
                 <!-- 尺寸選擇區 -->
                 <div class="flex items-center lg:gap-4 sm:gap-3 ">
                     <span
-                        class="text-brandGray-normal lg:text-2xl sm:text-lg font-light font-['Lexend'] lg:leading-9 sm:leading-relaxed">尺寸:</span>
+                        class="text-brandGrey-normal lg:text-2xl sm:text-lg font-light font-['Lexend'] lg:leading-9 sm:leading-relaxed">尺寸:</span>
                     <div class="grid grid-cols-3 lg:gap-4 sm:gap-3 ">
                         <button
                             class="size-option lg:w-12 lg:h-12 sm:w-7 sm:h-7 border border-brandBlue-normal flex items-center justify-center rounded-md">
@@ -162,27 +162,27 @@
                 </div>
             </div>
             <div class="w-full lg:h-[58px] md:h-[40px] justify-start items-center gap-4 inline-flex">
-                <div class="grid grid-cols-5 lg:w-[216px] sm:w-[177px]  border border-brandGray-lightHover rounded-md">
+                <div class="grid grid-cols-5 lg:w-[216px] sm:w-[177px]  border border-brandGrey-lightHover rounded-md">
                     <!-- 減少數量按鈕 -->
                     <button id="decrese"
                         class="col-span-1 flex justify-center items-center bg-white hover:bg-gray-200 lg:h-[58px] sm:h-10 cursor-pointer">
-                        <span class="text-brandGray-normal lg:text-2xl sm:text-lg font-medium">-</span>
+                        <span class="text-brandGrey-normal lg:text-2xl sm:text-lg font-medium">-</span>
                     </button>
 
                     <!-- 數量顯示 -->
                     <div
-                        class="col-span-3 flex justify-center items-center border-x border-brandGray-lightHover bg-white lg:h-[58px] sm:h-10">
-                        <span id="quantity" class="text-brandGray-normal lg:text-2xl sm:text-lg font-light">01</span>
+                        class="col-span-3 flex justify-center items-center border-x border-brandGrey-lightHover bg-white lg:h-[58px] sm:h-10">
+                        <span id="quantity" class="text-brandGrey-normal lg:text-2xl sm:text-lg font-light">01</span>
                     </div>
 
                     <!-- 增加數量按鈕 -->
                     <button id="add"
                         class="col-span-1 flex justify-center items-center bg-white hover:bg-gray-200 lg:h-[58px] sm:h-10 cursor-pointer">
-                        <span class="text-brandGray-normal lg:text-2xl sm:text-lg font-medium">+</span>
+                        <span class="text-brandGrey-normal lg:text-2xl sm:text-lg font-medium">+</span>
                     </button>
                 </div>
                 <div
-                    class="text-brandGray-normalLight lg:text-lg sm:text-sm font-light font-['Lexend'] lg:leading-relaxed sm:leading-snug">
+                    class="text-brandGrey-normalLight lg:text-lg sm:text-sm font-light font-['Lexend'] lg:leading-relaxed sm:leading-snug">
                     庫存剩12件
                 </div>
             </div>
@@ -225,7 +225,7 @@
 
     <div
         class=" flex mx-auto  lg:w-[1320px]  md:w-[720px] sm:w-[390px]  flex-col justify-start items-center gap-5  lg:mt-[100px] md:mt-[55px] sm:mt-10">
-        <div class="md:h-[54px] border-b border-brandGray-lightHover w-full justify-center items-start gap-10 inline-flex">
+        <div class="md:h-[54px] border-b border-brandGrey-lightHover w-full justify-center items-start gap-10 inline-flex">
             <div id="info"
                 class="md:px-4 md:py-3  shadow-[inset_0px_-3px_0px_0px_rgba(220,53,69,1.00)] justify-start items-start gap-2 flex cursor-pointer">
                 <div id="info-text" class="text-brandRed-normal md:text-xl md:font-light font-['Lexend'] leading-[30px]">
@@ -233,7 +233,7 @@
             </div>
             <div id="show-img" class="md:px-4 md:py-3  justify-start items-start gap-2 flex cursor-pointer">
                 <div id="show-img-text"
-                    class="text-brandGray-normal md:text-xl md:font-light font-['Lexend'] leading-[30px]">產品展示圖</div>
+                    class="text-brandGrey-normal md:text-xl md:font-light font-['Lexend'] leading-[30px]">產品展示圖</div>
             </div>
         </div>
         <div id="show-img-content" class="w-full hidden ">

@@ -27,8 +27,8 @@
                                 <img src="{{ 'http://localhost:8000/storage/' . $short->product_img}}" alt="{{$short->product_name}}" class="w-full h-[250px] md:h-full object-cover">
                             </div>
                             <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
-                                <p class="text-brandGray-darker">{{$short->product_name}}</p>
-                                <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">{{$short->product_price}}</span></p>
+                                <p class="text-brandGrey-darker">{{$short->product_name}}</p>
+                                <p class="text-brandGrey-normal text-[18px]">NT$&nbsp;<span id="price">{{$short->product_price}}</span></p>
                             </div>
                         </a>
                         @endforeach
@@ -46,8 +46,8 @@
                                 <img src="{{'http://localhost:8000/storage/' . $long->product_img}}" alt="{{$long->product_name}}" class="w-full h-[250px] md:h-full object-cover">
                             </div>
                             <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
-                                <p class="text-brandGray-darker">{{$long->product_name}}</p>
-                                <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">{{$long->product_price}}</span></p>
+                                <p class="text-brandGrey-darker">{{$long->product_name}}</p>
+                                <p class="text-brandGrey-normal text-[18px]">NT$&nbsp;<span id="price">{{$long->product_price}}</span></p>
                             </div>
                         </a>
                         @endforeach
@@ -65,8 +65,8 @@
                                 <img src="{{'http://localhost:8000/storage/' . $jacket->product_img}}" alt="{{$jacket->product_name}}" class="w-full h-[250px] md:h-full object-cover">
                             </div>
                             <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
-                                <p class="text-brandGray-darker">{{$jacket->product_name}}</p>
-                                <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">{{$jacket->product_price}}</span></p>
+                                <p class="text-brandGrey-darker">{{$jacket->product_name}}</p>
+                                <p class="text-brandGrey-normal text-[18px]">NT$&nbsp;<span id="price">{{$jacket->product_price}}</span></p>
                             </div>
                         </a>
                         @endforeach

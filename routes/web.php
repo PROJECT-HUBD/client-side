@@ -192,3 +192,43 @@ Route::get('/check_out', function () {
 
 
 require __DIR__ . '/auth.php';
+
+// 購物車頁_Ajax成功
+Route::match(['get', 'post'],'/cart', function () {
+    return view('cart');
+})->name('cart');
+
+
+//購物車獲取資料
+Route::get('/getCartData', [CartController::class, 'getCartData']);
+// 購物車更新資料
+Route::match(['get', 'post'],'/insertCart', [CartController::class, 'insertCart']);
+Route::post('/updateCart', [CartController::class, 'updateCart']);
+
+// 購物清單頁
+Route::match(['get', 'post'],'/check_out', function () {
+    return view('check_out');
+})->name('check_out');
+
+//購物清單頁_新增一筆訂單_orderMain
+Route::post('/InsertOrderMain', [CheckoutController::class, 'InsertOrderMain']);
+//購物清單頁_新增一筆訂單_orderdetail
+Route::post('/InsertOrderDetail', [CheckoutController::class, 'InsertOrderDetail']);
+//購物清單頁_刪除購物車
+Route::post('/DeleteCart', [CheckoutController::class, 'DeleteCart']);
+
+
+// 成功頁
+Route::match(['get', 'post'],'/successful_transaction', function () {
+    return view('successful_transaction');
+})->name('successful_transaction');
+// 失敗頁
+Route::match(['get', 'post'],'/failed_transaction', function () {
+    return view('failed_transaction');
+})->name('failed_transaction');
+// 維護頁
+Route::match(['get', 'post'],'/system-maintenance', function () {
+    return view('system-maintenance');
+})->name('system-maintenance');
+
+
