@@ -1,8 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', '購物車')
+@section('meta_description', '購物車')
+@section('meta_keywords', '購物車')
 
 @section('content')
+<section class="mt-[150px] ">
+  <!-- 麵包屑 -->
+  <x-breadcrumb :items="[
+             ['name' => '首頁', 'url' => route('home')],
+             ['name' => '購物車'],
+         ]" />
 <style>
   .body {
     /* border: 1px black solid; */
@@ -26,7 +34,7 @@
 </style>
 
 
-<div class="body flex flex-col items-center ">
+<div class="body flex flex-col items-center lg:mx-[120px] md:mx-[60px] sm:mx-[20px]">
   <!------------------------------------- table ------------------------------->
   <div class="flex flex-col w-full ">
     <!------------------------------------- tableTitle ------------------------------->
@@ -162,7 +170,7 @@
     </a>
   </div>
 </div>
-
+</section >
 @endsection
 @push('scripts')
 
