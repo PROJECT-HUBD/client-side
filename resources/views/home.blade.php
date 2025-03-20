@@ -97,7 +97,7 @@
                             <div class="w-[50px] h-[50px] flex justify-center items-center">S</div>
                         </div>
                         <!-- 查看商品按鈕 -->
-                        <a href="#" class="w-full md:w-[250px] h-[50px] text-[20px] text-semibold text-brandGray-lightLight flex justify-center items-center bg-brandRed-normal rounded-md hover:opacity-80">
+                        <a href="{{ route('product_details', ['id' => $firstItem->product_id]) }}" class="w-full md:w-[250px] h-[50px] text-[20px] text-semibold text-brandGray-lightLight flex justify-center items-center bg-brandRed-normal rounded-md hover:opacity-80">
                             商品詳情&nbsp;<span class="w-[20px] h-[20px] text-brandGray-lightLight icon-[ep--arrow-right-bold]"></span>
                         </a>
                     </div>
@@ -151,7 +151,7 @@
                     <div class="w-[225px] h-[136px] text-brandGray-lightLight">
                         <p class=" font-semibold text-[24px]">銀黏土課程</p>
                         <p class=" font-normal text-[24px] mb-5">Sliver Clay Lessons</p>
-                        <a href=""><button type="button" class="w-[137px] h-[52px] font-semibold border-2 border-brandGray-lightLight rounded-lg hover:bg-brandRed-normal active:opacity-50">了解更多</button></a>
+                        <a href="{{route('lessons')}}"><button type="button" class="w-[137px] h-[52px] font-semibold border-2 border-brandGray-lightLight rounded-lg hover:bg-brandRed-normal active:opacity-50">了解更多</button></a>
                     </div>
                 </div>
             </div>
@@ -246,7 +246,7 @@
         <!-- 商品四個 -->
         <div class="w-full md:w-[770px] h-full lg:w-[1230px] lg:h-[418px] grid md:grid-cols-3 lg:grid-cols-4 justify-center items-center gap-5">
             @foreach($accessories as $index => $accessory)
-            <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5 {{$index === 3 ? 'hidden lg:flex' : ''}}">
+            <a href="{{ route('product_details', ['id' => $accessory->product_id]) }}" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5 {{$index === 3 ? 'hidden lg:flex' : ''}}">
                 <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
                     <img src="{{ 'http://localhost:8000/storage/' . $accessory->product_img }}" alt="{{$accessory->product_name}}" class="w-full h-full object-cover">
                 </div>
@@ -274,7 +274,7 @@
         <!-- 商品四個 -->
         <div class="w-full md:w-[770px] h-full lg:w-[1230px] lg:h-[418px] grid md:grid-cols-3 lg:grid-cols-4 justify-center items-center gap-5">
             @foreach($clothes as $index => $cloth)
-            <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5 {{$index === 3 ? 'hidden lg:flex' : ''}}">
+            <a href="{{ route('product_details', ['id' => $cloth->product_id]) }}" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5 {{$index === 3 ? 'hidden lg:flex' : ''}}">
                 <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
                     <img src="{{ 'http://localhost:8000/storage/' . $cloth->product_img }}" alt="{{$cloth->product_name}}" class="w-full h-full object-cover">
                 </div>

@@ -33,7 +33,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/wishlist/remove', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
 });
 
-
 // 商品內頁
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product_details');
 
