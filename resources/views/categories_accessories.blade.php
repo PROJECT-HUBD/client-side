@@ -5,7 +5,7 @@
 @section('meta_keywords', 'accessories, 飾品')
 
 @section('content')
-<section class="mt-[150px]">
+<section class="mt-[150px] flex flex-col justify-center items-center">
     <!-- 麵包屑 -->
     <x-breadcrumb :items="[
              ['name' => '首頁', 'url' => route('home')],
@@ -13,146 +13,22 @@
          ]" />
 
     <!-- 標題文字 -->
-    <section class="max-w-[1440px]">
-        <div class="w-full flex flex-col justify-center items-center text-brandGray-normal mb-[100px]">
-            <p class="text-[30px]">364</p>
-            <p class="text-[30px] mb-[20px]">HAPPY UNBIRTHDAY</p>
-            <p class="text-[20px] font-light">SINCE 2020</p>
-        </div>
-
+    <section class="w-full mt-5 pt-10 flex justify-center items-center">
         <!-- 商品卡片區 -->
-        <section class="w-full h-[4800px] md:h-[1580px] lg:h-[1240px] flex flex-col justify-start items-center mb-[60px]">
-            <!-- 商品十二個 -->
-            <div class="w-full md:w-[770px] h-full lg:w-[1230px] lg:h-[418px] grid md:grid-cols-3 lg:grid-cols-4 justify-center items-center gap-5">
-                <!-- 商品1 -->
-                <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
+        <section class="product-section w-full h-[4800px] md:h-[1580px] lg:h-[1240px] flex flex-col justify-start items-center mb-[60px]">
+            <div class="w-full md:w-[770px] lg:w-[1230px] h-[418px] grid md:grid-cols-3 lg:grid-cols-4 justify-center items-center gap-5">
+                @foreach($accessories as $index => $accessory)
+                <!-- 商品 -->
+                <a href="{{route('product_details', ['id' => $accessory->product_id])}}" class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5 mb-32 md:mb-14">
                     <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                        <img src="{{asset('images/home_test6.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
+                        <img src="{{ 'http://localhost:8000/storage/' . $accessory->product_img}}" alt="{{$accessory->product_name}}" class="w-full h-[250px] md:h-full object-cover">
                     </div>
                     <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
-                        <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
-                        <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
+                        <p class="text-brandGray-darker">{{$accessory->product_name}}</p>
+                        <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">{{$accessory->product_price}}</span></p>
                     </div>
                 </a>
-                <!-- 商品2 -->
-                <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
-                    <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                        <img src="{{asset('images/home_test6.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
-                    </div>
-                    <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
-                        <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
-                        <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
-                    </div>
-                </a>
-
-                <!-- 商品3 -->
-                <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
-                    <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                        <img src="{{asset('images/home_test6.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
-                    </div>
-                    <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
-                        <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
-                        <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
-                    </div>
-                </a>
-
-                <!-- 商品4 -->
-                <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
-                    <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                        <img src="{{asset('images/home_test6.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
-                    </div>
-                    <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
-                        <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
-                        <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
-                    </div>
-                </a>
-
-                <!-- 商品5 -->
-                <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
-                    <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                        <img src="{{asset('images/home_test6.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
-                    </div>
-                    <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
-                        <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
-                        <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
-                    </div>
-                </a>
-
-                <!-- 商品6 -->
-                <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
-                    <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                        <img src="{{asset('images/home_test6.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
-                    </div>
-                    <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
-                        <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
-                        <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
-                    </div>
-                </a>
-
-                <!-- 商品7 -->
-                <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
-                    <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                        <img src="{{asset('images/home_test6.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
-                    </div>
-                    <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
-                        <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
-                        <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
-                    </div>
-                </a>
-
-                <!-- 商品8 -->
-                <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
-                    <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                        <img src="{{asset('images/home_test6.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
-                    </div>
-                    <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
-                        <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
-                        <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
-                    </div>
-                </a>
-
-                <!-- 商品9 -->
-                <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
-                    <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                        <img src="{{asset('images/home_test6.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
-                    </div>
-                    <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
-                        <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
-                        <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
-                    </div>
-                </a>
-                <!-- 商品10 -->
-                <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
-                    <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                        <img src="{{asset('images/home_test6.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
-                    </div>
-                    <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
-                        <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
-                        <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
-                    </div>
-                </a>
-
-                <!-- 商品11 -->
-                <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
-                    <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                        <img src="{{asset('images/home_test6.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
-                    </div>
-                    <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
-                        <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
-                        <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
-                    </div>
-                </a>
-
-                <!-- 商品12 -->
-                <a href="" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5">
-                    <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
-                        <img src="{{asset('images/home_test6.JPG')}}" alt="飾品商品圖" class="w-full h-full object-cover">
-                    </div>
-                    <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
-                        <p class="text-brandGray-darker">Navajo 綠松石十字星戒</p>
-                        <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">5980</span></p>
-                    </div>
-                </a>
+                @endforeach
             </div>
         </section>
     </section>
@@ -160,6 +36,36 @@
 @endsection
 
 @push('scripts')
-<!-- jQuery 內容 -->
+<script>
+    $(document).ready(function() {
+        function updateSectionHeight() {
+            let totalItems = $(".product-card").length; // 取得商品總數
+            let itemsPerRow = 4; // 預設一列 4 個商品（對應 lg:grid-cols-4）
+            let windowWidth = $(window).width();
 
+            // RWD 判斷：不同螢幕寬度的 `grid-cols`
+            if (windowWidth < 1024) { // md:grid-cols-3
+                itemsPerRow = 3;
+            }
+            if (windowWidth < 768) { // 手機顯示單列
+                itemsPerRow = 1;
+            }
+
+            // 計算行數（無條件進位）
+            let totalRows = Math.ceil(totalItems / itemsPerRow);
+            let newHeight = totalRows * 450; // 每列 450px
+
+            // 設定高度
+            $(".product-section").css("height", newHeight + "px");
+        }
+
+        // 初始化
+        updateSectionHeight();
+
+        // 監聽視窗縮放，調整高度
+        $(window).resize(function() {
+            updateSectionHeight();
+        });
+    });
+</script>
 @endpush

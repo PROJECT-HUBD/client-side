@@ -61,7 +61,7 @@
                             class="px-5 py-2.5 w-full rounded-md border border-solid border-[#e4e4e4] text-neutral-400"
                             aria-label="Password" />
                         <img id="togglePassword"
-                            src="https://cdn.builder.io/api/v1/image/assets/fff8f95ab9b14906ad7fee76d4c8586f/da6d51fd298722d7d87f4c2d819667fe6bb826fc0609ee1eea9369ae1e77c8af?placeholderIfAbsent=true"
+                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSIjNmI3MjgwIiBkPSJNMjEuODcgMTEuNWMtLjY0LTEuMTEtNC4xNi02LjY4LTEwLjE0LTYuNWMtNS41My4xNC04LjczIDUtOS42IDYuNWExIDEgMCAwIDAgMCAxYy42MyAxLjA5IDQgNi41IDkuODkgNi41aC4yNWM1LjUzLS4xNCA4Ljc0LTUgOS42LTYuNWExIDEgMCAwIDAgMC0xTTEyLjIyIDE3Yy00LjMxLjEtNy4xMi0zLjU5LTgtNWMxLTEuNjEgMy42MS00LjkgNy42MS01YzQuMjktLjExIDcuMTEgMy41OSA4IDVjLTEuMDMgMS42MS0zLjYxIDQuOS03LjYxIDUiLz48cGF0aCBmaWxsPSIjNmI3MjgwIiBkPSJNMTIgOC41YTMuNSAzLjUgMCAxIDAgMy41IDMuNUEzLjUgMy41IDAgMCAwIDEyIDguNW0wIDVhMS41IDEuNSAwIDEgMSAxLjUtMS41YTEuNSAxLjUgMCAwIDEtMS41IDEuNSIvPjwvc3ZnPg=="
                             alt="顯示、隱藏密碼" class="absolute right-3 w-4 h-4 top-[10px] cursor-pointer" />
                         @error('password')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -115,9 +115,20 @@
             var passwordField = document.getElementById("password");
             var toggleIcon = document.getElementById("togglePassword");
 
+            // 定義不同狀態的圖示 URL
+            var showIcon =
+                "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSIjNmI3MjgwIiBkPSJNMjEuODcgMTEuNWMtLjY0LTEuMTEtNC4xNi02LjY4LTEwLjE0LTYuNWMtNS41My4xNC04LjczIDUtOS42IDYuNWExIDEgMCAwIDAgMCAxYy42MyAxLjA5IDQgNi41IDkuODkgNi41aC4yNWM1LjUzLS4xNCA4Ljc0LTUgOS42LTYuNWExIDEgMCAwIDAgMC0xTTEyLjIyIDE3Yy00LjMxLjEtNy4xMi0zLjU5LTgtNWMxLTEuNjEgMy42MS00LjkgNy42MS01YzQuMjktLjExIDcuMTEgMy41OSA4IDVjLTEuMDMgMS42MS0zLjYxIDQuOS03LjYxIDUiLz48cGF0aCBmaWxsPSIjNmI3MjgwIiBkPSJNMTIgOC41YTMuNSAzLjUgMCAxIDAgMy41IDMuNUEzLjUgMy41IDAgMCAwIDEyIDguNW0wIDVhMS41IDEuNSAwIDEgMSAxLjUtMS41YTEuNSAxLjUgMCAwIDEtMS41IDEuNSIvPjwvc3ZnPg=="; // 眼睛開啟
+            var hideIcon =
+                "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48ZyBmaWxsPSJub25lIiBzdHJva2U9IiM2YjcyODAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBkPSJNMTAuNzMzIDUuMDc2YTEwLjc0NCAxMC43NDQgMCAwIDEgMTEuMjA1IDYuNTc1YTEgMSAwIDAgMSAwIC42OTZhMTAuOCAxMC44IDAgMCAxLTEuNDQ0IDIuNDltLTYuNDEtLjY3OWEzIDMgMCAwIDEtNC4yNDItNC4yNDIiLz48cGF0aCBkPSJNMTcuNDc5IDE3LjQ5OWExMC43NSAxMC43NSAwIDAgMS0xNS40MTctNS4xNTFhMSAxIDAgMCAxIDAtLjY5NmExMC43NSAxMC43NSAwIDAgMSA0LjQ0Ni01LjE0M00yIDJsMjAgMjAiLz48L2c+PC9zdmc+"; // 眼睛關閉
+
             toggleIcon.addEventListener("click", function() {
-                // 只切換密碼顯示/隱藏，不改變圖示
-                passwordField.type = passwordField.type === "password" ? "text" : "password";
+                if (passwordField.type === "password") {
+                    passwordField.type = "text";
+                    toggleIcon.src = hideIcon; // 切換為「眼睛關閉」圖示
+                } else {
+                    passwordField.type = "password";
+                    toggleIcon.src = showIcon; // 切換為「眼睛開啟」圖示
+                }
             });
         });
     </script>
