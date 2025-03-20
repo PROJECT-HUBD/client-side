@@ -23,7 +23,7 @@
             <!-- icons -->
             <!-- wish lists -->
             <div class="flex justify-center items-center gap-[24px] md:gap-10">
-                <a href="{{asset('wish_lists')}}" class="flex items-center justify-center">
+                <a href="{{route('wish_lists')}}" class="flex items-center justify-center">
                     <!-- 空心愛心 -->
                     <!-- <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[mynaui--heart]"></span> -->
                     <!-- 實心愛心 -->
