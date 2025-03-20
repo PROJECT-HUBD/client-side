@@ -23,6 +23,7 @@
 
     <!-- Vite + Tailwind -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+  
 </head>
 
 <body class="font-lexend antialiased bg-white w-screen h-screen">
@@ -43,6 +44,7 @@
     @include('layouts.footer')
 
     @stack('scripts')
+   
 </body>
 
 </html>

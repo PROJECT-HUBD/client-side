@@ -19,7 +19,7 @@
             <div class="w-full md:w-[770px] lg:w-[1230px] h-[418px] grid md:grid-cols-3 lg:grid-cols-4 justify-center items-center gap-5">
                 @foreach($accessories as $index => $accessory)
                 <!-- 商品 -->
-                <a href="{{route('product_details')}}" class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5 mb-32 md:mb-14">
+                <a href="{{route('product_details', ['id' => $accessory->product_id])}}" class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5 mb-32 md:mb-14">
                     <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
                         <img src="{{ 'http://localhost:8000/storage/' . $accessory->product_img}}" alt="{{$accessory->product_name}}" class="w-full h-[250px] md:h-full object-cover">
                     </div>

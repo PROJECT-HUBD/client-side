@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\WishlistController;
 // 首頁
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
@@ -16,20 +16,26 @@ Route::get('/categories_accessories', [CategoriesAccController::class, 'categori
 Route::get('/categories_clothes', [CategoriesCloController::class, 'categoriesClo'])
     ->name('categories_clothes');
 
+//銀黏土課程
+Route::get('/lessons',function () {
+    return view('lessons');
+})->name('lessons');
+
 // 關於我們
 Route::get('/about_us', function () {
     return view('about_us');
 })->name('about_us');
 
 // 收藏清單
-Route::get('/wish_lists', function () {
-    return view('wish_lists');
-})->name('wish_lists');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/wish-lists', [WishlistController::class, 'index'])->name('wish_lists');
+    Route::post('/wishlist/toggle', [WishlistController::class, 'toggleWishlist'])->name('wishlist.toggle');
+    Route::post('/wishlist/remove', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
+});
+
 
 // 商品內頁
-Route::get('/product_details', function () {
-    return view('product_details');
-})->name('product_details');
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('product_details');
 
 // 用戶相關頁面
 // Route::prefix('user')->name('user.')->middleware(['auth'])->group(function () {

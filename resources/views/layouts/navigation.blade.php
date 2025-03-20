@@ -64,7 +64,7 @@
         <div class="h-full lg:px-[85px] md:px-[60px] flex justify-start items-center gap-[30px] py-1">
             <a href="{{ route('categories_accessories') }}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">飾品 Accessories</a>
             <a href="{{ route('categories_clothes') }}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">服飾 Clothes</a>
-            <a href="" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">銀黏土課程 Lessons</a>
+            <a href="{{ route('lessons')}}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">銀黏土課程 Lessons</a>
         </div>
     </div>
 
@@ -72,7 +72,7 @@
         <div class="h-full lg:px-[85px] md:px-[60px] flex justify-start items-center gap-[30px] py-1">
             <a href="{{ route('categories_accessories') }}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">飾品 Accessories</a>
             <a href="{{ route('categories_clothes') }}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">服飾 Clothes</a>
-            <a href="" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">銀黏土課程 Lessons</a>
+            <a href="{{ route('lessons') }}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">銀黏土課程 Lessons</a>
         </div>
     </div>
 
@@ -87,7 +87,7 @@
             </div>
             <div class="cursor-pointer w-[350px h-[30px] flex justify-center gap-[30px]">
                 <div id="prodsBtnPhone" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">商品&nbsp;<span class="plusIcon">＋</span></div>
-                <a href="{{route('about_us')}}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">關於我們</a>
+                <a href="{{route('about_us') }}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">關於我們</a>
             </div>
         </div>
     </div>
@@ -97,7 +97,7 @@
         <div class="h-full flex justify-center items-center gap-[30px] py-1">
             <a href="{{ route('categories_accessories') }}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">飾品</a>
             <a href="{{ route('categories_clothes') }}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">服飾</a>
-            <a href="" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">銀黏土課程</a>
+            <a href="{{ route('lessons') }}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">銀黏土課程</a>
         </div>
     </div>
 </nav>

@@ -32,4 +32,6 @@ class ProductMain extends Model
     {
         return $this->hasMany(Wishlist::class, 'product_id'); //關聯wishlist Model  收藏清單用的
     }
+
+    
 }

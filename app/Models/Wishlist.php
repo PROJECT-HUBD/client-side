@@ -17,8 +17,9 @@ class Wishlist extends Model
         return $this->belongsTo(User::class, 'member_id');
     }
 
+    // 定義關聯：讓 Wishlist 可以直接存取 Product
     public function product()
     {
-        return $this->belongsTo(Product::class, 'product_id', 'product_id');
+        return $this->belongsTo(ProductMain::class, 'product_id', 'product_id');
     }
 }
