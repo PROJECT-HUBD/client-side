@@ -1,15 +1,18 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', '結帳')
+@section('meta_description', '結帳')
+@section('meta_keywords', '結帳')
 
 @section('content')
-<style>
-  * {
-    /* border: 1px solid red; */
-  }
-</style>
+<section class="mt-[150px]">
+  <x-breadcrumb :items="[
+             ['name' => '首頁', 'url' => route('home')],
+             ['name' => '購物車', 'url' => route('cart')],
+             ['name' => '結帳'],
+         ]" />
 <div
-  class="flex flex-wrap gap-10 items-start pt-10 pr-24 pb-20 pl-32 max-md:px-5">
+  class="flex flex-wrap gap-10 items-start pt-10 pr-24 pb-20 pl-32 max-md:px-5 lg:mx-[120px] md:mx-[60px] sm:mx-[20px]">
   <!-- 確認地址與付款方式 -->
   <section class="grow shrink min-w-60 w-[495px] max-md:max-w-full">
     <div class="w-full max-md:max-w-full">
@@ -119,7 +122,7 @@
     </section>
 </div>
 
-
+</section>
 @endsection
 @push('scripts')
 <!-- jQuery 內容 -->

@@ -1,13 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', '交易失敗')
+@section('meta_description', '交易失敗')
+@section('meta_keywords', '交易失敗')
 
 @section('content')
-<style>
-    * {
-        /* border: 1px solid red; */
-    }
-</style>
+<section class="mt-[150px] ">
+  <!-- 麵包屑 -->
+  <x-breadcrumb :items="[
+             ['name' => '首頁', 'url' => route('home')],
+             ['name' => '交易失敗'],
+         ]" />
+
 
 <div class="flex flex-col items-center justify-center w-full  min-h-full gap-5">
     <img class="h-[260px]" src="{{ asset('images/failed_transaction/fail.png')   }}" alt="">
@@ -18,6 +22,7 @@
         <span class="goHome self-stretch my-auto mx-auto ">回到購物車</span>
     </a>
 </div>
+</section>
 @endsection
 @push('scripts')
 <!-- jQuery 內容 -->
