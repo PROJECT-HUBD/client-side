@@ -43,9 +43,9 @@
 </div>
 
 <!-- 行動版新側邊欄（取代原先的底部導航） -->
-<div class="md:hidden fixed inset-y-0 left-0 z-50 flex flex-col bg-white border-r border-brandGray-light shadow-md min-h-[680px] min-w-[64px]" style="top: 139px; width: 64px; transition: all 0.3s ease-in-out;" id="mobileSidebar">
+<div class="md:hidden fixed left-0 z-50 flex flex-col bg-white border-r border-brandGray-light shadow-md min-w-[64px]" style="top: var(--header-height, 125px); bottom: 0; width: 64px; transition: all 0.3s ease-in-out;" id="mobileSidebar">
     <!-- 使用grid布局實現垂直均勻分佈 -->
-    <div class="grid grid-cols-1 h-full py-4 overflow-hidden" style="grid-template-rows: auto 2fr auto 1fr auto 1fr auto 1fr auto 1fr auto 2fr auto;">
+    <div class="grid grid-cols-1 h-full py-4 overflow-y-auto" style="grid-template-rows: auto 1.5fr auto 1fr auto 1fr auto 1fr auto 1fr auto 1.5fr auto;">
         <!-- 第1個按鈕：展開/收合 -->
         <div class="flex items-center justify-center w-full">
             <button type="button" class="flex items-center justify-start w-[60px] px-4 py-3 text-brandGray-normal hover:text-brandBlue-normal transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg" id="toggleMobileSidebar">
@@ -140,7 +140,7 @@
 </div>
 
 <!-- 黑色半透明背景覆蓋層 (當側邊欄展開時顯示) -->
-<div class="fixed inset-0 bg-black bg-opacity-50 z-45 hidden md:hidden transition-opacity duration-300 min-h-[680px]" style="top: 139px;" id="sidebarOverlay"></div>
+<div class="fixed left-0 right-0 bg-black bg-opacity-50 z-45 hidden md:hidden transition-opacity duration-300" style="top: var(--header-height, 125px); bottom: 0;" id="sidebarOverlay"></div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -153,41 +153,36 @@
         
         let isExpanded = false;
         
-        // 處理視窗大小變更，確保側邊欄保持最小高度要求
-        const handleResize = () => {
-            const windowHeight = window.innerHeight;
-            const windowWidth = window.innerWidth;
-            const requiredHeight = 680 + 139; // 最小高度 + 頂部偏移
-            
-            if (windowHeight < requiredHeight) {
-                // 當視窗高度不足時，固定高度並調整位置
-                mobileSidebar.style.position = 'absolute';
-                mobileSidebar.style.bottom = 'auto';
-                mobileSidebar.style.height = '680px';
+        // 設定header高度變數
+        const updateHeaderHeight = () => {
+            const marquee = document.querySelector('.marquee-wrapper');
+            const navigation = document.querySelector('nav');
+            if (marquee && navigation) {
+                const marqueeHeight = marquee.offsetHeight;
+                const navigationHeight = navigation.offsetHeight;
+                const totalHeight = marqueeHeight + navigationHeight;
+                document.documentElement.style.setProperty('--header-height', `${totalHeight}px`);
                 
+                // 直接設定側邊欄位置
+                mobileSidebar.style.top = `${totalHeight}px`;
                 if (sidebarOverlay) {
-                    sidebarOverlay.style.position = 'absolute';
-                    sidebarOverlay.style.bottom = 'auto';
-                    sidebarOverlay.style.height = '680px';
-                }
-                
-                // 調整主內容區域的邊距
-                const mainContent = document.querySelector('.content-wrapper');
-                if (mainContent) {
-                    mainContent.style.marginBottom = '20px';
-                }
-            } else {
-                // 視窗高度足夠時，恢復固定定位
-                mobileSidebar.style.position = 'fixed';
-                mobileSidebar.style.bottom = '0';
-                mobileSidebar.style.height = 'auto';
-                
-                if (sidebarOverlay) {
-                    sidebarOverlay.style.position = 'fixed';
-                    sidebarOverlay.style.bottom = '0';
-                    sidebarOverlay.style.height = 'auto';
+                    sidebarOverlay.style.top = `${totalHeight}px`;
                 }
             }
+        };
+        
+        // 初始化時設定header高度
+        updateHeaderHeight();
+        
+        // 處理視窗大小變更，確保側邊欄保持合適高度
+        const handleResize = () => {
+            // 更新header高度
+            updateHeaderHeight();
+            
+            const windowHeight = window.innerHeight;
+            const windowWidth = window.innerWidth;
+            const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height') || '125px');
+            const availableHeight = windowHeight - headerHeight;
             
             // 處理側邊欄展開時的寬度限制
             if (isExpanded) {
@@ -198,6 +193,31 @@
                     if (windowWidth * 0.8 < 180) {
                         mobileSidebar.style.width = '180px';
                     }
+                } else {
+                    mobileSidebar.style.width = '80%';
+                    // 確保寬度不超過最大限制
+                    if (windowWidth * 0.8 > 300) {
+                        mobileSidebar.style.width = '300px';
+                    }
+                }
+            }
+            
+            // 處理極小高度的情況
+            if (availableHeight < 480) {  // 極低高度閾值
+                // 調整內部元素間距，使其更緊湊
+                const gridContainer = mobileSidebar.querySelector('.grid');
+                if (gridContainer) {
+                    gridContainer.style.gridTemplateRows = "auto 1fr auto 0.8fr auto 0.8fr auto 0.8fr auto 0.8fr auto 1fr auto";
+                    gridContainer.style.paddingTop = "8px";
+                    gridContainer.style.paddingBottom = "8px";
+                }
+            } else {
+                // 恢復正常間距
+                const gridContainer = mobileSidebar.querySelector('.grid');
+                if (gridContainer) {
+                    gridContainer.style.gridTemplateRows = "auto 1.5fr auto 1fr auto 1fr auto 1fr auto 1fr auto 1.5fr auto";
+                    gridContainer.style.paddingTop = "1rem";
+                    gridContainer.style.paddingBottom = "1rem";
                 }
             }
         };
@@ -207,6 +227,10 @@
         
         // 視窗大小變更時調用
         window.addEventListener('resize', handleResize);
+        
+        // 確保在頁面加載完成和滾動時更新header高度
+        window.addEventListener('load', updateHeaderHeight);
+        window.addEventListener('scroll', updateHeaderHeight);
         
         toggleMobileSidebar.addEventListener('click', function() {
             isExpanded = !isExpanded;

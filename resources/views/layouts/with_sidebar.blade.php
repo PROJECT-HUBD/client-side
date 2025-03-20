@@ -5,20 +5,14 @@
     <style>
         @media (max-width: 768px) {
             .min-height-container {
-                min-height: 680px; /* 側邊欄按鈕所需的最小高度 */
+                min-height: calc(100vh - var(--header-height, 125px));
             }
             
             .content-wrapper {
                 padding-right: 16px;
-                min-height: 680px; /* 與側邊欄一致的最小高度 */
+                min-height: calc(100vh - var(--header-height, 125px) - 40px);
                 overflow-x: hidden; /* 防止水平溢出 */
-            }
-            
-            /* 當視窗高度過小時，調整內容區域的邊距 */
-            @media (max-height: 819px) { /* 680px + 139px (header高度) = 819px */
-                .min-height-container {
-                    padding-bottom: 20px;
-                }
+                padding-bottom: 20px; /* 確保內容底部有足夠空間 */
             }
             
             /* 最小寬度限制，確保內容不會擠壓 */
@@ -29,6 +23,11 @@
                     width: calc(100% - 66px) !important;
                 }
             }
+        }
+        
+        /* 設定CSS變數，用於儲存header高度 */
+        :root {
+            --header-height: 125px;
         }
     </style>
 
@@ -51,4 +50,27 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // 設定header高度變數供樣式表使用
+        document.addEventListener('DOMContentLoaded', function() {
+            const updateHeaderHeight = () => {
+                const header = document.querySelector('header');
+                if (header) {
+                    const headerHeight = header.offsetHeight;
+                    document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+                }
+            };
+            
+            // 初始化時設定header高度
+            updateHeaderHeight();
+            
+            // 視窗大小變更時更新
+            window.addEventListener('resize', updateHeaderHeight);
+            
+            // 確保在頁面加載完成和滾動時更新
+            window.addEventListener('load', updateHeaderHeight);
+            window.addEventListener('scroll', updateHeaderHeight);
+        });
+    </script>
 @endsection 
