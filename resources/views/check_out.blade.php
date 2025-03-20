@@ -21,7 +21,7 @@
         <h2 class="gap-2.5 self-stretch my-auto text-3xl text-zinc-700">
           確認收件人地址
         </h2>
-        <a
+        <a href="{{ route('user.address') }}"
           class=" self-stretch pt-2.5 my-auto text-base font-bold tracking-wide leading-none  text-gray-500 underline  underline-offset-auto">
           變更收件人與地址
         </a>
@@ -40,7 +40,7 @@
         <h2 class="gap-2.5 self-stretch my-auto text-3xl text-zinc-700">
           付款方式
         </h2>
-        <a
+        <a  href="{{ route('user.payment') }}"
           class="overflow-hidden justify-end self-stretch pt-2.5  text-base font-bold  leading-none  text-gray-500 underline  underline-offset-auto ">
           變更付款方式
         </a>
