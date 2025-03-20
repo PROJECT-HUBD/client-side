@@ -108,7 +108,13 @@
       <select class="flex overflow-hidden gap-5 justify-between px-6 py-3 w-full text-sm tracking-wide leading-7 whitespace-nowrap bg-white rounded-md border border-solid border-zinc-300 text-neutral-500 max-md:pr-5 decoration-none">
         <!-- <option value="" selected hidden>請選擇折扣券</option> -->
         <option value="生日券" selected hidden>生日券</option>
-        <option value="折一百">折一百</option>
+        <option value="新會員首單9折">新會員首單9折</option>
+        <option value="春季特賣8折">春季特賣8折</option>
+        <option value="滿$500折$50">滿$500折$50</option>
+        <option value="全站免運費">全站免運費</option>
+        <option value="指定商品買一送一">指定商品買一送一</option>
+        <option value="VIP會員85折">VIP會員85折</option>
+        <option value="週年慶全館75折">週年慶全館75折</option>
       </select>
 
 
@@ -148,8 +154,8 @@
   <div
     class="flex no-wrap  gap-10 justify-between items-start mt-7 max-w-full text-2xl tracking-normal leading-none whitespace-nowrap w-[1920px]">
     <!-- 繼續購物 -->
-    <!-- <a href="{{ route('home') }}" -->
-    <a
+    <a href="{{ route('home') }}"
+    
       class="keepShoping flex overflow-hidden gap-4 items-center px-8 py-4 font-semibold bg-gray-500 rounded-md text-neutral-100 max-md:px-5">
       <img
         src="https://cdn.builder.io/api/v1/image/assets/TEMP/c952c62e6cb99f0e5fac8a2b72bd495f5e660b6e2fc4c7c02951f27ad1e2d261?placeholderIfAbsent=true&apiKey=29bdb496da09449eb579968368248119"

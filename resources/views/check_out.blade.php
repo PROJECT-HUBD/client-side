@@ -55,8 +55,8 @@
       </select>
     </section>
 
-    <!-- <a href="{{ route('successful_transaction') }}" -->
-    <a
+    <a href="{{ route('successful_transaction') }}"
+   
       class="makeOrder flex justify-center items-center px-10 py-4 mt-12 w-full text-2xl font-bold tracking-normal leading-none text-center text-white  bg-red-500 rounded-md max-md:px-5 max-md:mt-10 max-md:max-w-full">
       一鍵下訂
     </a>
@@ -323,6 +323,13 @@
       const product_ids = productList.map(product => product.product_id);
 
       // $.ajax({
+      // <------------------------------renew cart SQLCommand --------------------------->
+     
+//     INSERT INTO cart (product_id, product_name, product_size, product_color, quantity, id)
+// VALUES 
+//     ("ps001", "女裝百褶拼接寬鬆上衣", "S", "Black", 3, 19),
+//     ("ps002", "女裝不對稱異素材上衣", "L", "Black", 3, 19)
+    
       //   url: 'http://localhost/client-side/public/DeleteCart',
       //   method: 'POST',
       //   contentType: "application/json", // 以 JSON 格式發送資料
