@@ -1,29 +1,29 @@
-<div class="w-full md:w-64 bg-white border-brandGray-light flex-shrink-0 hidden md:block">
+<div class="w-full md:w-64 bg-white border-brandGrey-light flex-shrink-0 hidden md:block">
     <!-- 側邊選單 -->
     <nav class="p-2">
         <div class="space-y-1">
             <div class="py-2">
-                <a href="{{route('user.user_profile')}}" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/user_profile') ? 'bg-brandGray-lightLight text-brandBlue-normal' : 'text-brandGray-normal hover:bg-brandGray-lightLight hover:text-brandBlue-normal' }}">
-                    <i class="icon-[mdi--account-circle-outline] w-5 h-5 mr-2 flex-shrink-0 {{ request()->is('user/user_profile') ? 'text-brandBlue-normal' : 'text-brandGray-normalLight group-hover:text-brandBlue-normal' }}"></i>
+                <a href="{{route('user.user_profile')}}" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/user_profile') ? 'bg-brandGrey-lightLight text-brandBlue-normal' : 'text-brandGrey-normal hover:bg-brandGrey-lightLight hover:text-brandBlue-normal' }}">
+                    <i class="icon-[mdi--account-circle-outline] w-5 h-5 mr-2 flex-shrink-0 {{ request()->is('user/user_profile') ? 'text-brandBlue-normal' : 'text-brandGrey-normalLight group-hover:text-brandBlue-normal' }}"></i>
                     <span class="truncate">個人檔案</span>
                 </a>
-                <a href="{{route('user.orders')}}" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/orders') ? 'bg-brandGray-lightLight text-brandBlue-normal' : 'text-brandGray-normal hover:bg-brandGray-lightLight hover:text-brandBlue-normal' }}">
-                    <i class="icon-[mdi--package-variant-closed] w-5 h-5 mr-2 flex-shrink-0 {{ request()->is('user/orders') ? 'text-brandBlue-normal' : 'text-brandGray-normalLight group-hover:text-brandBlue-normal' }}"></i>
+                <a href="{{route('user.orders')}}" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/orders') ? 'bg-brandGrey-lightLight text-brandBlue-normal' : 'text-brandGrey-normal hover:bg-brandGrey-lightLight hover:text-brandBlue-normal' }}">
+                    <i class="icon-[mdi--package-variant-closed] w-5 h-5 mr-2 flex-shrink-0 {{ request()->is('user/orders') ? 'text-brandBlue-normal' : 'text-brandGrey-normalLight group-hover:text-brandBlue-normal' }}"></i>
                     <span class="truncate">我的訂單</span>
                 </a>
             </div>
             
             <div class="py-2">
-                <a href="{{route('user.address')}}" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/address') ? 'bg-brandGray-lightLight text-brandBlue-normal' : 'text-brandGray-normal hover:bg-brandGray-lightLight hover:text-brandBlue-normal' }}">
-                    <i class="icon-[mdi--map-marker-outline] w-5 h-5 mr-2 flex-shrink-0 {{ request()->is('user/address') ? 'text-brandBlue-normal' : 'text-brandGray-normalLight group-hover:text-brandBlue-normal' }}"></i>
+                <a href="{{route('user.address')}}" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/address') ? 'bg-brandGrey-lightLight text-brandBlue-normal' : 'text-brandGrey-normal hover:bg-brandGrey-lightLight hover:text-brandBlue-normal' }}">
+                    <i class="icon-[mdi--map-marker-outline] w-5 h-5 mr-2 flex-shrink-0 {{ request()->is('user/address') ? 'text-brandBlue-normal' : 'text-brandGrey-normalLight group-hover:text-brandBlue-normal' }}"></i>
                     <span class="truncate">收件地址</span>
                 </a>
-                <a href="{{route('user.payment')}}" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/payment') ? 'bg-brandGray-lightLight text-brandBlue-normal' : 'text-brandGray-normal hover:bg-brandGray-lightLight hover:text-brandBlue-normal' }}">
-                    <i class="icon-[mdi--credit-card-outline] w-5 h-5 mr-2 flex-shrink-0 {{ request()->is('user/payment') ? 'text-brandBlue-normal' : 'text-brandGray-normalLight group-hover:text-brandBlue-normal' }}"></i>
+                <a href="{{route('user.payment')}}" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/payment') ? 'bg-brandGrey-lightLight text-brandBlue-normal' : 'text-brandGrey-normal hover:bg-brandGrey-lightLight hover:text-brandBlue-normal' }}">
+                    <i class="icon-[mdi--credit-card-outline] w-5 h-5 mr-2 flex-shrink-0 {{ request()->is('user/payment') ? 'text-brandBlue-normal' : 'text-brandGrey-normalLight group-hover:text-brandBlue-normal' }}"></i>
                     <span class="truncate">付款資訊</span>
                 </a>
-                <a href="" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/coupons') ? 'bg-brandGray-lightLight text-brandBlue-normal' : 'text-brandGray-normal hover:bg-brandGray-lightLight hover:text-brandBlue-normal' }}">
-                    <i class="icon-[mdi--ticket-percent-outline] w-5 h-5 mr-2 flex-shrink-0 {{ request()->is('user/coupons') ? 'text-brandBlue-normal' : 'text-brandGray-normalLight group-hover:text-brandBlue-normal' }}"></i>
+                <a href="" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->is('user/coupons') ? 'bg-brandGrey-lightLight text-brandBlue-normal' : 'text-brandGrey-normal hover:bg-brandGrey-lightLight hover:text-brandBlue-normal' }}">
+                    <i class="icon-[mdi--ticket-percent-outline] w-5 h-5 mr-2 flex-shrink-0 {{ request()->is('user/coupons') ? 'text-brandBlue-normal' : 'text-brandGrey-normalLight group-hover:text-brandBlue-normal' }}"></i>
                     <span class="truncate">我的優惠</span>
                 </a>
             </div>
@@ -31,10 +31,10 @@
     </nav>
     
     <!-- 登出按鈕 -->
-    <div class="p-4 mt-4 border-t border-brandGray-light">
+    <div class="p-4 mt-4 border-t border-brandGrey-light">
         <form  method="POST" action="{{route('logout')}}">
             @csrf
-            <button  type="submit" class="w-full flex items-center justify-center px-3 py-2 border border-brandGray-lightActive text-brandGray-normal rounded-md hover:bg-brandGray-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGray-light">
+            <button  type="submit" class="w-full flex items-center justify-center px-3 py-2 border border-brandGrey-lightActive text-brandGrey-normal rounded-md hover:bg-brandGrey-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGrey-light">
                 <i class="icon-[mdi--logout] w-5 h-5 mr-2 flex-shrink-0"></i>
                 <span class="truncate">登出</span>
             </button>
@@ -43,12 +43,12 @@
 </div>
 
 <!-- 行動版新側邊欄（取代原先的底部導航） -->
-<div class="md:hidden fixed inset-y-0 left-0 z-50 flex flex-col bg-white border-r border-brandGray-light shadow-md min-h-[680px] min-w-[64px]" style="top: 139px; width: 64px; transition: all 0.3s ease-in-out;" id="mobileSidebar">
+<div class="md:hidden fixed inset-y-0 left-0 z-50 flex flex-col bg-white border-r border-brandGrey-light shadow-md min-h-[680px] min-w-[64px]" style="top: 139px; width: 64px; transition: all 0.3s ease-in-out;" id="mobileSidebar">
     <!-- 使用grid布局實現垂直均勻分佈 -->
     <div class="grid grid-cols-1 h-full py-4 overflow-hidden" style="grid-template-rows: auto 2fr auto 1fr auto 1fr auto 1fr auto 1fr auto 2fr auto;">
         <!-- 第1個按鈕：展開/收合 -->
         <div class="flex items-center justify-center w-full">
-            <button type="button" class="flex items-center justify-start w-[60px] px-4 py-3 text-brandGray-normal hover:text-brandBlue-normal transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg" id="toggleMobileSidebar">
+            <button type="button" class="flex items-center justify-start w-[60px] px-4 py-3 text-brandGrey-normal hover:text-brandBlue-normal transition-colors duration-200 hover:bg-brandGrey-lightLight rounded-lg" id="toggleMobileSidebar">
                 <div class="flex items-center justify-center w-8 h-8">
                     <div class="relative w-6 h-6 flex items-center justify-center">
                         <i class="icon-[mdi--chevron-right] w-6 h-6 absolute transition-all duration-300" id="sidebarIconRight" style="opacity: 1;"></i>
@@ -64,7 +64,7 @@
         
         <!-- 第2個按鈕：個人檔案 -->
         <div class="flex items-center justify-center w-full">
-            <a href="{{ route('user.user_profile') }}" class="flex items-center justify-start w-[60px] px-4 py-3 {{ Route::currentRouteName() == 'user.user_profile' ? 'text-brandBlue-normal' : 'text-brandGray-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
+            <a href="{{ route('user.user_profile') }}" class="flex items-center justify-start w-[60px] px-4 py-3 {{ Route::currentRouteName() == 'user.user_profile' ? 'text-brandBlue-normal' : 'text-brandGrey-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGrey-lightLight rounded-lg">
                 <div class="flex items-center justify-center w-8 h-8">
                     <i class="icon-[mdi--account-circle-outline] w-6 h-6 flex-shrink-0"></i>
                 </div>
@@ -77,7 +77,7 @@
         
         <!-- 第3個按鈕：我的訂單 -->
         <div class="flex items-center justify-center w-full">
-            <a href="{{ route('user.orders') }}" class="flex items-center justify-start w-[60px] px-4 py-3 {{ Route::currentRouteName() == 'user.orders' ? 'text-brandBlue-normal' : 'text-brandGray-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
+            <a href="{{ route('user.orders') }}" class="flex items-center justify-start w-[60px] px-4 py-3 {{ Route::currentRouteName() == 'user.orders' ? 'text-brandBlue-normal' : 'text-brandGrey-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGrey-lightLight rounded-lg">
                 <div class="flex items-center justify-center w-8 h-8">
                     <i class="icon-[mdi--package-variant-closed] w-6 h-6 flex-shrink-0"></i>
                 </div>
@@ -90,7 +90,7 @@
         
         <!-- 第4個按鈕：收件地址 - 水平居中對齊 -->
         <div class="flex items-center justify-center w-full">
-            <a href="{{ route('user.address') }}" class="flex items-center justify-start w-[60px] px-4 py-3 {{ Route::currentRouteName() == 'user.address' ? 'text-brandBlue-normal' : 'text-brandGray-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
+            <a href="{{ route('user.address') }}" class="flex items-center justify-start w-[60px] px-4 py-3 {{ Route::currentRouteName() == 'user.address' ? 'text-brandBlue-normal' : 'text-brandGrey-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGrey-lightLight rounded-lg">
                 <div class="flex items-center justify-center w-8 h-8">
                     <i class="icon-[mdi--map-marker-outline] w-6 h-6 flex-shrink-0"></i>
                 </div>
@@ -103,7 +103,7 @@
         
         <!-- 第5個按鈕：付款資訊 -->
         <div class="flex items-center justify-center w-full">
-            <a href="{{ route('user.payment') }}" class="flex items-center justify-start w-[60px] px-4 py-3 {{ Route::currentRouteName() == 'user.payment' ? 'text-brandBlue-normal' : 'text-brandGray-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
+            <a href="{{ route('user.payment') }}" class="flex items-center justify-start w-[60px] px-4 py-3 {{ Route::currentRouteName() == 'user.payment' ? 'text-brandBlue-normal' : 'text-brandGrey-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGrey-lightLight rounded-lg">
                 <div class="flex items-center justify-center w-8 h-8">
                     <i class="icon-[mdi--credit-card-outline] w-6 h-6 flex-shrink-0"></i>
                 </div>
@@ -116,7 +116,7 @@
         
         <!-- 第6個按鈕：我的優惠 -->
         <div class="flex items-center justify-center w-full">
-            <a href="" class="flex items-center justify-start w-[60px] px-4 py-3 {{ Route::currentRouteName() == 'user.coupons' ? 'text-brandBlue-normal' : 'text-brandGray-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
+            <a href="" class="flex items-center justify-start w-[60px] px-4 py-3 {{ Route::currentRouteName() == 'user.coupons' ? 'text-brandBlue-normal' : 'text-brandGrey-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGrey-lightLight rounded-lg">
                 <div class="flex items-center justify-center w-8 h-8">
                     <i class="icon-[mdi--ticket-percent-outline] w-6 h-6 flex-shrink-0"></i>
                 </div>
@@ -129,7 +129,7 @@
         
         <!-- 第7個按鈕：登出 -->
         <div class="flex items-center justify-center w-full">
-            <button type="button" class="flex items-center justify-start w-[60px] px-4 py-3 text-brandGray-normal hover:text-brandBlue-normal transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
+            <button type="button" class="flex items-center justify-start w-[60px] px-4 py-3 text-brandGrey-normal hover:text-brandBlue-normal transition-colors duration-200 hover:bg-brandGrey-lightLight rounded-lg">
                 <div class="flex items-center justify-center w-8 h-8">
                     <i class="icon-[mdi--logout] w-6 h-6 flex-shrink-0"></i>
                 </div>

@@ -24,8 +24,8 @@
                         <img src="{{ 'http://localhost:8000/storage/' . $accessory->product_img}}" alt="{{$accessory->product_name}}" class="w-full h-[250px] md:h-full object-cover">
                     </div>
                     <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
-                        <p class="text-brandGray-darker">{{$accessory->product_name}}</p>
-                        <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">{{$accessory->product_price}}</span></p>
+                        <p class="text-brandGrey-darker">{{$accessory->product_name}}</p>
+                        <p class="text-brandGrey-normal text-[18px]">NT$&nbsp;<span id="price">{{$accessory->product_price}}</span></p>
                     </div>
                 </a>
                 @endforeach

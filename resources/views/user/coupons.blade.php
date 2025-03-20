@@ -8,12 +8,12 @@
 @section('main_content')
     <div class="w-full p-4 sm:p-6 bg-white rounded-lg shadow-sm">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
-            <h1 class="text-xl sm:text-2xl font-bold text-brandGray-normal mb-3 sm:mb-0">我的優惠</h1>
+            <h1 class="text-xl sm:text-2xl font-bold text-brandGrey-normal mb-3 sm:mb-0">我的優惠</h1>
             <!-- <div class="flex flex-col sm:flex-row w-full sm:w-auto gap-2">
                 <form action="{{ route('user.coupons.redeem') }}" method="POST" class="flex flex-col sm:flex-row w-full sm:w-auto gap-2">
                     @csrf
                     <div class="relative w-full sm:w-auto">
-                        <input type="text" name="coupon_code" placeholder="輸入優惠碼" class="w-full sm:w-auto px-4 py-2 border border-brandGray-lightActive rounded-md focus:outline-none focus:ring-1 focus:ring-brandBlue-normal">
+                        <input type="text" name="coupon_code" placeholder="輸入優惠碼" class="w-full sm:w-auto px-4 py-2 border border-brandGrey-lightActive rounded-md focus:outline-none focus:ring-1 focus:ring-brandBlue-normal">
                         <button type="button" class="absolute right-2 top-2 text-brandBlue-normal hover:text-brandBlue-normalHover">
                             <i class="icon-[mdi--plus-circle-outline] w-5 h-5"></i>
                         </button>
@@ -52,9 +52,9 @@
         
         <!-- 優惠券列表 -->
         <div class="space-y-4">
-            <div class="border border-brandGray-light rounded-lg overflow-hidden">
-                <div class="bg-brandGray-lightLight p-3 border-b border-brandGray-light">
-                    <h3 class="font-medium text-brandGray-normal">可使用的優惠券</h3>
+            <div class="border border-brandGrey-light rounded-lg overflow-hidden">
+                <div class="bg-brandGrey-lightLight p-3 border-b border-brandGrey-light">
+                    <h3 class="font-medium text-brandGrey-normal">可使用的優惠券</h3>
                 </div>
                 <!-- 列表/網格顯示區域 -->
                 <div id="coupon-container" class="{{ $viewPreference == 'grid' ? 'view-grid' : 'view-list' }}">
@@ -73,14 +73,14 @@
                             @endif
                             <div class="flex flex-col justify-between h-full">
                                 <div>
-                                    <h4 class="text-lg font-semibold text-brandGray-normal">{{ $coupon['title'] }}</h4>
-                                    <p class="text-sm text-brandGray-normalLight mb-1">{{ $coupon['description'] }}</p>
+                                    <h4 class="text-lg font-semibold text-brandGrey-normal">{{ $coupon['title'] }}</h4>
+                                    <p class="text-sm text-brandGrey-normalLight mb-1">{{ $coupon['description'] }}</p>
                                 </div>
                                 <p class="expiry-date">有效期限：{{ $coupon['expiry_date'] }}</p>
                             </div>
                         </div>
                     @empty
-                        <div class="p-4 text-center text-brandGray-normalLight">
+                        <div class="p-4 text-center text-brandGrey-normalLight">
                             目前沒有可使用的優惠券
                         </div>
                     @endforelse
@@ -89,9 +89,9 @@
             
             <!-- 已使用的優惠券 -->
             @if (count($usedCoupons) > 0)
-                <div class="border border-brandGray-light rounded-lg overflow-hidden">
-                    <div class="bg-brandGray-lightLight p-3 border-b border-brandGray-light">
-                        <h3 class="font-medium text-brandGray-normal">已使用的優惠券</h3>
+                <div class="border border-brandGrey-light rounded-lg overflow-hidden">
+                    <div class="bg-brandGrey-lightLight p-3 border-b border-brandGrey-light">
+                        <h3 class="font-medium text-brandGrey-normal">已使用的優惠券</h3>
                     </div>
                     <div id="used-coupon-container" class="{{ $viewPreference == 'grid' ? 'view-grid' : 'view-list' }}">
                         @foreach ($usedCoupons as $coupon)
@@ -99,8 +99,8 @@
                                 <span class="status-badge">已使用</span>
                                 <div class="flex flex-col justify-between h-full">
                                     <div>
-                                        <h4 class="text-lg font-semibold text-brandGray-normal">{{ $coupon['title'] }}</h4>
-                                        <p class="text-sm text-brandGray-normalLight mb-1">{{ $coupon['description'] }}</p>
+                                        <h4 class="text-lg font-semibold text-brandGrey-normal">{{ $coupon['title'] }}</h4>
+                                        <p class="text-sm text-brandGrey-normalLight mb-1">{{ $coupon['description'] }}</p>
                                     </div>
                                     <p class="expiry-date">使用日期：{{ $coupon['used_date'] }}</p>
                                 </div>
@@ -112,9 +112,9 @@
             
             <!-- 已過期的優惠券 -->
             @if (count($expiredCoupons) > 0)
-                <div class="border border-brandGray-light rounded-lg overflow-hidden">
-                    <div class="bg-brandGray-lightLight p-3 border-b border-brandGray-light">
-                        <h3 class="font-medium text-brandGray-normal">已過期的優惠券</h3>
+                <div class="border border-brandGrey-light rounded-lg overflow-hidden">
+                    <div class="bg-brandGrey-lightLight p-3 border-b border-brandGrey-light">
+                        <h3 class="font-medium text-brandGrey-normal">已過期的優惠券</h3>
                     </div>
                     <div id="expired-coupon-container" class="{{ $viewPreference == 'grid' ? 'view-grid' : 'view-list' }}">
                         @foreach ($expiredCoupons as $coupon)
@@ -122,8 +122,8 @@
                                 <span class="status-badge">已過期</span>
                                 <div class="flex flex-col justify-between h-full">
                                     <div>
-                                        <h4 class="text-lg font-semibold text-brandGray-normal">{{ $coupon['title'] }}</h4>
-                                        <p class="text-sm text-brandGray-normalLight mb-1">{{ $coupon['description'] }}</p>
+                                        <h4 class="text-lg font-semibold text-brandGrey-normal">{{ $coupon['title'] }}</h4>
+                                        <p class="text-sm text-brandGrey-normalLight mb-1">{{ $coupon['description'] }}</p>
                                     </div>
                                     <p class="expiry-date">有效期限：{{ $coupon['expiry_date'] }}</p>
                                 </div>
