@@ -171,23 +171,5 @@
             }
         })
     });
-
-
-    let lastScrollTop = 0;
-    let $nav = $("nav"); // 選擇導覽列
-
-    $(window).on("scroll", function() {
-        let scrollTop = $(this).scrollTop(); // 取得當前捲動位置
-
-        if (scrollTop > lastScrollTop) {
-            // 使用者往下滑 -> 隱藏導覽列
-            $nav.slideUp(10);
-        } else {
-            // 使用者往上滑 -> 顯示導覽列
-            $nav.slideDown(10);
-        }
-
-        lastScrollTop = scrollTop; // 更新上次的滾動位置
-    });
 </script>
 @endpush
