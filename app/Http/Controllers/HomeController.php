@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function home(Request $request)
     {
         // 是否顯示首頁廣告（若 cookie 不存在，就代表第一次進入）
-        $shownAd = !$request->cookie('cover_ad_shown');
+        $noAdCookie = !$request->cookie('show_cover_ad');
 
         // 取得 banner
         $banners = Banner::whereIn('banner_id', [1, 2, 3])->orderBy('banner_id')->get();
@@ -32,7 +32,7 @@ class HomeController extends Controller
             ->orderBy('product_id', 'asc')->get();
 
         return response()
-            ->view('home', compact('banners', 'accessories', 'clothes', 'hitItems', 'shownAd'))
-            ->cookie('cover_ad_shown', true, 60); // 設定一小時不再顯示
+            ->view('home', compact('banners', 'accessories', 'clothes', 'hitItems', 'noAdCookie'))
+            ->cookie('show_cover_ad', true, 60); // 設定一小時不再顯示
     }
 }

@@ -4,17 +4,17 @@
 @section('meta_description', '首頁')
 @section('meta_keywords', '首頁, home')
 
-@if($shownAd)
-<section class="absolute w-full h-full flex justify-center z-[80]">
+@if($noAdCookie)
+<section id="coverArea" class="absolute w-full h-full flex justify-center z-[80]">
     <!-- 蓋板廣告 -->
     @include('layouts.cover_ad')
     <!-- 遮罩 -->
-    <div id="overlay" class="fixed inset-0 w-screen h-screen bg-gray-900 bg-opacity-50 z-40"></div>
+    <div id="overlay" class="hidden animate__animated animate__fadeIn animate__slow  fixed inset-0 w-screen h-screen bg-gray-900 bg-opacity-50 z-40"></div>
 </section>
 @endif
 
 @section('content')
-<section class="relative mt-[200px] md:mt-[260px] lg:mt-[200px] w-full h-[5800px] md:h-[4200px]">
+<section class="relative animate__animated animate__fadeIn animate__slow mt-[200px] md:mt-[260px] lg:mt-[200px] w-full h-[5800px] md:h-[4200px]">
     <!-- banner 輪播圖 -->
     <section class="w-full h-[415px] md:h-[440px] lg:h-[600px] overflow-hidden border-b-2 shadow-[0_15px_0_0_brandGray-normalLight] flex flex-col mb-[60px]">
         <div class="relative w-full h-[325px] md:h-[350px] lg:h-[600px] overflow-hidden flex justify-center items-start gap-5">
@@ -309,6 +309,7 @@
 
         // 點擊關閉按鈕
         $('#closeBtn').on('click', function() {
+            $('#coverArea').addClass('hidden');
             $('#coverAd').addClass('hidden');
             $('#overlay').addClass('hidden');
         });
@@ -320,6 +321,7 @@
 
         // 點擊畫面其他地方時關閉
         $(document).on('click', function() {
+            $('#coverArea').addClass('hidden');
             $('#coverAd').addClass('hidden');
             $('#overlay').addClass('hidden');
         });
