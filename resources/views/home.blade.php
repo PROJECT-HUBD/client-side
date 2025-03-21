@@ -4,7 +4,7 @@
 @section('meta_description', '首頁')
 @section('meta_keywords', '首頁, home')
 
-@if ($showAd)
+@if($shownAd)
 <section class="absolute w-full h-full flex justify-center z-[80]">
     <!-- 蓋板廣告 -->
     @include('layouts.cover_ad')
@@ -14,8 +14,7 @@
 @endif
 
 @section('content')
-<section class="relative mt-[200px] md:mt-[260px] lg:mt-[200px] w-full h-full">
-
+<section class="relative mt-[200px] md:mt-[260px] lg:mt-[200px] w-full h-[5800px] md:h-[4200px]">
     <!-- banner 輪播圖 -->
     <section class="w-full h-[415px] md:h-[440px] lg:h-[600px] overflow-hidden border-b-2 shadow-[0_15px_0_0_brandGray-normalLight] flex flex-col mb-[60px]">
         <div class="relative w-full h-[325px] md:h-[350px] lg:h-[600px] overflow-hidden flex justify-center items-start gap-5">
@@ -71,7 +70,7 @@
                 <div class="w-full h-10 flex justify-start items-center">
                     <p class="text-[32px] font-semibold text-brandGray-normal">主打商品&nbsp;&nbsp;<span class="font-normal">Hit Items</span></p>
                 </div>
-                <div class="w-full flex justify-between lg:justify-center items-center gap-5">
+                <div class="w-full flex justify-between lg:justify-center items-center">
                     <button type="button" class="lg:hidden preBtn w-[50px] h-[50px] border-2 rounded-full border-brandRed-normal flex justify-center items-center active:opacity-50">
                         <span class="w-5 h-5 text-brandRed-normal icon-[ep--arrow-left-bold]"></span>
                     </button>
