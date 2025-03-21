@@ -14,7 +14,7 @@
          ]" />
 
     <!-- 課程標題 -->
-    <div class="max-w-screen-lg mx-auto px-4 mt-10 mb-6">
+    <div class="max-w-screen-lg mx-auto px-4 mb-6">
         <h2 class="text-3xl font-bold text-center">銀黏土課程 | 寶石戒指</h2>
     </div>
 
@@ -133,7 +133,7 @@
         </div>
 
         <!-- 立即預約 -->
-        <div class="sticky bottom-0 left-0 w-full bg-white shadow-md py-3 pt-4 flex flex-col items-center z-50">
+        <div class="sticky bottom-0 left-0 w-full bg-white shadow-md py-3 pt-4 flex flex-col items-center z-30">
             <h1 class="text-lg font-bold mb-2">寶石戒指課程</h1>
             <a href="https://line.me/R/ti/p/@528gygcj?oat_content=url"
                 class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 mt-2">立即預約</a>
