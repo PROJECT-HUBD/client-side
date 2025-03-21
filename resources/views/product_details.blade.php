@@ -124,23 +124,23 @@
                 </div>
             </div>
             <div class="w-full lg:h-[58px] md:h-[40px] justify-start items-center gap-4 inline-flex">
-                <div class="grid grid-cols-5 lg:w-[216px] sm:w-[177px]  border border-brandGray-lightHover rounded-md">
+                <div class="grid grid-cols-5 lg:w-[216px] sm:w-[177px]  border border-brandGrey-lightHover rounded-md">
                     <!-- 減少數量按鈕 -->
                     <button id="decrese"
                         class="col-span-1 flex justify-center items-center bg-white hover:bg-gray-200 lg:h-[58px] sm:h-10 cursor-pointer">
-                        <span class="text-brandGray-normal lg:text-2xl sm:text-lg font-medium">-</span>
+                        <span class="text-brandGrey-normal lg:text-2xl sm:text-lg font-medium">-</span>
                     </button>
 
                     <!-- 數量顯示 -->
                     <div
-                        class="col-span-3 flex justify-center items-center border-x border-brandGray-lightHover bg-white lg:h-[58px] sm:h-10">
-                        <span id="quantity" class="text-brandGray-normal lg:text-2xl sm:text-lg font-light">01</span>
+                        class="col-span-3 flex justify-center items-center border-x border-brandGrey-lightHover bg-white lg:h-[58px] sm:h-10">
+                        <span id="quantity" class="text-brandGrey-normal lg:text-2xl sm:text-lg font-light">01</span>
                     </div>
 
                     <!-- 增加數量按鈕 -->
                     <button id="add"
                         class="col-span-1 flex justify-center items-center bg-white hover:bg-gray-200 lg:h-[58px] sm:h-10 cursor-pointer">
-                        <span class="text-brandGray-normal lg:text-2xl sm:text-lg font-medium">+</span>
+                        <span class="text-brandGrey-normal lg:text-2xl sm:text-lg font-medium">+</span>
                     </button>
                 </div>
                 <div
@@ -187,7 +187,7 @@
 
     <div
         class=" flex mx-auto  lg:w-[1320px]  md:w-[720px] sm:w-[390px]  flex-col justify-start items-center gap-5  lg:mt-[100px] md:mt-[55px] sm:mt-10">
-        <div class="md:h-[54px] border-b border-brandGray-lightHover w-full justify-center items-start gap-10 inline-flex">
+        <div class="md:h-[54px] border-b border-brandGrey-lightHover w-full justify-center items-start gap-10 inline-flex">
             <div id="info"
                 class="md:px-4 md:py-3  shadow-[inset_0px_-3px_0px_0px_rgba(220,53,69,1.00)] justify-start items-start gap-2 flex cursor-pointer">
                 <div id="info-text" class="text-brandRed-normal md:text-xl md:font-light font-['Lexend'] leading-[30px]">
@@ -195,7 +195,7 @@
             </div>
             <div id="show-img" class="md:px-4 md:py-3  justify-start items-start gap-2 flex cursor-pointer">
                 <div id="show-img-text"
-                    class="text-brandGray-normal md:text-xl md:font-light font-['Lexend'] leading-[30px]">產品展示圖</div>
+                    class="text-brandGrey-normal md:text-xl md:font-light font-['Lexend'] leading-[30px]">產品展示圖</div>
             </div>
         </div>
         <div id="show-img-content" class="w-full hidden ">

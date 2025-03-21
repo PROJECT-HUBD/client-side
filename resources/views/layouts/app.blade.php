@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- CSRF Token -->
     <!-- 設定動態 SEO 標題與描述 -->
     <title>@yield('title', '預設網站標題')</title>
     <meta name="description" content="@yield('meta_description', '這是預設網站描述')">
