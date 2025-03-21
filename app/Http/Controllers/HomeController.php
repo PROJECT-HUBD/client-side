@@ -8,10 +8,13 @@ use App\Models\Banner;
 
 class HomeController extends Controller
 {
-    public function home()
+    public function home(Request $request)
     {
+        // 是否顯示首頁廣告（若 cookie 不存在，就代表第一次進入）
+        $showAd = !$request->cookie('cover_ad_shown');
+
         // 取得 banner
-        $banners = Banner::whereIn('banner_id',[1, 2, 3])->orderBy('banner_id')->get();
+        $banners = Banner::whereIn('banner_id', [1, 2, 3])->orderBy('banner_id')->get();
 
         // 取得主打商品（外套6件）
         $hitItems = ProductMain::with(['specs' => function ($query) {
@@ -28,6 +31,8 @@ class HomeController extends Controller
         $clothes = ProductMain::whereBetween('product_id', ['pl001', 'pl004'])
             ->orderBy('product_id', 'asc')->get();
 
-        return view('home', compact('banners', 'accessories', 'clothes', 'hitItems'));
+        return response()
+            ->view('home', compact('banners', 'accessories', 'clothes', 'hitItems', 'showAd'))
+            ->cookie('cover_ad_shown', true, 60); // 設定一小時不再顯示
     }
 }

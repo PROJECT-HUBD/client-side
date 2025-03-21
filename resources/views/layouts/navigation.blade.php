@@ -1,4 +1,4 @@
-<nav class="fixed top-[45px] z-50 w-full bg-white text-brandGrey-normal font-lexend font-normal">
+<nav class="fixed top-[45px] z-40 w-full bg-white text-brandGrey-normal font-lexend font-normal">
     <div class="flex w-full h-[80px] lg:px-[85px] md:px-[60px] px-[20px] py-5 justify-between items-center border-b border-b-normalLight md:border-0 lg:border-b lg:border-b-normalLight">
         <!-- 左側區塊 -->
         <div class="leftArea flex justify-start items-center gap-10">
