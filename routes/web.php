@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\CategoryController;
 // 首頁
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
@@ -16,8 +17,13 @@ Route::get('/categories_accessories', [CategoriesAccController::class, 'categori
 Route::get('/categories_clothes', [CategoriesCloController::class, 'categoriesClo'])
     ->name('categories_clothes');
 
+//麵包屑
+Route::get('/categories/clothes/short', [CategoryController::class, 'shortSleeves'])->name('categories_clothes.short');
+Route::get('/categories/clothes/long', [CategoryController::class, 'longSleeves'])->name('categories_clothes.long');
+Route::get('/categories/clothes/jacket', [CategoryController::class, 'jacket'])->name('categories_clothes.jacket');
+
 //銀黏土課程
-Route::get('/lessons',function () {
+Route::get('/lessons', function () {
     return view('lessons');
 })->name('lessons');
 
@@ -199,7 +205,7 @@ Route::get('/check_out', function () {
 require __DIR__ . '/auth.php';
 
 // 購物車頁_Ajax成功
-Route::match(['get', 'post'],'/cart', function () {
+Route::match(['get', 'post'], '/cart', function () {
     return view('cart');
 })->name('cart');
 
@@ -207,11 +213,11 @@ Route::match(['get', 'post'],'/cart', function () {
 //購物車獲取資料
 Route::get('/getCartData', [CartController::class, 'getCartData']);
 // 購物車更新資料
-Route::match(['get', 'post'],'/insertCart', [CartController::class, 'insertCart']);
+Route::match(['get', 'post'], '/insertCart', [CartController::class, 'insertCart']);
 Route::post('/updateCart', [CartController::class, 'updateCart']);
 
 // 購物清單頁
-Route::match(['get', 'post'],'/check_out', function () {
+Route::match(['get', 'post'], '/check_out', function () {
     return view('check_out');
 })->name('check_out');
 
@@ -224,16 +230,14 @@ Route::post('/DeleteCart', [CheckoutController::class, 'DeleteCart']);
 
 
 // 成功頁
-Route::match(['get', 'post'],'/successful_transaction', function () {
+Route::match(['get', 'post'], '/successful_transaction', function () {
     return view('successful_transaction');
 })->name('successful_transaction');
 // 失敗頁
-Route::match(['get', 'post'],'/failed_transaction', function () {
+Route::match(['get', 'post'], '/failed_transaction', function () {
     return view('failed_transaction');
 })->name('failed_transaction');
 // 維護頁
-Route::match(['get', 'post'],'/system-maintenance', function () {
+Route::match(['get', 'post'], '/system-maintenance', function () {
     return view('system-maintenance');
 })->name('system-maintenance');
-
-

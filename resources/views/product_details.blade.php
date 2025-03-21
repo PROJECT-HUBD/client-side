@@ -4,25 +4,43 @@
 @section('meta_description', '商品內頁')
 @section('meta_keywords', '首頁, home, homepage')
 
- 
+{{-- 麵包屑邏輯 --}}
 @php
     use Illuminate\Support\Str;
+
+    $isAccessory = Str::startsWith($product->product_id, 'pa');
+    $from = request('from'); // 取得 query 參數
+
+    $categoryName = $isAccessory ? '飾品' : '服飾';
+    $categoryRoute = $isAccessory ? route('categories_accessories') : route('categories_clothes');
+
+    $subcategory = null;
+    $subcategoryRoute = null;
+
+    if (!$isAccessory) {
+        if ($from === 'short') {
+            $subcategory = '短袖';
+            $subcategoryRoute = route('categories_clothes.short');
+        } elseif ($from === 'long') {
+            $subcategory = '長袖';
+            $subcategoryRoute = route('categories_clothes.long');
+        } elseif ($from === 'jacket') {
+            $subcategory = '夾克';
+            $subcategoryRoute = route('categories_clothes.jacket');
+        }
+    }
 @endphp
 
 @section('content')
 
 
     <div class="lg:mt-[150px] lg:w-[1440px] mx-auto  md:mt-[189px] md:w-[960px]  ">
-        <x-breadcrumb :items="[
+        <x-breadcrumb :items="array_filter([
             ['name' => '首頁', 'url' => route('home')],
-            [
-                'name' => Str::startsWith($product->product_id, 'pa') ? '飾品' : '服飾',
-                'url' => Str::startsWith($product->product_id, 'pa')
-                    ? route('categories_accessories')
-                    : route('categories_clothes')
-            ],
+            ['name' => $categoryName, 'url' => $categoryRoute],
+            $subcategory ? ['name' => $subcategory, 'url' => $subcategoryRoute] : null,
             ['name' => $product->product_name],
-        ]" />
+        ])" />
     </div>
 
     <main
