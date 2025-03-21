@@ -116,7 +116,7 @@
         
         <!-- 第6個按鈕：我的優惠 -->
         <div class="flex items-center justify-center w-full">
-            <a href="" class="flex items-center justify-start w-[60px] px-4 py-3 {{ Route::currentRouteName() == 'user.coupons' ? 'text-brandBlue-normal' : 'text-brandGray-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
+            <a href="{{ route('user.coupons') }}" class="flex items-center justify-start w-[60px] px-4 py-3 {{ Route::currentRouteName() == 'user.coupons' ? 'text-brandBlue-normal' : 'text-brandGray-normal hover:text-brandBlue-normal' }} transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
                 <div class="flex items-center justify-center w-8 h-8">
                     <i class="icon-[mdi--ticket-percent-outline] w-6 h-6 flex-shrink-0"></i>
                 </div>
