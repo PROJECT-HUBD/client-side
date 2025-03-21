@@ -40,7 +40,7 @@
     </header>
 
     <!-- main -->
-    <main class="max-w-full min-w-[390px] mx-auto mt-6">
+    <main class="max-w-full min-w-[390px] mx-auto mt-6 animate__animated animate__fadeIn animate__slow">
         <x-go-top-button />
         @yield('content')
     </main>
