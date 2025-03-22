@@ -166,7 +166,7 @@
                 </div>
                 <div
                     class="text-brandGray-normalLight lg:text-lg sm:text-sm font-light font-['Lexend'] lg:leading-relaxed sm:leading-snug">
-                    庫存剩 {{ $product->specs->sum('product_stock') }}件
+                    請選擇顏色與尺寸
                 </div>
                 <div id="stockWarning" class="text-red-500 text-sm font-light hidden">已達最大庫存</div>
             </div>
@@ -455,7 +455,7 @@
                 $("#stockWarning").addClass("hidden");
                 console.log("選中的顏色是：", selectedColor);
                 selectedSize = null;
-                $(".text-brandGray-normalLight").text("請選擇尺寸");
+                $(".text-brandGray-normalLight").text("請選擇顏色和尺寸");
                 $("#addToCartBtn").prop("disabled", true);
                 $("#buyNowBtn").prop("disabled", true);
                 // 過濾對應尺寸
