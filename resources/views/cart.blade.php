@@ -208,7 +208,7 @@
   // <---------------------接收商品資料_from_productAPI------------------------->
   $(document).ready(function() {
     $.ajax({
-      url: 'http://localhost/client-side/public/getCartData', // 修改為正確的 URL
+      url: '/getCartData', // 修改為正確的 URL
       method: 'GET',
       success: function(productList) {
         console.log(productList); // 顯示返回的商品數據
@@ -450,7 +450,7 @@
       let productColor = article.find(".product_color").val();
 
       $.ajax({
-        url: 'http://localhost/client-side/public/updateCart',
+        url: '/updateCart',
         method: 'POST',
         contentType: "application/json",
         data: JSON.stringify({
