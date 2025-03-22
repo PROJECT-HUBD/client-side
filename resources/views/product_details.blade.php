@@ -48,7 +48,7 @@
         <section
             class="flex lg:gap-7 lg:w-[600px] lg:h-[580px] md:gap-[14px] md:w-[360px] md:h-[375px] sm:w-[350px] sm:h-[380px]  "
             aria-label="Product Gallery">
-            <div class=" flex-col lg:gap-5 lg:h-[580px] lg:w-[118px] md:w-[71px] md:h-[375px] md:gap-2.5 md:flex sm:hidden ">
+            <div class=" flex-col overflow-y-auto lg:gap-5 lg:h-[580px] lg:w-[118px] md:w-[71px] md:h-[375px] md:gap-2.5 md:flex sm:hidden ">
                 @foreach ($product->images as $image)
                     <button
                         class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 lg:h-[180px] md:h-[118.33px] rounded-[5px]">
@@ -63,7 +63,7 @@
                 class="relative lg:w-[454px] lg:h-[580px] md:w-[275px] md:h-[375px] rounded-[5px] sm:w-[350px] sm:h-[380px] ">
                 <button class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     <div>
-                        <img id="mainProductImage" src="{{ 'http://localhost:8000/storage/' . $product->main_image }}"
+                        <img id="mainProductImage" src="{{ 'http://localhost:8000/storage/' . $product->product_image }}"
                             alt="{{ $product->product_name }}"
                             class="object-cover lg:w-[454px] rounded-md lg:h-[580px] md:w-[275px] md:h-[375px] sm:w-[350px] sm:h-[380px]"
                             loading="lazy" />
