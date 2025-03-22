@@ -6,9 +6,6 @@ use App\Models\ProductSpec;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-
-
 
 class CartController extends Controller
 {
@@ -44,32 +41,55 @@ class CartController extends Controller
         return response()->json($productData);
     }// end of getCartData
 
-    public function insertCart(Request $request) {
-        // dump($request->all());
-        $cartItems = $request->input('cartItems');
-        if($request->has('cartItems')){
-            return response()->json(['res'=> $cartItems]);
-        }
+    public function insertCart(Request $request)
+    {
+        try {
+            $data = $request->validate([
+                'product_id' => 'required|string',
+                'product_color' => 'required|string',
+                'product_size' => 'required|string',
+                'quantity' => 'required|integer|min:1',
+            ]);
 
-        foreach ($cartItems as $item) {
-            DB::table('cart')->updateOrInsert(
-                // ['product_id' => $item['product_id'], 'product_size' => $item['product_size'], 'product_color' => $item['product_color']],
-                // ['quantity' => $item['quantity']
-                ['product_id' => $item['product_id']],
-                [
-                    'quantity' => $item['quantity'],
-                    'product_size' => $item['product_size'],
-                    'product_color' => $item['product_color'],
-                   
-                ]
-            );
+          $userId = auth()->id() ?? null;
+          
+          if (!$userId) {
+              return response()->json(['error' => '請先登入以加入購物車'], 401);
+          }
+
+            $existing = DB::table('cart')
+                ->where('id', $userId)
+                ->where('product_id', $data['product_id'])
+                ->where('product_color', $data['product_color'])
+                ->where('product_size', $data['product_size'])
+                ->first();
+
+            if ($existing) {
+                DB::table('cart')
+                    ->where('id', $existing->id)
+                    ->update([
+                        'quantity' => $existing->quantity + $data['quantity'],
+                        'updated_at' => now(),
+                    ]);
+            } else {
+                DB::table('cart')->insert([
+                    'id' => $userId,
+                    'product_id' => $data['product_id'],
+                    'product_name' => ProductMain::where('product_id', $data['product_id'])->value('product_name'),
+                    'product_color' => $data['product_color'],
+                    'product_size' => $data['product_size'],
+                    'quantity' => $data['quantity'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+
+            return response()->json(['message' => '購物車更新成功！'], 200);
+
+        } catch (\Throwable $e) {
+            return response()->json(['error' => 'Server error', 'message' => $e->getMessage()], 500);
         }
-      
-    
-        return response()->json(['message' => '購物車更新成功！'], 200);
     }
-
-
 
     public function updateCart(Request $request)
     {
@@ -77,7 +97,6 @@ class CartController extends Controller
         $cartData = $request->json()->all();
 
         if (empty($cartData)) {
-            Log::error("❌ cartData 為空或 null！");
             return response()->json(['message' => '無效的請求！'], 400);
         }
 
@@ -101,11 +120,9 @@ class CartController extends Controller
             ]);
 
         if ($updated) {
-            Log::info("✅ 商品 {$productId} 更新成功！", $cartData);
             return response()->json(['message' => '購物車更新成功！'], 200);
         } else {
             return response()->json(['message' => '購物車更新失敗或無變更！'], 500);
         }
     }
 }
-

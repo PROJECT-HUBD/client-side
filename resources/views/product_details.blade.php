@@ -171,20 +171,20 @@
                 <div id="stockWarning" class="text-red-500 text-sm font-light hidden">已達最大庫存</div>
             </div>
             <!-- <div
-                                                                        class="lg:w-[558px] md:w-[340px] sm:w-full justify-start items-start md:gap-2.5 sm:gap-4 inline-flex max-md:flex-col ">
-                                                                        <div
-                                                                            class="md:grow md:shrink md:basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] sm:w-full sm:h-7 bg-brandBlue-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
-                                                                            <div
-                                                                                class="text-center text-white lg:text-2xl sm:text-base md:font-light sm:font-bold font-['Lexend'] lg:leading-9 md:leading-normal sm:leading-loose">
-                                                                                加入購物車</div>
-                                                                        </div>
-                                                                        <div
-                                                                            class="md:grow md:shrink md:basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] sm:w-full sm:h-7 bg-brandRed-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
-                                                                            <div
-                                                                                class="text-center text-white lg:text-2xl sm:text-base md:font-light sm:font-bold font-['Lexend'] lg:leading-9 md:leading-normal sm:leading-loose">
-                                                                                直接購買</div>
-                                                                        </div>
-                                                                    </div> -->
+                                                                                        class="lg:w-[558px] md:w-[340px] sm:w-full justify-start items-start md:gap-2.5 sm:gap-4 inline-flex max-md:flex-col ">
+                                                                                        <div
+                                                                                            class="md:grow md:shrink md:basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] sm:w-full sm:h-7 bg-brandBlue-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
+                                                                                            <div
+                                                                                                class="text-center text-white lg:text-2xl sm:text-base md:font-light sm:font-bold font-['Lexend'] lg:leading-9 md:leading-normal sm:leading-loose">
+                                                                                                加入購物車</div>
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="md:grow md:shrink md:basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] sm:w-full sm:h-7 bg-brandRed-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
+                                                                                            <div
+                                                                                                class="text-center text-white lg:text-2xl sm:text-base md:font-light sm:font-bold font-['Lexend'] lg:leading-9 md:leading-normal sm:leading-loose">
+                                                                                                直接購買</div>
+                                                                                        </div>
+                                                                                    </div> -->
             <div class="flex flex-col md:flex-row items-center w-full gap-4 md:gap-6">
                 <!-- 加入購物車按鈕 -->
                 <button id="addToCartBtn"
@@ -205,6 +205,13 @@
                     </span>
                 </button>
             </div>
+            <form id="quickBuyForm" method="POST" action="{{ route('cart') }}">
+                @csrf
+                <input type="hidden" name="product_id" id="formProductId">
+                <input type="hidden" name="product_size" id="formProductSize">
+                <input type="hidden" name="product_color" id="formProductColor">
+                <input type="hidden" name="quantity" id="formQuantity">
+            </form>
         </div>
     </main>
 
@@ -480,6 +487,74 @@
 
 
 
+
+            function addToCart() {
+                if (!selectedColor || !selectedSize) {
+                    alert("請先選擇顏色與尺寸！");
+                    return;
+                }
+
+                fetch("/insertCart", {
+                        method: "POST",
+                        headers: {
+                            "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                            "Content-Type": "application/json",
+                            "Accept": "application/json", // 確保 Laravel 回傳 JSON 而不是錯誤頁
+                        },
+                        body: JSON.stringify({
+                            product_id: "{{ $product->product_id }}",
+                            product_size: selectedSize,
+                            product_color: selectedColor,
+                            quantity: quantity
+                        })
+                    })
+                .then(async res => {
+                    if (res.status === 401) {
+                        alert("請先登入！");
+                        window.location.href = "/login";
+                        return;
+                    }
+
+                    if (!res.ok) {
+                        const errorData = await res.json();
+                        throw new Error(errorData.message || "加入失敗");
+                    }
+
+                    const result = await res.json();
+                    alert("已加入購物車！");
+                })
+                    .catch(err => {
+                        console.error("加入購物車失敗", err);
+                        alert("加入失敗，請稍後再試");
+                    });
+            }
+
+            function buyNow() {
+                if (!selectedColor || !selectedSize) {
+                    alert("請先選擇顏色與尺寸！");
+                    return;
+                }
+
+
+                $("#formProductId").val("{{ $product->product_id }}");
+                $("#formProductSize").val(selectedSize);
+                $("#formProductColor").val(selectedColor);
+                $("#formQuantity").val(quantity);
+
+
+                $("#quickBuyForm").attr("action", "{{ route('check_out') }}");
+                $("#quickBuyForm").submit();
+            }
+
+            // 點擊「加入購物車」按鈕 → 留在購物車頁
+            $("#addToCartBtn").click(function() {
+                addToCart();
+            });
+
+            // 點擊「直接購買」按鈕 → 導向結帳頁
+            $("#buyNowBtn").click(function () {
+                buyNow();
+            });
 
 
 
