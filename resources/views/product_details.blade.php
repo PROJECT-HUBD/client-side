@@ -48,11 +48,13 @@
         <section
             class="flex lg:gap-7 lg:w-[600px] lg:h-[580px] md:gap-[14px] md:w-[360px] md:h-[375px] sm:w-[350px] sm:h-[380px]  "
             aria-label="Product Gallery">
-            <div class=" flex-col overflow-y-auto lg:gap-5 lg:h-[580px] lg:w-[118px] md:w-[71px] md:h-[375px] md:gap-2.5 md:flex sm:hidden ">
+            <div
+                class=" flex-col overflow-y-auto lg:gap-5 lg:h-[580px] lg:w-[118px] md:w-[71px] md:h-[375px] md:gap-2.5 md:flex sm:hidden ">
                 @foreach ($product->images as $image)
                     <button
                         class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 lg:h-[180px] md:h-[118.33px] rounded-[5px]">
-                        <img src="{{ 'http://localhost:8000/storage/' .$image->product_img_url }}" alt="{{ $image->product_alt_text }}"
+                        <img src="{{ 'http://localhost:8000/storage/' . $image->product_img_url }}"
+                            alt="{{ $image->product_alt_text }}"
                             class="object-cover rounded-md lg:h-[180px] lg:w-[118px] md:h-[118.33px]" loading="lazy" />
                     </button>
                 @endforeach
@@ -123,10 +125,11 @@
                 <div class="flex items-center gap-3">
                     <span
                         class="text-brandGray-normal lg:text-2xl sm:text-lg font-['Lexend'] lg:leading-9 sm:leading-relaxed font-light">顏色:</span>
-                        <div data-color-wrapper class="flex gap-3">
-                            @foreach ($product->specs->pluck('product_color')->unique() as $color)
-                                <div class="w-6 h-6 rounded-full border border-gray-400 cursor-pointer" style="background-color: {{ $color }}"></div>
-                            @endforeach
+                    <div data-color-wrapper class="flex gap-3">
+                        @foreach ($product->specs->pluck('product_color')->unique() as $color)
+                            <div class="w-6 h-6 rounded-full border border-gray-400 cursor-pointer"
+                                style="background-color: {{ $color }}" data-color="{{ $color }}"></div>
+                        @endforeach
                     </div>
                 </div>
 
@@ -167,20 +170,20 @@
                 </div>
             </div>
             <!-- <div
-                                class="lg:w-[558px] md:w-[340px] sm:w-full justify-start items-start md:gap-2.5 sm:gap-4 inline-flex max-md:flex-col ">
-                                <div
-                                    class="md:grow md:shrink md:basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] sm:w-full sm:h-7 bg-brandBlue-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
-                                    <div
-                                        class="text-center text-white lg:text-2xl sm:text-base md:font-light sm:font-bold font-['Lexend'] lg:leading-9 md:leading-normal sm:leading-loose">
-                                        加入購物車</div>
-                                </div>
-                                <div
-                                    class="md:grow md:shrink md:basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] sm:w-full sm:h-7 bg-brandRed-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
-                                    <div
-                                        class="text-center text-white lg:text-2xl sm:text-base md:font-light sm:font-bold font-['Lexend'] lg:leading-9 md:leading-normal sm:leading-loose">
-                                        直接購買</div>
-                                </div>
-                            </div> -->
+                                        class="lg:w-[558px] md:w-[340px] sm:w-full justify-start items-start md:gap-2.5 sm:gap-4 inline-flex max-md:flex-col ">
+                                        <div
+                                            class="md:grow md:shrink md:basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] sm:w-full sm:h-7 bg-brandBlue-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
+                                            <div
+                                                class="text-center text-white lg:text-2xl sm:text-base md:font-light sm:font-bold font-['Lexend'] lg:leading-9 md:leading-normal sm:leading-loose">
+                                                加入購物車</div>
+                                        </div>
+                                        <div
+                                            class="md:grow md:shrink md:basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] sm:w-full sm:h-7 bg-brandRed-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
+                                            <div
+                                                class="text-center text-white lg:text-2xl sm:text-base md:font-light sm:font-bold font-['Lexend'] lg:leading-9 md:leading-normal sm:leading-loose">
+                                                直接購買</div>
+                                        </div>
+                                    </div> -->
             <div class="flex flex-col md:flex-row items-center w-full gap-4 md:gap-6">
                 <!-- 加入購物車按鈕 -->
                 <button
@@ -219,8 +222,8 @@
         <div id="show-img-content" class="w-full hidden ">
             @foreach ($product->displayImages as $img)
                 <figure class="w-full">
-                    <img src="{{ 'http://localhost:8000/storage/'.$img->product_img_URL }}" alt="{{ $img->product_alt_text }}"
-                        class="object-contain w-full aspect-[1.5]" />
+                    <img src="{{ 'http://localhost:8000/storage/' . $img->product_img_URL }}"
+                        alt="{{ $img->product_alt_text }}" class="object-contain w-full aspect-[1.5]" />
                 </figure>
             @endforeach
         </div>
@@ -246,6 +249,8 @@
     <script>
         $(document).ready(function() {
             $("[data-svg-wrapper] rect").remove();
+            let selectedColor = null;
+            let selectedSize = null;
 
             function updatePath() {
 
@@ -401,7 +406,7 @@
             });
 
             // 監聽尺寸按鈕點擊事件
-            $(".size-option").click(function() {
+            $(document).on("click", ".size-option", function() {
                 // 移除所有尺寸按鈕的選中狀態
                 $(".size-option").removeClass("bg-brandBlue-normal text-white")
                     .addClass("border border-brandBlue-normal text-brandBlue-normal");
@@ -413,11 +418,27 @@
                 // **改變內部文字顏色**
                 $(".size-option span").removeClass("text-white").addClass("text-brandBlue-normal");
                 $(this).find("span").removeClass("text-brandBlue-normal").addClass("text-white");
+
+                selectedSize = $(this).text().trim();
+
+                const matched = specs.find(spec =>
+                    spec.product_color === selectedColor && spec.product_size === selectedSize
+                );
+
+                const stockText = matched ? `庫存剩 ${matched.product_stock} 件` : "無此規格";
+                $(".text-brandGray-normalLight").text(stockText);
+
+                // 可選：控制加入購物車按鈕
+                if (matched?.product_stock > 0) {
+                    $("button:contains('加入購物車')").prop("disabled", false).removeClass("opacity-50");
+                } else {
+                    $("button:contains('加入購物車')").prop("disabled", true).addClass("opacity-50");
+                }
             });
 
-                        
+
             // 監聽顏色圓圈點擊事件
-            $("[data-color-wrapper] div").click(function () {
+            $("[data-color-wrapper] div").click(function() {
                 // 移除所有圓圈的邊框強調（取消選取）
                 $("[data-color-wrapper] div").removeClass("ring-2 ring-brandBlue-normal");
 
@@ -425,8 +446,28 @@
                 $(this).addClass("ring-2 ring-brandBlue-normal");
 
                 // 可選：取得點選的顏色
-                const selectedColor = $(this).css("background-color");
+                selectedColor = $(this).data("color");
                 console.log("選中的顏色是：", selectedColor);
+
+                // 過濾對應尺寸
+                const sizeOptions = specs
+                    .filter(spec => spec.product_color === selectedColor)
+                    .map(spec => spec.product_size);
+
+                // 重新渲染尺寸按鈕
+                const sizeContainer = $(".size-option").parent(); // 找到尺寸區塊
+                sizeContainer.empty(); // 清空
+                sizeOptions.forEach(size => {
+                    sizeContainer.append(`
+           <button class="size-option lg:w-12 lg:h-12 sm:w-7 sm:h-7 border border-brandBlue-normal flex items-center justify-center rounded-md">
+            <span class="text-brandBlue-normal lg:text-2xl md:text-lg font-light font-['Lexend'] leading-9">${size}</span>
+        </button>
+        `);
+                });
+
+                // 將庫存數字清除
+                selectedSize = null;
+                $(".text-brandGray-normalLight").text("請選擇尺寸");
             });
 
 
@@ -471,5 +512,6 @@
                 $("#info").removeClass("shadow-[inset_0px_-3px_0px_0px_rgba(220,53,69,1.00)]")
             })
         })
+        const specs = @json($product->specs);
     </script>
 @endpush
