@@ -4,9 +4,17 @@
 @section('meta_description', '首頁')
 @section('meta_keywords', '首頁, home')
 
+@if($shownAd)
+<section class="absolute w-full h-full flex justify-center z-[80]">
+    <!-- 蓋板廣告 -->
+    @include('layouts.cover_ad')
+    <!-- 遮罩 -->
+    <div id="overlay" class="fixed inset-0 w-screen h-screen bg-gray-900 bg-opacity-50 z-40"></div>
+</section>
+@endif
 
 @section('content')
-<section class="relative mt-[200px] md:mt-[260px] lg:mt-[200px] w-full h-full">
+<section class="relative mt-[200px] md:mt-[260px] lg:mt-[200px] w-full h-[5800px] md:h-[4200px]">
     <!-- banner 輪播圖 -->
     <section class="w-full h-[415px] md:h-[440px] lg:h-[600px] overflow-hidden border-b-2 shadow-[0_15px_0_0_brandGray-normalLight] flex flex-col mb-[60px]">
         <div class="relative w-full h-[325px] md:h-[350px] lg:h-[600px] overflow-hidden flex justify-center items-start gap-5">
@@ -62,15 +70,17 @@
                 <div class="w-full h-10 flex justify-start items-center">
                     <p class="text-[32px] font-semibold text-brandGray-normal">主打商品&nbsp;&nbsp;<span class="font-normal">Hit Items</span></p>
                 </div>
-                <div class="w-full flex justify-between lg:justify-center items-center gap-5">
-                    <button type="button" class="lg:hidden preBtn w-[50px] h-[50px] border-2 rounded-full border-brandRed-normal flex justify-center items-center active:opacity-50">
+                <div class="w-full flex justify-between lg:justify-center items-center">
+                    <!-- 左邊按鈕 -->
+                    <button type="button" class="lg:hidden hit-prev w-[50px] h-[50px] border-2 rounded-full border-brandRed-normal flex justify-center items-center active:opacity-50">
                         <span class="w-5 h-5 text-brandRed-normal icon-[ep--arrow-left-bold]"></span>
                     </button>
                     <!-- 主打商品圖片 -->
                     <div class="flex justify-center items-center w-[300px] md:w-[400px] lg:w-[400px] h-[300px] md:h-[400px] lg:h-[400px]">
                         <img src="{{ 'http://localhost:8000/storage/' . $firstItem->product_img }}" alt="{{ $firstItem->product_name }}" class="targetImg w-full h-full object-cover" loading="lazy">
                     </div>
-                    <button type="button" class="lg:hidden nextBtn w-[50px] h-[50px] border-2 rounded-full border-brandRed-normal flex justify-center items-center active:opacity-50">
+                    <!-- 右邊按鈕 -->
+                    <button type="button" class="lg:hidden hit-next w-[50px] h-[50px] border-2 rounded-full border-brandRed-normal flex justify-center items-center active:opacity-50">
                         <span class="w-5 h-5 text-brandRed-normal icon-[ep--arrow-right-bold]"></span>
                     </button>
                 </div>
@@ -98,7 +108,7 @@
                         </div>
                         <!-- 查看商品按鈕 -->
                         <a href="{{ route('product_details', ['id' => $firstItem->product_id]) }}" class="w-full md:w-[250px] h-[50px] text-[20px] text-semibold text-brandGray-lightLight flex justify-center items-center bg-brandRed-normal rounded-md hover:opacity-80">
-                            商品詳情&nbsp;<span class="w-[20px] h-[20px] text-brandGray-lightLight icon-[ep--arrow-right-bold]"></span>
+                            商品詳情&nbsp;<span class="product-detail-link w-[20px] h-[20px] text-brandGray-lightLight icon-[ep--arrow-right-bold]"></span>
                         </a>
                     </div>
                 </div>
@@ -292,6 +302,28 @@
 @push('scripts')
 <script>
     $(document).ready(() => {
+
+        // 顯示廣告和遮罩
+        $('#coverAd').removeClass('hidden');
+        $('#overlay').removeClass('hidden');
+
+        // 點擊關閉按鈕
+        $('#closeBtn').on('click', function() {
+            $('#coverAd').addClass('hidden');
+            $('#overlay').addClass('hidden');
+        });
+
+        // 點擊 coverAd 時阻止事件冒泡
+        $('#coverAd').on('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // 點擊畫面其他地方時關閉
+        $(document).on('click', function() {
+            $('#coverAd').addClass('hidden');
+            $('#overlay').addClass('hidden');
+        });
+
         // banner hover 效果
         $('.banner1, .banner2, .banner3').on('mouseenter mouseleave', function(event) {
             $(this).find('[class^="bannerMask"]').toggleClass('hidden', event.type === 'mouseleave');
@@ -385,13 +417,37 @@
         }
     });
 
-
     // 綁定點擊事件
     $(".roulette1, .roulette2, .roulette3, .roulette4, .roulette5, .roulette6").on("click", function() {
         let clickedNumber = parseInt($(this).attr("class").match(/roulette(\d)/)[1]); // 取得點擊的 roulette 編號
         if (clickedNumber !== rouletteOrder[0]) { // 避免點擊目標位置的 roulette
             updateRoulette(clickedNumber);
         }
+    });
+
+    const hitItems = @json($hitItems);
+    let currentIndex = 0;
+
+    function updateHitItem(index) {
+        const item = hitItems[index];
+        if (!item) return;
+
+        $('.targetImg').attr('src', `http://localhost:8000/storage/${item.product_img}`);
+        $('.targetImg').attr('alt', item.product_name);
+        $('.targetName').text(item.product_name);
+        $('.targetDesc').text(item.product_description);
+        $('.targetPrice').text(item.product_price);
+        $('.product-detail-link').attr('href', `/product-details/${item.product_id}`);
+    }
+
+    $('.hit-prev').on('click', function() {
+        currentIndex = (currentIndex - 1 + hitItems.length) % hitItems.length;
+        updateHitItem(currentIndex);
+    });
+
+    $('.hit-next').on('click', function() {
+        currentIndex = (currentIndex + 1) % hitItems.length;
+        updateHitItem(currentIndex);
     });
 </script>
 @endpush

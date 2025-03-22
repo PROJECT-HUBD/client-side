@@ -18,16 +18,21 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- animate.css -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Vite + Tailwind -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-  
+
 </head>
 
-<body class="font-lexend antialiased bg-white w-screen h-screen">
-    <header class="w-full">
+<body class="relative font-lexend antialiased bg-white w-screen h-screen">
+    <header class="w-full flex justify-center">
         <!-- marquee -->
         @include('layouts.header_marquee')
         <!-- nav -->
@@ -44,7 +49,8 @@
     @include('layouts.footer')
 
     @stack('scripts')
-   
+
+
 </body>
 
 </html>
