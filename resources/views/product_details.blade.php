@@ -171,24 +171,24 @@
                 <div id="stockWarning" class="text-red-500 text-sm font-light hidden">已達最大庫存</div>
             </div>
             <!-- <div
-                                                    class="lg:w-[558px] md:w-[340px] sm:w-full justify-start items-start md:gap-2.5 sm:gap-4 inline-flex max-md:flex-col ">
-                                                    <div
-                                                        class="md:grow md:shrink md:basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] sm:w-full sm:h-7 bg-brandBlue-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
-                                                        <div
-                                                            class="text-center text-white lg:text-2xl sm:text-base md:font-light sm:font-bold font-['Lexend'] lg:leading-9 md:leading-normal sm:leading-loose">
-                                                            加入購物車</div>
-                                                    </div>
-                                                    <div
-                                                        class="md:grow md:shrink md:basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] sm:w-full sm:h-7 bg-brandRed-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
-                                                        <div
-                                                            class="text-center text-white lg:text-2xl sm:text-base md:font-light sm:font-bold font-['Lexend'] lg:leading-9 md:leading-normal sm:leading-loose">
-                                                            直接購買</div>
-                                                    </div>
-                                                </div> -->
+                                                                        class="lg:w-[558px] md:w-[340px] sm:w-full justify-start items-start md:gap-2.5 sm:gap-4 inline-flex max-md:flex-col ">
+                                                                        <div
+                                                                            class="md:grow md:shrink md:basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] sm:w-full sm:h-7 bg-brandBlue-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
+                                                                            <div
+                                                                                class="text-center text-white lg:text-2xl sm:text-base md:font-light sm:font-bold font-['Lexend'] lg:leading-9 md:leading-normal sm:leading-loose">
+                                                                                加入購物車</div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="md:grow md:shrink md:basis-0 lg:w-[271px] md:w-[165px] lg:h-[58px] md:h-[47.5px] md:px-10 md:py-[15px] sm:w-full sm:h-7 bg-brandRed-normal rounded-[5px] flex-col justify-center items-center gap-2.5 inline-flex overflow-hidden cursor-pointer">
+                                                                            <div
+                                                                                class="text-center text-white lg:text-2xl sm:text-base md:font-light sm:font-bold font-['Lexend'] lg:leading-9 md:leading-normal sm:leading-loose">
+                                                                                直接購買</div>
+                                                                        </div>
+                                                                    </div> -->
             <div class="flex flex-col md:flex-row items-center w-full gap-4 md:gap-6">
                 <!-- 加入購物車按鈕 -->
-                <button
-                    class="flex-1 lg:h-[58px] md:h-[47.5px] sm:h-10 bg-brandBlue-normal rounded-md flex justify-center items-center cursor-pointer w-full">
+                <button id="addToCartBtn"
+                    class=" flex-1 lg:h-[58px] md:h-[47.5px] sm:h-10 bg-brandBlue-normal rounded-md flex justify-center items-center cursor-pointer w-full disabled:opacity-50 disabled:cursor-not-allowed "disabled>
                     <span
                         class="text-white lg:text-2xl sm:text-base md:font-light sm:font-bold lg:leading-9 md:leading-normal sm:leading-loose">
                         加入購物車
@@ -196,8 +196,9 @@
                 </button>
 
                 <!-- 直接購買按鈕 -->
-                <button
-                    class="flex-1 lg:h-[58px] md:h-[47.5px] sm:h-10 bg-brandRed-normal rounded-md flex justify-center items-center cursor-pointer w-full">
+                <button id="buyNowBtn"
+                    class="flex-1 lg:h-[58px] md:h-[47.5px] sm:h-10 bg-brandRed-normal rounded-md flex justify-center items-center cursor-pointer w-full disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled>
                     <span
                         class="text-white lg:text-2xl sm:text-base md:font-light sm:font-bold lg:leading-9 md:leading-normal sm:leading-loose">
                         直接購買
@@ -421,6 +422,7 @@
                 $(this).find("span").removeClass("text-brandBlue-normal").addClass("text-white");
 
                 selectedSize = $(this).text().trim();
+                $("#stockWarning").addClass("hidden");
 
                 const matched = specs.find(spec =>
                     spec.product_color === selectedColor && spec.product_size === selectedSize
@@ -431,9 +433,11 @@
 
                 // 可選：控制加入購物車按鈕
                 if (matched?.product_stock > 0) {
-                    $("button:contains('加入購物車')").prop("disabled", false).removeClass("opacity-50");
+                    $("#addToCartBtn").prop("disabled", false);
+                    $("#buyNowBtn").prop("disabled", false);
                 } else {
-                    $("button:contains('加入購物車')").prop("disabled", true).addClass("opacity-50");
+                    $("#addToCartBtn").prop("disabled", true);
+                    $("#buyNowBtn").prop("disabled", true);
                 }
             });
 
@@ -448,8 +452,12 @@
 
                 // 可選：取得點選的顏色
                 selectedColor = $(this).data("color");
+                $("#stockWarning").addClass("hidden");
                 console.log("選中的顏色是：", selectedColor);
-
+                selectedSize = null;
+                $(".text-brandGray-normalLight").text("請選擇尺寸");
+                $("#addToCartBtn").prop("disabled", true);
+                $("#buyNowBtn").prop("disabled", true);
                 // 過濾對應尺寸
                 const sizeOptions = specs
                     .filter(spec => spec.product_color === selectedColor)
@@ -460,10 +468,9 @@
                 sizeContainer.empty(); // 清空
                 sizeOptions.forEach(size => {
                     sizeContainer.append(`
-           <button class="size-option lg:w-12 lg:h-12 sm:w-7 sm:h-7 border border-brandBlue-normal flex items-center justify-center rounded-md">
-            <span class="text-brandBlue-normal lg:text-2xl md:text-lg font-light font-['Lexend'] leading-9">${size}</span>
-        </button>
-        `);
+                     <button class="size-option lg:w-12 lg:h-12 sm:w-7 sm:h-7 border border-brandBlue-normal flex items-center justify-center rounded-md">
+                    <span class="text-brandBlue-normal lg:text-2xl md:text-lg font-light font-['Lexend'] leading-9">${size}</span></button>
+                    `);
                 });
 
                 // 將庫存數字清除
@@ -501,9 +508,15 @@
                     $("#quantity").text(quantity.toString().padStart(2, '0'));
                     //如果之前有警告，這裡要隱藏
                     $("#stockWarning").addClass("hidden");
-                } else {
-                    // 顯示紅色警告文字
+
+                    // 有庫存時，啟用按鈕
+                    $("#addToCartBtn").prop("disabled", false);
+                    $("#buyNowBtn").prop("disabled", false);
+                }
+                if (quantity >= matched.product_stock) {
                     $("#stockWarning").removeClass("hidden");
+                    $("#addToCartBtn").prop("disabled", true);
+                    $("#buyNowBtn").prop("disabled", true);
                 }
 
             })
