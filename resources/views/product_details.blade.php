@@ -121,6 +121,7 @@
                     NT$ {{ number_format($product->product_price) }}</div>
             </div>
             <div class="flex flex-col lg:gap-9 md:gap-4 sm:gap-[10px] w-full">
+                @unless($isAccessory)
                 <!-- 顏色選擇區 -->
                 <div class="flex items-center gap-3">
                     <span
@@ -132,7 +133,9 @@
                         @endforeach
                     </div>
                 </div>
+                @endunless
 
+                @unless($isAccessory)
                 <!-- 尺寸選擇區 -->
                 <div class="flex items-center lg:gap-4 sm:gap-3 ">
                     @foreach ($product->specs->pluck('product_size')->unique() as $size)
@@ -143,6 +146,7 @@
                         </button>
                     @endforeach
                 </div>
+                @endunless
             </div>
             <div class="w-full lg:h-[58px] md:h-[40px] justify-start items-center gap-4 inline-flex">
                 <div class="grid grid-cols-5 lg:w-[216px] sm:w-[177px]  border border-brandGrey-lightHover rounded-md">
