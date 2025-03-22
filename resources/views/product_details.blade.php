@@ -65,7 +65,7 @@
                 class="relative lg:w-[454px] lg:h-[580px] md:w-[275px] md:h-[375px] rounded-[5px] sm:w-[350px] sm:h-[380px] ">
                 <button class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     <div>
-                        <img id="mainProductImage" src="{{ 'http://localhost:8000/storage/' . $product->product_image }}"
+                        <img id="mainProductImage" src="{{ 'http://localhost:8000/storage/' . $product->product_img }}"
                             alt="{{ $product->product_name }}"
                             class="object-cover lg:w-[454px] rounded-md lg:h-[580px] md:w-[275px] md:h-[375px] sm:w-[350px] sm:h-[380px]"
                             loading="lazy" />
@@ -535,15 +535,47 @@
                     return;
                 }
 
+                fetch("/insertCart", {
+                    method: "POST",
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                    },
+                    body: JSON.stringify({
+                        product_id: "{{ $product->product_id }}",
+                        product_size: selectedSize,
+                        product_color: selectedColor,
+                        quantity: quantity
+                    })
+                })
+                .then(async res => {
+                    if (res.status === 401) {
+                        alert("請先登入！");
+                        window.location.href = "/login";
+                        return;
+                    }
 
-                $("#formProductId").val("{{ $product->product_id }}");
-                $("#formProductSize").val(selectedSize);
-                $("#formProductColor").val(selectedColor);
-                $("#formQuantity").val(quantity);
+                    if (!res.ok) {
+                        const errorData = await res.json();
+                        throw new Error(errorData.message || "加入失敗");
+                    }
 
+                    const result = await res.json();
 
-                $("#quickBuyForm").attr("action", "{{ route('check_out') }}");
-                $("#quickBuyForm").submit();
+                    // 寫入成功後導向購物車
+                    $("#formProductId").val("{{ $product->product_id }}");
+                    $("#formProductSize").val(selectedSize);
+                    $("#formProductColor").val(selectedColor);
+                    $("#formQuantity").val(quantity);
+
+                    $("#quickBuyForm").attr("action", "/cart");
+                    $("#quickBuyForm").submit();
+                })
+                .catch(err => {
+                    console.error("加入購物車失敗", err);
+                    alert("加入失敗，請稍後再試");
+                });
             }
 
             // 點擊「加入購物車」按鈕 → 留在購物車頁
