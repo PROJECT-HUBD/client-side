@@ -41,6 +41,7 @@
           付款方式
         </h2>
         <a  href="{{ route('user.payment') }}"
+        
           class="overflow-hidden justify-end self-stretch pt-2.5  text-base font-bold  leading-none  text-gray-500 underline  underline-offset-auto ">
           變更付款方式
         </a>
