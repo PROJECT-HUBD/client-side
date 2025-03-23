@@ -129,12 +129,15 @@
         
         <!-- 第7個按鈕：登出 -->
         <div class="flex items-center justify-center w-full">
-            <button type="button" class="flex items-center justify-start w-[60px] px-4 py-3 text-brandGray-normal hover:text-brandBlue-normal transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
-                <div class="flex items-center justify-center w-8 h-8">
-                    <i class="icon-[mdi--logout] w-6 h-6 flex-shrink-0"></i>
-                </div>
-                <span class="ml-3 truncate opacity-0 transition-opacity duration-300 font-medium" id="sidebarTextLogout">登出</span>
-            </button>
+            <form method="POST" action="{{ route('logout') }}" class="w-full">
+                @csrf
+                <button type="submit" class="flex items-center justify-start w-[60px] px-4 py-3 text-brandGray-normal hover:text-brandBlue-normal transition-colors duration-200 hover:bg-brandGray-lightLight rounded-lg">
+                    <div class="flex items-center justify-center w-8 h-8">
+                        <i class="icon-[mdi--logout] w-6 h-6 flex-shrink-0"></i>
+                    </div>
+                    <span class="ml-3 truncate opacity-0 transition-opacity duration-300 font-medium" id="sidebarTextLogout">登出</span>
+                </button>
+            </form>
         </div>
     </div>
 </div>
