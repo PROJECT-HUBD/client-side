@@ -280,7 +280,7 @@
 
         // 商品圖片與詳細資訊
         resultHTML += `<div class="flex gap-6 items-center self-stretch my-auto min-w-60 text-neutral-700">`;
-        resultHTML += `<img class="product_img flex shrink-0 cover my-auto h-[104px] w-[104px]" src="${productList[i].product_img}" alt="Product Image">`;
+        resultHTML += `<img class="product_img flex shrink-0 cover my-auto h-[104px] w-[104px]" src="http://localhost:8000/storage/${productList[i].product_img}" alt="Product Image">`;
 
         // 產品資訊
         resultHTML += `<div class="self-stretch my-auto w-[213px]">`;
