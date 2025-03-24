@@ -1,4 +1,5 @@
 import './bootstrap';
+import '../css/coupon.css';
 
 import Alpine from 'alpinejs';
 

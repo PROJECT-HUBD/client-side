@@ -15,8 +15,8 @@ export default {
             // 斷點
             screens: {
                 sm: "450px", // 手機
-                md: "780px", // 平板
-                lg: "1000px", // 電腦
+                md: "800px", // 平板
+                lg: "1200px", // 電腦
                 // xl: "1440px", // 大螢幕電腦
             },
             // 標準字
@@ -69,6 +69,15 @@ export default {
                     darker: "#0D0F17",
                 },
             },
+            keyframes: {
+                marquee: {
+                  '0%': { transform: 'translateX(0)' },
+                  '100%': { transform: 'translateX(-50%)' }
+                }
+              },
+              animation: {
+                marquee: 'marquee 100s linear infinite' 
+              }
         },
     },
 
