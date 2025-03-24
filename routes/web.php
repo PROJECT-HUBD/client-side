@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 // 首頁
 Route::get('/', [HomeController::class, 'home'])->name('home');
@@ -248,3 +249,7 @@ Route::match(['get', 'post'], '/failed_transaction', function () {
 Route::match(['get', 'post'], '/system-maintenance', function () {
     return view('system-maintenance');
 })->name('system-maintenance');
+// 維護頁調資料庫資料
+Route::get('/maintenance', [SystemMaintenanceController::class, 'showMaintenance'])->name('system.maintenance');
+
+
