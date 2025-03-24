@@ -37,27 +37,31 @@
                 </p>
 
                 <div class="mb-6 w-full">
-                    <input type="text" placeholder="請輸入驗證碼" name="verification_code"
+                    <input type="text" placeholder="請輸入驗證碼" name="code"
                         class="px-5 py-3 w-full text-base font-light rounded-md border border-solid border-neutral-200 text-neutral-400" />
-                </div>
-
-                <!-- 重新發送驗證碼 -->
-                <a href="{{ route('mylogin') }}"
-                    class="block mb-6 text-sm font-medium text-blue-500 hover:underline text-center text-gray-500">
-                    重新發送驗證碼
-                </a>
+                @error('code')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+                    </div>
 
                 <div class="mt-10 w-full flex flex-col gap-3">
                     <button type="submit"
-                        class="px-0 py-3 w-full text-base font-bold tracking-wide text-center text-white bg-gray-500 rounded-md cursor-pointer border-[none] hover:bg-gray-600 transition-colors">
-                        驗證
-                    </button>
-                    <a href="{{ route('mylogin') }}"
-                        class="px-0 py-3 w-full text-base font-bold tracking-wide text-center text-gray-500 rounded-md border border-gray-500 border-solid cursor-pointer hover:bg-gray-100 transition-colors">
-                        返回登入
-                    </a>
-                </div>
-            </form>
+                    class="px-0 py-3 w-full text-base font-bold tracking-wide text-center text-white bg-gray-500 rounded-md cursor-pointer border-[none] hover:bg-gray-600 transition-colors">
+                    驗證
+                </button>
+                <a href="{{ route('mylogin') }}"
+                class="px-0 py-3 w-full text-base font-bold tracking-wide text-center text-gray-500 rounded-md border border-gray-500 border-solid cursor-pointer hover:bg-gray-100 transition-colors">
+                返回登入
+            </a>
+        </div>
+    </form>
+    <!-- 重新發送驗證碼 -->
+    <form method="POST" action="{{ route('resend-confirmation-code') }}">
+        @csrf
+    <button class="block mb-6 text-sm font-medium hover:underline text-center text-gray-500">
+        重新發送驗證碼
+    </button>
+    </form> 
         </section>
     </main>
 </body>

@@ -1,24 +1,20 @@
-
-
-
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>最後一步 Last Step</title>
-  <!-- Vite + Tailwind -->
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>最後一步 Last Step</title>
+    <!-- Vite + Tailwind -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
-  <main class="flex justify-center items-center min-h-screen bg-cover bg-center h-screen w-full px-5"
-      style="background-image: url('{{ asset('images/bg.jpg') }}');">
+    <main class="flex justify-center items-center min-h-screen bg-cover bg-center h-screen w-full px-5"
+        style="background-image: url('{{ asset('images/bg.jpg') }}');">
 
-      {{-- 遮罩 --}}
-      <div class="absolute inset-0 bg-gray-100 bg-opacity-50"></div>
+        {{-- 遮罩 --}}
+        <div class="absolute inset-0 bg-gray-100 bg-opacity-50"></div>
 
-      <section
-          class="relative flex flex-col justify-center items-center bg-white border border-solid border-[#E4E4E4] 
+        <section
+            class="relative flex flex-col justify-center items-center bg-white border border-solid border-[#E4E4E4] 
               w-full max-w-[992px] 
               mx-auto 
               lg:w-[992px] lg:min-h-[693px] 
@@ -26,67 +22,94 @@
               sm:w-[90vw] sm:aspect-[992/693] 
               p-10 max-md:p-6 max-sm:p-4 transition-all duration-300">
 
-          <header class="flex items-center gap-3 mb-6 text-2xl font-semibold text-gray-500 w-full max-w-[320px]">
-              <img src="https://cdn.builder.io/api/v1/image/assets/fff8f95ab9b14906ad7fee76d4c8586f/159e9f4ecf610330c5c778310757bf2a24227f9b658abbd411d0cc73d44f8cfa?placeholderIfAbsent=true"
-                  class="object-contain h-[46px] w-[46px] rounded-full" alt="Logo" />
-              <h1 class="text-2xl font-semibold leading-9 text-gray-500">Last Step</h1>
-          </header>
+            <header class="flex items-center gap-3 mb-6 text-2xl font-semibold text-gray-500 w-full max-w-[320px]">
+                <a href="{{ route('home') }}">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/fff8f95ab9b14906ad7fee76d4c8586f/159e9f4ecf610330c5c778310757bf2a24227f9b658abbd411d0cc73d44f8cfa?placeholderIfAbsent=true"
+                        class="object-contain h-[46px] w-[46px] rounded-full" alt="Logo" />
+                </a>
+                <h1 class="text-2xl font-semibold leading-9 text-gray-500">Last Step</h1>
+            </header>
 
-          <form method="POST" action="{{ route('mylaststep.submit') }}"
-              class="flex flex-col w-full max-w-[320px] mx-auto">
-              @csrf
-              <p class="mb-3 text-base tracking-widest leading-6 text-black opacity-50 text-left">
-                  請輸入你的個人資料以完成註冊流程！
-              </p>
+            <form method="POST"
+                action="{{ route('mylaststep.submit') }}"class="flex flex-col w-full max-w-[320px] mx-auto">
+                @csrf
+                <p class="mb-3 text-base tracking-widest leading-6 text-black opacity-50 text-left">
+                    請輸入你的個人資料以完成註冊流程！
+                </p>
 
-              <div class="mb-4 w-full">
-                  <input type="text" placeholder="用戶名" name="name"
-                      class="px-5 py-3 w-full text-base font-light rounded-md border border-solid border-neutral-200 text-neutral-400" />
-              </div>
+                {{-- 用戶名 --}}
+                <div class="mb-4 w-full">
+                    <input type="text" placeholder="用戶名" name="name" value="{{ old('name') }}"
+                        class="px-5 py-3 w-full text-base font-light rounded-md border border-solid border-neutral-200 text-neutral-400" />
+                    @error('name')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
 
-              <div class="mb-4 w-full">
-                  <input type="tel" placeholder="手機號碼" name="phone"
-                      class="px-5 py-3 w-full text-base font-light rounded-md border border-solid border-neutral-200 text-neutral-400" />
-              </div>
+                {{-- 手機 --}}
+                <div class="mb-4 w-full">
+                    <input type="tel" placeholder="手機號碼" name="phone" value="{{ old('phone') }}"
+                        class="px-5 py-3 w-full text-base font-light rounded-md border border-solid border-neutral-200 text-neutral-400" />
+                    @error('phone')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
 
-              <div class="mb-4 w-full">
-                  <input type="password" placeholder="密碼" name="password"
-                      class="px-5 py-3 w-full text-base font-light rounded-md border border-solid border-neutral-200 text-neutral-400" />
-              </div>
+                {{-- 密碼 --}}
+                <div class="mb-4 w-full">
+                    <input type="password" placeholder="密碼" name="password"
+                        class="px-5 py-3 w-full text-base font-light rounded-md border border-solid border-neutral-200 text-neutral-400" />
+                    @error('password')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
 
-              <fieldset class="flex flex-col w-full font-bold tracking-wide">
-                  <legend class="text-xs leading-loose opacity-50 text-neutral-700 mb-2">
-                      生日日期 (選填)
-                  </legend>
-                  <div class="flex gap-2">
-                      <select name="year" class="px-5 py-3 flex-1 text-base font-light rounded-md border border-solid border-neutral-200 text-neutral-400">
-                          <option value="">選擇年</option>
-                          @for ($i = date('Y'); $i >= 1900; $i--)
-                              <option value="{{ $i }}">{{ $i }}</option>
-                          @endfor
-                      </select>
-                      <select name="month" class="px-5 py-3 flex-1 text-base font-light rounded-md border border-solid border-neutral-200 text-neutral-400">
-                          <option value="">選擇月</option>
-                          @for ($i = 1; $i <= 12; $i++)
-                              <option value="{{ $i }}">{{ $i }}</option>
-                          @endfor
-                      </select>
-                      <select name="day" class="px-5 py-3 flex-1 text-base font-light rounded-md border border-solid border-neutral-200 text-neutral-400">
-                          <option value="">選擇日</option>
-                          @for ($i = 1; $i <= 31; $i++)
-                              <option value="{{ $i }}">{{ $i }}</option>
-                          @endfor
-                      </select>
-                  </div>
-              </fieldset>
+                {{-- 生日 --}}
+                <fieldset class="flex flex-col w-full font-bold tracking-wide">
+                    <legend class="text-xs leading-loose opacity-50 text-neutral-700 mb-2">
+                        生日日期 (選填)
+                    </legend>
+                    <div class="flex gap-2">
+                        <select name="year"
+                            class="px-5 py-3 flex-1 text-base font-light rounded-md border border-solid border-neutral-200 text-neutral-400">
+                            <option value="">選擇年</option>
+                            @for ($i = date('Y'); $i >= 1900; $i--)
+                            <option value="{{ $i }}" {{ old('year') == $i ? 'selected' : '' }}>{{ $i }}</option>
+                            @endfor
+                        </select>
+                        <select name="month"
+                            class="px-5 py-3 flex-1 text-base font-light rounded-md border border-solid border-neutral-200 text-neutral-400">
+                            <option value="">選擇月</option>
+                            @for ($i = 1; $i <= 12; $i++)
+                            <option value="{{ $i }}" {{ old('month') == $i ? 'selected' : '' }}>{{ $i }}</option>
+                            @endfor
+                        </select>
+                        <select name="day"
+                            class="px-5 py-3 flex-1 text-base font-light rounded-md border border-solid border-neutral-200 text-neutral-400">
+                            <option value="">選擇日</option>
+                            @for ($i = 1; $i <= 31; $i++)
+                            <option value="{{ $i }}" {{ old('day') == $i ? 'selected' : '' }}>{{ $i }}</option>
+                            @endfor
+                        </select>
+                    </div>
+                    @error('year')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                    @error('month')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                    @error('day')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </fieldset>
 
-              <div class="mt-10 w-full">
-                  <button type="submit"
-                      class="px-0 py-3 w-full text-base font-bold tracking-wide text-center text-white bg-gray-500 rounded-md cursor-pointer border-[none] hover:bg-gray-600 transition-colors">
-                      完成註冊
-                  </button>
-              </div>
-          </form>
-      </section>
-  </main>
+                <div class="mt-10 w-full">
+                    <button type="submit"
+                        class="px-0 py-3 w-full text-base font-bold tracking-wide text-center text-white bg-gray-500 rounded-md cursor-pointer border-[none] hover:bg-gray-600 transition-colors">
+                        完成註冊
+                    </button>
+                </div>
+            </form>
+        </section>
+    </main>
 </body>

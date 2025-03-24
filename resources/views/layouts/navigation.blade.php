@@ -4,11 +4,11 @@
         <div class="leftArea flex justify-start items-center gap-10">
             <!-- Logo -->
             <a href="{{ route('home') }}" class="flex justify-center items-center">
-                <img src="{{ asset('images/logo-nav1.png') }}" class="h-8 me-[12px]" alt="logo">
-                <img src="{{ asset('images/logo-nav2.png') }}" class="h-5" alt="logo">
+                <img src="{{ asset('images/layouts/logo_nav1.jpg') }}" class="h-8 me-[12px]" alt="logo">
+                <img src="{{ asset('images/layouts/logo_nav2.jpg') }}" class="h-5" alt="logo">
             </a>
-            <div id="prodsBtnPc" class="text-lg hidden lg:block cursor-pointer">商品&nbsp;<span class="plusIcon">＋</span></div>
-            <a href="" class="text-lg hidden lg:block hover:text-brandGray-normalLight active:text-brandGray-lightHover ">關於我們</a>
+            <div id="prodsBtnPc" class="text-lg hidden lg:block cursor-pointer">商品&nbsp;<span class="plusIconPc">＋</span></div>
+            <a href="{{route('about_us')}}" class="text-lg hidden lg:block hover:text-brandGray-normalLight active:text-brandGray-lightHover ">關於我們</a>
         </div>
         <!-- 右側區塊 -->
         <div class="rightArea flex justify-end items-center gap-10">
@@ -21,33 +21,42 @@
             </div>
 
             <!-- icons -->
-            <!-- wishList -->
+            <!-- wish lists -->
             <div class="flex justify-center items-center gap-[24px] md:gap-10">
-                <a href="" class="flex items-center justify-center">
-                    <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[mynaui--heart]"></span>
+                <a href="{{asset('wish_lists')}}" class="flex items-center justify-center">
+                    <!-- 空心愛心 -->
+                    <!-- <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[mynaui--heart]"></span> -->
+                    <!-- 實心愛心 -->
+                    <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[mynaui--heart-solid]"></span>
                 </a>
                 <!-- cart -->
                 <a href="{{route('cart')}}" class="flex items-center justify-center">
-                    <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[iconoir--cart]"></span>
+                    <!-- 實心購物車 -->
+                    <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[fluent-mdl2--shopping-cart-solid]"></span>
                 </a>
-                <!-- account -->
-                <a href="" class="flex items-center justify-center">
+
+                <!-- 帳號按鈕 -->
+                <a href="{{ auth()->check() ? route('user_profile') : route('mylogin') }}"
+                    class="flex items-center justify-center">
                     <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[qlementine-icons--user-16]"></span>
                 </a>
-                <!-- hamMenu -->
-                <div id="hamBtn" class="block md:hidden cursor-pointer">
-                    <div class="flex items-center justify-center">
-                        <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[cil--hamburger-menu]"></span>
-                    </div>
+            </div>
+
+
+            <!-- hamMenu -->
+            <div id="hamBtn" class="block md:hidden cursor-pointer">
+                <div class="flex items-center justify-center">
+                    <span class="w-[20px] h-[20px] md:w-[25px] md:h-[25px] hover:text-brandGray-normalLight active:text-brandGray-lightHover icon-[cil--hamburger-menu]"></span>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- 平板版 變版 -->
     <div id="prodsBtnTablet" class="hidden text-lg md:block lg:hidden h-[50px] px-[60px] border-b border-b-normalLight">
         <span class="me-10 cursor-pointer">商品&nbsp;<span class="plusIcon">＋</span></span>
-        <a href="" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">關於我們</a>
+        <a href="{{route('about_us')}}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">關於我們</a>
     </div>
 
     <!-- 電腦 下拉式選單 -->
@@ -55,7 +64,7 @@
         <div class="h-full lg:px-[85px] md:px-[60px] flex justify-start items-center gap-[30px] py-1">
             <a href="{{ route('categories_accessories') }}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">飾品 Accessories</a>
             <a href="{{ route('categories_clothes') }}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">服飾 Clothes</a>
-            <a href="" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">銀黏土課程 Lessons</a>
+            <a href="{{ route('lessons')}}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">銀黏土課程 Lessons</a>
         </div>
     </div>
 
@@ -63,7 +72,7 @@
         <div class="h-full lg:px-[85px] md:px-[60px] flex justify-start items-center gap-[30px] py-1">
             <a href="{{ route('categories_accessories') }}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">飾品 Accessories</a>
             <a href="{{ route('categories_clothes') }}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">服飾 Clothes</a>
-            <a href="" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">銀黏土課程 Lessons</a>
+            <a href="{{ route('lessons') }}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">銀黏土課程 Lessons</a>
         </div>
     </div>
 
@@ -78,7 +87,7 @@
             </div>
             <div class="cursor-pointer w-[350px h-[30px] flex justify-center gap-[30px]">
                 <div id="prodsBtnPhone" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">商品&nbsp;<span class="plusIcon">＋</span></div>
-                <a href="" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">關於我們</a>
+                <a href="{{route('about_us') }}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">關於我們</a>
             </div>
         </div>
     </div>
@@ -88,7 +97,7 @@
         <div class="h-full flex justify-center items-center gap-[30px] py-1">
             <a href="{{ route('categories_accessories') }}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">飾品</a>
             <a href="{{ route('categories_clothes') }}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">服飾</a>
-            <a href="" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">銀黏土課程</a>
+            <a href="{{ route('lessons') }}" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">銀黏土課程</a>
         </div>
     </div>
 </nav>
@@ -100,10 +109,10 @@
         let hideTimeout;
 
         // 下拉選單 電腦
-        $('#prodsBtnPc').on('mouseenter', function() {
+        $('#prodsBtnPc').on('mouseenter', function(event) {
             clearTimeout(hideTimeout); // 防止提前隱藏
             $(this).addClass("hover:text-brandGray-normalLight", "active:text-brandGray-lightHover");
-            $(".plusIcon").html("－");
+            $(".plusIconPc").html("－");
             $("#dropDownMenuPc").removeClass("hidden");
         });
 
@@ -113,9 +122,9 @@
 
         $('#prodsBtnPc, #dropDownMenuPc').on('mouseleave', function() {
             hideTimeout = setTimeout(function() {
-                $(".plusIcon").html("＋");
+                $(".plusIconPc").html("＋");
                 $("#dropDownMenuPc").addClass("hidden");
-            }, 100);
+            }, 120);
         });
 
         // 下拉式選單 平板
@@ -139,9 +148,9 @@
         $("#hamBtn").on("click", function(event) {
             event.stopPropagation(); // 防止事件冒泡
             $("#dropDownMenuPhone").toggleClass("hidden");
-           if(!($("#dropDownMenuPhoneChild").hasClass("hidden"))){
-            $("#dropDownMenuPhoneChild").addClass("hidden");
-           }
+            if (!($("#dropDownMenuPhoneChild").hasClass("hidden"))) {
+                $("#dropDownMenuPhoneChild").addClass("hidden");
+            }
         });
 
         $(document).on("click", function() {

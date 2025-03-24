@@ -8,40 +8,63 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use function Pest\Laravel\withHeader;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
-    public function create(): View
+
+
+    
+    public function showLoginForm()
     {
-        return view('auth.login');
+        return view('auth.mylogin');
     }
 
-    /**
-     * Handle an incoming authentication request.
-     */
-    public function store(LoginRequest $request): RedirectResponse
-    {
-        $request->authenticate();
+    
+    
+    public function store(Request $request): RedirectResponse
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required|min:6'
+    ]);
 
-        $request->session()->regenerate();
+    $remember = $request->has('remember');//檢查有沒有勾記住我
 
-        return redirect()->intended(route('home', absolute: false));
+    if (!Auth::attempt($request->only('email', 'password'), $remember)) {
+        return back()->withErrors([
+            'email' => '帳號或密碼有誤',
+            'password' => '帳號或密碼有誤', // 🔥 讓密碼輸入框也顯示錯誤訊息
+        ]);
     }
 
-    /**
-     * Destroy an authenticated session.
-     */
+    $request->session()->regenerate();
+
+    return redirect()->route('user_profile');
+}
+
     public function destroy(Request $request): RedirectResponse
     {
+        
+        $user = Auth::user(); // 取得目前登入的使用者
+
+    if ($user) {
+        $user->remember_token = null; // 清除 remember_token
+        $user-> save();
+    }
+        
+        
+        
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
-        return redirect('/');
+
+        return redirect()->route('home')->withHeader([
+            'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+        'Pragma' => 'no-cache',
+        'Expires' => 'Sat, 01 Jan 2000 00:00:00 GMT'//刪除快取
+        ]);
     }
 }
