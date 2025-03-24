@@ -46,7 +46,8 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->name('product_d
 
 // 用戶相關頁面
 // Route::prefix('user')->name('user.')->middleware(['auth'])->group(function () {
-Route::prefix('user')->name('user.')->group(function () {  // 暫時移除 middleware(['auth'])
+// Route::prefix('user')->name('user.')->group(function () {  // 暫時移除 middleware(['auth'])
+Route::prefix('user')->name('user.')->middleware(['auth'])->group(function () {  // 恢復 auth 中間件
     // 個人檔案
     Route::get('/user_profile', function () {
         return view('user.user_profile');
@@ -119,10 +120,10 @@ Route::prefix('user')->name('user.')->group(function () {  // 暫時移除 middl
     })->name('payment.delete');
 
     // 我的優惠
-    // Route::get('/coupons', [CouponController::class, 'index'])->name('coupons');
-    // Route::get('/coupons/switch-view', [CouponController::class, 'switchView'])->name('coupons.switch-view');
-    // Route::post('/coupons/redeem', [CouponController::class, 'redeem'])->name('coupons.redeem');
-    // Route::get('/coupons/{id}', [CouponController::class, 'show'])->name('coupons.show');
+    Route::get('/coupons', [CouponController::class, 'index'])->name('coupons');
+    Route::get('/coupons/switch-view', [CouponController::class, 'switchView'])->name('coupons.switch-view');
+    Route::post('/coupons/redeem', [CouponController::class, 'redeem'])->name('coupons.redeem');
+    Route::get('/coupons/{id}', [CouponController::class, 'show'])->name('coupons.show');
 
     // 新增收件地址頁面
     Route::get('/address/add', function () {
