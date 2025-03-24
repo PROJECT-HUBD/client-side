@@ -214,7 +214,7 @@
   // <---------------------接收商品資料_from_productAPI------------------------->
   $(document).ready(function() {
     $.ajax({
-      url: '/getCartData', // 修改為正確的 URL
+      url: "{{ route('getCartData') }}", // 修改為正確的 URL
       method: 'GET',
       success: function(productList) {
         console.log(productList); // 顯示返回的商品數據
