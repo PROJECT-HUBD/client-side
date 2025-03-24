@@ -149,7 +149,7 @@
     class="flex no-wrap  gap-10 justify-between items-start mt-7 max-w-full text-2xl tracking-normal leading-none whitespace-nowrap w-[1920px]">
     <!-- 繼續購物 -->
     <!-- <a href="{{ route('home') }}" -->
-    <a
+    <a href="{{ route('home') }}"
       class="keepShoping flex overflow-hidden gap-4 items-center px-8 py-4 font-semibold bg-gray-500 rounded-md text-neutral-100 max-md:px-5">
       <img
         src="https://cdn.builder.io/api/v1/image/assets/TEMP/c952c62e6cb99f0e5fac8a2b72bd495f5e660b6e2fc4c7c02951f27ad1e2d261?placeholderIfAbsent=true&apiKey=29bdb496da09449eb579968368248119"
@@ -208,7 +208,7 @@
   // <---------------------接收商品資料_from_productAPI------------------------->
   $(document).ready(function() {
     $.ajax({
-      url: 'http://localhost/client-side/public/getCartData', // 修改為正確的 URL
+      url: '/getCartData', // 修改為正確的 URL
       method: 'GET',
       success: function(productList) {
         console.log(productList); // 顯示返回的商品數據
@@ -450,7 +450,7 @@
       let productColor = article.find(".product_color").val();
 
       $.ajax({
-        url: 'http://localhost/client-side/public/updateCart',
+        url: '/updateCart',
         method: 'POST',
         contentType: "application/json",
         data: JSON.stringify({

@@ -4,10 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductImg extends Model
+class ProductDisplayImg extends Model
 {
-    
-    protected $table = 'product_img';
+    protected $table = 'product_display_img';
     public $timestamps = false;
 
     protected $fillable = [
@@ -17,5 +16,3 @@ class ProductImg extends Model
         'product_alt_text',
     ];
 }
-
-

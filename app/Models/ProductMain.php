@@ -28,10 +28,23 @@ class ProductMain extends Model
         return $this->hasMany(ProductSpec::class, 'product_id', 'product_id');
     }
 
+    public function information(): HasMany
+    {
+    return $this->hasMany(ProductInformation::class, 'product_id', 'product_id');
+    }
+
     public function wishlists(): HasMany
     {
         return $this->hasMany(Wishlist::class, 'product_id'); //關聯wishlist Model  收藏清單用的
     }
 
-    
+    public function images(): HasMany
+    {
+        return $this->hasMany(ProductImg::class, 'product_id', 'product_id');
+    }
+
+    public function displayImages(): HasMany
+    {
+        return $this->hasMany(ProductDisplayImg::class, 'product_id', 'product_id');
+    }
 }
