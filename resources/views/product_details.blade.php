@@ -498,7 +498,7 @@
                     return;
                 }
 
-                fetch("/insertCart", {
+                fetch("{{ route('insertCart') }}", {
                         method: "POST",
                         headers: {
                             "X-CSRF-TOKEN": "{{ csrf_token() }}",
