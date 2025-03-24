@@ -218,7 +218,7 @@ Route::match(['get', 'post'], '/cart', function () {
 Route::get('/getCartData', [CartController::class, 'getCartData']);
 
 // 購物車更新資料
-Route::match(['get', 'post'], '/insertCart', [CartController::class, 'insertCart']);
+Route::match(['get', 'post'], '/insertCart', [CartController::class, 'insertCart'])->name('insertCart');
 Route::post('/updateCart', [CartController::class, 'updateCart']);
 
 // 購物清單頁
