@@ -6,11 +6,11 @@ $tabIndex = 0;
     <!-- Tabs 標籤區 -->
     <div class="flex space-x-4 mb-5" id="tabs-nav">
         @foreach($tabs as $index => $tab)
-        <!-- <button @click="activeTab = {{ $index }}"
+        <button @click="activeTab = {{ $index }}"
             class="tab-button px-4 py-2 focus:outline-none"
             :class="activeTab === {{ $index }} ? 'text-brandRed-normal' : 'text-brandGray-normalLight hover:text-brandRed-normal'">
             {{ $tab }}
-        </button> -->
+        </button>
         @endforeach
     </div>
     <div class="w-full h-[0.5px] bg-brandGray-lightHover"></div>
