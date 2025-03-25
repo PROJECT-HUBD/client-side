@@ -217,6 +217,10 @@
       url: "{{ route('getCartData') }}", // 修改為正確的 URL
       method: 'GET',
       success: function(productList) {
+        if (productList.length === 0) {
+          window.location.href = "{{ route('cart_empty') }}";
+        }
+
         console.log(productList); // 顯示返回的商品數據
         // <---------------------將資料存入 localStorage-------------------------> 
         localStorage.setItem("productList", JSON.stringify(productList));
