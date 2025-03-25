@@ -168,10 +168,12 @@
                         <span class="text-brandGrey-normal lg:text-2xl sm:text-lg font-medium">+</span>
                     </button>
                 </div>
+                @unless($isAccessory)
                 <div
                     class="text-brandGray-normalLight lg:text-lg sm:text-sm font-light font-['Lexend'] lg:leading-relaxed sm:leading-snug">
                     請選擇顏色與尺寸
                 </div>
+                @endunless
                 <div id="stockWarning" class="text-red-500 text-sm font-light hidden">已達最大庫存</div>
             </div>
             <!-- <div
@@ -192,7 +194,7 @@
             <div class="flex flex-col md:flex-row items-center w-full gap-4 md:gap-6">
                 <!-- 加入購物車按鈕 -->
                 <button id="addToCartBtn"
-                    class=" flex-1 lg:h-[58px] md:h-[47.5px] sm:h-10 bg-brandBlue-normal rounded-md flex justify-center items-center cursor-pointer w-full disabled:opacity-50 disabled:cursor-not-allowed "disabled>
+                    class=" flex-1 lg:h-[58px] md:h-[47.5px] sm:h-10 bg-brandBlue-normal rounded-md flex justify-center items-center cursor-pointer w-full disabled:opacity-50 disabled:cursor-not-allowed ">
                     <span
                         class="text-white lg:text-2xl sm:text-base md:font-light sm:font-bold lg:leading-9 md:leading-normal sm:leading-loose">
                         加入購物車
@@ -201,8 +203,7 @@
 
                 <!-- 直接購買按鈕 -->
                 <button id="buyNowBtn"
-                    class="flex-1 lg:h-[58px] md:h-[47.5px] sm:h-10 bg-brandRed-normal rounded-md flex justify-center items-center cursor-pointer w-full disabled:opacity-50 disabled:cursor-not-allowed"
-                    disabled>
+                    class="flex-1 lg:h-[58px] md:h-[47.5px] sm:h-10 bg-brandRed-normal rounded-md flex justify-center items-center cursor-pointer w-full disabled:opacity-50 disabled:cursor-not-allowed">
                     <span
                         class="text-white lg:text-2xl sm:text-base md:font-light sm:font-bold lg:leading-9 md:leading-normal sm:leading-loose">
                         直接購買
@@ -264,6 +265,8 @@
             $("[data-svg-wrapper] rect").remove();
             let selectedColor = null;
             let selectedSize = null;
+            const isAccessory = {{ $isAccessory ? 'true' : 'false' }};
+
 
             function updatePath() {
 
@@ -493,7 +496,7 @@
 
 
             function addToCart() {
-                if (!selectedColor || !selectedSize) {
+                if (!isAccessory&&(selectedColor || !selectedSize)) {
                     alert("請先選擇顏色與尺寸！");
                     return;
                 }
@@ -534,7 +537,7 @@
             }
 
             function buyNow() {
-                if (!selectedColor || !selectedSize) {
+                if (!isAccessory && (!selectedColor || !selectedSize)) {
                     alert("請先選擇顏色與尺寸！");
                     return;
                 }

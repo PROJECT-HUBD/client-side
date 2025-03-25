@@ -18,7 +18,7 @@
             @foreach ($wishlistItems as $item)
                 <article class="flex px-8 py-4 bg-white rounded-lg shadow-md">
                     <div class="mr-6 bg-gray-300 h-[104px] w-[104px] rounded-lg overflow-hidden">
-                        <img src="{{ $item->product->product_img }}" alt="{{ $item->product->product_name }}"
+                        <img src="{{ 'http://localhost:8000/storage/' . $item->product->product_img }}" alt="{{ $item->product->product_name }}"
                             class="w-full h-full object-cover">
                     </div>
                     <div class="flex-1">
