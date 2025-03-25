@@ -258,6 +258,10 @@
             @foreach($accessories as $index => $accessory)
             <a href="{{ route('product_details', ['id' => $accessory->product_id]) }}" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5 {{$index === 3 ? 'hidden lg:flex' : ''}}">
                 <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
+                    @if($accessory->specs_sum_product_stock == 0)
+                    <div class="absolute w-36 h-14 bg-brandGray-light bg-opacity-20 text-[24px] text-brandGray-light flex justify-center items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">SOLD OUT</div>
+                    <div class="absolute w-full h-full bg-brandGray-normal opacity-60 flex justify-center items-center top-0 left-0"></div>
+                    @endif
                     <img src="{{ 'http://localhost:8000/storage/' . $accessory->product_img }}" alt="{{$accessory->product_name}}" class="w-full h-full object-cover">
                 </div>
                 <div class="w-full h-[74px] flex flex-col justify-center items-start gap-3 text-[20px]">
@@ -286,6 +290,10 @@
             @foreach($clothes as $index => $cloth)
             <a href="{{ route('product_details', ['id' => $cloth->product_id]) }}" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5 {{$index === 3 ? 'hidden lg:flex' : ''}}">
                 <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
+                    @if($cloth->specs_sum_product_stock == 0)
+                    <div class="absolute w-36 h-14 bg-brandGray-light bg-opacity-20 text-[24px] text-brandGray-light flex justify-center items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">SOLD OUT</div>
+                    <div class="absolute w-full h-full bg-brandGray-normal opacity-60 flex justify-center items-center top-0 left-0"></div>
+                    @endif
                     <img src="{{ 'http://localhost:8000/storage/' . $cloth->product_img }}" alt="{{$cloth->product_name}}" class="w-full h-full object-cover">
                 </div>
                 <div class="w-full h-[74px] flex flex-col justify-center items-start gap-3 text-[20px]">

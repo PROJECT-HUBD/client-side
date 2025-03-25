@@ -6,13 +6,13 @@
 
 {{-- 麵包屑的東西 --}}
 @php
-        $from = $from ?? request('from');
-    $initialTab = 0;
-    if ($from === 'long') {
-        $initialTab = 1;
-    } elseif ($from === 'jacket') {
-        $initialTab = 2;
-    }
+$from = $from ?? request('from');
+$initialTab = 0;
+if ($from === 'long') {
+$initialTab = 1;
+} elseif ($from === 'jacket') {
+$initialTab = 2;
+}
 @endphp
 
 
@@ -36,6 +36,10 @@
                         <!-- 商品 -->
                         <a href="{{ route('product_details', ['id' => $short->product_id, 'from' => 'short']) }}" class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-10 mb-52 md:mb-20">
                             <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
+                                @if($short->specs_sum_product_stock == 0)
+                                <div class="absolute w-36 h-14 bg-brandGray-light bg-opacity-20 text-[24px] text-brandGray-light flex justify-center items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">SOLD OUT</div>
+                                <div class="absolute w-full h-full bg-brandGray-normal opacity-60 flex justify-center items-center top-0 left-0"></div>
+                                @endif
                                 <img src="{{ 'http://localhost:8000/storage/' . $short->product_img}}" alt="{{$short->product_name}}" class="w-full h-[250px] md:h-full object-cover">
                             </div>
                             <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
@@ -55,6 +59,10 @@
                         <!-- 商品 -->
                         <a href="{{ route('product_details', ['id' => $long->product_id, 'from' => 'long']) }}" class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-10 mb-52 md:mb-20">
                             <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
+                                @if($long->specs_sum_product_stock == 0)
+                                <div class="absolute w-36 h-14 bg-brandGray-light bg-opacity-20 text-[24px] text-brandGray-light flex justify-center items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">SOLD OUT</div>
+                                <div class="absolute w-full h-full bg-brandGray-normal opacity-60 flex justify-center items-center top-0 left-0"></div>
+                                @endif
                                 <img src="{{'http://localhost:8000/storage/' . $long->product_img}}" alt="{{$long->product_name}}" class="w-full h-[250px] md:h-full object-cover">
                             </div>
                             <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
@@ -71,7 +79,22 @@
                 <section class="product-section w-full flex flex-col justify-start items-center mt-36 md:mt-20">
                     <div class="w-full md:w-[770px] lg:w-[1230px] h-[418px] grid md:grid-cols-3 lg:grid-cols-4 justify-center items-center gap-5">
                         @foreach($jackets as $index => $jacket)
-                        <!-- 商品 -->
+                        @if($jacket->specs_sum_product_stock == 0)
+                        <!-- 無連結商品卡片 -->
+                        <div class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-10 mb-52 md:mb-20">
+                            <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
+                                <div class="absolute w-36 h-14 bg-brandGray-light bg-opacity-20 text-[24px] text-brandGray-light flex justify-center items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">SOLD OUT</div>
+                                <div class="absolute w-full h-full bg-brandGray-normal opacity-60 flex justify-center items-center top-0 left-0"></div>
+                                <img src="{{'http://localhost:8000/storage/' . $jacket->product_img}}" alt="{{$jacket->product_name}}" class="w-full h-[250px] md:h-full object-cover">
+                            </div>
+                            <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
+                                <p class="text-brandGrey-darker">{{$jacket->product_name}}</p>
+                                <p class="text-brandGrey-normal text-[18px]">NT$&nbsp;<span id="price">{{$jacket->product_price}}</span></p>
+                            </div>
+                        </div>
+
+                        @else
+                        <!-- 有連結商品卡片 -->
                         <a href="{{ route('product_details', ['id' => $jacket->product_id, 'from' => 'jacket']) }}" class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-10 mb-52 md:mb-20">
                             <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
                                 <img src="{{'http://localhost:8000/storage/' . $jacket->product_img}}" alt="{{$jacket->product_name}}" class="w-full h-[250px] md:h-full object-cover">
@@ -81,6 +104,7 @@
                                 <p class="text-brandGrey-normal text-[18px]">NT$&nbsp;<span id="price">{{$jacket->product_price}}</span></p>
                             </div>
                         </a>
+                        @endif
                         @endforeach
                     </div>
                 </section>
