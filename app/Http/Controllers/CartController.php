@@ -44,14 +44,16 @@ class CartController extends Controller
     public function insertCart(Request $request)
     {
         try {
+            $isAccessory = str_starts_with($request->product_id, 'pa');
+
             $data = $request->validate([
                 'product_id' => 'required|string',
-                'product_color' => 'required|string',
-                'product_size' => 'required|string',
+                'product_color' => $isAccessory ? 'nullable' : 'required|string',
+                'product_size' => $isAccessory ? 'nullable' : 'required|string',
                 'quantity' => 'required|integer|min:1',
             ]);
 
-          $userId = auth()->id() ?? null;
+            $userId = auth()->id() ?? null;
           
           if (!$userId) {
               return response()->json(['error' => '請先登入以加入購物車'], 401);
