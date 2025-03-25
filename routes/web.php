@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\SystemMaintenanceController;
+
 // 首頁
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
@@ -223,7 +222,8 @@ Route::post('/InsertOrderMain', [CheckoutController::class, 'InsertOrderMain']);
 Route::post('/InsertOrderDetail', [CheckoutController::class, 'InsertOrderDetail']);
 //購物清單頁_刪除購物車
 Route::post('/DeleteCart', [CheckoutController::class, 'DeleteCart']);
-
+//購物清單頁_更新庫存
+Route::post('/UpdateProductStock', [CheckoutController::class, 'UpdateProductStock']);
 
 // 成功頁
 Route::match(['get', 'post'],'/successful_transaction', function () {
