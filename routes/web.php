@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\User\CouponController;
+use App\Http\Controllers\UserProfileController;
 // 首頁
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
@@ -42,9 +43,7 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->name('product_d
 // Route::prefix('user')->name('user.')->group(function () {  // 暫時移除 middleware(['auth'])
 Route::prefix('user')->name('user.')->middleware(['auth'])->group(function () {  // 恢復 auth 中間件
     // 個人檔案
-    Route::get('/user_profile', function () {
-        return view('user.user_profile');
-    })->name('user_profile');
+    Route::get('/user_profile', [UserProfileController::class, 'index'])->name('user_profile');
 
     // 更新個人資料
     Route::put('/user_profile/update', function () {
@@ -182,9 +181,7 @@ Route::prefix('user')->name('user.')->middleware(['auth'])->group(function () { 
 
 //確保 /user_profile 只能在登入 (auth) 狀態下訪問，如果未登入，Laravel 會自動導向 mylogin。
 Route::middleware(['auth'])->group(function () {
-    Route::get('/user_profile', function () {
-        return view('user.user_profile');
-    })->name('user_profile');
+    Route::get('/user_profile', [UserProfileController::class, 'index'])->name('user_profile');
 });
 
 // 購物車頁
