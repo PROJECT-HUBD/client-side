@@ -17,7 +17,7 @@ class WishlistController extends Controller
           return redirect()->route('login')->with('error', '請先登入');
       }
 
-      $wishlistItems = Wishlist::where('member_id', Auth::id())->with('product')->get();
+      $wishlistItems = Wishlist::where('id', Auth::id())->with('product')->get();
       return view('wish_lists', compact('wishlistItems'));
   }
 
@@ -29,14 +29,14 @@ class WishlistController extends Controller
       }
 
       $productId = $request->input('product_id');
-      $wishlistItem = Wishlist::where('member_id', Auth::id())->where('product_id', $productId)->first();
+      $wishlistItem = Wishlist::where('id', Auth::id())->where('product_id', $productId)->first();
 
       if ($wishlistItem) {
           $wishlistItem->delete();
           return response()->json(['status' => 'removed']);
       } else {
           Wishlist::create([
-              'member_id' => Auth::id(),
+              'id' => Auth::id(),
               'product_id' => $productId,
           ]);
           return response()->json(['status' => 'added']);
@@ -51,7 +51,7 @@ class WishlistController extends Controller
       }
 
       $productId = $request->input('product_id');
-      Wishlist::where('member_id', Auth::id())->where('product_id', $productId)->delete();
+      Wishlist::where('id', Auth::id())->where('product_id', $productId)->delete();
 
       return response()->json(['status' => 'removed']);
   }
