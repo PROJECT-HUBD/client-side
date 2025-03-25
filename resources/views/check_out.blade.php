@@ -11,63 +11,64 @@
              ['name' => '購物車', 'url' => route('cart')],
              ['name' => '結帳'],
          ]" />
-<div
-  class="flex flex-wrap gap-10 items-start pt-10 pr-24 pb-20 pl-32 max-md:px-5 lg:mx-[120px] md:mx-[60px] sm:mx-[20px]">
-  <!-- 確認地址與付款方式 -->
-  <section class="grow shrink min-w-60 w-[495px] max-md:max-w-full">
-    <div class="w-full max-md:max-w-full">
-      <header
-        class="flex flex-wrap gap-10 justify-between items-center w-full whitespace-nowrap max-md:max-w-full">
-        <h2 class="gap-2.5 self-stretch my-auto text-3xl text-zinc-700">
-          確認收件人地址
-        </h2>
-        <a href="{{ route('user.address') }}"
-          class=" self-stretch pt-2.5 my-auto text-base font-bold tracking-wide leading-none  text-gray-500 underline  underline-offset-auto">
-          變更收件人與地址
-        </a>
-      </header>
+  <div
+    class="flex flex-wrap gap-10 items-start pt-10 pr-24 pb-20 pl-32 max-md:px-5 lg:mx-[120px] md:mx-[60px] sm:mx-[20px]">
+    <!-- 確認地址與付款方式 -->
+    <section class="grow shrink min-w-60 w-[495px] max-md:max-w-full">
+      <div class="w-full max-md:max-w-full">
+        <header
+          class="flex flex-wrap gap-10 justify-between items-center w-full whitespace-nowrap max-md:max-w-full">
+          <h2 class="gap-2.5 self-stretch my-auto text-3xl text-zinc-700">
+            確認收件人地址
+          </h2>
+          <a href="{{ route('user.address') }}"
+            class=" self-stretch pt-2.5 my-auto text-base font-bold tracking-wide leading-none  text-gray-500 underline  underline-offset-auto">
+            變更收件人與地址
+          </a>
+        </header>
 
-      <select class="mt-4 py-4 w-full text-base text-zinc-500 max-md:max-w-full flex flex-wrap gap-5 justify-between max-md:px-5">
-        <option class="flex w-full truncate" value="1">台中市北區崇德路一段163號1樓 - 劉尚廉 (+886) 939022222</option>
-        <option class="flex w-full truncate" alue="2">台南市東區大同路二段50巷12號 - 謝武言 (+886) 939357229</option>
-        <option class="flex w-full truncate" value="3">新北市板橋區文化路二段168號 - 陳玉文 (+886) 946325598</option>
-      </select>
-    </div>
+        <select class="mt-4 py-4 w-full text-base text-zinc-500 max-md:max-w-full flex flex-wrap gap-5 justify-between max-md:px-5">
+          <option class="flex w-full truncate" value="1">台中市北區崇德路一段163號1樓 - 劉尚廉 (+886) 939022222</option>
+          <option class="flex w-full truncate" alue="2">台南市東區大同路二段50巷12號 - 謝武言 (+886) 939357229</option>
+          <option class="flex w-full truncate" value="3">新北市板橋區文化路二段168號 - 陳玉文 (+886) 946325598</option>
+        </select>
+      </div>
 
-    <section class="mt-12 max-w-full max-md:mt-10">
-      <header
-        class="flex flex-wrap gap-10 justify-between items-center w-full whitespace-nowrap max-md:max-w-full">
-        <h2 class="gap-2.5 self-stretch my-auto text-3xl text-zinc-700">
-          付款方式
-        </h2>
-        <a  href="{{ route('user.payment') }}"
-        
-          class="overflow-hidden justify-end self-stretch pt-2.5  text-base font-bold  leading-none  text-gray-500 underline  underline-offset-auto ">
-          變更付款方式
-        </a>
-      </header>
-      <select class="mt-4 w-full max-md:max-w-full text-base text-zinc-500">
+      <section class="mt-12 max-w-full max-md:mt-10">
+        <header
+          class="flex flex-wrap gap-10 justify-between items-center w-full whitespace-nowrap max-md:max-w-full">
+          <h2 class="gap-2.5 self-stretch my-auto text-3xl text-zinc-700">
+            付款方式
+          </h2>
+          <a href="{{ route('user.payment') }}"
 
-        <option hidden>請選擇付款方式</option>
-        <option class="payment_type" value="信用卡付款">信用卡付款 - 劉尚廉-**** **** **** 5678</option>
-        <option class="payment_type" value="信用卡付款">信用卡付款 - 陳文宣-**** **** **** 3764</option>
-        <option class="payment_type" value="ATM轉帳">ATM轉帳</option>
+            class="overflow-hidden justify-end self-stretch pt-2.5  text-base font-bold  leading-none  text-gray-500 underline  underline-offset-auto ">
+            變更付款方式
+          </a>
+        </header>
+        <select class="mt-4 w-full max-md:max-w-full text-base text-zinc-500">
 
-      </select>
+
+          <option class="payment_type" value="信用卡付款">信用卡付款 - 劉尚廉-**** **** **** 5678</option>
+          <option class="payment_type" value="信用卡付款">信用卡付款 - 陳文宣-**** **** **** 3764</option>
+          <option class="payment_type" value="ATM轉帳">ATM轉帳</option>
+
+        </select>
+      </section>
+
+      <a href="{{ route('successful_transaction') }}"
+     
+
+        class="makeOrder flex justify-center items-center px-10 py-4 mt-12 w-full text-2xl font-bold tracking-normal leading-none text-center text-white  bg-red-500 rounded-md max-md:px-5 max-md:mt-10 max-md:max-w-full">
+        一鍵下訂
+      </a>
     </section>
-
-    <a href="{{ route('successful_transaction') }}"
-   
-      class="makeOrder flex justify-center items-center px-10 py-4 mt-12 w-full text-2xl font-bold tracking-normal leading-none text-center text-white  bg-red-500 rounded-md max-md:px-5 max-md:mt-10 max-md:max-w-full">
-      一鍵下訂
-    </a>
-  </section>
-  <!------- 訂單商品明細 ------>
-  <section
-    class=" flex flex-col grow shrink rounded min-w-60 w-[448px] max-md:max-w-full">
-    <!-- productDetail -->
-    <article class="productDetail">
-      <!-- <div
+    <!------- 訂單商品明細 ------>
+    <section
+      class=" flex flex-col grow shrink rounded min-w-60 w-[448px] max-md:max-w-full">
+      <!-- productDetail -->
+      <article class="productDetail">
+        <!-- <div
         class="flex gap-5 items-center self-stretch my-auto text-sm min-w-60 text-zinc-700">
         <div class="flex gap-6 items-center self-stretch my-auto min-w-60">
           <div
@@ -91,11 +92,11 @@
           <p class="text-red-700">$650</p>
         </div>
       </div> -->
-    </article>
-    <!-- countDetail -->
-    <section
-      class="checkoutDetail overflow-hidden self-center py-8 w-full rounded max-w-[560px] max-md:px-5 max-md:max-w-full">
-      <!-- <div
+      </article>
+      <!-- countDetail -->
+      <section
+        class="checkoutDetail overflow-hidden self-center py-8 w-full rounded max-w-[560px] max-md:px-5 max-md:max-w-full">
+        <!-- <div
         class="flex flex-wrap gap-10 justify-between items-start w-full text-base whitespace-nowrap text-zinc-700 max-md:max-w-full">
         <p class="gap-1 self-stretch w-[171px]">商品金額</p>
         <p>$1750</p>
@@ -120,8 +121,8 @@
         <p class="gap-2.5 self-stretch w-16 text-zinc-700">小計</p>
         <p class="text-red-700">$1650</p>
       </div> -->
-    </section>
-</div>
+      </section>
+  </div>
 
 </section>
 @endsection
@@ -268,19 +269,16 @@
       };
       // console.log(orderMainData);
 
-
-     
-
       // <------------------------------Insert order main data (InsertOrderMain)<------------------------------>
       $.ajax({
         url: 'http://localhost/client-side/public/InsertOrderMain',
         method: 'POST',
         contentType: "application/json", // 以 JSON 格式發送資料
         data: JSON.stringify({
-          orderMainData:orderMainData
+          orderMainData: orderMainData
         }), // 傳遞 JSON 格式的購物車資料
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // 取得 CSRF Token
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // 取得 CSRF Token
         },
         success: function(response) {
           console.log("Order Main Inserted Successfully:", response);
@@ -289,8 +287,8 @@
           console.error("Error inserting order main:", error);
         }
       });
-       //  <-----------------------------給Orderdetail資料表的資料Prepare data for InsertOrderDetail API------------------------------>
-       const orderDetailData = {
+      //  <-----------------------------給Orderdetail資料表的資料Prepare data for InsertOrderDetail API------------------------------>
+      const orderDetailData = {
         order_id: order_id,
         products: productList.map(product => ({
           product_name: product.product_name,
@@ -320,34 +318,76 @@
         }
       });
 
-      // <------------------------------Delete cart items (DeleteCart)--------------------------->
-      const product_ids = productList.map(product => product.product_id);
 
-      // $.ajax({
-      // <------------------------------renew cart SQLCommand --------------------------->
-     
-//     INSERT INTO cart (product_id, product_name, product_size, product_color, quantity, id)
-// VALUES 
-//     ("ps001", "女裝百褶拼接寬鬆上衣", "S", "Black", 3, 19),
-//     ("ps002", "女裝不對稱異素材上衣", "L", "Black", 3, 19)
-    
-      //   url: 'http://localhost/client-side/public/DeleteCart',
-      //   method: 'POST',
-      //   contentType: "application/json", // 以 JSON 格式發送資料
-      //   data: JSON.stringify({
-      //     product_ids: product_ids
-      //   }), // 傳遞 JSON 格式的購物車資料
-      //   headers: {
-      //       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // 取得 CSRF Token
-      //   },
-      //   success: function(response) {
-      //     console.log("Cart Items Deleted Successfully:", response);
-      //   },
-      //   error: function(error) {
-      //     console.error("Error deleting cart items:", error);
-      //   }
-      // });
-    });
-  });
+      // <------------------------------Delete cart items (DeleteCart)--------------------------->
+
+      const product_ids = {
+        id: "19", // 假設這是 order_id 或其他唯一標識符
+        products: productList.map(product => ({
+          product_id: product.product_id,
+          quantity: product.quantity
+        }))
+      };
+
+
+      $.ajax({
+        url: 'http://localhost/client-side/public/DeleteCart',
+        method: 'POST',
+        contentType: "application/json", // 以 JSON 格式發送資料
+        data: JSON.stringify({
+          product_ids: product_ids,
+          _token: $('meta[name="csrf-token"]').attr('content') // CSRF token 用於保護
+
+        }), // 傳遞 JSON 格式的購物車資料
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // 取得 CSRF Token
+        },
+        success: function(response) {
+          console.log("Cart Items Deleted Successfully:", response);
+        },
+        error: function(error) {
+          console.error("Error deleting cart items:", error);
+        }
+      }); //end of ajax_DeleteCart
+
+
+
+
+      // <------------------------------update product stock (UpdateProductStock)--------------------------->
+
+      const product_stock = {
+        products: productList.map(product => ({
+          product_id: product.product_id,
+          quantity: product.quantity
+        }))
+      };
+
+      $.ajax({
+        url: 'http://localhost/client-side/public/UpdateProductStock',
+        method: 'POST',
+        contentType: "application/json", // 以 JSON 格式發送資料
+        data: JSON.stringify({
+          product_stock: product_stock,
+          _token: $('meta[name="csrf-token"]').attr('content') // CSRF token 用於保護
+
+        }), // 傳遞 JSON 格式的購物車資料
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // 取得 CSRF Token
+        },
+        success: function(response) {
+          console.log("Cart Items Deleted Successfully:", response);
+        },
+        error: function(error) {
+          console.error("Error deleting cart items:", error);
+        }
+      }); //end of ajax_UpdateProductStock
+    }); //end of makeOrder
+  }); //end of document.ready
+  // <------------------------------renew cart SQLCommand --------------------------->
+
+  //     INSERT INTO cart (product_id, product_name, product_size, product_color, quantity, id)
+  // VALUES 
+  //     ("ps001", "女裝百褶拼接寬鬆上衣", "S", "Black", 3, 19),
+  //     ("ps002", "女裝不對稱異素材上衣", "L", "Black", 3, 19)
 </script>
 @endpush

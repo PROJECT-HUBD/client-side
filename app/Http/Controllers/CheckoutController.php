@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\OrderMain;
 use App\Models\OrderDetail;
+use Illuminate\Support\Facades\DB;
+use App\Models\ProductSpec;
+
 
 
 class CheckoutController extends Controller
@@ -38,11 +41,7 @@ class CheckoutController extends Controller
 
     
     }
-//     productList: 
-//     {order_id: 404,
-// products:
-// 0: {product_name: '女裝百褶拼接寬鬆上衣', product_size: 'S', product_color: 'Black', quantity: 1, product_price: 1640},
-// 1: {product_name: '女裝不對稱異素材上衣', product_size: 'S', product_color: 'White',quantity: 1, product_price: 1640}}
+
 
 public function InsertOrderDetail(Request $request)
 {
@@ -76,19 +75,114 @@ public function InsertOrderDetail(Request $request)
         return response()->json(['res' => "none"]);
     }
 }
-    public function DeleteCart(Request $request)
-    {
-        // Validate incoming request
-        // $request->validate([
-        //     'product_ids' => 'required|array',
-        //     'product_ids.*' => 'required|integer',
-        // ]);
 
-        // Delete products from the cart by product_id
-        foreach ($request->product_ids as $product_id) {
-            Cart::where('product_id', $product_id)->delete();
+public function DeleteCart(Request $request)
+{
+    // 檢查請求中是否包含 product_ids 數據
+    if (!$request->has('product_ids')) {
+        return response()->json(['success' => false, 'message' => '缺少必要參數'], 400);
+    }
+
+    // 獲取用戶ID和產品信息
+    $data = $request->input('product_ids');
+    $userId = $data['id'];
+    $products = $data['products'];
+   
+   
+    try {
+        foreach ($products as $product) {
+            $productId = $product['product_id'];
+            $quantity = $product['quantity'];
+
+            // 刪除購物車中對應的商品
+            Cart::where('id', $userId)
+                ->where('product_id', $productId)
+                ->delete();
+            }
+            
+
+        // 提交事務
+        DB::commit();
+
+        return response()->json([
+            'success' => true, 
+            'message' => '購物車商品已成功刪除，庫存已更新'
+        ]);
+    } catch (\Exception $e) {
+        // 發生錯誤時回滾事務
+        DB::rollBack();
+
+        return response()->json([
+            'success' => false, 
+            'message' => '操作失敗: ' . $e->getMessage()
+        ], 500);
+    }
+}
+
+public function UpdateProductStock(Request $request)
+{
+    
+    if (!$request->has('product_stock')) {
+        return response()->json(['success' => false, 'message' => '缺少必要參數'], 400);
+    }
+
+    // 獲取產品信息
+    $data = $request->input('product_stock');
+    $products = $data['products'];
+   
+    // 開始事務處理
+    DB::beginTransaction();
+
+    try {
+        foreach ($products as $product) {
+            $productId = $product['product_id'];
+            $quantity = $product['quantity'];
+            
+            // 更新產品庫存 - 使用 product_id 作為查詢條件
+            $productSpec = ProductSpec::where('product_id', $productId)->first();
+            if ($productSpec) {
+                // 確保庫存不會變成負數
+                if ($productSpec->product_stock >= $quantity) {
+                    // 直接更新庫存數量，不使用 id 欄位
+                    DB::table('product_spec')
+                        ->where('product_id', $productId)
+                        ->update([
+                            'product_stock' => $productSpec->product_stock - $quantity,
+                            'updated_at' => now()
+                        ]);
+                } else {
+                    // 如果庫存不足，回滾事務並返回錯誤
+                    DB::rollBack();
+                    return response()->json([
+                        'success' => false, 
+                        'message' => "產品 {$productId} 庫存不足"
+                    ], 400);
+                }
+            } else {
+                // 如果找不到產品規格，回滾事務並返回錯誤
+                DB::rollBack();
+                return response()->json([
+                    'success' => false, 
+                    'message' => "找不到產品 {$productId} 的規格"
+                ], 404);
+            }
         }
 
-        return response()->json(['success' => true, 'message' => 'Cart items deleted successfully']);
+        // 提交事務
+        DB::commit();
+
+        return response()->json([
+            'success' => true, 
+            'message' => '庫存已成功更新'
+        ]);
+    } catch (\Exception $e) {
+        // 發生錯誤時回滾事務
+        DB::rollBack();
+
+        return response()->json([
+            'success' => false, 
+            'message' => '操作失敗: ' . $e->getMessage()
+        ], 500);
     }
+}
 }

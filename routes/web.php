@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 // 首頁
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
@@ -230,6 +231,8 @@ Route::post('/InsertOrderDetail', [CheckoutController::class, 'InsertOrderDetail
 
 //購物清單頁_刪除購物車
 Route::post('/DeleteCart', [CheckoutController::class, 'DeleteCart']);
+//購物清單頁_更新庫存
+Route::post('/UpdateProductStock', [CheckoutController::class, 'UpdateProductStock']);
 
 // 成功頁
 Route::match(['get', 'post'], '/successful_transaction', function () {
