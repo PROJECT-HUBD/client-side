@@ -206,10 +206,10 @@ Route::match(['get', 'post'],'/cart', function () {
 
 
 //購物車獲取資料
-Route::get('/getCartData', [CartController::class, 'getCartData']);
+Route::get('/getCartData', [CartController::class, 'getCartData'])->name('getCartData');
 // 購物車更新資料
-Route::match(['get', 'post'],'/insertCart', [CartController::class, 'insertCart']);
-Route::post('/updateCart', [CartController::class, 'updateCart']);
+Route::match(['get', 'post'],'/insertCart', [CartController::class, 'insertCart'])->name('insertCart');
+Route::post('/updateCart', [CartController::class, 'updateCart'])->name('updateCart');
 
 // 購物清單頁
 Route::match(['get', 'post'],'/check_out', function () {
@@ -240,4 +240,7 @@ Route::match(['get', 'post'],'/system-maintenance', function () {
 // 維護頁調資料庫資料
 Route::get('/maintenance', [SystemMaintenanceController::class, 'showMaintenance'])->name('system.maintenance');
 
-
+// 購物車無商品
+Route::match(['get', 'post'],'/cart_empty', function () {
+    return view('cart_empty');
+})->name('cart_empty');

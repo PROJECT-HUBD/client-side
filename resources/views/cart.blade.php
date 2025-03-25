@@ -214,9 +214,14 @@
   // <---------------------接收商品資料_from_productAPI------------------------->
   $(document).ready(function() {
     $.ajax({
-      url: 'http://localhost/client-side/public/getCartData', // 修改為正確的 URL
+      url: "{{ route('getCartData') }}",
+      // url: 'http://localhost/client-side/public/getCartData', // 修改為正確的 URL
       method: 'GET',
       success: function(productList) {
+        if (productList.length === 0) {
+          window.location.href = "{{ route('cart_empty') }}";
+        }
+
         console.log(productList); // 顯示返回的商品數據
         // <---------------------將資料存入 localStorage-------------------------> 
         localStorage.setItem("productList", JSON.stringify(productList));
@@ -280,7 +285,7 @@
 
         // 商品圖片與詳細資訊
         resultHTML += `<div class="flex gap-6 items-center self-stretch my-auto min-w-60 text-neutral-700">`;
-        resultHTML += `<img class="product_img flex shrink-0 cover my-auto h-[104px] w-[104px]" src="${productList[i].product_img}" alt="Product Image">`;
+        resultHTML += `<img class="product_img flex shrink-0 cover my-auto h-[104px] w-[104px]" src="${productList[i].product_img}" >`; 
 
         // 產品資訊
         resultHTML += `<div class="self-stretch my-auto w-[213px]">`;
