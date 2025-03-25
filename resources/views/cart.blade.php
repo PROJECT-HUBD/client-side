@@ -456,7 +456,7 @@
       let productColor = article.find(".product_color").val();
 
       $.ajax({
-        url: '/updateCart',
+        url: "{{ route('updateCart') }}",
         method: 'POST',
         contentType: "application/json",
         data: JSON.stringify({
