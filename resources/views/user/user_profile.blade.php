@@ -8,12 +8,20 @@
 @section('main_content')
     <div class="w-full p-4 sm:p-6 bg-white rounded-lg shadow-sm">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
-            <h1 class="text-xl sm:text-2xl font-bold text-brandGrey-normal mb-2 sm:mb-0">個人檔案</h1>
+            <h1 class="text-xl sm:text-2xl font-bold text-brandGray-normal mb-2 sm:mb-0">個人檔案</h1>
+            <div class="flex items-center gap-2">
+            <!-- 變更密碼按鈕 -->
+            <a href="{{ route('user.change_password') }}" class="inline-flex items-center justify-center px-4 py-2 bg-brandGray-light text-brandGray-normal rounded-md hover:bg-brandGray-lightHover hover:text-brandGray-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGray-lightActive transition-colors duration-200">
+                    <i class="icon-[mdi--lock-outline] w-5 h-5 mr-2"></i>
+                    變更密碼
+                </a>
             <!-- 編輯個人資料按鈕 -->
-            <a href="{{ route('user.edit_profile') }}" class="inline-flex items-center justify-center px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal transition-colors duration-200">
+            <a href="{{ route('user.edit_profile') }}" class="inline-flex items-c
+            enter justify-center px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal transition-colors duration-200">
                 <i class="icon-[mdi--account-edit-outline] w-5 h-5 mr-2"></i>
                 編輯個人資料
             </a>
+            </div>
         </div>
         
         <!-- 個人資料 -->
@@ -22,20 +30,20 @@
                 <h2 class="text-lg font-medium text-brandGrey-normal mb-4">基本資料</h2>
                 <div class="space-y-3">
                     <div>
-                        <p class="text-sm text-brandGrey-normalLight">姓名</p>
-                        <p class="text-brandGrey-normal">王小明</p>
+                        <p class="text-sm text-brandGray-normalLight">姓名</p>
+                        <p class="text-brandGray-normal">{{ $user->name ?? '未設定' }}</p>
                     </div>
                     <div>
-                        <p class="text-sm text-brandGrey-normalLight">電子郵件</p>
-                        <p class="text-brandGrey-normal break-all">wang.xiaoming@example.com</p>
+                        <p class="text-sm text-brandGray-normalLight">電子郵件</p>
+                        <p class="text-brandGray-normal break-all">{{ $user->email ?? '未設定' }}</p>
                     </div>
                     <div>
-                        <p class="text-sm text-brandGrey-normalLight">手機號碼</p>
-                        <p class="text-brandGrey-normal">0912-345-678</p>
+                        <p class="text-sm text-brandGray-normalLight">手機號碼</p>
+                        <p class="text-brandGray-normal">{{ $user->phone ?? '未設定' }}</p>
                     </div>
                     <div>
-                        <p class="text-sm text-brandGrey-normalLight">生日</p>
-                        <p class="text-brandGrey-normal">1990/01/01</p>
+                        <p class="text-sm text-brandGray-normalLight">生日</p>
+                        <p class="text-brandGray-normal">{{ $user->birthday ?? '未設定' }}</p>
                     </div>
                 </div>
             </div>
@@ -44,30 +52,18 @@
                 <h2 class="text-lg font-medium text-brandGrey-normal mb-4">帳戶資訊</h2>
                 <div class="space-y-3">
                     <div>
-                        <p class="text-sm text-brandGrey-normalLight">註冊日期</p>
-                        <p class="text-brandGrey-normal">2023/01/15</p>
+                        <p class="text-sm text-brandGray-normalLight">註冊日期</p>
+                        <p class="text-brandGray-normal">{{ $user->created_at ? $user->created_at->format('Y/m/d') : '未記錄' }}</p>
                     </div>
                     <div>
-                        <p class="text-sm text-brandGrey-normalLight">最後登入</p>
-                        <p class="text-brandGrey-normal">2023/06/20</p>
+                        <p class="text-sm text-brandGray-normalLight">最後變更</p>
+                        <p class="text-brandGray-normal">{{ $user->updated_at ? $user->updated_at->format('Y/m/d') : '未記錄' }}</p>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- 密碼管理 -->
-        <div class="mt-8 pt-6 border-t border-brandGrey-light">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
-                <h2 class="text-lg font-medium text-brandGrey-normal mb-2 sm:mb-0">密碼管理</h2>
-                <a href="{{ route('user.change_password') }}" class="inline-flex items-center justify-center px-4 py-2 bg-brandGrey-light text-brandGrey-normal rounded-md hover:bg-brandGrey-lightHover hover:text-brandGrey-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGrey-lightActive transition-colors duration-200">
-                    <i class="icon-[mdi--lock-outline] w-5 h-5 mr-2"></i>
-                    變更密碼
-                </a>
-            </div>
-            <p class="text-sm text-brandGrey-normalLight">
-                上次密碼變更時間：2023/03/10
-            </p>
-        </div>
+       
         
         <!-- 通知設定 -->
         <div class="mt-8 pt-6 border-t border-brandGrey-light">

@@ -17,8 +17,24 @@
         <!-- 商品卡片區 -->
         <section class="product-section w-full h-[4800px] md:h-[1580px] lg:h-[1240px] flex flex-col justify-start items-center mb-[60px]">
             <div class="w-full md:w-[770px] lg:w-[1230px] h-[418px] grid md:grid-cols-3 lg:grid-cols-4 justify-center items-center gap-5">
-                @foreach($accessories as $index => $accessory)
-                <!-- 商品 -->
+                @foreach($accessories->sortByDesc(function($item) {
+                return $item->specs_sum_product_stock > 0;
+                }) as $index => $accessory)
+                @if($accessory->specs_sum_product_stock == 0)
+                <!-- 無連結商品卡片 -->
+                <div class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center gap-5 mb-32 md:mb-14 cursor-default">
+                    <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
+                        <div class="absolute w-36 h-14 bg-brandGray-light bg-opacity-20 text-[24px] text-brandGray-light flex justify-center items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">SOLD OUT</div>
+                        <div class="absolute w-full h-full bg-brandGray-normal opacity-60 flex justify-center items-center top-0 left-0"></div>
+                        <img src="{{ 'http://localhost:8000/storage/' . $accessory->product_img}}" alt="{{$accessory->product_name}}" class="w-full h-[250px] md:h-full object-cover">
+                    </div>
+                    <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
+                        <p class="text-brandGrey-darker">{{$accessory->product_name}}</p>
+                        <p class="text-brandGrey-normal text-[18px]">NT$&nbsp;<span id="price">{{$accessory->product_price}}</span></p>
+                    </div>
+                </div>
+                @else
+                <!-- 有連結商品卡片 -->
                 <a href="{{route('product_details', ['id' => $accessory->product_id])}}" class="product-card w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5 mb-32 md:mb-14">
                     <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
                         <img src="{{ 'http://localhost:8000/storage/' . $accessory->product_img}}" alt="{{$accessory->product_name}}" class="w-full h-[250px] md:h-full object-cover">
@@ -28,7 +44,9 @@
                         <p class="text-brandGrey-normal text-[18px]">NT$&nbsp;<span id="price">{{$accessory->product_price}}</span></p>
                     </div>
                 </a>
+                @endif
                 @endforeach
+
             </div>
         </section>
     </section>

@@ -24,12 +24,17 @@ class HomeController extends Controller
             ->orderBy('product_id', 'asc')
             ->get();
 
-        // 首頁 顯示商品（飾品＋服飾各4個） 
-        $accessories = ProductMain::whereBetween('product_id', ['pa001', 'pa004'])
-            ->orderBy('product_id', 'asc')->get();
+        // 首頁 顯示商品（飾品＋服飾各4個）
+        // 庫存為 0 時顯示 sold out
+        $accessories = ProductMain::withSum('specs', 'product_stock')
+            ->whereBetween('product_id', ['pa001', 'pa004'])
+            ->orderBy('product_id', 'asc')
+            ->get();
 
-        $clothes = ProductMain::whereBetween('product_id', ['pl001', 'pl004'])
-            ->orderBy('product_id', 'asc')->get();
+        $clothes = ProductMain::withSum('specs', 'product_stock')
+            ->whereBetween('product_id', ['pl001', 'pl004'])
+            ->orderBy('product_id', 'asc')
+            ->get();
 
         return response()
             ->view('home', compact('banners', 'accessories', 'clothes', 'hitItems', 'noAdCookie'))
