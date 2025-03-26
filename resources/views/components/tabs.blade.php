@@ -9,8 +9,7 @@ $tabIndex = 0;
         <!-- <button @click="activeTab = {{ $index }}"
             class="tab-button px-4 py-2 focus:outline-none"
             :class="activeTab === {{ $index }} ? 'text-brandRed-normal' : 'text-brandGray-normalLight hover:text-brandRed-normal'">
-            {{ $tab }}
-        </button> -->
+            {{ $tab }} -->
         @endforeach
     </div>
     <div class="w-full h-[0.5px] bg-brandGray-lightHover"></div>

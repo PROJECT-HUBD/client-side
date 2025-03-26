@@ -1,4 +1,4 @@
-<nav class="fixed top-[45px] z-50 w-full bg-white text-brandGrey-normal font-lexend font-normal">
+<nav class="fixed top-[45px] z-40 w-full bg-white text-brandGrey-normal font-lexend font-normal">
     <div class="flex w-full h-[80px] lg:px-[85px] md:px-[60px] px-[20px] py-5 justify-between items-center border-b border-b-normalLight md:border-0 lg:border-b lg:border-b-normalLight">
         <!-- 左側區塊 -->
         <div class="leftArea flex justify-start items-center gap-10">
@@ -13,12 +13,14 @@
         <!-- 右側區塊 -->
         <div class="rightArea flex justify-end items-center gap-10">
             <!-- 搜尋框 -->
-            <div class="hidden md:block">
-                <div class="relative flex items-center">
-                    <input type="text" placeholder="搜尋商品" class="ps-10 flex w-[254px] h-[30px] px-4 py-3 items-center gap-2 rounded-[20px] border border-[#484848] bg-white">
-                    <span class="absolute top-2 left-4 w-[16px] h-[16px] icon-[basil--search-outline]"></span>
+            <form action="{{ route('search') }}" method="GET">
+                <div class="hidden md:block">
+                    <div class="relative flex items-center">
+                        <input type="text" name="keywords" placeholder="搜尋商品" class="ps-10 flex w-[254px] h-[30px] px-4 py-3 items-center gap-2 rounded-[20px] border border-[#484848] bg-white">
+                        <span class="absolute top-2 left-4 w-[16px] h-[16px] icon-[basil--search-outline]"></span>
+                    </div>
                 </div>
-            </div>
+            </form>
 
             <!-- icons -->
             <!-- wish lists -->
@@ -79,11 +81,13 @@
     <!-- 手機版 下拉式選單 -->
     <div id="dropDownMenuPhone" class="z-30 absolute w-full hidden md:invisible bg-white h-[96px] px-[20px] border-b border-b-normalLight">
         <div class="w-full h-full flex flex-col justify-center items-center py-[12px]">
-            <div class="md:hidden w-[350px] h-[30px]  mb-[12px]">
-                <div class="relative flex justify-center items-center">
-                    <input type="text" placeholder="搜尋商品" class="flex w-[350px] h-[30px] px-4 ps-10 py-3 items-center gap-2 rounded-[20px] border border-[#484848] bg-white">
-                    <span class="absolute top-2 left-4 w-[16px] h-[16px] icon-[basil--search-outline]"></span>
-                </div>
+            <div class="md:hidden w-[350px] h-[30px] mb-[12px]">
+                <form action="{{ route('search') }}" method="GET">
+                    <div class="relative flex justify-center items-center">
+                        <input type="text" name="keywords" placeholder="搜尋商品" class="flex w-[350px] h-[30px] px-4 ps-10 py-3 items-center gap-2 rounded-[20px] border border-[#484848] bg-white">
+                        <span class="absolute top-2 left-4 w-[16px] h-[16px] icon-[basil--search-outline]"></span>
+                    </div>
+                </form>
             </div>
             <div class="cursor-pointer w-[350px h-[30px] flex justify-center gap-[30px]">
                 <div id="prodsBtnPhone" class="hover:text-brandGray-normalLight active:text-brandGray-lightHover">商品&nbsp;<span class="plusIcon">＋</span></div>

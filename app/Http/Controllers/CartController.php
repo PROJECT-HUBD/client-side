@@ -1,75 +1,123 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 use App\Models\ProductMain;
 use App\Models\ProductSpec;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 
 
 class CartController extends Controller
-{
-    public function getCartData(Request $request)
-    {
-        // 獲取所有購物車條目
-        $cartItems = Cart::all();
 
+{
+    public function index()
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', '請先登入');
+        }
+        return view('cart');
+    }
+    public function getCartData()
+    {
+        // 驗證用戶是否已登入
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', '請先登入');
+        }
+        
+        $userId = Auth::id();
+        
+        // 獲取所有符合用戶ID的購物車條目
+        $cartItems = Cart::where('id', $userId)->get();
+       
+        // 拼裝資料
         $productData = [];
 
         foreach ($cartItems as $cartItem) {
-            // 獲取與 cart 表中 varient_id 和 product_id 匹配的 size 和 color
-            $productSpec = ProductSpec::where('product_id', $cartItem->product_id)->first();
+            // 獲取與 cart 表中 product_id 匹配的產品資訊
+           
             $productMain = ProductMain::where('product_id', $cartItem->product_id)->first();
           
-
-            // 拼裝資料
+           
             $productData[] = [
                 'product_img' => $productMain ? $productMain->product_img : null,
-                'product_name' =>$cartItem->product_name,
+                'product_name' => $cartItem->product_name,
                 'product_size' => $cartItem->product_size,
                 'product_color' => $cartItem->product_color,
                 'quantity' => $cartItem->quantity,
                 'product_price' => $productMain ? $productMain->product_price : null,
                 'product_id' => $cartItem->product_id,
-                
+                'cart_id' => $cartItem->id
             ];
-          
-        }
-         
+             // 返回資料
 
-        // 返回資料
-        return response()->json($productData);
+        }
+        // view('cart');
+        return 
+        response()->json([
+            'success' => true,
+            'user_id' => $userId,
+            'cart_items' => $productData
+
+        ]);
     }// end of getCartData
 
-    public function insertCart(Request $request) {
-        // dump($request->all());
-        $cartItems = $request->input('cartItems');
-        if($request->has('cartItems')){
-            return response()->json(['res'=> $cartItems]);
-        }
+    public function insertCart(Request $request)
+    {
+        try {
+            $isAccessory = str_starts_with($request->product_id, 'pa');
 
-        foreach ($cartItems as $item) {
-            DB::table('cart')->updateOrInsert(
-                // ['product_id' => $item['product_id'], 'product_size' => $item['product_size'], 'product_color' => $item['product_color']],
-                // ['quantity' => $item['quantity']
-                ['product_id' => $item['product_id']],
-                [
-                    'quantity' => $item['quantity'],
-                    'product_size' => $item['product_size'],
-                    'product_color' => $item['product_color'],
-                   
-                ]
-            );
+            $data = $request->validate([
+                'product_id' => 'required|string',
+                'product_color' => $isAccessory ? 'nullable' : 'required|string',
+                'product_size' => $isAccessory ? 'nullable' : 'required|string',
+                'quantity' => 'required|integer|min:1',
+            ]);
+
+            $userId = Auth::id();
+          
+            if (!$userId) {
+                return response()->json(['error' => '請先登入以加入購物車'], 401);
+            }
+
+            $existing = DB::table('cart')
+                ->where('id', $userId)
+                ->where('product_id', $data['product_id'])
+                ->where('product_color', $data['product_color'])
+                ->where('product_size', $data['product_size'])
+                ->first();
+
+            if ($existing) {
+                DB::table('cart')
+                    ->where('id', $userId)
+                    ->where('product_id', $data['product_id'])
+                    ->where('product_color', $data['product_color'])
+                    ->where('product_size', $data['product_size'])
+                    ->update([
+                        'quantity' => $existing->quantity + $data['quantity'],
+                        'updated_at' => now(),
+                    ]);
+            } else {
+                DB::table('cart')->insert([
+                    'id' => $userId,
+                    'product_id' => $data['product_id'],
+                    'product_name' => ProductMain::where('product_id', $data['product_id'])->value('product_name'),
+                    'product_color' => $data['product_color'],
+                    'product_size' => $data['product_size'],
+                    'quantity' => $data['quantity'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+
+            return response()->json(['message' => '購物車更新成功！'], 200);
+
+        } catch (\Throwable $e) {
+            return response()->json(['error' => 'Server error', 'message' => $e->getMessage()], 500);
         }
-      
-    
-        return response()->json(['message' => '購物車更新成功！'], 200);
     }
-
-
 
     public function updateCart(Request $request)
     {
@@ -77,7 +125,6 @@ class CartController extends Controller
         $cartData = $request->json()->all();
 
         if (empty($cartData)) {
-            Log::error("❌ cartData 為空或 null！");
             return response()->json(['message' => '無效的請求！'], 400);
         }
 
@@ -101,11 +148,9 @@ class CartController extends Controller
             ]);
 
         if ($updated) {
-            Log::info("✅ 商品 {$productId} 更新成功！", $cartData);
             return response()->json(['message' => '購物車更新成功！'], 200);
         } else {
             return response()->json(['message' => '購物車更新失敗或無變更！'], 500);
         }
     }
 }
-

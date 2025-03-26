@@ -22,16 +22,16 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-// 購物車頁_Ajax成功
+// 購物車頁_
 Route::match(['get', 'post'],'/cart', function () {
     return view('cart');
 })->name('cart');
 
 
 //購物車獲取資料
-Route::get('/getCartData', [CartController::class, 'getCartData']);
+// Route::get('/getCartData', [CartController::class, 'getCartData']);
 //購物車更新資料
-Route::match(['get', 'post'],'/insertCart', [CartController::class, 'insertCart']);
+// Route::match(['get', 'post'],'/insertCart', [CartController::class, 'insertCart']);
 
 // 購物清單頁
 Route::match(['get', 'post'],'/checkOut', function () {
