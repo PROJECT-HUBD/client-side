@@ -583,7 +583,7 @@
                     $("#formProductColor").val(selectedColor);
                     $("#formQuantity").val(quantity);
 
-                    $("#quickBuyForm").attr("action", "/cart");
+                    // 使用正確的路由而不是硬編碼路徑
                     $("#quickBuyForm").submit();
                 })
                 .catch(err => {
