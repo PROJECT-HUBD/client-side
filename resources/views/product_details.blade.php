@@ -193,7 +193,7 @@
             <div class="flex flex-col md:flex-row items-center w-full gap-4 md:gap-6">
                 <!-- 加入購物車按鈕 -->
                 <button id="addToCartBtn"
-                    class=" flex-1 lg:h-[58px] md:h-[47.5px] sm:h-10 bg-brandBlue-normal rounded-md flex justify-center items-center cursor-pointer w-full disabled:opacity-50 disabled:cursor-not-allowed ">
+                    class=" flex-1 lg:h-[58px] md:h-[47.5px] sm:h-10 bg-brandBlue-normal rounded-md flex justify-center items-center cursor-pointer w-full">
                     <span
                         class="text-white lg:text-2xl sm:text-base md:font-light sm:font-bold lg:leading-9 md:leading-normal sm:leading-loose">
                         加入購物車
@@ -202,7 +202,7 @@
 
                 <!-- 直接購買按鈕 -->
                 <button id="buyNowBtn"
-                    class="flex-1 lg:h-[58px] md:h-[47.5px] sm:h-10 bg-brandRed-normal rounded-md flex justify-center items-center cursor-pointer w-full disabled:opacity-50 disabled:cursor-not-allowed">
+                    class="flex-1 lg:h-[58px] md:h-[47.5px] sm:h-10 bg-brandRed-normal rounded-md flex justify-center items-center cursor-pointer w-full">
                     <span
                         class="text-white lg:text-2xl sm:text-base md:font-light sm:font-bold lg:leading-9 md:leading-normal sm:leading-loose">
                         直接購買
@@ -269,14 +269,10 @@
             // 如果是飾品，初始化時設置庫存顯示
             if (isAccessory && specs.length > 0) {
                 const accessoryStock = specs[0].product_stock;
-                $("#addToCartBtn").prop("disabled", false);
-                $("#buyNowBtn").prop("disabled", false);
                 $("#accessory-stock").text(`庫存剩 ${accessoryStock} 件`);
                 
                 if (accessoryStock <= 0) {
                     $("#stockWarning").removeClass("hidden").text("此商品已售罄");
-                    $("#addToCartBtn").prop("disabled", true);
-                    $("#buyNowBtn").prop("disabled", true);
                 }
             }
 
@@ -457,13 +453,9 @@
                 const stockText = matched ? `庫存剩 ${matched.product_stock} 件` : "無此規格";
                 $(".text-brandGray-normalLight").text(stockText);
 
-                // 可選：控制加入購物車按鈕
-                if (matched?.product_stock > 0) {
-                    $("#addToCartBtn").prop("disabled", false);
-                    $("#buyNowBtn").prop("disabled", false);
-                } else {
-                    $("#addToCartBtn").prop("disabled", true);
-                    $("#buyNowBtn").prop("disabled", true);
+                // 顯示庫存不足警告
+                if (matched && matched.product_stock <= 0) {
+                    $("#stockWarning").removeClass("hidden").text("此商品已售罄");
                 }
             });
 
@@ -482,8 +474,7 @@
                 console.log("選中的顏色是：", selectedColor);
                 selectedSize = null;
                 $(".text-brandGray-normalLight").text("請選擇顏色和尺寸");
-                $("#addToCartBtn").prop("disabled", true);
-                $("#buyNowBtn").prop("disabled", true);
+                
                 // 過濾對應尺寸
                 const sizeOptions = specs
                     .filter(spec => spec.product_color === selectedColor)
@@ -623,12 +614,10 @@
                     quantity--;
                     $("#quantity").text(quantity.toString().padStart(2, '0'));
                     
-                    // 只有非飾品才需要處理庫存警告和按鈕狀態
+                    // 只有非飾品才需要處理庫存警告
                     if (!isAccessory) {
-                        // 數量減少後，隱藏庫存警告並啟用按鈕
+                        // 數量減少後，隱藏庫存警告
                         $("#stockWarning").addClass("hidden");
-                        $("#addToCartBtn").prop("disabled", false);
-                        $("#buyNowBtn").prop("disabled", false);
                     }
                 }
             })
@@ -643,12 +632,8 @@
                         quantity++;
                         $("#quantity").text(quantity.toString().padStart(2, '0'));
                         $("#stockWarning").addClass("hidden");
-                        $("#addToCartBtn").prop("disabled", false);
-                        $("#buyNowBtn").prop("disabled", false);
                     } else {
                         $("#stockWarning").removeClass("hidden");
-                        $("#addToCartBtn").prop("disabled", true);
-                        $("#buyNowBtn").prop("disabled", true);
                     }
                     return;
                 }
@@ -664,15 +649,9 @@
                     $("#quantity").text(quantity.toString().padStart(2, '0'));
                     //如果之前有警告，這裡要隱藏
                     $("#stockWarning").addClass("hidden");
-
-                    // 有庫存時，啟用按鈕
-                    $("#addToCartBtn").prop("disabled", false);
-                    $("#buyNowBtn").prop("disabled", false);
                 }
                 if (quantity >= matched.product_stock) {
                     $("#stockWarning").removeClass("hidden");
-                    $("#addToCartBtn").prop("disabled", true);
-                    $("#buyNowBtn").prop("disabled", true);
                 }
             })
 
