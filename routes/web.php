@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Http\Controllers\User\CouponController;
 
 
 // 首頁
@@ -22,7 +22,7 @@ Route::get('/categories_accessories', [CategoriesAccController::class, 'categori
 Route::get('/categories_clothes', [CategoriesCloController::class, 'categoriesClo'])
     ->name('categories_clothes');
 
-//麵包屑
+// 麵包屑
 Route::get('/categories/clothes/short', [CategoryController::class, 'BackToCgy'])->name('categories_clothes.short');
 Route::get('/categories/clothes/long', [CategoryController::class, 'BackToCgy'])->name('categories_clothes.long');
 Route::get('/categories/clothes/jacket', [CategoryController::class, 'BackToCgy'])->name('categories_clothes.jacket');
@@ -205,7 +205,7 @@ require __DIR__ . '/auth.php';
 Route::get('/getCartData', [CartController::class, 'getCartData'])->name('getCartData');
 
 // 購物車更新資料
-Route::match(['get', 'post'],'/insertCart', [CartController::class, 'insertCart'])->name('insertCart');
+Route::match(['get', 'post'], '/insertCart', [CartController::class, 'insertCart'])->name('insertCart');
 Route::post('/updateCart', [CartController::class, 'updateCart'])->name('updateCart');
 
 //購物車獲取coupons
@@ -245,6 +245,6 @@ Route::match(['get', 'post'], '/system-maintenance', function () {
 Route::get('/maintenance', [SystemMaintenanceController::class, 'showMaintenance'])->name('system.maintenance');
 
 // 購物車無商品
-Route::match(['get', 'post'],'/cart_empty', function () {
+Route::match(['get', 'post'], '/cart_empty', function () {
     return view('cart_empty');
 })->name('cart_empty');
