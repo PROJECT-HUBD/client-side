@@ -518,7 +518,7 @@
                 .then(async res => {
                     if (res.status === 401) {
                         alert("請先登入！");
-                        window.location.href = "/login";
+                        window.location.href = "/mylogin";
                         return;
                     }
 
