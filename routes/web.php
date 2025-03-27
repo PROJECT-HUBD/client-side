@@ -120,11 +120,11 @@ Route::prefix('user')->name('user.')->middleware(['auth'])->group(function () { 
         return redirect()->route('user.payment')->with('success', '付款方式已成功刪除');
     })->name('payment.delete');
 
-    // 我的優惠
-    Route::get('/coupons', [CouponController::class, 'index'])->name('coupons');
-    Route::get('/coupons/switch-view', [CouponController::class, 'switchView'])->name('coupons.switch-view');
-    Route::post('/coupons/redeem', [CouponController::class, 'redeem'])->name('coupons.redeem');
-    Route::get('/coupons/{id}', [CouponController::class, 'show'])->name('coupons.show');
+    // // 我的優惠
+    // Route::get('/coupons', [CouponController::class, 'index'])->name('coupons');
+    // Route::get('/coupons/switch-view', [CouponController::class, 'switchView'])->name('coupons.switch-view');
+    // Route::post('/coupons/redeem', [CouponController::class, 'redeem'])->name('coupons.redeem');
+    // Route::get('/coupons/{id}', [CouponController::class, 'show'])->name('coupons.show');
 
     // 新增收件地址頁面
     Route::get('/address/add', function () {
@@ -192,25 +192,14 @@ Route::prefix('user')->name('user.')->middleware(['auth'])->group(function () { 
 Route::middleware(['auth'])->group(function () {
     Route::get('/user_profile', [UserProfileController::class, 'index'])->name('user_profile');
 });
+
+
 //確保 /cart 只能在登入 (auth) 狀態下訪問，如果未登入，Laravel 會自動導向 mylogin。
 Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
 });
 
-// 購物車頁
-// Route::get('/cart', function () {
-//     return view('cart');
-// })->name('cart');
-
-// 購物清單頁
-Route::get('/check_out', function () {
-    return view('check_out');
-})->name('check_out');
-
-
 require __DIR__ . '/auth.php';
-
-
 
 //購物車獲取資料
 Route::get('/getCartData', [CartController::class, 'getCartData'])->name('getCartData');
@@ -218,6 +207,9 @@ Route::get('/getCartData', [CartController::class, 'getCartData'])->name('getCar
 // 購物車更新資料
 Route::match(['get', 'post'], '/insertCart', [CartController::class, 'insertCart'])->name('insertCart');
 Route::post('/updateCart', [CartController::class, 'updateCart'])->name('updateCart');
+
+//購物車獲取coupons
+Route::get('/getCoupons', [CartController::class, 'getCoupons'])->name('getCoupons');
 
 // 購物清單頁
 Route::match(['get', 'post'], '/check_out', function () {
