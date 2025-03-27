@@ -116,11 +116,11 @@ Route::prefix('user')->name('user.')->middleware(['auth'])->group(function () { 
         return redirect()->route('user.payment')->with('success', '付款方式已成功刪除');
     })->name('payment.delete');
 
-    // // 我的優惠
-    // Route::get('/coupons', [CouponController::class, 'index'])->name('coupons');
-    // Route::get('/coupons/switch-view', [CouponController::class, 'switchView'])->name('coupons.switch-view');
-    // Route::post('/coupons/redeem', [CouponController::class, 'redeem'])->name('coupons.redeem');
-    // Route::get('/coupons/{id}', [CouponController::class, 'show'])->name('coupons.show');
+    //
+    Route::get('/coupons', [CouponController::class, 'index'])->name('coupons');
+    Route::get('/coupons/switch-view', [CouponController::class, 'switchView'])->name('coupons.switch-view');
+    Route::post('/coupons/redeem', [CouponController::class, 'redeem'])->name('coupons.redeem');
+    Route::get('/coupons/{id}', [CouponController::class, 'show'])->name('coupons.show');
 
     // 新增收件地址頁面
     Route::get('/address/add', function () {
