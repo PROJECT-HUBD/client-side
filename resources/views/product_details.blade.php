@@ -13,21 +13,15 @@
 
     $categoryName = $isAccessory ? '飾品' : '服飾';
     $categoryRoute = $isAccessory ? route('categories_accessories') : route('categories_clothes');
-
+    
+    // 簡化子分類處理，統一導向服飾頁面
     $subcategory = null;
-    $subcategoryRoute = null;
-
-    if (!$isAccessory) {
-        if ($from === 'short') {
-            $subcategory = '短袖';
-            $subcategoryRoute = route('categories_clothes.short');
-        } elseif ($from === 'long') {
-            $subcategory = '長袖';
-            $subcategoryRoute = route('categories_clothes.long');
-        } elseif ($from === 'jacket') {
-            $subcategory = '夾克';
-            $subcategoryRoute = route('categories_clothes.jacket');
-        }
+    if (!$isAccessory && $from) {
+        $subcategory = [
+            'short' => '短袖',
+            'long' => '長袖',
+            'jacket' => '夾克'
+        ][$from] ?? null;
     }
 @endphp
 
@@ -38,7 +32,7 @@
         <x-breadcrumb :items="array_filter([
             ['name' => '首頁', 'url' => route('home')],
             ['name' => $categoryName, 'url' => $categoryRoute],
-            $subcategory ? ['name' => $subcategory, 'url' => $subcategoryRoute] : null,
+            $subcategory ? ['name' => $subcategory, 'url' => $categoryRoute] : null,
             ['name' => $product->product_name],
         ])" />
     </div>
@@ -173,6 +167,11 @@
                     class="text-brandGray-normalLight lg:text-lg sm:text-sm font-light font-['Lexend'] lg:leading-relaxed sm:leading-snug">
                     請選擇顏色與尺寸
                 </div>
+                @else
+                <div
+                    id="accessory-stock"
+                    class="text-brandGray-normalLight lg:text-lg sm:text-sm font-light font-['Lexend'] lg:leading-relaxed sm:leading-snug">
+                </div>
                 @endunless
                 <div id="stockWarning" class="text-red-500 text-sm font-light hidden">已達最大庫存</div>
             </div>
@@ -267,6 +266,19 @@
             let selectedSize = null;
             const isAccessory = {{ $isAccessory ? 'true' : 'false' }};
 
+            // 如果是飾品，初始化時設置庫存顯示
+            if (isAccessory && specs.length > 0) {
+                const accessoryStock = specs[0].product_stock;
+                $("#addToCartBtn").prop("disabled", false);
+                $("#buyNowBtn").prop("disabled", false);
+                $("#accessory-stock").text(`庫存剩 ${accessoryStock} 件`);
+                
+                if (accessoryStock <= 0) {
+                    $("#stockWarning").removeClass("hidden").text("此商品已售罄");
+                    $("#addToCartBtn").prop("disabled", true);
+                    $("#buyNowBtn").prop("disabled", true);
+                }
+            }
 
             function updatePath() {
 
@@ -496,29 +508,31 @@
 
 
             function addToCart() {
-                if (!isAccessory&&(selectedColor || !selectedSize)) {
-                    alert("請先選擇顏色與尺寸！");
+                // 檢查必要參數
+                if (!isAccessory && (!selectedColor || !selectedSize)) {
+                    alert("請選擇顏色與尺寸");
                     return;
                 }
 
+                // 發送到後端
                 fetch("{{ route('insertCart') }}", {
-                        method: "POST",
-                        headers: {
-                            "X-CSRF-TOKEN": "{{ csrf_token() }}",
-                            "Content-Type": "application/json",
-                            "Accept": "application/json", // 確保 Laravel 回傳 JSON 而不是錯誤頁
-                        },
-                        body: JSON.stringify({
-                            product_id: "{{ $product->product_id }}",
-                            product_size: selectedSize,
-                            product_color: selectedColor,
-                            quantity: quantity
-                        })
+                    method: "POST",
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                        "Content-Type": "application/json",
+                        "Accept": "application/json" // 確保 Laravel 回傳 JSON 而不是錯誤頁
+                    },
+                    body: JSON.stringify({
+                        product_id: "{{ $product->product_id }}",
+                        product_color: isAccessory ? null : selectedColor,
+                        product_size: isAccessory ? null : selectedSize,
+                        quantity: quantity
                     })
+                })
                 .then(async res => {
                     if (res.status === 401) {
                         alert("請先登入！");
-                        window.location.href = "/mylogin";
+                        window.location.href = "{{ route('login') }}";
                         return;
                     }
 
@@ -530,36 +544,38 @@
                     const result = await res.json();
                     alert("已加入購物車！");
                 })
-                    .catch(err => {
-                        console.error("加入購物車失敗", err);
-                        alert("加入失敗，請稍後再試");
-                    });
+                .catch(err => {
+                    console.error("加入購物車失敗", err);
+                    alert("加入失敗，請稍後再試");
+                });
             }
 
             function buyNow() {
+                // 檢查必要參數
                 if (!isAccessory && (!selectedColor || !selectedSize)) {
-                    alert("請先選擇顏色與尺寸！");
+                    alert("請選擇顏色與尺寸");
                     return;
                 }
 
+                // 發送到後端
                 fetch("{{ route('insertCart') }}", {
                     method: "POST",
                     headers: {
                         "X-CSRF-TOKEN": "{{ csrf_token() }}",
                         "Content-Type": "application/json",
-                        "Accept": "application/json",
+                        "Accept": "application/json"
                     },
                     body: JSON.stringify({
                         product_id: "{{ $product->product_id }}",
-                        product_size: selectedSize,
-                        product_color: selectedColor,
+                        product_color: isAccessory ? null : selectedColor,
+                        product_size: isAccessory ? null : selectedSize,
                         quantity: quantity
                     })
                 })
                 .then(async res => {
                     if (res.status === 401) {
                         alert("請先登入！");
-                        window.location.href = "/login";
+                        window.location.href = "{{ route('login') }}";
                         return;
                     }
 
@@ -606,10 +622,36 @@
                 if (quantity > 1) {
                     quantity--;
                     $("#quantity").text(quantity.toString().padStart(2, '0'));
+                    
+                    // 只有非飾品才需要處理庫存警告和按鈕狀態
+                    if (!isAccessory) {
+                        // 數量減少後，隱藏庫存警告並啟用按鈕
+                        $("#stockWarning").addClass("hidden");
+                        $("#addToCartBtn").prop("disabled", false);
+                        $("#buyNowBtn").prop("disabled", false);
+                    }
                 }
             })
             // 監聽增加數量按鈕點擊
             $("#add").click(function() {
+                // 如果是飾品，檢查總庫存量
+                if (isAccessory) {
+                    // 飾品通常只有一個規格，找到第一個規格的庫存
+                    const accessoryStock = specs.length > 0 ? specs[0].product_stock : 0;
+                    
+                    if (quantity < accessoryStock) {
+                        quantity++;
+                        $("#quantity").text(quantity.toString().padStart(2, '0'));
+                        $("#stockWarning").addClass("hidden");
+                        $("#addToCartBtn").prop("disabled", false);
+                        $("#buyNowBtn").prop("disabled", false);
+                    } else {
+                        $("#stockWarning").removeClass("hidden");
+                        $("#addToCartBtn").prop("disabled", true);
+                        $("#buyNowBtn").prop("disabled", true);
+                    }
+                    return;
+                }
 
                 const matched = specs.find(spec =>
                     spec.product_color === selectedColor && spec.product_size === selectedSize
@@ -632,7 +674,6 @@
                     $("#addToCartBtn").prop("disabled", true);
                     $("#buyNowBtn").prop("disabled", true);
                 }
-
             })
 
             // 監聽產品需知按鈕點擊

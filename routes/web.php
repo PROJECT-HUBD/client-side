@@ -21,15 +21,11 @@ Route::get('/categories_accessories', [CategoriesAccController::class, 'categori
 Route::get('/categories_clothes', [CategoriesCloController::class, 'categoriesClo'])
     ->name('categories_clothes');
 
-// 麵包屑
-Route::get('/categories/clothes/short', [CategoryController::class, 'BackToCgy'])->name('categories_clothes.short');
-Route::get('/categories/clothes/long', [CategoryController::class, 'BackToCgy'])->name('categories_clothes.long');
-Route::get('/categories/clothes/jacket', [CategoryController::class, 'BackToCgy'])->name('categories_clothes.jacket');
-
 //銀黏土課程
 Route::get('/lessons', function () {
     return view('lessons');
 })->name('lessons');
+
 
 // 關於我們
 Route::get('/about_us', function () {
