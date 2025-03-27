@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ProductMain;
-use App\Models\ProductSpec;
+use App\Models\Coupons;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use Illuminate\Support\Facades\DB;
@@ -152,5 +152,11 @@ class CartController extends Controller
         } else {
             return response()->json(['message' => '購物車更新失敗或無變更！'], 500);
         }
+    }
+
+    public function getCoupons()
+    {
+        $coupons = Coupons::pluck('title');
+        return response()->json($coupons);
     }
 }

@@ -105,16 +105,17 @@
     <div
       class="overflow-hidden py-8 pr-6 pl-6 rounded min-w-60 w-[470px] max-md:px-5">
 
-      <select class="flex overflow-hidden gap-5 justify-between px-6 py-3 w-full text-sm tracking-wide leading-7 whitespace-nowrap bg-white rounded-md border border-solid border-zinc-300 text-neutral-500 max-md:pr-5 decoration-none">
-        <!-- <option value="" selected hidden>請選擇折扣券</option> -->
-        <option value="生日券" selected hidden>生日券</option>
-        <option value="新會員首單9折">新會員首單9折</option>
+      <select class="couponsSelect flex overflow-hidden gap-5 justify-between px-6 py-3 w-full text-sm tracking-wide leading-7 whitespace-nowrap bg-white rounded-md border border-solid border-zinc-300 text-neutral-500 max-md:pr-5 decoration-none">
+     
+        <!--靜態option  -->
+        <option value="2025年4月生日券" hidden >2025年4月生日券</option>
+        <!-- <option value="新會員首單9折">新會員首單9折</option>
         <option value="春季特賣8折">春季特賣8折</option>
         <option value="滿$500折$50">滿$500折$50</option>
         <option value="全站免運費">全站免運費</option>
         <option value="指定商品買一送一">指定商品買一送一</option>
         <option value="VIP會員85折">VIP會員85折</option>
-        <option value="週年慶全館75折">週年慶全館75折</option>
+        <option value="週年慶全館75折">週年慶全館75折</option> -->
       </select>
 
 
@@ -131,7 +132,7 @@
       <div
         class="flex gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap max-md:max-w-full">
         <span class="text-zinc-700">優惠券折扣</span>
-        <span class="couponMinus text-red-700">-$100</span>
+        <span class="couponMinus text-red-700">-$199</span>
       </div>
       <div
         class="flex gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap text-zinc-700 max-md:max-w-full">
@@ -188,31 +189,10 @@
     $(".checkbox").prop("checked", $(this).prop("checked"));
   });
   // });
-  // <---------------------接收商品資料------------------------->
-  // var productList = [{
-  //     product_img: "{{ asset('images/products/clothes/shorts/ps001_01_01.jpg') }}",
-  //     product_name: "女裝百褶拼接寬鬆上衣",
-  //     product_size: "S",
-  //     product_color: "Black",
-  //     quantity: 3,
-  //     product_price: 1640,
-
-  //   },
-  //   {
-  //     product_img: "{{ asset('images/products/clothes/shorts/ps002_01_01.jpg') }}",
-  //     product_name: "女裝百褶拼接寬鬆上衣",
-  //     product_size: "L",
-  //     product_color: "Black",
-  //     quantity: 3,
-  //     product_price: 1380,
-
-  //   },
-
-  // ];
-
-  // console.log(productList);
-  // <---------------------接收商品資料_from_productAPI------------------------->
+ 
+  
   $(document).ready(function() {
+   // <-------------------------------------接收商品資料_from_productAPI----------------------------------------------->
     $.ajax({
       url: "{{ route('getCartData') }}", // 修改為正確的 URL
       method: 'GET',
@@ -226,7 +206,7 @@
         localStorage.setItem("productList", JSON.stringify(productList));
         let storedProductList = localStorage.getItem("productList");
         if (storedProductList) {
-          console.log("從 localStorage 讀取的 productList:", JSON.parse(storedProductList));
+          // console.log("從 localStorage 讀取的 productList:", JSON.parse(storedProductList));
           renderProductList(JSON.parse(storedProductList));
           updatePrices(); // 確保價格也會更新
         }
@@ -264,6 +244,7 @@
         console.log(error); // 如果有錯誤，顯示錯誤訊息
       } //end of error
     }) //end of Ajax
+
     // <---------------------// 渲染畫面-------------------------> 
     function renderProductList(productList) {
      // 從 API 回傳的資料中獲取購物車項目
@@ -346,6 +327,7 @@
     }
     // <-----------------------------updatePrice_totalPriceWithDiscount--------------------------------->
 
+
     function updatePrices() {
       let totalPrice = 0;
 
@@ -365,6 +347,7 @@
 
       // 處理活動特惠&優惠券折扣券（移除$符號並轉換為數字）
       let festivalMinusText = $(".cMinus").text().replace('$', '');
+      
       let couponMinusText = $(".couponMinus").text().replace('$', '');
       let couponMinus = parseInt(couponMinusText) || 0; // 處理節慶折扣
 
@@ -379,6 +362,68 @@
     $(document).on("change", "input[type='checkbox']", function() {
       updatePrices(); // ✅ 當 Checkbox 勾選/取消時，立即重新計算總價
     });
+
+    // **監聽 .couponsSelect 變更**
+    $(document).on("change", ".couponsSelect", function() {
+      let totalPrice = $(".totalPrice").text().replace('$', '');
+      // console.log(totalPrice);
+      let couponMinus = 0;
+      if ($(".couponsSelect").val() === "新客首購85折") {
+        couponMinus = -totalPrice * 0.15; // 處理新客首購85折  // console.log($(".couponsSelect").val());  
+      } 
+      else if ($(".couponsSelect").val() === "2025年4月生日券") {
+        couponMinus = -199; // 處理2025年4月生日券
+      }
+      else if ($(".couponsSelect").val() === "399折價券") {
+        couponMinus =  -399; // 處理399折價券
+      }
+      else if ($(".couponsSelect").val() === "買二送一") {
+        couponMinus =  -1380; // 處理買二送一
+      }
+      else if ($(".couponsSelect").val() === "NRP外套95折") {
+        couponMinus =  -450; // 處理買二送一
+      }
+      else {
+        couponMinus =  -0; // 處理其他優惠券折扣
+      }
+     
+
+      let totalPriceWithDiscount = totalPrice * 0.9 + couponMinus; // 計算折扣後的總價
+
+      $(".couponMinus").text(`-$${Math.abs(couponMinus)}`); // 更新優惠券特惠
+      $(".totalPriceWithDiscount").text(`$${totalPriceWithDiscount.toFixed(0)}`);
+    });
+       // <-------------------------------------接收行銷coupon_---------------------------------------->
+       $.ajax({
+      url: "{{ route('getCoupons') }}", // 修改為正確的 URL
+      method: 'GET',
+      success: function(couponsSelect) {
+        // console.log(couponsSelect);
+      
+        // <---------------------將資料存入 localStorage-------------------------> 
+        localStorage.setItem("couponsSelect", JSON.stringify(couponsSelect));
+        let storedcouponsSelect = localStorage.getItem("couponsSelect");
+        if (storedcouponsSelect) {
+          // console.log("從 localStorage 讀取的 couponsSelect:", JSON.parse(storedcouponsSelect));
+          rendercouponsSelect(JSON.parse(storedcouponsSelect));
+        
+        }
+       
+      }, //end of success
+      error: function(error) {
+        console.log(error); // 如果有錯誤，顯示錯誤訊息
+      } //end of error
+    }) //end of Ajax
+ // <---------------------render進couponsSelect-------------------------> 
+ function rendercouponsSelect(couponsSelect) {
+  for (let i = 0; i < couponsSelect.length; i++) {
+      $(".couponsSelect").append(`<option value="${couponsSelect[i]}">${couponsSelect[i]}</option>`);
+  }
+ }
+
+
+
+
   }); //end of doucument ready
   // <-----------------------------click&SaveLocalStorage--------------------------------->
   
