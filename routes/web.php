@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\CategoryController;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\User\CouponController;
+
 // 首頁
 Route::get('/', [HomeController::class, 'home'])->name('home');
+
+// 商品搜尋
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 // 商品分類 飾品
 Route::get('/categories_accessories', [CategoriesAccController::class, 'categoriesAcc'])
@@ -17,7 +21,7 @@ Route::get('/categories_accessories', [CategoriesAccController::class, 'categori
 Route::get('/categories_clothes', [CategoriesCloController::class, 'categoriesClo'])
     ->name('categories_clothes');
 
-//麵包屑
+// 麵包屑
 Route::get('/categories/clothes/short', [CategoryController::class, 'BackToCgy'])->name('categories_clothes.short');
 Route::get('/categories/clothes/long', [CategoryController::class, 'BackToCgy'])->name('categories_clothes.long');
 Route::get('/categories/clothes/jacket', [CategoryController::class, 'BackToCgy'])->name('categories_clothes.jacket');
@@ -44,11 +48,10 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->name('product_d
 
 // 用戶相關頁面
 // Route::prefix('user')->name('user.')->middleware(['auth'])->group(function () {
-Route::prefix('user')->name('user.')->group(function () {  // 暫時移除 middleware(['auth'])
+// Route::prefix('user')->name('user.')->group(function () {  // 暫時移除 middleware(['auth'])
+Route::prefix('user')->name('user.')->middleware(['auth'])->group(function () {  // 恢復 auth 中間件
     // 個人檔案
-    Route::get('/user_profile', function () {
-        return view('user.user_profile');
-    })->name('user_profile');
+    Route::get('/user_profile', [UserProfileController::class, 'index'])->name('user_profile');
 
     // 更新個人資料
     Route::put('/user_profile/update', function () {
@@ -117,10 +120,10 @@ Route::prefix('user')->name('user.')->group(function () {  // 暫時移除 middl
     })->name('payment.delete');
 
     // 我的優惠
-    // Route::get('/coupons', [CouponController::class, 'index'])->name('coupons');
-    // Route::get('/coupons/switch-view', [CouponController::class, 'switchView'])->name('coupons.switch-view');
-    // Route::post('/coupons/redeem', [CouponController::class, 'redeem'])->name('coupons.redeem');
-    // Route::get('/coupons/{id}', [CouponController::class, 'show'])->name('coupons.show');
+    Route::get('/coupons', [CouponController::class, 'index'])->name('coupons');
+    Route::get('/coupons/switch-view', [CouponController::class, 'switchView'])->name('coupons.switch-view');
+    Route::post('/coupons/redeem', [CouponController::class, 'redeem'])->name('coupons.redeem');
+    Route::get('/coupons/{id}', [CouponController::class, 'show'])->name('coupons.show');
 
     // 新增收件地址頁面
     Route::get('/address/add', function () {
@@ -186,9 +189,7 @@ Route::prefix('user')->name('user.')->group(function () {  // 暫時移除 middl
 
 //確保 /user_profile 只能在登入 (auth) 狀態下訪問，如果未登入，Laravel 會自動導向 mylogin。
 Route::middleware(['auth'])->group(function () {
-    Route::get('/user_profile', function () {
-        return view('user.user_profile');
-    })->name('user_profile');
+    Route::get('/user_profile', [UserProfileController::class, 'index'])->name('user_profile');
 });
 
 // 購物車頁
@@ -211,10 +212,11 @@ Route::match(['get', 'post'], '/cart', function () {
 
 
 //購物車獲取資料
-Route::get('/getCartData', [CartController::class, 'getCartData']);
+Route::get('/getCartData', [CartController::class, 'getCartData'])->name('getCartData');
+
 // 購物車更新資料
-Route::match(['get', 'post'], '/insertCart', [CartController::class, 'insertCart']);
-Route::post('/updateCart', [CartController::class, 'updateCart']);
+Route::match(['get', 'post'], '/insertCart', [CartController::class, 'insertCart'])->name('insertCart');
+Route::post('/updateCart', [CartController::class, 'updateCart'])->name('updateCart');
 
 // 購物清單頁
 Route::match(['get', 'post'], '/check_out', function () {
@@ -223,21 +225,33 @@ Route::match(['get', 'post'], '/check_out', function () {
 
 //購物清單頁_新增一筆訂單_orderMain
 Route::post('/InsertOrderMain', [CheckoutController::class, 'InsertOrderMain']);
+
 //購物清單頁_新增一筆訂單_orderdetail
 Route::post('/InsertOrderDetail', [CheckoutController::class, 'InsertOrderDetail']);
+
 //購物清單頁_刪除購物車
 Route::post('/DeleteCart', [CheckoutController::class, 'DeleteCart']);
-
+//購物清單頁_更新庫存
+Route::post('/UpdateProductStock', [CheckoutController::class, 'UpdateProductStock']);
 
 // 成功頁
 Route::match(['get', 'post'], '/successful_transaction', function () {
     return view('successful_transaction');
 })->name('successful_transaction');
+
 // 失敗頁
 Route::match(['get', 'post'], '/failed_transaction', function () {
     return view('failed_transaction');
 })->name('failed_transaction');
+
 // 維護頁
 Route::match(['get', 'post'], '/system-maintenance', function () {
     return view('system-maintenance');
 })->name('system-maintenance');
+// 維護頁調資料庫資料
+Route::get('/maintenance', [SystemMaintenanceController::class, 'showMaintenance'])->name('system.maintenance');
+
+// 購物車無商品
+Route::match(['get', 'post'], '/cart_empty', function () {
+    return view('cart_empty');
+})->name('cart_empty');

@@ -30,7 +30,7 @@ class ProductMain extends Model
 
     public function information(): HasMany
     {
-    return $this->hasMany(ProductInformation::class, 'product_id', 'product_id');
+        return $this->hasMany(ProductInformation::class, 'product_id', 'product_id');
     }
 
     public function wishlists(): HasMany

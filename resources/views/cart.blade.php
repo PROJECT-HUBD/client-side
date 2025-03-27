@@ -108,7 +108,13 @@
       <select class="flex overflow-hidden gap-5 justify-between px-6 py-3 w-full text-sm tracking-wide leading-7 whitespace-nowrap bg-white rounded-md border border-solid border-zinc-300 text-neutral-500 max-md:pr-5 decoration-none">
         <!-- <option value="" selected hidden>請選擇折扣券</option> -->
         <option value="生日券" selected hidden>生日券</option>
-        <option value="折一百">折一百</option>
+        <option value="新會員首單9折">新會員首單9折</option>
+        <option value="春季特賣8折">春季特賣8折</option>
+        <option value="滿$500折$50">滿$500折$50</option>
+        <option value="全站免運費">全站免運費</option>
+        <option value="指定商品買一送一">指定商品買一送一</option>
+        <option value="VIP會員85折">VIP會員85折</option>
+        <option value="週年慶全館75折">週年慶全館75折</option>
       </select>
 
 
@@ -148,8 +154,8 @@
   <div
     class="flex no-wrap  gap-10 justify-between items-start mt-7 max-w-full text-2xl tracking-normal leading-none whitespace-nowrap w-[1920px]">
     <!-- 繼續購物 -->
-    <!-- <a href="{{ route('home') }}" -->
     <a href="{{ route('home') }}"
+    
       class="keepShoping flex overflow-hidden gap-4 items-center px-8 py-4 font-semibold bg-gray-500 rounded-md text-neutral-100 max-md:px-5">
       <img
         src="https://cdn.builder.io/api/v1/image/assets/TEMP/c952c62e6cb99f0e5fac8a2b72bd495f5e660b6e2fc4c7c02951f27ad1e2d261?placeholderIfAbsent=true&apiKey=29bdb496da09449eb579968368248119"
@@ -208,9 +214,13 @@
   // <---------------------接收商品資料_from_productAPI------------------------->
   $(document).ready(function() {
     $.ajax({
-      url: '/getCartData', // 修改為正確的 URL
+      url: "{{ route('getCartData') }}", // 修改為正確的 URL
       method: 'GET',
       success: function(productList) {
+        if (productList.length === 0) {
+          window.location.href = "{{ route('cart_empty') }}";
+        }
+
         console.log(productList); // 顯示返回的商品數據
         // <---------------------將資料存入 localStorage-------------------------> 
         localStorage.setItem("productList", JSON.stringify(productList));
@@ -274,7 +284,7 @@
 
         // 商品圖片與詳細資訊
         resultHTML += `<div class="flex gap-6 items-center self-stretch my-auto min-w-60 text-neutral-700">`;
-        resultHTML += `<img class="product_img flex shrink-0 cover my-auto h-[104px] w-[104px]" src="${productList[i].product_img}" alt="Product Image">`;
+        resultHTML += `<img class="product_img flex shrink-0 cover my-auto h-[104px] w-[104px]" src="http://localhost:8000/storage/${productList[i].product_img}" alt="Product Image">`;
 
         // 產品資訊
         resultHTML += `<div class="self-stretch my-auto w-[213px]">`;
@@ -450,7 +460,7 @@
       let productColor = article.find(".product_color").val();
 
       $.ajax({
-        url: '/updateCart',
+        url: "{{ route('updateCart') }}",
         method: 'POST',
         contentType: "application/json",
         data: JSON.stringify({

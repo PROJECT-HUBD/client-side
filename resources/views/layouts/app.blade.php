@@ -40,7 +40,7 @@
     </header>
 
     <!-- main -->
-    <main class="max-w-full min-w-[390px] mx-auto mt-6">
+    <main class="max-w-full min-w-[390px] mx-auto mt-6 animate__animated animate__fadeIn animate__slow">
         <x-go-top-button />
         @yield('content')
     </main>
@@ -49,8 +49,30 @@
     @include('layouts.footer')
 
     @stack('scripts')
-
-
+    <!-- 判斷是否需要系統正在維護 -->
+    <!-- 如果維護中，則跳轉到維護頁，如果未維護，則跳轉到首頁 -->
+    <script>
+        // $(document).ready(function() {
+        //     $.ajax({
+        //         url: '{{ route("system.maintenance") }}',
+        //         type: 'GET',
+        //         success: function(response) {
+        //             console.log(response);
+        //             if (response.data.length > 0) {
+        //                 window.location.href = '{{ route("system-maintenance") }}';
+        //             }
+        //             else {
+        //                 window.location.href = '{{ route("home") }}';
+        //             }
+        //         },
+        //         error: function(xhr, status, error) {
+        //             console.log('Error:', error);
+        //             window.location.href = '{{ route("home") }}';
+        //         }
+        //     });
+        // });
+    </script>
+   
 </body>
 
 </html>

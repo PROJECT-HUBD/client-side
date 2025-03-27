@@ -6,19 +6,18 @@
 
 
 @section('content')
-
-
-<main class="px-32 pt-20 pb-5 max-md:px-5 max-md:py-10">
-   
-
-    <div id="wishlist-container">
-        @include('partials.wishlist-items')
+<section class="mt-[150px] min-h-[400px]">
+    <!-- 麵包屑 -->
+    <x-breadcrumb :items="[
+         ['name' => '首頁', 'url' => route('home')],
+         ['name' => '收藏清單'],
+     ]" />
+    <div class="px-32 pb-5 max-md:px-5">
+        <div id="wishlist-container">
+            @include('partials.wishlist-items')
+        </div>
     </div>
-  
-
-</main>
-
-
+</section>
 @endsection
 
 
@@ -27,25 +26,27 @@
 <script src="{{ asset('vendor/livewire/livewire.js') }}"></script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         document.querySelectorAll('.remove-wishlist-btn').forEach(button => {
-            button.addEventListener('click', function () {
+            button.addEventListener('click', function() {
                 let productId = this.dataset.productId;
                 fetch("{{ route('wishlist.remove') }}", {
-                    method: "POST",
-                    headers: {
-                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ product_id: productId })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === "removed") {
-                        // 重新加載收藏清單
-                        reloadWishlist();
-                    }
-                });
+                        method: "POST",
+                        headers: {
+                            "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            product_id: productId
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === "removed") {
+                            // 重新加載收藏清單
+                            reloadWishlist();
+                        }
+                    });
             });
         });
     });

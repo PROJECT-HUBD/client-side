@@ -4,12 +4,12 @@
 @section('meta_description', '首頁')
 @section('meta_keywords', '首頁, home')
 
-@if($shownAd)
-<section class="absolute w-full h-full flex justify-center z-[80]">
+@if($noAdCookie)
+<section id="coverArea" class="absolute w-full h-full flex justify-center z-[80]">
     <!-- 蓋板廣告 -->
     @include('layouts.cover_ad')
     <!-- 遮罩 -->
-    <div id="overlay" class="fixed inset-0 w-screen h-screen bg-gray-900 bg-opacity-50 z-40"></div>
+    <div id="overlay" class="hidden animate__animated animate__fadeIn animate__slow  fixed inset-0 w-screen h-screen bg-gray-900 bg-opacity-50 z-40"></div>
 </section>
 @endif
 
@@ -258,6 +258,10 @@
             @foreach($accessories as $index => $accessory)
             <a href="{{ route('product_details', ['id' => $accessory->product_id]) }}" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5 {{$index === 3 ? 'hidden lg:flex' : ''}}">
                 <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
+                    @if($accessory->specs_sum_product_stock == 0)
+                    <div class="absolute w-36 h-14 bg-brandGray-light bg-opacity-20 text-[24px] text-brandGray-light flex justify-center items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">SOLD OUT</div>
+                    <div class="absolute w-full h-full bg-brandGray-normal opacity-60 flex justify-center items-center top-0 left-0"></div>
+                    @endif
                     <img src="{{ 'http://localhost:8000/storage/' . $accessory->product_img }}" alt="{{$accessory->product_name}}" class="w-full h-full object-cover">
                 </div>
                 <div class="w-full h-[74px] flex flex-col justify-center items-start gap-3 text-[20px]">
@@ -286,6 +290,10 @@
             @foreach($clothes as $index => $cloth)
             <a href="{{ route('product_details', ['id' => $cloth->product_id]) }}" class="w-[250px] lg:w-[300px] h-[250px] md:h-full flex flex-col justify-center items-center hover:opacity-80 gap-5 {{$index === 3 ? 'hidden lg:flex' : ''}}">
                 <div class="relative w-full h-[250px] lg:w-[300px] lg:h-[300px]">
+                    @if($cloth->specs_sum_product_stock == 0)
+                    <div class="absolute w-36 h-14 bg-brandGray-light bg-opacity-20 text-[24px] text-brandGray-light flex justify-center items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">SOLD OUT</div>
+                    <div class="absolute w-full h-full bg-brandGray-normal opacity-60 flex justify-center items-center top-0 left-0"></div>
+                    @endif
                     <img src="{{ 'http://localhost:8000/storage/' . $cloth->product_img }}" alt="{{$cloth->product_name}}" class="w-full h-full object-cover">
                 </div>
                 <div class="w-full h-[74px] flex flex-col justify-center items-start gap-3 text-[20px]">
@@ -302,15 +310,43 @@
 @push('scripts')
 <script>
     $(document).ready(() => {
-
-        // 顯示廣告和遮罩
+        // 顯示 蓋板廣告 coverAd 
         $('#coverAd').removeClass('hidden');
         $('#overlay').removeClass('hidden');
 
-        // 點擊關閉按鈕
+        // 置中 coverAd 
+        function centerCoverAd() {
+            const $ad = $('#coverAd');
+            const windowWidth = $(window).width();
+            const windowHeight = $(window).height();
+            const adWidth = $ad.outerWidth();
+            const adHeight = $ad.outerHeight();
+
+            const left = (windowWidth - adWidth) / 2;
+            const top = (windowHeight - adHeight) / 2;
+
+            $ad.css({
+                position: 'fixed',
+                left: `${left}px`,
+                top: `${top}px`
+            });
+        }
+
+        // 初始置中一次
+        centerCoverAd();
+
+        //  監聽視窗調整事件
+        const resizeHandler = centerCoverAd;
+        $(window).on('resize', resizeHandler);
+
+        // 點擊 coverAd 叉叉關閉
         $('#closeBtn').on('click', function() {
+            $('#coverArea').addClass('hidden');
             $('#coverAd').addClass('hidden');
             $('#overlay').addClass('hidden');
+
+            // 清除 resize 
+            $(window).off('resize', resizeHandler);
         });
 
         // 點擊 coverAd 時阻止事件冒泡
@@ -318,11 +354,16 @@
             e.stopPropagation();
         });
 
-        // 點擊畫面其他地方時關閉
+        // 點擊畫面其他地方時關閉 coverAd 
         $(document).on('click', function() {
+            $('#coverArea').addClass('hidden');
             $('#coverAd').addClass('hidden');
             $('#overlay').addClass('hidden');
+
+            //  清除 resize 偵測
+            $(window).off('resize', resizeHandler);
         });
+
 
         // banner hover 效果
         $('.banner1, .banner2, .banner3').on('mouseenter mouseleave', function(event) {
