@@ -221,7 +221,7 @@
           window.location.href = "{{ route('cart_empty') }}";
         }
 
-        console.log(productList); // 顯示返回的商品數據
+        // console.log(productList); // 顯示返回的商品數據
         // <---------------------將資料存入 localStorage-------------------------> 
         localStorage.setItem("productList", JSON.stringify(productList));
         let storedProductList = localStorage.getItem("productList");
@@ -266,8 +266,11 @@
     }) //end of Ajax
     // <---------------------// 渲染畫面-------------------------> 
     function renderProductList(productList) {
-      //  console.log(productList);            
-      for (let i = 0; i < productList.length; i++) {
+     // 從 API 回傳的資料中獲取購物車項目
+     const cart_items = productList.cart_items || [];
+     console.log(cart_items);
+     
+      for (let i = 0; i < cart_items.length; i++) {
         // console.log(i);
         let resultHTML = "";
 
@@ -284,23 +287,23 @@
 
         // 商品圖片與詳細資訊
         resultHTML += `<div class="flex gap-6 items-center self-stretch my-auto min-w-60 text-neutral-700">`;
-        resultHTML += `<img class="product_img flex shrink-0 cover my-auto h-[104px] w-[104px]" src="http://localhost:8000/storage/${productList[i].product_img}" alt="Product Image">`;
+        resultHTML += `<img class="product_img flex shrink-0 cover my-auto h-[104px] w-[104px]" src="http://localhost:8000/storage/${cart_items[i].product_img}" alt="Product Image">`;
 
         // 產品資訊
         resultHTML += `<div class="self-stretch my-auto w-[213px]">`;
-        resultHTML += `<h3 class="product_name text-lg leading-none">${productList[i].product_name}</h3>`;
-        resultHTML += `<p class="product_id ">${productList[i].product_id}</p>`;
+        resultHTML += `<h3 class="product_name text-lg leading-none">${cart_items[i].product_name}</h3>`;
+        resultHTML += `<p class="product_id ">${cart_items[i].product_id}</p>`;
 
         // 產品選擇
         resultHTML += `<div class="flex flex-col items-start mt-3 max-w-full text-sm whitespace-flexwrap w-[100px] rounded">`;
         resultHTML += `<select name="product_color"  class="product_color flex gap-10 justify-between items-center px-3 py-1 w-32 rounded bg-neutral-100 max-w-40 border border-none">`;
-        resultHTML += `<option  value="${productList[i].product_color}"  hidden>${productList[i].product_color}</option>`;
+        resultHTML += `<option  value="${cart_items[i].product_color}"  hidden>${cart_items[i].product_color}</option>`;
         resultHTML += `<option  value="Black">Black</option>`;
         resultHTML += `<option  value="Grey">Grey</option>`;
         resultHTML += `<option  value="White">White</option>`;
         resultHTML += `</select>`;
         resultHTML += `<select name="product_size"  class="product_size flex gap-10 justify-between items-center mt-2 px-3 py-1 w-32 rounded bg-neutral-100 max-w-40 border border-none">`;
-        resultHTML += `<option value="${productList[i].product_size}" hidden>${productList[i].product_size}</option>`;
+        resultHTML += `<option value="${cart_items[i].product_size}" hidden>${cart_items[i].product_size}</option>`;
         resultHTML += `<option value="S">S</option>`;
         resultHTML += `<option value="M">M</option>`;
         resultHTML += `<option value="L">L</option>`;
@@ -320,7 +323,7 @@
 
         resultHTML += `<button class="buttonMinus self-stretch px-2.5 py-3 my-auto capitalize border border-solid border-[color:var(--grey-light-hover,#E4E4E4)] h-[58px] w-[58px]" aria-label="Decrease quantity">-</button>`;
 
-        resultHTML += `<div type="text" value="01" class="quantity self-stretch p-2.5 py-4 my-auto border border-solid border-[color:var(--grey-light-hover,#E4E4E4)] text-zinc-500 w-[100px] text-center" aria-label="Quantity">${Number(productList[i].quantity)}</div>`;
+        resultHTML += `<div type="text" value="01" class="quantity self-stretch p-2.5 py-4 my-auto border border-solid border-[color:var(--grey-light-hover,#E4E4E4)] text-zinc-500 w-[100px] text-center" aria-label="Quantity">${Number(cart_items[i].quantity)}</div>`;
 
         resultHTML += `<button class="buttonPlus self-stretch px-2.5 my-auto capitalize border border-solid border-[color:var(--grey-light-hover,#E4E4E4)] h-[58px] w-[58px]" aria-label="Increase quantity">+</button>`;
 
@@ -328,8 +331,8 @@
 
         // 價格顯示
         resultHTML += `<div class="flex flex-col justify-center self-stretch my-auto text-base">`;
-        // resultHTML += `<p class="discount_price text-red-700">$${Number(productList[i].discount_price)}</p>`; // 强制转换为数字并格式化为两位小数
-        resultHTML += `<p class="product_price mt-3 text-zinc-700" >$${Number(productList[i].product_price)}</p>`; // 强制转换为数字并格式化为两位小数
+        // resultHTML += `<p class="discount_price text-red-700">$${Number(cart_items[i].discount_price)}</p>`; // 强制转换为数字并格式化为两位小数
+        resultHTML += `<p class="product_price mt-3 text-zinc-700" >$${Number(cart_items[i].product_price)}</p>`; // 强制转换为数字并格式化为两位小数
         resultHTML += `</div>`; // 關閉價格區塊
 
         resultHTML += `</div>`; // 關閉 row-right-part

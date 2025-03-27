@@ -22,7 +22,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-// 購物車頁_Ajax成功
+// 購物車頁_
 Route::match(['get', 'post'],'/cart', function () {
     return view('cart');
 })->name('cart');

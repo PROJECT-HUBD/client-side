@@ -10,7 +10,7 @@ class cart extends Model
     use HasFactory;
 
     protected $table = 'cart'; // 确保模型与表名一致
-    protected $fillable = [ 'product_id', 'quantity', 'product_color', 'product_size']; // 填充属性
+    protected $fillable = [ 'product_id', 'quantity', 'product_color', 'product_size','id']; // 填充属性
 
     public $timestamps = false;
 }

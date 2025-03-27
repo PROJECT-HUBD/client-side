@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\User\CouponController;
 
+
 // 首頁
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
@@ -191,11 +192,15 @@ Route::prefix('user')->name('user.')->middleware(['auth'])->group(function () { 
 Route::middleware(['auth'])->group(function () {
     Route::get('/user_profile', [UserProfileController::class, 'index'])->name('user_profile');
 });
+//確保 /cart 只能在登入 (auth) 狀態下訪問，如果未登入，Laravel 會自動導向 mylogin。
+Route::middleware(['auth'])->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+});
 
 // 購物車頁
-Route::get('/cart', function () {
-    return view('cart');
-})->name('cart');
+// Route::get('/cart', function () {
+//     return view('cart');
+// })->name('cart');
 
 // 購物清單頁
 Route::get('/check_out', function () {
@@ -205,10 +210,6 @@ Route::get('/check_out', function () {
 
 require __DIR__ . '/auth.php';
 
-// 購物車頁_Ajax成功
-Route::match(['get', 'post'], '/cart', function () {
-    return view('cart');
-})->name('cart');
 
 
 //購物車獲取資料
