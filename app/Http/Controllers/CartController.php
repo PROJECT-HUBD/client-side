@@ -1,44 +1,69 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 use App\Models\ProductMain;
 use App\Models\ProductSpec;
+use App\Models\Coupons;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use Illuminate\Support\Facades\DB;
 
-class CartController extends Controller
-{
-    public function getCartData(Request $request)
-    {
-        // 獲取所有購物車條目
-        $cartItems = Cart::all();
 
+
+class CartController extends Controller
+
+{
+    public function index()
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', '請先登入');
+        }
+        return view('cart');
+    }
+    public function getCartData()
+    {
+        // 驗證用戶是否已登入
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', '請先登入');
+        }
+        
+        $userId = Auth::id();
+        
+        // 獲取所有符合用戶ID的購物車條目
+        $cartItems = Cart::where('id', $userId)->get();
+       
+        // 拼裝資料
         $productData = [];
 
         foreach ($cartItems as $cartItem) {
-            // 獲取與 cart 表中 varient_id 和 product_id 匹配的 size 和 color
-            $productSpec = ProductSpec::where('product_id', $cartItem->product_id)->first();
+            // 獲取與 cart 表中 product_id 匹配的產品資訊
+           $productSpec = ProductSpec::where('product_id', $cartItem->product_id)->first();
             $productMain = ProductMain::where('product_id', $cartItem->product_id)->first();
           
-
-            // 拼裝資料
+           
             $productData[] = [
                 'product_img' => $productMain ? $productMain->product_img : null,
-                'product_name' =>$cartItem->product_name,
-                'product_size' => $cartItem->product_size,
-                'product_color' => $cartItem->product_color,
+                'product_stock' => $productMain ? $productSpec->product_stock : null,
+                'product_name' => $cartItem->product_name,
+                'product_size' => $productSpec ? $productSpec->product_size : null,
+                'product_color' => $productSpec ? $productSpec->product_color : null,
                 'quantity' => $cartItem->quantity,
                 'product_price' => $productMain ? $productMain->product_price : null,
                 'product_id' => $cartItem->product_id,
-                
+                'cart_id' => $cartItem->id
             ];
-          
-        }
-         
+             // 返回資料
 
-        // 返回資料
-        return response()->json($productData);
+        }
+        // view('cart');
+        return 
+        response()->json([
+            'success' => true,
+            'user_id' => $userId,
+            'cart_items' => $productData
+
+        ]);
     }// end of getCartData
 
     public function insertCart(Request $request)
@@ -53,11 +78,11 @@ class CartController extends Controller
                 'quantity' => 'required|integer|min:1',
             ]);
 
-            $userId = auth()->id() ?? null;
+            $userId = Auth::id();
           
-          if (!$userId) {
-              return response()->json(['error' => '請先登入以加入購物車'], 401);
-          }
+            if (!$userId) {
+                return response()->json(['error' => '請先登入以加入購物車'], 401);
+            }
 
             $existing = DB::table('cart')
                 ->where('id', $userId)
@@ -68,7 +93,10 @@ class CartController extends Controller
 
             if ($existing) {
                 DB::table('cart')
-                    ->where('id', $existing->id)
+                    ->where('id', $userId)
+                    ->where('product_id', $data['product_id'])
+                    ->where('product_color', $data['product_color'])
+                    ->where('product_size', $data['product_size'])
                     ->update([
                         'quantity' => $existing->quantity + $data['quantity'],
                         'updated_at' => now(),
@@ -126,5 +154,11 @@ class CartController extends Controller
         } else {
             return response()->json(['message' => '購物車更新失敗或無變更！'], 500);
         }
+    }
+
+    public function getCoupons()
+    {
+        $coupons = Coupons::pluck('title');
+        return response()->json($coupons);
     }
 }
