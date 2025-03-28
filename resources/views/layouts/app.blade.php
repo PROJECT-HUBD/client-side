@@ -35,10 +35,9 @@
 <body class="relative font-lexend antialiased bg-white w-screen h-screen">
 
     @if(Route::currentRouteNamed('home') && $noAdCookie)
-    <section id="coverArea" class="absolute w-full h-full flex justify-center z-[80]">
-        <!-- 蓋板廣告 -->
+    <section id="coverArea" class="fixed inset-0 z-[80] flex justify-center items-center">
+        <!-- 蓋板廣告與遮罩 -->
         @include('layouts.cover_ad')
-        <!-- 遮罩 -->
         <div id="overlay" class="hidden animate__animated animate__fadeIn animate__slow fixed inset-0 w-screen h-screen bg-gray-900 bg-opacity-50 z-40"></div>
     </section>
     @endif

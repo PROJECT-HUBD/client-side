@@ -301,7 +301,6 @@
 @push('scripts')
 <script>
     $(document).ready(() => {
-
         // banner hover 效果
         $('.banner1, .banner2, .banner3').on('mouseenter mouseleave', function(event) {
             $(this).find('[class^="bannerMask"]').toggleClass('hidden', event.type === 'mouseleave');
