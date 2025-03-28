@@ -128,7 +128,7 @@
             hideTimeout = setTimeout(function() {
                 $(".plusIconPc").html("＋");
                 $("#dropDownMenuPc").addClass("hidden");
-            }, 120);
+            }, 200);
         });
 
         // 下拉式選單 平板
