@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
     if (!Auth::attempt($request->only('email', 'password'), $remember)) {
         return back()->withErrors([
             'email' => '帳號或密碼有誤',
-            'password' => '帳號或密碼有誤', // 🔥 讓密碼輸入框也顯示錯誤訊息
+            'password' => '帳號或密碼有誤', // 讓密碼輸入框也顯示錯誤訊息
         ]);
     }
 
