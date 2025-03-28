@@ -15,8 +15,27 @@
         </div>
         
         <div class="border border-brandGray-light rounded-lg overflow-hidden">
-            <div class="bg-brandGray-lightLight p-4 border-b border-brandGray-light">
+            <div class="bg-brandGray-lightLight p-4 border-b border-brandGray-light flex justify-between items-center">
                 <h2 class="text-lg font-semibold text-brandGray-normal">{{ $coupon['title'] }}</h2>
+                @if($coupon['status'] === 'active')
+                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
+                        可使用
+                    </span>
+                @elseif($coupon['status'] === 'expired' || $coupon['status'] === 'disabled')
+                    <span class="px-2 py-1 bg-red-100 text-red-800 text-xs font-medium rounded-full">
+                        已過期
+                    </span>
+                @elseif($coupon['status'] === 'scheduled')
+                    <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
+                        即將開始
+                    </span>
+                @endif
+                
+                @if(isset($coupon['is_used']) && $coupon['is_used'])
+                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs font-medium rounded-full">
+                        已使用
+                    </span>
+                @endif
             </div>
             <div class="p-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -44,14 +63,30 @@
                     </div>
                     <div>
                         <h3 class="text-md font-medium text-brandGray-normal mb-2">使用條款</h3>
-                        <p class="text-brandGray-normal">{{ $coupon['terms'] }}</p>
+                        <div class="text-brandGray-normal whitespace-pre-line">
+                            {{ $coupon['terms'] }}
+                        </div>
                     </div>
                 </div>
                 
                 <div class="mt-6 pt-4 border-t border-brandGray-light">
-                    <a href="/categories/all" class="inline-block px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal">
-                        立即使用
-                    </a>
+                    @if($coupon['status'] === 'active' && (!isset($coupon['is_used']) || !$coupon['is_used']))
+                        <a href="/categories/all" class="inline-block px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal">
+                            立即使用
+                        </a>
+                    @elseif(isset($coupon['is_used']) && $coupon['is_used'])
+                        <p class="inline-block px-4 py-2 bg-gray-200 text-gray-500 rounded-md cursor-not-allowed">
+                            已使用
+                        </p>
+                    @elseif($coupon['status'] === 'expired' || $coupon['status'] === 'disabled')
+                        <p class="inline-block px-4 py-2 bg-gray-200 text-gray-500 rounded-md cursor-not-allowed">
+                            已過期
+                        </p>
+                    @elseif($coupon['status'] === 'scheduled')
+                        <p class="inline-block px-4 py-2 bg-gray-200 text-gray-500 rounded-md cursor-not-allowed">
+                            尚未開始
+                        </p>
+                    @endif
                 </div>
             </div>
         </div>

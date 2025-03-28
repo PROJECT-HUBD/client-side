@@ -9,20 +9,17 @@
     <div class="w-full p-4 sm:p-6 bg-white rounded-lg shadow-sm">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
             <h1 class="text-xl sm:text-2xl font-bold text-brandGray-normal mb-3 sm:mb-0">我的優惠</h1>
-            <!-- <div class="flex flex-col sm:flex-row w-full sm:w-auto gap-2">
+            <div class="flex flex-col sm:flex-row w-full sm:w-auto gap-2">
                 <form action="{{ route('user.coupons.redeem') }}" method="POST" class="flex flex-col sm:flex-row w-full sm:w-auto gap-2">
                     @csrf
                     <div class="relative w-full sm:w-auto">
                         <input type="text" name="coupon_code" placeholder="輸入優惠碼" class="w-full sm:w-auto px-4 py-2 border border-brandGray-lightActive rounded-md focus:outline-none focus:ring-1 focus:ring-brandBlue-normal">
-                        <button type="button" class="absolute right-2 top-2 text-brandBlue-normal hover:text-brandBlue-normalHover">
-                            <i class="icon-[mdi--plus-circle-outline] w-5 h-5"></i>
-                        </button>
                     </div>
                     <button type="submit" class="px-3 py-1.5 sm:px-4 sm:py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal whitespace-nowrap">
                         兌換優惠碼
                     </button>
                 </form>
-            </div> -->
+            </div>
         </div>
         
         <!-- 顯示成功或錯誤訊息 -->
@@ -148,6 +145,7 @@
             transition: all 0.3s ease;
             border-bottom: 1px solid #e5e7eb;
             padding: 1rem;
+            position: relative;
         }
         
         .view-list .coupon-item:last-child {
@@ -163,7 +161,9 @@
         
         .view-list .status-badge {
             display: inline-block;
-            margin-left: 0.5rem;
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
             padding: 0.25rem 0.5rem;
             border-radius: 9999px;
             font-size: 0.75rem;
@@ -221,7 +221,7 @@
             opacity: 0.8;
         }
         
-        .view-grid .coupon-item:hover {
+        .view-grid .coupon-active:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             cursor: pointer;
@@ -257,9 +257,30 @@
         }
         
         .coupon-used:hover, .coupon-expired:hover {
-            transform: none;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-            cursor: default;
+            transform: none !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+            cursor: default !important;
+        }
+        
+        /* 即將到期優惠券樣式 */
+        .view-grid .coupon-expiring::before {
+            background: linear-gradient(to right, #f59e0b, #fbbf24);
+        }
+        
+        .expiring-badge {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background-color: #fff7ed;
+            color: #9a3412;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            border: 1px solid #fed7aa;
         }
         
         /* 狀態標籤樣式 */
@@ -279,8 +300,21 @@
         }
         
         .view-grid .coupon-expired .status-badge {
-            background-color: #e5e7eb;
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        
+        /* 視圖切換按鈕樣式 */
+        .view-toggle-btn {
+            border: 1px solid #e5e7eb;
+            background-color: #f9fafb;
             color: #6b7280;
+        }
+        
+        .view-toggle-btn.active {
+            background-color: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
         }
     </style>
 
