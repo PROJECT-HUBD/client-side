@@ -4,15 +4,6 @@
 @section('meta_description', '首頁')
 @section('meta_keywords', '首頁, home')
 
-@if($noAdCookie)
-<section id="coverArea" class="absolute w-full h-full flex justify-center z-[80]">
-    <!-- 蓋板廣告 -->
-    @include('layouts.cover_ad')
-    <!-- 遮罩 -->
-    <div id="overlay" class="hidden animate__animated animate__fadeIn animate__slow  fixed inset-0 w-screen h-screen bg-gray-900 bg-opacity-50 z-40"></div>
-</section>
-@endif
-
 @section('content')
 <section class="relative mt-[200px] md:mt-[260px] lg:mt-[200px] w-full h-[5800px] md:h-[4200px]">
     <!-- banner 輪播圖 -->
@@ -310,60 +301,6 @@
 @push('scripts')
 <script>
     $(document).ready(() => {
-        // 顯示 蓋板廣告 coverAd 
-        $('#coverAd').removeClass('hidden');
-        $('#overlay').removeClass('hidden');
-
-        // 置中 coverAd 
-        function centerCoverAd() {
-            const $ad = $('#coverAd');
-            const windowWidth = $(window).width();
-            const windowHeight = $(window).height();
-            const adWidth = $ad.outerWidth();
-            const adHeight = $ad.outerHeight();
-
-            const left = (windowWidth - adWidth) / 2;
-            const top = (windowHeight - adHeight) / 2;
-
-            $ad.css({
-                position: 'fixed',
-                left: `${left}px`,
-                top: `${top}px`
-            });
-        }
-
-        // 初始置中一次
-        centerCoverAd();
-
-        //  監聽視窗調整事件
-        const resizeHandler = centerCoverAd;
-        $(window).on('resize', resizeHandler);
-
-        // 點擊 coverAd 叉叉關閉
-        $('#closeBtn').on('click', function() {
-            $('#coverArea').addClass('hidden');
-            $('#coverAd').addClass('hidden');
-            $('#overlay').addClass('hidden');
-
-            // 清除 resize 
-            $(window).off('resize', resizeHandler);
-        });
-
-        // 點擊 coverAd 時阻止事件冒泡
-        $('#coverAd').on('click', function(e) {
-            e.stopPropagation();
-        });
-
-        // 點擊畫面其他地方時關閉 coverAd 
-        $(document).on('click', function() {
-            $('#coverArea').addClass('hidden');
-            $('#coverAd').addClass('hidden');
-            $('#overlay').addClass('hidden');
-
-            //  清除 resize 偵測
-            $(window).off('resize', resizeHandler);
-        });
-
 
         // banner hover 效果
         $('.banner1, .banner2, .banner3').on('mouseenter mouseleave', function(event) {
