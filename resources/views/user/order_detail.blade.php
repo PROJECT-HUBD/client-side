@@ -266,10 +266,457 @@
                 </a>
             @endif
             
-            <a href="#" class="flex items-center justify-center px-4 py-2 border border-brandGray-lightActive text-brandGray-normal rounded-md hover:bg-brandGray-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGray-light">
+            <button id="print-order-btn" class="flex items-center justify-center px-4 py-2 border border-brandGray-lightActive text-brandGray-normal rounded-md hover:bg-brandGray-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGray-light">
                 <i class="icon-[mdi--printer-outline] w-5 h-5 mr-1 inline-block"></i>
                 列印訂單
-            </a>
+            </button>
         </div>
     </div>
+
+    <!-- 列印樣式 -->
+    <style type="text/css" media="print">
+        /* 重置所有元素 */
+        * {
+            box-sizing: border-box;
+        }
+        
+        /* 隱藏不需要列印的元素 */
+        header, footer, nav, .sidebar, .breadcrumb, .no-print, button, a, 
+        .flex.flex-wrap.justify-end.gap-3, .mb-8.p-4.rounded-lg,
+        body > *:not(.print-container) {
+            display: none !important;
+        }
+        
+        /* 確保頁面按照 A4 尺寸列印 */
+        @page {
+            size: A4 portrait;
+            margin: 1.5cm;
+        }
+        
+        /* 基本頁面設定 */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            font-size: 11pt;
+            line-height: 1.4;
+            background: white;
+            color: #333;
+        }
+        
+        /* 列印內容容器 */
+        .print-container {
+            width: 100%;
+            max-width: 100%;
+            padding: 0;
+            margin: 0 auto;
+            background: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            overflow: visible;
+        }
+        
+        /* 頁眉樣式 */
+        .print-header {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        .print-header-title {
+            font-size: 20pt;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        
+        .print-header-subtitle {
+            font-size: 12pt;
+            color: #666;
+            margin: 5px 0 0 0;
+            text-align: center;
+        }
+        
+        .print-logo {
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-size: 22pt;
+            color: #2b6cb0;
+        }
+        
+        /* 訂單資訊區塊 */
+        .print-info-grid {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        
+        .print-info-column {
+            width: 50%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+        
+        .print-info-box {
+            border: 1px solid #eaeaea;
+            border-radius: 5px;
+            padding: 10px;
+            height: 100%;
+        }
+        
+        .print-info-title {
+            font-size: 12pt;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .print-info-item {
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+        
+        .print-info-label {
+            font-weight: normal;
+            color: #666;
+            display: inline-block;
+            width: 70px;
+        }
+        
+        .print-info-value {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        /* 商品表格樣式 */
+        .print-table-container {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        
+        .print-table {
+            width: 100%;
+            border-collapse: collapse;
+            page-break-inside: avoid;
+            table-layout: fixed;
+        }
+        
+        .print-table th,
+        .print-table td {
+            padding: 8px;
+            text-align: left;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .print-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            font-size: 9pt;
+            text-transform: uppercase;
+        }
+        
+        .print-table td {
+            border-bottom: 1px solid #eaeaea;
+            font-size: 10pt;
+        }
+        
+        .print-table th:nth-child(1),
+        .print-table td:nth-child(1) {
+            width: 40%;
+        }
+        
+        .print-table th:nth-child(2),
+        .print-table td:nth-child(2),
+        .print-table th:nth-child(3),
+        .print-table td:nth-child(3),
+        .print-table th:nth-child(4),
+        .print-table td:nth-child(4) {
+            width: 20%;
+        }
+        
+        /* 金額摘要區塊 - 重新設計 */
+        .print-summary-table {
+            width: 100%;
+            margin-top: 10px;
+            border-collapse: collapse;
+        }
+        
+        .print-summary-table td {
+            padding: 4px 8px;
+            font-size: 9pt;
+            border: none;
+        }
+        
+        .print-summary-table .summary-label {
+            text-align: right;
+            color: #666;
+            width: 85%;
+        }
+        
+        .print-summary-table .summary-value {
+            text-align: right;
+            font-weight: bold;
+            width: 15%;
+        }
+        
+        .print-summary-table .summary-total {
+            font-size: 11pt;
+            border-top: 1px solid #eaeaea;
+            padding-top: 6px;
+            margin-top: 4px;
+        }
+        
+        /* 頁腳樣式 */
+        .print-footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 9pt;
+            color: #999;
+            padding-top: 15px;
+            border-top: 1px solid #eaeaea;
+        }
+    </style>
+
+    <!-- 列印功能 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('print-order-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // 創建列印容器
+                const printContainer = document.createElement('div');
+                printContainer.className = 'print-container';
+                printContainer.id = 'print-container';
+                
+                // 創建頁眉
+                const header = document.createElement('div');
+                header.className = 'print-header';
+                
+                // 使用圖片 logo 替換文字 logo
+                const logo = document.createElement('div');
+                logo.className = 'print-logo';
+                const logoImg = document.createElement('img');
+                logoImg.src = '/images/layouts/logo_nav1.jpg';
+                logoImg.alt = '網站 Logo';
+                logoImg.style.maxHeight = '50px';
+                logoImg.style.margin = '0 auto';
+                logoImg.style.display = 'block';
+                logo.appendChild(logoImg);
+                
+                const title = document.createElement('h1');
+                title.className = 'print-header-title';
+                title.textContent = '訂單明細';
+                
+                const subTitle = document.createElement('p');
+                subTitle.className = 'print-header-subtitle';
+                subTitle.textContent = '訂單編號: {{ $order->order_id }}';
+                
+                header.appendChild(logo);
+                header.appendChild(title);
+                header.appendChild(subTitle);
+                printContainer.appendChild(header);
+                
+                // 創建訂單資訊區塊
+                const infoGrid = document.createElement('div');
+                infoGrid.className = 'print-info-grid';
+                
+                // 基本資訊
+                const basicInfoColumn = document.createElement('div');
+                basicInfoColumn.className = 'print-info-column';
+                
+                const basicInfoBox = document.createElement('div');
+                basicInfoBox.className = 'print-info-box';
+                
+                const basicInfoTitle = document.createElement('div');
+                basicInfoTitle.className = 'print-info-title';
+                basicInfoTitle.textContent = '基本資訊';
+                basicInfoBox.appendChild(basicInfoTitle);
+                
+                const basicInfoContent = document.createElement('div');
+                basicInfoContent.innerHTML = `
+                    <div class="print-info-item">
+                        <span class="print-info-label">訂單編號：</span>
+                        <span class="print-info-value">{{ $order->order_id }}</span>
+                    </div>
+                    <div class="print-info-item">
+                        <span class="print-info-label">訂購日期：</span>
+                        <span class="print-info-value">{{ $order->created_at->format('Y/m/d H:i') }}</span>
+                    </div>
+                    <div class="print-info-item">
+                        <span class="print-info-label">付款方式：</span>
+                        <span class="print-info-value">{{ $order->payment_method_name }}</span>
+                    </div>
+                    <div class="print-info-item">
+                        <span class="print-info-label">訂單狀態：</span>
+                        <span class="print-info-value">{{ $order->status_name }}</span>
+                    </div>
+                `;
+                basicInfoBox.appendChild(basicInfoContent);
+                basicInfoColumn.appendChild(basicInfoBox);
+                infoGrid.appendChild(basicInfoColumn);
+                
+                // 收件資訊
+                const shippingInfoColumn = document.createElement('div');
+                shippingInfoColumn.className = 'print-info-column';
+                
+                const shippingInfoBox = document.createElement('div');
+                shippingInfoBox.className = 'print-info-box';
+                
+                const shippingInfoTitle = document.createElement('div');
+                shippingInfoTitle.className = 'print-info-title';
+                shippingInfoTitle.textContent = '收件資訊';
+                shippingInfoBox.appendChild(shippingInfoTitle);
+                
+                const shippingInfoContent = document.createElement('div');
+                shippingInfoContent.innerHTML = `
+                    <div class="print-info-item">
+                        <span class="print-info-label">收件人：</span>
+                        <span class="print-info-value">{{ Auth::user()->name }}</span>
+                    </div>
+                    <div class="print-info-item">
+                        <span class="print-info-label">聯絡電話：</span>
+                        <span class="print-info-value">{{ Auth::user()->phone ?? '未設定' }}</span>
+                    </div>
+                    <div class="print-info-item">
+                        <span class="print-info-label">收件地址：</span>
+                        <span class="print-info-value">{{ Auth::user()->address ?? '未設定' }}</span>
+                    </div>
+                    <div class="print-info-item">
+                        <span class="print-info-label">配送方式：</span>
+                        <span class="print-info-value">宅配</span>
+                    </div>
+                `;
+                shippingInfoBox.appendChild(shippingInfoContent);
+                shippingInfoColumn.appendChild(shippingInfoBox);
+                infoGrid.appendChild(shippingInfoColumn);
+                
+                printContainer.appendChild(infoGrid);
+                
+                // 商品明細
+                const productsSection = document.createElement('div');
+                productsSection.className = 'print-table-container';
+                
+                const productsTitle = document.createElement('div');
+                productsTitle.className = 'print-info-title';
+                productsTitle.textContent = '商品明細';
+                productsSection.appendChild(productsTitle);
+                
+                // 商品表格
+                const tableHTML = `
+                    <table class="print-table">
+                        <thead>
+                            <tr>
+                                <th>商品</th>
+                                <th>單價</th>
+                                <th>數量</th>
+                                <th>小計</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($order->items as $item)
+                                <tr>
+                                    <td>{{ $item->product_name }}</td>
+                                    <td>NT$ {{ number_format($item->product_price, 0) }}</td>
+                                    <td>{{ $item->quantity }}</td>
+                                    <td>NT$ {{ number_format($item->product_price * $item->quantity, 0) }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                `;
+                productsSection.innerHTML += tableHTML;
+                
+                // 金額摘要 - 新設計，使用表格布局代替flex布局
+                @php
+                    $subtotal = $order->items->sum(function($item) {
+                        return $item->product_price * $item->quantity;
+                    });
+                    $shipping = 60; // 固定運費
+                    $discount = $subtotal + $shipping - $order->total_price_with_discount;
+                @endphp
+                
+                const summaryTableHTML = `
+                    <table class="print-summary-table">
+                        <tr>
+                            <td class="summary-label">商品小計：</td>
+                            <td class="summary-value">NT$ {{ number_format($subtotal, 0) }}</td>
+                        </tr>
+                        <tr>
+                            <td class="summary-label">運費：</td>
+                            <td class="summary-value">NT$ {{ number_format($shipping, 0) }}</td>
+                        </tr>
+                        @if($discount > 0)
+                        <tr>
+                            <td class="summary-label">優惠券折抵：</td>
+                            <td class="summary-value">-NT$ {{ number_format($discount, 0) }}</td>
+                        </tr>
+                        @endif
+                        <tr>
+                            <td class="summary-label summary-total">總計：</td>
+                            <td class="summary-value summary-total">NT$ {{ number_format($order->total_price_with_discount, 0) }}</td>
+                        </tr>
+                    </table>
+                `;
+                productsSection.innerHTML += summaryTableHTML;
+                
+                printContainer.appendChild(productsSection);
+                
+                // 頁腳
+                const footer = document.createElement('div');
+                footer.className = 'print-footer';
+                footer.innerHTML = `
+                    <p>感謝您的訂購！如有任何問題，請聯繫客服。</p>
+                    <p>此訂單列印於 ${new Date().toLocaleString()}</p>
+                `;
+                printContainer.appendChild(footer);
+                
+                // 移除舊的列印容器（如果存在）
+                const oldContainer = document.getElementById('print-container');
+                if (oldContainer) {
+                    document.body.removeChild(oldContainer);
+                }
+                
+                // 將列印容器添加到頁面
+                document.body.appendChild(printContainer);
+                
+                // 隱藏所有其他元素
+                const allElements = document.body.children;
+                for (let i = 0; i < allElements.length; i++) {
+                    if (allElements[i] !== printContainer) {
+                        allElements[i].style.display = 'none';
+                    }
+                }
+                
+                // 稍作延遲以確保樣式已應用
+                setTimeout(function() {
+                    window.print();
+                    
+                    // 列印完成後恢復頁面顯示
+                    for (let i = 0; i < allElements.length; i++) {
+                        if (allElements[i] !== printContainer) {
+                            allElements[i].style.display = '';
+                        }
+                    }
+                    
+                    // 移除列印容器
+                    document.body.removeChild(printContainer);
+                }, 500);
+            });
+        });
+    </script>
 @endsection 
