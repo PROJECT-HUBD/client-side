@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\User\CouponController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\User\OrderController;
 // 首頁
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
@@ -68,10 +69,7 @@ Route::prefix('user')->name('user.')->middleware(['auth'])->group(function () { 
     })->name('change_password.update');
 
     // 我的訂單
-    Route::get('/orders', function (Request $request) {
-        $status = $request->query('status', 'all');
-        return view('user.orders', compact('status'));
-    })->name('orders');
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders');
 
     // 收件地址
     Route::get('/address', function () {
@@ -146,37 +144,16 @@ Route::prefix('user')->name('user.')->middleware(['auth'])->group(function () { 
     })->name('address.delete');
 
     // 訂單詳情頁面
-    Route::get('/orders/{id}', function ($id) {
-        return view('user.order_detail', compact('id'));
-    })->name('orders.detail');
+    Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.detail');
 
     // 取消訂單
-    Route::post('/orders/{id}/cancel', function ($id) {
-        // 處理取消訂單邏輯
-        return redirect()->route('user.orders')->with('success', '訂單已成功取消');
-    })->name('orders.cancel');
+    Route::post('/orders/{id}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
 
     // 申請退貨
-    Route::get('/orders/{id}/return', function ($id) {
-        return view('user.order_return', compact('id'));
-    })->name('orders.return');
+    Route::get('/orders/{id}/return', [OrderController::class, 'returnOrder'])->name('orders.return');
 
     // 處理退貨申請
-    Route::post('/orders/{id}/return', function ($id) {
-        // 處理退貨申請邏輯
-        return redirect()->route('user.orders.detail', $id)->with('success', '退貨申請已提交');
-    })->name('orders.return.store');
-
-    // 訂單評價
-    Route::get('/orders/{id}/review', function ($id) {
-        return view('user.order_review', compact('id'));
-    })->name('orders.review');
-
-    // 處理訂單評價
-    Route::post('/orders/{id}/review', function ($id) {
-        // 處理訂單評價邏輯
-        return redirect()->route('user.orders.detail', $id)->with('success', '評價已提交，感謝您的反饋');
-    })->name('orders.review.store');
+    Route::post('/orders/{id}/return', [OrderController::class, 'storeReturn'])->name('orders.return.store');
 });
 
 //確保 /user_profile 只能在登入 (auth) 狀態下訪問，如果未登入，Laravel 會自動導向 mylogin。
