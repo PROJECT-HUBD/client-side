@@ -54,4 +54,12 @@ class User extends Authenticatable
     {
         return !is_null($this->email_verified_at);
     }
+
+    /**
+     * 獲取用戶的所有訂單
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'id');
+    }
 }

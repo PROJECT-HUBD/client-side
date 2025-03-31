@@ -14,97 +14,81 @@
             </a>
         </div>
         
-        <!-- 訂單狀態追蹤 -->
+        <!-- 訂單狀態追蹤 (已註釋) -->
+        <!--
         <div class="mb-8">
             <h2 class="text-lg font-medium text-brandGrey-normal mb-4">訂單狀態</h2>
             <div class="relative">
+        -->
                 <!-- 進度條 -->
-                <div class="hidden sm:block absolute left-0 top-1/2 w-full h-1 bg-brandGrey-light -translate-y-1/2 z-0"></div>
-                
+                <!--
+                <div class="hidden sm:block absolute left-0 top-1/2 w-full h-1 bg-brandGray-light -translate-y-1/2 z-0"></div>
+                -->
                 <!-- 狀態點 -->
+            <!--
                 <div class="flex justify-between relative z-10">
-                    @php
-                        $status = '';
-                        $statusClass = '';
-                        
-                        if ($id == 1) {
-                            $status = '已送達';
-                            $statusClass = 'bg-brandBlue-normal text-white';
-                        } elseif ($id == 2) {
-                            $status = '已出貨';
-                            $statusClass = 'bg-brandGreen-normal text-white';
-                        } elseif ($id == 3) {
-                            $status = '處理中';
-                            $statusClass = 'bg-brandYellow-normal text-white';
-                        } elseif ($id == 4) {
-                            $status = '待付款';
-                            $statusClass = 'bg-brandGrey-normal text-white';
-                        } elseif ($id == 5) {
-                            $status = '已取消';
-                            $statusClass = 'bg-brandGrey-normal text-white';
-                        }
-                    @endphp
-                    
                     <div class="flex flex-col items-center">
                         <div class="w-8 h-8 rounded-full bg-brandBlue-normal text-white flex items-center justify-center mb-2">
                             <i class="icon-[mdi--check] w-5 h-5"></i>
                         </div>
-                        <span class="text-sm text-brandGrey-normal text-center">訂單成立</span>
-                        <span class="text-xs text-brandGrey-normalLight text-center">{{ $id == 5 ? '2023/10/01' : '2023/06/15' }}</span>
+                        <span class="text-sm text-brandGray-normal text-center">訂單成立</span>
+                        <span class="text-xs text-brandGray-normalLight text-center">{{ $statusTimeline['created']['time'] }}</span>
                     </div>
                     
                     <div class="flex flex-col items-center">
-                        <div class="w-8 h-8 rounded-full {{ $id >= 2 && $id != 5 ? 'bg-brandBlue-normal text-white' : 'bg-brandGrey-light text-brandGrey-normal' }} flex items-center justify-center mb-2">
-                            <i class="icon-[mdi--{{ $id >= 2 && $id != 5 ? 'check' : 'credit-card-outline' }}] w-5 h-5"></i>
+                        <div class="w-8 h-8 rounded-full {{ $statusTimeline['paid']['completed'] ? 'bg-brandBlue-normal text-white' : 'bg-brandGray-light text-brandGray-normal' }} flex items-center justify-center mb-2">
+                            <i class="icon-[mdi--{{ $statusTimeline['paid']['completed'] ? 'check' : 'credit-card-outline' }}] w-5 h-5"></i>
                         </div>
-                        <span class="text-sm text-brandGrey-normal text-center">付款完成</span>
-                        <span class="text-xs text-brandGrey-normalLight text-center">{{ $id >= 2 && $id != 5 ? '2023/06/15' : '-' }}</span>
+                        <span class="text-sm text-brandGray-normal text-center">付款完成</span>
+                        <span class="text-xs text-brandGray-normalLight text-center">{{ $statusTimeline['paid']['time'] }}</span>
                     </div>
                     
                     <div class="flex flex-col items-center">
-                        <div class="w-8 h-8 rounded-full {{ $id >= 2 && $id != 5 ? 'bg-brandBlue-normal text-white' : 'bg-brandGrey-light text-brandGrey-normal' }} flex items-center justify-center mb-2">
-                            <i class="icon-[mdi--{{ $id >= 2 && $id != 5 ? 'check' : 'package-variant-closed' }}] w-5 h-5"></i>
+                        <div class="w-8 h-8 rounded-full {{ $statusTimeline['processing']['completed'] ? 'bg-brandBlue-normal text-white' : 'bg-brandGray-light text-brandGray-normal' }} flex items-center justify-center mb-2">
+                            <i class="icon-[mdi--{{ $statusTimeline['processing']['completed'] ? 'check' : 'package-variant-closed' }}] w-5 h-5"></i>
                         </div>
-                        <span class="text-sm text-brandGrey-normal text-center">訂單處理</span>
-                        <span class="text-xs text-brandGrey-normalLight text-center">{{ $id >= 2 && $id != 5 ? '2023/06/16' : '-' }}</span>
+                        <span class="text-sm text-brandGray-normal text-center">訂單處理</span>
+                        <span class="text-xs text-brandGray-normalLight text-center">{{ $statusTimeline['processing']['time'] }}</span>
                     </div>
                     
                     <div class="flex flex-col items-center">
-                        <div class="w-8 h-8 rounded-full {{ $id >= 2 && $id != 5 ? 'bg-brandBlue-normal text-white' : 'bg-brandGrey-light text-brandGrey-normal' }} flex items-center justify-center mb-2">
-                            <i class="icon-[mdi--{{ $id >= 2 && $id != 5 ? 'check' : 'truck-outline' }}] w-5 h-5"></i>
+                        <div class="w-8 h-8 rounded-full {{ $statusTimeline['shipped']['completed'] ? 'bg-brandBlue-normal text-white' : 'bg-brandGray-light text-brandGray-normal' }} flex items-center justify-center mb-2">
+                            <i class="icon-[mdi--{{ $statusTimeline['shipped']['completed'] ? 'check' : 'truck-outline' }}] w-5 h-5"></i>
                         </div>
-                        <span class="text-sm text-brandGrey-normal text-center">已出貨</span>
-                        <span class="text-xs text-brandGrey-normalLight text-center">{{ $id >= 2 && $id != 5 ? '2023/06/17' : '-' }}</span>
+                        <span class="text-sm text-brandGray-normal text-center">已出貨</span>
+                        <span class="text-xs text-brandGray-normalLight text-center">{{ $statusTimeline['shipped']['time'] }}</span>
                     </div>
                     
                     <div class="flex flex-col items-center">
-                        <div class="w-8 h-8 rounded-full {{ $id == 1 ? 'bg-brandBlue-normal text-white' : 'bg-brandGrey-light text-brandGrey-normal' }} flex items-center justify-center mb-2">
-                            <i class="icon-[mdi--{{ $id == 1 ? 'check' : 'home-outline' }}] w-5 h-5"></i>
+                        <div class="w-8 h-8 rounded-full {{ $statusTimeline['completed']['completed'] ? 'bg-brandBlue-normal text-white' : 'bg-brandGray-light text-brandGray-normal' }} flex items-center justify-center mb-2">
+                            <i class="icon-[mdi--{{ $statusTimeline['completed']['completed'] ? 'check' : 'home-outline' }}] w-5 h-5"></i>
                         </div>
-                        <span class="text-sm text-brandGrey-normal text-center">已送達</span>
-                        <span class="text-xs text-brandGrey-normalLight text-center">{{ $id == 1 ? '2023/06/18' : '-' }}</span>
+                        <span class="text-sm text-brandGray-normal text-center">已送達</span>
+                        <span class="text-xs text-brandGray-normalLight text-center">{{ $statusTimeline['completed']['time'] }}</span>
                     </div>
                 </div>
             </div>
+            -->
             
-            <!-- 目前狀態 -->
-            <div class="mt-6 p-3 rounded-lg {{ $id == 5 ? 'bg-brandGrey-lightLight' : 'bg-brandBlue-light' }}">
-                <div class="flex items-center">
-                    <i class="icon-[mdi--information-outline] w-5 h-5 mr-2 {{ $id == 5 ? 'text-brandGrey-normal' : 'text-brandBlue-normal' }}"></i>
-                    <p class="{{ $id == 5 ? 'text-brandGrey-normal' : 'text-brandBlue-normal' }}">
-                        @if ($id == 1)
-                            您的訂單已於 2023/06/18 送達。如有任何問題，請聯繫客服。
-                        @elseif ($id == 2)
-                            您的訂單已於 2023/06/17 出貨，預計 1-2 天內送達。
-                        @elseif ($id == 3)
-                            您的訂單正在處理中，我們將盡快為您出貨。
-                        @elseif ($id == 4)
-                            您的訂單已建立，請於 24 小時內完成付款，以免訂單自動取消。
-                        @elseif ($id == 5)
-                            您的訂單已於 2023/10/02 取消。取消原因：尺寸選擇錯誤
-                        @endif
-                    </p>
-                </div>
+        <!-- 目前狀態 -->
+        <div class="mb-8 p-4 rounded-lg {{ $order->trade_status == 'cancelled' ? 'bg-brandGray-lightLight' : 'bg-brandBlue-light' }}">
+            <div class="flex items-center">
+                <i class="icon-[mdi--information-outline] w-6 h-6 mr-3 {{ $order->trade_status == 'cancelled' ? 'text-brandGray-normal' : 'text-brandBlue-normal' }}"></i>
+                <p class="text-base {{ $order->trade_status == 'cancelled' ? 'text-brandGray-normal' : 'text-brandBlue-normal' }}">
+                    @if ($order->trade_status == 'completed')
+                        您的訂單已送達。如有任何問題，請聯繫客服。
+                    @elseif ($order->trade_status == 'shipped')
+                        您的訂單已出貨，預計 1-2 天內送達。
+                    @elseif ($order->trade_status == 'processing')
+                        您的訂單正在處理中，我們將盡快為您出貨。
+                    @elseif ($order->trade_status == 'pending')
+                        您的訂單已建立，請於 24 小時內完成付款，以免訂單自動取消。
+                    @elseif ($order->trade_status == 'cancelled')
+                        您的訂單已取消。
+                    @else
+                        訂單狀態：{{ $order->status_name }}
+                    @endif
+                </p>
             </div>
         </div>
         
@@ -116,21 +100,26 @@
                     <h3 class="text-sm font-medium text-brandGrey-normal mb-2">基本資訊</h3>
                     <div class="bg-brandGrey-lightLight p-4 rounded-lg">
                         <p class="text-sm mb-2">
-                            <span class="text-brandGrey-normalLight">訂單編號：</span>
-                            <span class="text-brandGrey-normal">{{ $id == 5 ? 'ORD-20231001-005' : 'ORD20230615' . str_pad($id, 3, '0', STR_PAD_LEFT) }}</span>
+                            <span class="text-brandGray-normalLight">訂單編號：</span>
+                            <span class="text-brandGray-normal">{{ $order->order_id }}</span>
                         </p>
                         <p class="text-sm mb-2">
-                            <span class="text-brandGrey-normalLight">訂購日期：</span>
-                            <span class="text-brandGrey-normal">{{ $id == 5 ? '2023/10/01' : '2023/06/15' }}</span>
+                            <span class="text-brandGray-normalLight">訂購日期：</span>
+                            <span class="text-brandGray-normal">{{ $order->created_at->format('Y/m/d H:i') }}</span>
                         </p>
                         <p class="text-sm mb-2">
-                            <span class="text-brandGrey-normalLight">付款方式：</span>
-                            <span class="text-brandGrey-normal">{{ $id == 4 ? '待選擇' : '信用卡 (末四碼: 1234)' }}</span>
+                            <span class="text-brandGray-normalLight">付款方式：</span>
+                            <span class="text-brandGray-normal">{{ $order->payment_method_name }}</span>
                         </p>
                         <p class="text-sm">
-                            <span class="text-brandGrey-normalLight">訂單狀態：</span>
-                            <span class="px-2 py-0.5 rounded-full text-xs font-medium {{ $statusClass }}">
-                                {{ $status }}
+                            <span class="text-brandGray-normalLight">訂單狀態：</span>
+                            <span class="px-2 py-0.5 rounded-full text-xs font-medium 
+                                @if($order->trade_status == 'pending') bg-brandRed-light text-brandRed-normal
+                                @elseif($order->trade_status == 'processing' || $order->trade_status == 'shipped') bg-brandBlue-light text-brandBlue-normal
+                                @elseif($order->trade_status == 'completed') bg-brandGreen-light text-brandGreen-normal
+                                @else bg-brandGray-light text-brandGray-normal
+                                @endif">
+                                {{ $order->status_name }}
                             </span>
                         </p>
                     </div>
@@ -140,16 +129,16 @@
                     <h3 class="text-sm font-medium text-brandGrey-normal mb-2">收件資訊</h3>
                     <div class="bg-brandGrey-lightLight p-4 rounded-lg">
                         <p class="text-sm mb-2">
-                            <span class="text-brandGrey-normalLight">收件人：</span>
-                            <span class="text-brandGrey-normal">王小明</span>
+                            <span class="text-brandGray-normalLight">收件人：</span>
+                            <span class="text-brandGray-normal">{{ Auth::user()->name }}</span>
                         </p>
                         <p class="text-sm mb-2">
-                            <span class="text-brandGrey-normalLight">聯絡電話：</span>
-                            <span class="text-brandGrey-normal">0912-345-678</span>
+                            <span class="text-brandGray-normalLight">聯絡電話：</span>
+                            <span class="text-brandGray-normal">{{ Auth::user()->phone ?? '未設定' }}</span>
                         </p>
                         <p class="text-sm mb-2">
-                            <span class="text-brandGrey-normalLight">收件地址：</span>
-                            <span class="text-brandGrey-normal">台北市信義區信義路五段7號</span>
+                            <span class="text-brandGray-normalLight">收件地址：</span>
+                            <span class="text-brandGray-normal">{{ Auth::user()->address ?? '未設定' }}</span>
                         </p>
                         <p class="text-sm">
                             <span class="text-brandGrey-normalLight">配送方式：</span>
@@ -174,59 +163,27 @@
                                 <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-brandGrey-normal uppercase tracking-wider">小計</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y divide-brandGrey-light">
-                            @if ($id == 1)
+                        <tbody class="bg-white divide-y divide-brandGray-light">
+                            @foreach($order->items as $item)
                                 <tr>
                                     <td class="px-4 py-4">
                                         <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-16 w-16 bg-brandGrey-lightLight rounded-md overflow-hidden">
-                                                <img src="https://via.placeholder.com/64" alt="商品圖片" class="h-full w-full object-cover">
+                                            <!-- 商品預覽圖 (已註釋) -->
+                                            <!--
+                                            <div class="flex-shrink-0 h-16 w-16 bg-brandGray-lightLight rounded-md overflow-hidden">
+                                                <img src="https://via.placeholder.com/64" alt="{{ $item->product_name }}" class="h-full w-full object-cover">
                                             </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-brandGrey-normal">精品皮夾</div>
-                                                <div class="text-sm text-brandGrey-normalLight">顏色: 黑色</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-4 py-4 text-sm text-brandGrey-normal">$2,500</td>
-                                    <td class="px-4 py-4 text-sm text-brandGrey-normal">1</td>
-                                    <td class="px-4 py-4 text-sm text-brandGrey-normal">$2,500</td>
-                                </tr>
-                            @elseif ($id == 2)
-                                <tr>
-                                    <td class="px-4 py-4">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-16 w-16 bg-brandGrey-lightLight rounded-md overflow-hidden">
-                                                <img src="https://via.placeholder.com/64" alt="商品圖片" class="h-full w-full object-cover">
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-brandGrey-normal">高級皮革外套</div>
-                                                <div class="text-sm text-brandGrey-normalLight">尺寸: XL / 顏色: 棕色</div>
+                                            -->
+                                            <div class="ml-0">
+                                                <div class="text-sm font-medium text-brandGray-normal">{{ $item->product_name }}</div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="px-4 py-4 text-sm text-brandGrey-normal">$3,200</td>
-                                    <td class="px-4 py-4 text-sm text-brandGrey-normal">1</td>
-                                    <td class="px-4 py-4 text-sm text-brandGrey-normal">$3,200</td>
+                                    <td class="px-4 py-4 text-sm text-brandGray-normal">NT$ {{ number_format($item->product_price, 0) }}</td>
+                                    <td class="px-4 py-4 text-sm text-brandGray-normal">{{ $item->quantity }}</td>
+                                    <td class="px-4 py-4 text-sm text-brandGray-normal">NT$ {{ number_format($item->product_price * $item->quantity, 0) }}</td>
                                 </tr>
-                            @elseif ($id == 3 || $id == 4 || $id == 5)
-                                <tr>
-                                    <td class="px-4 py-4">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-16 w-16 bg-brandGrey-lightLight rounded-md overflow-hidden">
-                                                <img src="https://via.placeholder.com/64" alt="商品圖片" class="h-full w-full object-cover">
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-brandGrey-normal">{{ $id == 5 ? '運動休閒鞋' : '休閒襯衫' }}</div>
-                                                <div class="text-sm text-brandGrey-normalLight">{{ $id == 5 ? '尺寸: 42 / 顏色: 黑白' : '尺寸: M / 顏色: 藍色' }}</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-4 py-4 text-sm text-brandGrey-normal">${{ $id == 5 ? '1,450' : '980' }}</td>
-                                    <td class="px-4 py-4 text-sm text-brandGrey-normal">1</td>
-                                    <td class="px-4 py-4 text-sm text-brandGrey-normal">${{ $id == 5 ? '1,450' : '980' }}</td>
-                                </tr>
-                            @endif
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -235,26 +192,33 @@
                 <div class="bg-brandGrey-lightLight px-4 py-4">
                     <div class="flex justify-end">
                         <div class="w-full sm:w-64">
+                            @php
+                                $subtotal = $order->items->sum(function($item) {
+                                    return $item->product_price * $item->quantity;
+                                });
+                                $shipping = 60; // 固定運費
+                                $discount = $subtotal + $shipping - $order->total_price_with_discount;
+                            @endphp
                             <div class="flex justify-between mb-2">
-                                <span class="text-sm text-brandGrey-normalLight">商品小計：</span>
-                                <span class="text-sm text-brandGrey-normal">
-                                    ${{ $id == 1 ? '2,500' : ($id == 2 ? '3,200' : ($id == 5 ? '1,450' : '980')) }}
+                                <span class="text-sm text-brandGray-normalLight">商品小計：</span>
+                                <span class="text-sm text-brandGray-normal">
+                                    NT$ {{ number_format($subtotal, 0) }}
                                 </span>
                             </div>
                             <div class="flex justify-between mb-2">
-                                <span class="text-sm text-brandGrey-normalLight">運費：</span>
-                                <span class="text-sm text-brandGrey-normal">$60</span>
+                                <span class="text-sm text-brandGray-normalLight">運費：</span>
+                                <span class="text-sm text-brandGray-normal">NT$ {{ number_format($shipping, 0) }}</span>
                             </div>
-                            @if ($id == 1)
+                            @if($discount > 0)
                                 <div class="flex justify-between mb-2">
-                                    <span class="text-sm text-brandGrey-normalLight">優惠券折抵：</span>
-                                    <span class="text-sm text-brandRed-normal">-$100</span>
+                                    <span class="text-sm text-brandGray-normalLight">優惠券折抵：</span>
+                                    <span class="text-sm text-brandRed-normal">-NT$ {{ number_format($discount, 0) }}</span>
                                 </div>
                             @endif
-                            <div class="flex justify-between pt-2 border-t border-brandGrey-light">
-                                <span class="text-base font-medium text-brandGrey-normal">總計：</span>
-                                <span class="text-base font-medium text-brandGrey-normal">
-                                    ${{ $id == 1 ? '2,460' : ($id == 2 ? '3,260' : ($id == 5 ? '1,510' : '1,040')) }}
+                            <div class="flex justify-between pt-2 border-t border-brandGray-light">
+                                <span class="text-base font-medium text-brandGray-normal">總計：</span>
+                                <span class="text-base font-medium text-brandGray-normal">
+                                    NT$ {{ number_format($order->total_price_with_discount, 0) }}
                                 </span>
                             </div>
                         </div>
@@ -265,51 +229,511 @@
         
         <!-- 操作按鈕 -->
         <div class="flex flex-wrap justify-end gap-3">
-            @if ($id == 1)
-                <a href="{{ route('user.orders.review', $id) }}" class="flex items-center justify-center px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal">
-                    <i class="icon-[mdi--star-outline] w-5 h-5 mr-1 inline-block"></i>
-                    評價商品
-                </a>
-                <a href="{{ route('user.orders.return', $id) }}" class="flex items-center justify-center px-4 py-2 border border-brandGrey-lightActive text-brandGrey-normal rounded-md hover:bg-brandGrey-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGrey-light">
+            @if ($order->trade_status == 'completed')
+                <a href="{{ route('user.orders.return', $order->order_id) }}" class="flex items-center justify-center px-4 py-2 border border-brandGray-lightActive text-brandGray-normal rounded-md hover:bg-brandGray-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGray-light">
                     <i class="icon-[mdi--cash-refund] w-5 h-5 mr-1 inline-block"></i>
                     申請退貨
                 </a>
-            @elseif ($id == 2)
-                <a href="#" class="flex items-center justify-center px-4 py-2 border border-brandGrey-lightActive text-brandGrey-normal rounded-md hover:bg-brandGrey-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGrey-light">
+            @elseif ($order->trade_status == 'shipped')
+                <a href="#" class="flex items-center justify-center px-4 py-2 border border-brandGray-lightActive text-brandGray-normal rounded-md hover:bg-brandGray-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGray-light">
                     <i class="icon-[mdi--truck-outline] w-5 h-5 mr-1 inline-block"></i>
                     查詢物流
                 </a>
-            @elseif ($id == 3)
-                <form action="{{ route('user.orders.cancel', $id) }}" method="POST" class="inline">
+            @elseif ($order->trade_status == 'processing')
+                <form action="{{ route('user.orders.cancel', $order->order_id) }}" method="POST" class="inline">
                     @csrf
                     <button type="submit" class="flex items-center justify-center px-4 py-2 border border-brandGrey-lightActive text-brandGrey-normal rounded-md hover:bg-brandGrey-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGrey-light" onclick="return confirm('確定要取消此訂單嗎？')">
                         <i class="icon-[mdi--close-circle-outline] w-5 h-5 mr-1 inline-block"></i>
                         取消訂單
                     </button>
                 </form>
-            @elseif ($id == 4)
+            @elseif ($order->trade_status == 'pending')
                 <a href="#" class="flex items-center justify-center px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal">
                     <i class="icon-[mdi--credit-card-outline] w-5 h-5 mr-1 inline-block"></i>
                     前往付款
                 </a>
-                <form action="{{ route('user.orders.cancel', $id) }}" method="POST" class="inline">
+                <form action="{{ route('user.orders.cancel', $order->order_id) }}" method="POST" class="inline">
                     @csrf
                     <button type="submit" class="flex items-center justify-center px-4 py-2 border border-brandGrey-lightActive text-brandGrey-normal rounded-md hover:bg-brandGrey-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGrey-light" onclick="return confirm('確定要取消此訂單嗎？')">
                         <i class="icon-[mdi--close-circle-outline] w-5 h-5 mr-1 inline-block"></i>
                         取消訂單
                     </button>
                 </form>
-            @elseif ($id == 5)
+            @elseif ($order->trade_status == 'cancelled')
                 <a href="#" class="flex items-center justify-center px-4 py-2 bg-brandBlue-normal text-white rounded-md hover:bg-brandBlue-normalHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue-normal">
                     <i class="icon-[mdi--cart-outline] w-5 h-5 mr-1 inline-block"></i>
                     重新購買
                 </a>
             @endif
             
-            <a href="#" class="flex items-center justify-center px-4 py-2 border border-brandGrey-lightActive text-brandGrey-normal rounded-md hover:bg-brandGrey-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGrey-light">
+            <button id="print-order-btn" class="flex items-center justify-center px-4 py-2 border border-brandGray-lightActive text-brandGray-normal rounded-md hover:bg-brandGray-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGray-light">
                 <i class="icon-[mdi--printer-outline] w-5 h-5 mr-1 inline-block"></i>
                 列印訂單
-            </a>
+            </button>
         </div>
     </div>
+
+    <!-- 列印樣式 -->
+    <style type="text/css" media="print">
+        /* 重置所有元素 */
+        * {
+            box-sizing: border-box;
+        }
+        
+        /* 隱藏不需要列印的元素 */
+        header, footer, nav, .sidebar, .breadcrumb, .no-print, button, a, 
+        .flex.flex-wrap.justify-end.gap-3, .mb-8.p-4.rounded-lg,
+        body > *:not(.print-container) {
+            display: none !important;
+        }
+        
+        /* 確保頁面按照 A4 尺寸列印 */
+        @page {
+            size: A4 portrait;
+            margin: 1.5cm;
+        }
+        
+        /* 基本頁面設定 */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            font-size: 11pt;
+            line-height: 1.4;
+            background: white;
+            color: #333;
+        }
+        
+        /* 列印內容容器 */
+        .print-container {
+            width: 100%;
+            max-width: 100%;
+            padding: 0;
+            margin: 0 auto;
+            background: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            overflow: visible;
+        }
+        
+        /* 頁眉樣式 */
+        .print-header {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        .print-header-title {
+            font-size: 20pt;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        
+        .print-header-subtitle {
+            font-size: 12pt;
+            color: #666;
+            margin: 5px 0 0 0;
+            text-align: center;
+        }
+        
+        .print-logo {
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-size: 22pt;
+            color: #2b6cb0;
+        }
+        
+        /* 訂單資訊區塊 */
+        .print-info-grid {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        
+        .print-info-column {
+            width: 50%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+        
+        .print-info-box {
+            border: 1px solid #eaeaea;
+            border-radius: 5px;
+            padding: 10px;
+            height: 100%;
+        }
+        
+        .print-info-title {
+            font-size: 12pt;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .print-info-item {
+            margin-bottom: 6px;
+            font-size: 10pt;
+        }
+        
+        .print-info-label {
+            font-weight: normal;
+            color: #666;
+            display: inline-block;
+            width: 70px;
+        }
+        
+        .print-info-value {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        /* 商品表格樣式 */
+        .print-table-container {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        
+        .print-table {
+            width: 100%;
+            border-collapse: collapse;
+            page-break-inside: avoid;
+            table-layout: fixed;
+        }
+        
+        .print-table th,
+        .print-table td {
+            padding: 8px;
+            text-align: left;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .print-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            font-size: 9pt;
+            text-transform: uppercase;
+        }
+        
+        .print-table td {
+            border-bottom: 1px solid #eaeaea;
+            font-size: 10pt;
+        }
+        
+        .print-table th:nth-child(1),
+        .print-table td:nth-child(1) {
+            width: 40%;
+        }
+        
+        .print-table th:nth-child(2),
+        .print-table td:nth-child(2),
+        .print-table th:nth-child(3),
+        .print-table td:nth-child(3),
+        .print-table th:nth-child(4),
+        .print-table td:nth-child(4) {
+            width: 20%;
+        }
+        
+        /* 金額摘要區塊 - 重新設計 */
+        .print-summary-table {
+            width: 100%;
+            margin-top: 10px;
+            border-collapse: collapse;
+        }
+        
+        .print-summary-table td {
+            padding: 4px 8px;
+            font-size: 9pt;
+            border: none;
+        }
+        
+        .print-summary-table .summary-label {
+            text-align: right;
+            color: #666;
+            width: 85%;
+        }
+        
+        .print-summary-table .summary-value {
+            text-align: right;
+            font-weight: bold;
+            width: 15%;
+        }
+        
+        .print-summary-table .summary-total {
+            font-size: 11pt;
+            border-top: 1px solid #eaeaea;
+            padding-top: 6px;
+            margin-top: 4px;
+        }
+        
+        /* 頁腳樣式 */
+        .print-footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 9pt;
+            color: #999;
+            padding-top: 15px;
+            border-top: 1px solid #eaeaea;
+        }
+    </style>
+
+    <!-- 列印功能 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('print-order-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // 創建列印容器
+                const printContainer = document.createElement('div');
+                printContainer.className = 'print-container';
+                printContainer.id = 'print-container';
+                
+                // 創建頁眉
+                const header = document.createElement('div');
+                header.className = 'print-header';
+                
+                // 使用圖片 logo 替換文字 logo
+                const logo = document.createElement('div');
+                logo.className = 'print-logo';
+                const logoImg = document.createElement('img');
+                logoImg.src = '/images/layouts/logo_nav1.jpg';
+                logoImg.alt = '網站 Logo';
+                logoImg.style.maxHeight = '50px';
+                logoImg.style.margin = '0 auto';
+                logoImg.style.display = 'block';
+                logo.appendChild(logoImg);
+                
+                const title = document.createElement('h1');
+                title.className = 'print-header-title';
+                title.textContent = '訂單明細';
+                
+                const subTitle = document.createElement('p');
+                subTitle.className = 'print-header-subtitle';
+                subTitle.textContent = '訂單編號: {{ $order->order_id }}';
+                
+                header.appendChild(logo);
+                header.appendChild(title);
+                header.appendChild(subTitle);
+                printContainer.appendChild(header);
+                
+                // 創建訂單資訊區塊
+                const infoGrid = document.createElement('div');
+                infoGrid.className = 'print-info-grid';
+                
+                // 基本資訊
+                const basicInfoColumn = document.createElement('div');
+                basicInfoColumn.className = 'print-info-column';
+                
+                const basicInfoBox = document.createElement('div');
+                basicInfoBox.className = 'print-info-box';
+                
+                const basicInfoTitle = document.createElement('div');
+                basicInfoTitle.className = 'print-info-title';
+                basicInfoTitle.textContent = '基本資訊';
+                basicInfoBox.appendChild(basicInfoTitle);
+                
+                const basicInfoContent = document.createElement('div');
+                basicInfoContent.innerHTML = `
+                    <div class="print-info-item">
+                        <span class="print-info-label">訂單編號：</span>
+                        <span class="print-info-value">{{ $order->order_id }}</span>
+                    </div>
+                    <div class="print-info-item">
+                        <span class="print-info-label">訂購日期：</span>
+                        <span class="print-info-value">{{ $order->created_at->format('Y/m/d H:i') }}</span>
+                    </div>
+                    <div class="print-info-item">
+                        <span class="print-info-label">付款方式：</span>
+                        <span class="print-info-value">{{ $order->payment_method_name }}</span>
+                    </div>
+                    <div class="print-info-item">
+                        <span class="print-info-label">訂單狀態：</span>
+                        <span class="print-info-value">{{ $order->status_name }}</span>
+                    </div>
+                `;
+                basicInfoBox.appendChild(basicInfoContent);
+                basicInfoColumn.appendChild(basicInfoBox);
+                infoGrid.appendChild(basicInfoColumn);
+                
+                // 收件資訊
+                const shippingInfoColumn = document.createElement('div');
+                shippingInfoColumn.className = 'print-info-column';
+                
+                const shippingInfoBox = document.createElement('div');
+                shippingInfoBox.className = 'print-info-box';
+                
+                const shippingInfoTitle = document.createElement('div');
+                shippingInfoTitle.className = 'print-info-title';
+                shippingInfoTitle.textContent = '收件資訊';
+                shippingInfoBox.appendChild(shippingInfoTitle);
+                
+                const shippingInfoContent = document.createElement('div');
+                shippingInfoContent.innerHTML = `
+                    <div class="print-info-item">
+                        <span class="print-info-label">收件人：</span>
+                        <span class="print-info-value">{{ Auth::user()->name }}</span>
+                    </div>
+                    <div class="print-info-item">
+                        <span class="print-info-label">聯絡電話：</span>
+                        <span class="print-info-value">{{ Auth::user()->phone ?? '未設定' }}</span>
+                    </div>
+                    <div class="print-info-item">
+                        <span class="print-info-label">收件地址：</span>
+                        <span class="print-info-value">{{ Auth::user()->address ?? '未設定' }}</span>
+                    </div>
+                    <div class="print-info-item">
+                        <span class="print-info-label">配送方式：</span>
+                        <span class="print-info-value">宅配</span>
+                    </div>
+                `;
+                shippingInfoBox.appendChild(shippingInfoContent);
+                shippingInfoColumn.appendChild(shippingInfoBox);
+                infoGrid.appendChild(shippingInfoColumn);
+                
+                printContainer.appendChild(infoGrid);
+                
+                // 商品明細
+                const productsSection = document.createElement('div');
+                productsSection.className = 'print-table-container';
+                
+                const productsTitle = document.createElement('div');
+                productsTitle.className = 'print-info-title';
+                productsTitle.textContent = '商品明細';
+                productsSection.appendChild(productsTitle);
+                
+                // 商品表格
+                const tableHTML = `
+                    <table class="print-table">
+                        <thead>
+                            <tr>
+                                <th>商品</th>
+                                <th>單價</th>
+                                <th>數量</th>
+                                <th>小計</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($order->items as $item)
+                                <tr>
+                                    <td>{{ $item->product_name }}</td>
+                                    <td>NT$ {{ number_format($item->product_price, 0) }}</td>
+                                    <td>{{ $item->quantity }}</td>
+                                    <td>NT$ {{ number_format($item->product_price * $item->quantity, 0) }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                `;
+                productsSection.innerHTML += tableHTML;
+                
+                // 金額摘要 - 新設計，使用表格布局代替flex布局
+                @php
+                    $subtotal = $order->items->sum(function($item) {
+                        return $item->product_price * $item->quantity;
+                    });
+                    $shipping = 60; // 固定運費
+                    $discount = $subtotal + $shipping - $order->total_price_with_discount;
+                @endphp
+                
+                const summaryTableHTML = `
+                    <table class="print-summary-table">
+                        <tr>
+                            <td class="summary-label">商品小計：</td>
+                            <td class="summary-value">NT$ {{ number_format($subtotal, 0) }}</td>
+                        </tr>
+                        <tr>
+                            <td class="summary-label">運費：</td>
+                            <td class="summary-value">NT$ {{ number_format($shipping, 0) }}</td>
+                        </tr>
+                        @if($discount > 0)
+                        <tr>
+                            <td class="summary-label">優惠券折抵：</td>
+                            <td class="summary-value">-NT$ {{ number_format($discount, 0) }}</td>
+                        </tr>
+                        @endif
+                        <tr>
+                            <td class="summary-label summary-total">總計：</td>
+                            <td class="summary-value summary-total">NT$ {{ number_format($order->total_price_with_discount, 0) }}</td>
+                        </tr>
+                    </table>
+                `;
+                productsSection.innerHTML += summaryTableHTML;
+                
+                printContainer.appendChild(productsSection);
+                
+                // 頁腳
+                const footer = document.createElement('div');
+                footer.className = 'print-footer';
+                footer.innerHTML = `
+                    <p>感謝您的訂購！如有任何問題，請聯繫客服。</p>
+                    <p>此訂單列印於 ${new Date().toLocaleString()}</p>
+                `;
+                printContainer.appendChild(footer);
+                
+                // 移除舊的列印容器（如果存在）
+                const oldContainer = document.getElementById('print-container');
+                if (oldContainer) {
+                    document.body.removeChild(oldContainer);
+                }
+                
+                // 將列印容器添加到頁面
+                document.body.appendChild(printContainer);
+                
+                // 隱藏所有其他元素
+                const allElements = document.body.children;
+                for (let i = 0; i < allElements.length; i++) {
+                    if (allElements[i] !== printContainer) {
+                        allElements[i].style.display = 'none';
+                    }
+                }
+                
+                // 記錄當前URL，用於列印後重新載入頁面
+                const currentUrl = window.location.href;
+                
+                // 稍作延遲以確保樣式已應用
+                setTimeout(function() {
+                    // 註冊afterprint事件，當列印完成或取消後觸發
+                    window.addEventListener('afterprint', function() {
+                        // 延遲一下重新載入頁面，確保DOM完全恢復
+                        setTimeout(function() {
+                            window.location.href = currentUrl;
+                        }, 100);
+                    }, {once: true}); // 只執行一次
+                    
+                    window.print();
+                    
+                    // 處理舊瀏覽器可能不支援afterprint事件的情況
+                    // 列印完成後恢復頁面顯示
+                    for (let i = 0; i < allElements.length; i++) {
+                        if (allElements[i] !== printContainer) {
+                            allElements[i].style.display = '';
+                        }
+                    }
+                    
+                    // 移除列印容器
+                    document.body.removeChild(printContainer);
+                    
+                    // 額外保障：如果afterprint事件未觸發，確保1.5秒後刷新頁面
+                    setTimeout(function() {
+                        window.location.href = currentUrl;
+                    }, 1500);
+                }, 300);
+            });
+        });
+    </script>
 @endsection 
