@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- CSRF Token -->
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- 設定動態 SEO 標題與描述 -->
     <title>@yield('title', '預設網站標題')</title>
     <meta name="description" content="@yield('meta_description', '這是預設網站描述')">
@@ -32,6 +33,15 @@
 </head>
 
 <body class="relative font-lexend antialiased bg-white w-screen h-screen">
+
+    @if(Route::currentRouteNamed('home') && $noAdCookie)
+    <section id="coverArea" class="fixed inset-0 z-[80] flex justify-center items-center">
+        <!-- 蓋板廣告與遮罩 -->
+        @include('layouts.cover_ad')
+        <div id="overlay" class="hidden animate__animated animate__fadeIn animate__slow fixed inset-0 w-screen h-screen bg-gray-900 bg-opacity-50 z-40"></div>
+    </section>
+    @endif
+
     <header class="w-full flex justify-center">
         <!-- marquee -->
         @include('layouts.header_marquee')
@@ -49,9 +59,33 @@
     @include('layouts.footer')
 
     @stack('scripts')
-    <!-- 判斷是否需要系統正在維護 -->
-    <!-- 如果維護中，則跳轉到維護頁，如果未維護，則跳轉到首頁 -->
+
     <script>
+        // 顯示廣告和遮罩
+        $('#coverAd').removeClass('hidden');
+        $('#overlay').removeClass('hidden');
+
+        // 點擊關閉按鈕
+        $('#closeBtn').on('click', function() {
+            $('#coverArea').addClass('hidden');
+            $('#coverAd').addClass('hidden');
+            $('#overlay').addClass('hidden');
+        });
+
+        // 點擊 coverAd 時阻止事件冒泡
+        $('#coverAd').on('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // 點擊畫面其他地方時關閉
+        $(document).on('click', function() {
+            $('#coverArea').addClass('hidden');
+            $('#coverAd').addClass('hidden');
+            $('#overlay').addClass('hidden');
+        });
+
+        // 判斷是否需要系統正在維護
+        // 如果維護中，則跳轉到維護頁，如果未維護，則跳轉到首頁
         // $(document).ready(function() {
         //     $.ajax({
         //         url: '{{ route("system.maintenance") }}',
@@ -72,7 +106,7 @@
         //     });
         // });
     </script>
-   
+
 </body>
 
 </html>
