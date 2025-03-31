@@ -400,10 +400,32 @@
       } else if ($(".couponsSelect").val() === "399折價券") {
         couponMinus = -399; // 處理399折價券
       } else if ($(".couponsSelect").val() === "買二送一") {
-        couponMinus = -1380; // 處理買二送一
+        // 從localStorage獲取productList
+        let productList = JSON.parse(localStorage.getItem("productList")) || { cart_items: [] };
+        
+        if (productList.cart_items.length >= 3) {
+          // 找出最低價格的商品
+          let lowestPrice = Number.MAX_VALUE;
+          for (let i = 0; i < productList.cart_items.length; i++) {
+            if (productList.cart_items[i].product_price < lowestPrice) {
+              lowestPrice = productList.cart_items[i].product_price;
+            }
+          }
+          couponMinus = -lowestPrice; // 最低價格的商品免費
+        } else {
+          couponMinus = 0; // 商品數量不足3件，無法使用買二送一
+        }
       } else if ($(".couponsSelect").val() === "NRP外套95折") {
-        couponMinus = -450; // 處理NRP外套95折
-      } else {
+        let productList = JSON.parse(localStorage.getItem("productList")) || { cart_items: [] };
+        let nrpProduct = productList.cart_items.find(item => item.product_id && item.product_id.startsWith("pj"));
+        if (nrpProduct) {
+          couponMinus = -nrpProduct.product_price * 0.05;
+        } else {
+          couponMinus = 0;
+        }
+        
+      } 
+      else {
         couponMinus = -0; // 處理其他優惠券折扣
       }
 
