@@ -702,10 +702,22 @@
                     }
                 }
                 
+                // 記錄當前URL，用於列印後重新載入頁面
+                const currentUrl = window.location.href;
+                
                 // 稍作延遲以確保樣式已應用
                 setTimeout(function() {
+                    // 註冊afterprint事件，當列印完成或取消後觸發
+                    window.addEventListener('afterprint', function() {
+                        // 延遲一下重新載入頁面，確保DOM完全恢復
+                        setTimeout(function() {
+                            window.location.href = currentUrl;
+                        }, 100);
+                    }, {once: true}); // 只執行一次
+                    
                     window.print();
                     
+                    // 處理舊瀏覽器可能不支援afterprint事件的情況
                     // 列印完成後恢復頁面顯示
                     for (let i = 0; i < allElements.length; i++) {
                         if (allElements[i] !== printContainer) {
@@ -715,7 +727,12 @@
                     
                     // 移除列印容器
                     document.body.removeChild(printContainer);
-                }, 500);
+                    
+                    // 額外保障：如果afterprint事件未觸發，確保1.5秒後刷新頁面
+                    setTimeout(function() {
+                        window.location.href = currentUrl;
+                    }, 1500);
+                }, 300);
             });
         });
     </script>
