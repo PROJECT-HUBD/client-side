@@ -9,6 +9,8 @@
     <div class="w-full p-4 sm:p-6 bg-white rounded-lg shadow-sm">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
             <h1 class="text-xl sm:text-2xl font-bold text-brandGray-normal mb-3 sm:mb-0">我的優惠</h1>
+            <!-- 兌換優惠券區塊 (已註釋) -->
+            <!--
             <div class="flex flex-col sm:flex-row w-full sm:w-auto gap-2">
                 <form action="{{ route('user.coupons.redeem') }}" method="POST" class="flex flex-col sm:flex-row w-full sm:w-auto gap-2">
                     @csrf
@@ -20,6 +22,7 @@
                     </button>
                 </form>
             </div>
+            -->
         </div>
         
         <!-- 顯示成功或錯誤訊息 -->
