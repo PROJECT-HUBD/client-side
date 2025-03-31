@@ -240,16 +240,37 @@
   // 頁面加載時顯示資料
   displayDataFromLocalStorage();
 
+  // <-----------------------------get-user_id-from-database--------------------------------->
+  $(document).ready(function() {
+  $.ajax({
+      url: "{{ route('getCartData') }}", // 修改為正確的 URL
+      method: 'GET',
+      success: function(e) {
+        // <---------------------將資料存入 localStorage-------------------------> 
+        localStorage.setItem("user_id", JSON.stringify(e.user_id));
+        let storedUserId = localStorage.getItem("user_id");
+        if (storedUserId) {
+          console.log("從 localStorage 讀取的 user_id:", JSON.parse(storedUserId));
+        }
+      
+       
+      }, //end of success
+      error: function(error) {
+        console.log(error); // 如果有錯誤，顯示錯誤訊息
+      } //end of error
+    }) //end of Ajax
+
   // <-----------------------------post-data-to-database--------------------------------->
 
-  $(document).ready(function() {
+
     $(".makeOrder").on("click", function() {
       // Generate random trade_No ( digits) and order_id (8 digits)
       const order_id = Math.floor(Math.random() * 900 + 100); // Random 3 digits
       const trade_No = Math.floor(Math.random() * 90000000 + 10000000); // Random 8 digits
 
       // Get data from localstorage & views
-      const id = "19";
+      const id = localStorage.getItem("user_id");
+      // console.log(id);
       const payment_type = $(".payment_type:selected").val();
       // console.log(payment_type)
       const trade_status = "交易成功"; // Default value
@@ -320,9 +341,9 @@
 
 
       // <------------------------------Delete cart items (DeleteCart)--------------------------->
-
+     
       const product_ids = {
-        id: "19", // 假設這是 order_id 或其他唯一標識符
+        id: id, 
         products: productList.map(product => ({
           product_id: product.product_id,
           quantity: product.quantity

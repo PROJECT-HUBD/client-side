@@ -108,7 +108,7 @@
         <select class="couponsSelect flex overflow-hidden gap-5 justify-between px-6 py-3 w-full text-sm tracking-wide leading-7 whitespace-nowrap bg-white rounded-md border border-solid border-zinc-300 text-neutral-500 max-md:pr-5 decoration-none">
 
           <!--靜態option  -->
-          <option value="2025年4月生日券" hidden>2025年4月生日券</option>
+          <option value="請選擇優惠券" hidden>請選擇優惠券</option>
           <!-- <option value="新會員首單9折">新會員首單9折</option>
         <option value="春季特賣8折">春季特賣8折</option>
         <option value="滿$500折$50">滿$500折$50</option>
@@ -122,7 +122,7 @@
         <div
           class="flex gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap text-zinc-700 max-md:max-w-full">
           <span class="gap-1 self-stretch w-[171px]">商品金額</span>
-          <span class="totalPrice">$1750</span>
+          <span class="totalPrice">$0</span>
         </div>
         <div
           class="festivalMinusSession flex gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap max-md:max-w-full">
@@ -132,7 +132,7 @@
         <div
           class="flex gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap max-md:max-w-full">
           <span class="text-zinc-700">優惠券折扣</span>
-          <span class="couponMinus text-red-700">-$199</span>
+          <span class="couponMinus text-red-700">-$0</span>
         </div>
         <div
           class="flex gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap text-zinc-700 max-md:max-w-full">
@@ -147,7 +147,7 @@
         <div
           class="flex gap-10 justify-between items-start mt-5 w-full whitespace-nowrap max-md:max-w-full">
           <span class="gap-2.5 self-stretch w-16 text-base text-zinc-700">小計</span>
-          <span class="totalPriceWithDiscount text-3xl leading-none text-red-700">$1650</span>
+          <span class="totalPriceWithDiscount text-3xl leading-none text-red-700">$0</span>
         </div>
       </div>
     </section>
