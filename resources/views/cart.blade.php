@@ -185,7 +185,7 @@
   // <---------------------全選------------------------->
   // $(document).ready(function() {
   $(".allCheckbox").change(function() {
-    $(".checkbox").prop("checked", $(this).prop("checked"));
+    $(".checkbox:not(:disabled)").prop("checked", $(this).prop("checked"));
   });
   // });
 
