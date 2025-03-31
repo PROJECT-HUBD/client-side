@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\User\CouponController;
-use App\Http\Controllers\UserProfileController;
-use App\Http\Controllers\User\OrderController;
+
+
 // 首頁
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
