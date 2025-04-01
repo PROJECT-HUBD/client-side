@@ -122,7 +122,7 @@
                         class="text-brandGray-normal lg:text-2xl sm:text-lg font-['Lexend'] lg:leading-9 sm:leading-relaxed font-light">顏色:</span>
                     <div data-color-wrapper class="flex gap-3">
                         @foreach ($product->specs->pluck('product_color')->unique() as $color)
-                            <div class="w-6 h-6 rounded-full border border-gray-400 cursor-pointer"
+                            <div class="lg:w-12 lg:h-12 sm:w-7 sm:h-7 rounded-full border border-gray-400 cursor-pointer"
                                 style="background-color: {{ $color }}" data-color="{{ $color }}"></div>
                         @endforeach
                     </div>
@@ -131,7 +131,10 @@
 
                 @unless($isAccessory)
                 <!-- 尺寸選擇區 -->
-                <div class="flex items-center lg:gap-4 sm:gap-3 ">
+                <div class="flex items-center gap-3 ">
+                <span
+                class="text-brandGray-normal lg:text-2xl sm:text-lg font-['Lexend'] lg:leading-9 sm:leading-relaxed font-light">尺寸:</span>
+                <div data-color-wrapper class="flex gap-3">
                     @foreach ($product->specs->pluck('product_size')->unique() as $size)
                         <button
                             class="size-option lg:w-12 lg:h-12 sm:w-7 sm:h-7 border border-brandBlue-normal flex items-center justify-center rounded-md">
@@ -139,6 +142,7 @@
                                 class="text-brandBlue-normal lg:text-2xl md:text-lg font-light font-['Lexend'] leading-9">{{ $size }}</span>
                         </button>
                     @endforeach
+                    </div>
                 </div>
                 @endunless
             </div>
