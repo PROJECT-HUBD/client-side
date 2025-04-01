@@ -189,9 +189,9 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // 購物車頁
-Route::get('/cart', function () {
-    return view('cart');
-})->name('cart');
+// Route::get('/cart', function () {
+//     return view('cart');
+// })->name('cart');
 
 // 購物清單頁
 Route::get('/check_out', function () {
