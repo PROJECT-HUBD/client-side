@@ -23,25 +23,34 @@ class AuthenticatedSessionController extends Controller
     
     
     public function store(Request $request): RedirectResponse
-{
-    $request->validate([
-        'email' => 'required|email',
-        'password' => 'required|min:6'
-    ]);
-
-    $remember = $request->has('remember');//檢查有沒有勾記住我
-
-    if (!Auth::attempt($request->only('email', 'password'), $remember)) {
-        return back()->withErrors([
-            'email' => '帳號或密碼有誤',
-            'password' => '帳號或密碼有誤', // 🔥 讓密碼輸入框也顯示錯誤訊息
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6'
         ]);
+
+        $remember = $request->has('remember');//檢查有沒有勾記住我
+
+        // 先檢查用戶是否存在
+        $user = \App\Models\User::where('email', $request->email)->first();
+        if (!$user) {
+            return back()->withErrors([
+                'email' => '此帳號不存在',
+                'password' => '此帳號不存在',
+            ]);
+        }
+
+        if (!Auth::attempt($request->only('email', 'password'), $remember)) {
+            return back()->withErrors([
+                'email' => '密碼錯誤',
+                'password' => '密碼錯誤',
+            ]);
+        }
+
+        $request->session()->regenerate();
+
+        return redirect()->route('user_profile');
     }
-
-    $request->session()->regenerate();
-
-    return redirect()->route('user_profile');
-}
 
     public function destroy(Request $request): RedirectResponse
     {

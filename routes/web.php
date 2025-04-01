@@ -165,7 +165,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user_profile', [UserProfileController::class, 'index'])->name('user_profile');
 });
 
-
 //確保 /cart 只能在登入 (auth) 狀態下訪問，如果未登入，Laravel 會自動導向 mylogin。
 Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart');

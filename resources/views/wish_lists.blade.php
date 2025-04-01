@@ -27,10 +27,6 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        bindRemoveButtons();
-    });
-
-    function bindRemoveButtons() {
         document.querySelectorAll('.remove-wishlist-btn').forEach(button => {
             button.addEventListener('click', function() {
                 let productId = this.dataset.productId;
@@ -53,7 +49,7 @@
                     });
             });
         });
-    }
+    });
 
     function reloadWishlist() {
         fetch("{{ route('wish_lists') }}")
@@ -62,9 +58,6 @@
                 document.getElementById("wishlist-container").innerHTML = new DOMParser()
                     .parseFromString(html, "text/html")
                     .querySelector("#wishlist-container").innerHTML;
-                
-                // 重新綁定移除按鈕
-                bindRemoveButtons();
             });
     }
 </script>
