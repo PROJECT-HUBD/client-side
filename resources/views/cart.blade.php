@@ -298,7 +298,7 @@
         } else {
           resultHTML += `<select name="product_size" class="product_size flex gap-10 justify-between items-center mt-2 px-3 py-1 w-32 rounded bg-neutral-100 max-w-40 border border-none">`;
         }
-        resultHTML += `<option value="${cart_items[i].product_size}" hidden>${cart_items[i].product_size}</option>`;
+        resultHTML += `<option value="${cart_items[i].product_size}" class="hidden" hidden>${cart_items[i].product_size}</option>`;
         resultHTML += `<option value="S">S</option>`;
         resultHTML += `<option value="M">M</option>`;
         resultHTML += `<option value="L">L</option>`;
