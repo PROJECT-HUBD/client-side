@@ -108,7 +108,7 @@
         <select class="couponsSelect flex overflow-hidden gap-5 justify-between px-6 py-3 w-full text-sm tracking-wide leading-7 whitespace-nowrap bg-white rounded-md border border-solid border-zinc-300 text-neutral-500 max-md:pr-5 decoration-none">
 
           <!--靜態option  -->
-          <option value="2025年4月生日券" hidden>2025年4月生日券</option>
+          <option value="請選擇優惠券" hidden>請選擇優惠券</option>
           <!-- <option value="新會員首單9折">新會員首單9折</option>
         <option value="春季特賣8折">春季特賣8折</option>
         <option value="滿$500折$50">滿$500折$50</option>
@@ -122,7 +122,7 @@
         <div
           class="flex gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap text-zinc-700 max-md:max-w-full">
           <span class="gap-1 self-stretch w-[171px]">商品金額</span>
-          <span class="totalPrice">$1750</span>
+          <span class="totalPrice">$0</span>
         </div>
         <div
           class="festivalMinusSession flex gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap max-md:max-w-full">
@@ -132,7 +132,7 @@
         <div
           class="flex gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap max-md:max-w-full">
           <span class="text-zinc-700">優惠券折扣</span>
-          <span class="couponMinus text-red-700">-$199</span>
+          <span class="couponMinus text-red-700">-$0</span>
         </div>
         <div
           class="flex gap-10 justify-between items-start mt-5 w-full text-base whitespace-nowrap text-zinc-700 max-md:max-w-full">
@@ -147,7 +147,7 @@
         <div
           class="flex gap-10 justify-between items-start mt-5 w-full whitespace-nowrap max-md:max-w-full">
           <span class="gap-2.5 self-stretch w-16 text-base text-zinc-700">小計</span>
-          <span class="totalPriceWithDiscount text-3xl leading-none text-red-700">$1650</span>
+          <span class="totalPriceWithDiscount text-3xl leading-none text-red-700">$0</span>
         </div>
       </div>
     </section>
@@ -400,10 +400,32 @@
       } else if ($(".couponsSelect").val() === "399折價券") {
         couponMinus = -399; // 處理399折價券
       } else if ($(".couponsSelect").val() === "買二送一") {
-        couponMinus = -1380; // 處理買二送一
+        // 從localStorage獲取productList
+        let productList = JSON.parse(localStorage.getItem("productList")) || { cart_items: [] };
+        
+        if (productList.cart_items.length >= 3) {
+          // 找出最低價格的商品
+          let lowestPrice = Number.MAX_VALUE;
+          for (let i = 0; i < productList.cart_items.length; i++) {
+            if (productList.cart_items[i].product_price < lowestPrice) {
+              lowestPrice = productList.cart_items[i].product_price;
+            }
+          }
+          couponMinus = -lowestPrice; // 最低價格的商品免費
+        } else {
+          couponMinus = 0; // 商品數量不足3件，無法使用買二送一
+        }
       } else if ($(".couponsSelect").val() === "NRP外套95折") {
-        couponMinus = -450; // 處理NRP外套95折
-      } else {
+        let productList = JSON.parse(localStorage.getItem("productList")) || { cart_items: [] };
+        let nrpProduct = productList.cart_items.find(item => item.product_id && item.product_id.startsWith("pj"));
+        if (nrpProduct) {
+          couponMinus = -nrpProduct.product_price * 0.05;
+        } else {
+          couponMinus = 0;
+        }
+        
+      } 
+      else {
         couponMinus = -0; // 處理其他優惠券折扣
       }
 
