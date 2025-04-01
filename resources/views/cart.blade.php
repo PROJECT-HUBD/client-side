@@ -279,7 +279,7 @@
 
           // checkbox
           resultHTML += `<div class="flex gap-3.5 items-center self-stretch my-auto w-[25px]">`;
-          resultHTML += `<input class="checkbox rounded h-[25px] w-[25px]" type="checkbox" disabled>`;
+          resultHTML += `<input class="checkbox rounded bg-gray-200 border-gray-400 h-[25px] w-[25px]" type="checkbox" disabled>`;
           resultHTML += `</div>`;
 
           // 商品圖片與詳細資訊
