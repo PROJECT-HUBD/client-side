@@ -86,7 +86,10 @@
 
         // 判斷是否需要系統正在維護
         // 如果維護中，則跳轉到維護頁，如果未維護，則跳轉到首頁
-        // $(document).ready(function() {
+      
+        // if ( {{!request()->is('system-maintenance')}} ) {
+           
+        //     $(document).ready(function() {
         //     $.ajax({
         //         url: '{{ route("system.maintenance") }}',
         //         type: 'GET',
@@ -94,17 +97,17 @@
         //             console.log(response);
         //             if (response.data.length > 0) {
         //                 window.location.href = '{{ route("system-maintenance") }}';
-        //             }
-        //             else {
+        //             }else{
         //                 window.location.href = '{{ route("home") }}';
         //             }
-        //         },
-        //         error: function(xhr, status, error) {
-        //             console.log('Error:', error);
-        //             window.location.href = '{{ route("home") }}';
         //         }
         //     });
         // });
+        // }
+
+       
+       
+        
     </script>
 
 </body>

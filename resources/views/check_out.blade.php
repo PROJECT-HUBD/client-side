@@ -28,6 +28,7 @@
         </header>
 
         <select class="mt-4 py-4 w-full text-base text-zinc-500 max-md:max-w-full flex flex-wrap gap-5 justify-between max-md:px-5">
+          <option class="flex w-full truncate" value="1">高雄市前鎮區三多路20號5樓 - 許逸芸- (+886) 939049219</option>
           <option class="flex w-full truncate" value="1">台中市北區崇德路一段163號1樓 - 劉尚廉 (+886) 939022222</option>
           <option class="flex w-full truncate" alue="2">台南市東區大同路二段50巷12號 - 謝武言 (+886) 939357229</option>
           <option class="flex w-full truncate" value="3">新北市板橋區文化路二段168號 - 陳玉文 (+886) 946325598</option>
@@ -49,6 +50,7 @@
         <select class="mt-4 w-full max-md:max-w-full text-base text-zinc-500">
 
 
+          <option class="payment_type" value="信用卡付款">信用卡付款 - 許逸芸-**** **** **** 3059</option>
           <option class="payment_type" value="信用卡付款">信用卡付款 - 劉尚廉-**** **** **** 5678</option>
           <option class="payment_type" value="信用卡付款">信用卡付款 - 陳文宣-**** **** **** 3764</option>
           <option class="payment_type" value="ATM轉帳">ATM轉帳</option>
