@@ -152,8 +152,13 @@ class CustomForgotPassWordController extends Controller
     // 重設密碼
     public function resetPassword(Request $request)
     {
+        // 確保用戶已經通過驗證碼驗證
+        if (!Session::get('password_reset_verified')) {
+            return redirect()->route('myenter-confirmation-code')->withErrors(['code' => '請先輸入驗證碼']);
+        }
+
         $request->validate([
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:6|confirmed',
         ]);
 
         //確保 session 內還有 email

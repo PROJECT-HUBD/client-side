@@ -5,7 +5,7 @@
 @section('meta_keywords', '首頁, home')
 
 @section('content')
-<section class="relative mt-[200px] md:mt-[260px] lg:mt-[200px] w-full h-[5800px] md:h-[4200px]">
+<section class="relative mt-[200px] md:mt-[260px] lg:mt-[200px] w-full h-[5400px] md:h-[3600px] lg:h-[4200px]">
     <!-- banner 輪播圖 -->
     <section class="w-full h-[415px] md:h-[440px] lg:h-[600px] overflow-hidden border-b-2 shadow-[0_15px_0_0_brandGray-normalLight] flex flex-col mb-[60px]">
         <div class="relative w-full h-[325px] md:h-[350px] lg:h-[600px] overflow-hidden flex justify-center items-start gap-5">
@@ -145,7 +145,7 @@
     <section class="w-full min-h-[1220px] md:min-h-[600px] md:h-[600px] flex justify-center items-center mb-[80px]">
         <div class="w-full h-full flex flex-col md:flex-row justify-center items-center gap-5">
             <!-- 左邊 單張 -->
-            <div class="relative w-full md:w-[360px] lg:w-[620px] h-full">
+            <div class="relative w-full md:w-[360px] lg:w-[620px] h-[600px]">
                 <img src="{{asset('images/home/card_three1.jpg')}}" alt="銀黏土課程" class="w-full h-full object-cover">
                 <!-- 紅色文字區塊 -->
                 <div class="absolute left-0 bottom-0 w-full lg:w-[420px] h-[238px] bg-[#DC7881] opacity-80 flex justify-center items-center">
@@ -195,7 +195,7 @@
         </div>
     </section>
 
-    <!-- banner -->
+    <!-- banner2 -->
     <section class="w-full h-[334px] md:h-[376px] lg:h-[580px] mb-[60px]">
         <div class="w-full h-[108px] md:h-[233px] lg:h-[400px]"><img src="{{asset('images/home/banner_middle.jpg')}}" alt="品牌橫幅" class="w-full h-full object-cover"></div>
         <!-- 小圖示區 -->

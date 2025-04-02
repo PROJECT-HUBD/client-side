@@ -36,6 +36,16 @@
                 @csrf
                 @method('PUT')
 
+                @if ($errors->any())
+                    <div class="mb-4 p-3 bg-red-100 text-red-700 rounded-md">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="mb-4 w-full relative">
                     <label for="new-password" class="sr-only">新密碼</label>
                     <input type="password" id="new-password" name="password" placeholder="請輸入新密碼"
