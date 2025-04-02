@@ -470,9 +470,9 @@ ${cart_items[i].product_stock}
       let totalPrice = $(".totalPrice").text().replace('$', '');
       // console.log(totalPrice);
       let couponMinus = 0;
-      if ($(".couponsSelect").val() === "新客首購85折") {
+      if ($(".couponsSelect").val() === "購物節85折") {
         couponMinus = -Math.floor(totalPrice * 0.15); // 處理新客首購85折  // console.log($(".couponsSelect").val());  
-      } else if ($(".couponsSelect").val() === "2025年4月生日券") {
+      } else if ($(".couponsSelect").val() === "生日券") {
         couponMinus = -199; // 處理2025年4月生日券
       } else if ($(".couponsSelect").val() === "週年慶滿千折百") {
         couponMinus = -100; // 處理週年慶滿千折百
