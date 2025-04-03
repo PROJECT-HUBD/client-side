@@ -5,7 +5,7 @@
 @section('meta_keywords', '交易失敗')
 
 @section('content')
-<section class="mt-[150px] ">
+<section class="mt-[195px] ">
   <!-- 麵包屑 -->
   <x-breadcrumb :items="[
              ['name' => '首頁', 'url' => route('home')],

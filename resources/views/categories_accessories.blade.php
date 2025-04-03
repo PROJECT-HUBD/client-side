@@ -5,7 +5,7 @@
 @section('meta_keywords', 'accessories, 飾品')
 
 @section('content')
-<section class="mt-[150px] flex flex-col justify-center items-center">
+<section class="mt-[195px] flex flex-col justify-center items-center">
     <!-- 麵包屑 -->
     <x-breadcrumb :items="[
              ['name' => '首頁', 'url' => route('home')],

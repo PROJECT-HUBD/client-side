@@ -7,7 +7,7 @@
 
 @section('content')
 
-<section class="mt-[150px]">
+<section class="mt-[195px]">
     <x-breadcrumb :items="[
              ['name' => '首頁', 'url' => route('home')],
              ['name' => '關於我們'],

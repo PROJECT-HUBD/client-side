@@ -28,7 +28,7 @@
 @section('content')
 
 
-    <div class="lg:mt-[150px] lg:w-[1440px] mx-auto  md:mt-[189px] md:w-[960px]  ">
+    <div class="lg:mt-[195px] lg:w-[1440px] mx-auto  md:mt-[189px] md:w-[960px]  ">
         <x-breadcrumb :items="array_filter([
             ['name' => '首頁', 'url' => route('home')],
             ['name' => $categoryName, 'url' => $categoryRoute],
@@ -37,7 +37,7 @@
         ])" />
     </div>
     <!-- 紅布條 -->
-    <!-- <div class="flex justify-center items-center bg-brandRed-normal w-full h-[30px] text-white text-center py-2 z-200 mb-20">青春獻禮母親節，全館全面九折</div> -->
+    <!-- <div class="flex justify-center items-center bg-brandRed-normal w-full h-[30px] text-white text-center py-2 z-200 mb-20">感恩獻禮母親節，全館全面九折</div> -->
             
     <main
         class=" flex mx-auto lg:w-[1320px] lg:h-[580px]  lg:px-[60px] lg:gap-10 md:gap-5 sm:gap-[20px] md:w-[720px] md:h-[375px] sm:w-[350px] sm:h-full md:flex-row sm:flex-col md:mt-[0px] sm:mt-[139px] ">

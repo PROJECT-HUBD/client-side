@@ -5,7 +5,7 @@
 @section('meta_keywords', '購物車')
 
 @section('content')
-<section class="mt-[150px] ">
+<section class="mt-[195px] ">
   <!-- 麵包屑 -->
   <x-breadcrumb :items="[
              ['name' => '首頁', 'url' => route('home')],
@@ -414,8 +414,8 @@ ${cart_items[i].product_stock}
 
           // 價格顯示
           resultHTML += `<div class="flex flex-col justify-center self-stretch my-auto text-base">`;
-          // resultHTML += `<p class="discount_price text-red-700">$${Number(cart_items[i].discount_price)}</p>`; // 强制转换为数字并格式化为两位小数
-          resultHTML += `<p class="product_price mt-3 text-zinc-700" >$${Number(cart_items[i].product_price)}</p>`; // 强制转换为数字并格式化为两位小数
+          resultHTML += `<p class="discount_price text-red-700">$${Number(cart_items[i].product_price*0.9)}</p>`; // 强制转换为数字并格式化为两位小数
+          resultHTML += `<p class="product_price mt-3 text-zinc-700 line-through" >$${Number(cart_items[i].product_price)}</p>`; // 强制转换为数字并格式化为两位小数
           resultHTML += `</div>`; // 關閉價格區塊
 
           resultHTML += `</div>`; // 關閉 row-right-part

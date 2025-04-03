@@ -5,7 +5,7 @@
 @section('meta_keywords', '結帳')
 
 @section('content')
-<section class="mt-[150px]">
+<section class="mt-[195px]">
   <x-breadcrumb :items="[
              ['name' => '首頁', 'url' => route('home')],
              ['name' => '購物車', 'url' => route('cart')],
@@ -169,15 +169,13 @@
 
       resultHTML += `<div class="flex gap-10 items-center self-stretch my-auto text-base">`;
 
-      resultHTML += `<div class="flex flex-col justify-center self-stretch my-auto">`;
+      resultHTML += `<div class="flex flex-col gap-2 justify-center self-stretch my-auto">`;
 
-      // resultHTML += `<p class="text-red-700">$${(productList[i].discountPrice)}</p>`;
+      resultHTML += `<p class="text-red-700 ">$${(productList[i].product_price*0.9)}</p>`;
 
-      resultHTML += `<p class="mt-3 text-zinc-700">`;
+      resultHTML += `<p class="line-through">$${(productList[i].product_price)}</p>`;
 
-      resultHTML += `<span >$${(productList[i].product_price)}</span>`;
-
-      resultHTML += `</p>`; // Closing the price and discount section
+    
       resultHTML += `</div>`; // Closing the flex container for price details
       resultHTML += `</div>`; // Closing the outer div for product
       resultHTML += `</article>`;

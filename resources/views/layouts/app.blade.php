@@ -45,8 +45,11 @@
     <header class="w-full flex justify-center">
         <!-- marquee -->
         @include('layouts.header_marquee')
+        <!-- marketing -->
+        @include('layouts.marketing')
         <!-- nav -->
         @include('layouts.navigation')
+        
     </header>
 
     <!-- main -->

@@ -6,7 +6,7 @@
 
 
 @section('content')
-<section class="mt-[150px] text-gray-900 leading-loose">
+<section class="mt-[195px] text-gray-900 leading-loose">
     <!-- 麵包屑 -->
     <x-breadcrumb :items="[
              ['name' => '首頁', 'url' => route('home')],
