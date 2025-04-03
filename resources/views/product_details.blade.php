@@ -36,7 +36,9 @@
             ['name' => $product->product_name],
         ])" />
     </div>
-
+    <!-- 紅布條 -->
+    <!-- <div class="flex justify-center items-center bg-brandRed-normal w-full h-[30px] text-white text-center py-2 z-200 mb-20">青春獻禮母親節，全館全面九折</div> -->
+            
     <main
         class=" flex mx-auto lg:w-[1320px] lg:h-[580px]  lg:px-[60px] lg:gap-10 md:gap-5 sm:gap-[20px] md:w-[720px] md:h-[375px] sm:w-[350px] sm:h-full md:flex-row sm:flex-col md:mt-[0px] sm:mt-[139px] ">
         <section
@@ -86,6 +88,7 @@
                 </button>
             </div>
         </section>
+        
         <div
             class="lg:w-[560px] lg:h-[580px] md:w-[340px] md:h-[375px]   flex-col justify-start items-start lg:gap-11 md:gap-4 sm:gap-[20px] inline-flex">
             <div class="self-stretch md:h-[116px] flex-col justify-start items-start gap-5 flex">
@@ -109,10 +112,16 @@
                     class="opacity-60 text-brandGray-normal lg:text-sm sm:text-xs font-light font-['Lexend'] lg:leading-snug md:leading-[18px] max-h-[120px] overflow-hidden hover:overflow-visible">
                     {{ $product->product_description }}</div>
             </div>
-            <div class="justify-start items-center gap-2.5 inline-flex">
+            <div class="flex flex-col justify-center items-start gap-2.5 inline-flex">
+            <div class="flex flex-row items-center gap-2.5 ">   
+            <div
+                    class="text-brandRed-normal lg:text-2xl sm:text-lg font-light font-['Lexend'] lg:leading-9 sm:leading-relaxed">
+                    NT$ {{ number_format($product->product_price*0.9) }}</div>
                 <div
-                    class="text-brandGray-normal lg:text-2xl sm:text-lg font-light font-['Lexend'] lg:leading-9 sm:leading-relaxed">
-                    NT$ {{ number_format($product->product_price) }}</div>
+                    class="text-brandGray-normal lg:text-xl sm:text-md font-light font-['Lexend'] lg:leading-9 sm:leading-relaxed line-through">
+                    NT$ {{ number_format($product->product_price ) }}</div>
+                    </div> 
+                <div class="text-brandRed-normal border border-brandRed-normal rounded-md px-2 py-1"> 青春獻禮母親節，全館全面九折</div>
             </div>
             <div class="flex flex-col lg:gap-9 md:gap-4 sm:gap-[10px] w-full">
                 @unless($isAccessory)
