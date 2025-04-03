@@ -121,7 +121,7 @@
                     class="text-brandGray-normal lg:text-xl sm:text-md font-light font-['Lexend'] lg:leading-9 sm:leading-relaxed line-through">
                     NT$ {{ number_format($product->product_price ) }}</div>
                     </div> 
-                <div class="text-brandRed-normal border border-brandRed-normal rounded-md px-2 py-1"> 青春獻禮母親節，全館全面九折</div>
+                <div class="text-brandRed-normal border border-brandRed-normal rounded-md px-2 py-1"> 感恩獻禮母親節，全館全面九折</div>
             </div>
             <div class="flex flex-col lg:gap-9 md:gap-4 sm:gap-[10px] w-full">
                 @unless($isAccessory)
