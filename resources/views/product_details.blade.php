@@ -114,8 +114,8 @@
             </div>
             <div class="flex flex-col justify-center items-start gap-2.5 inline-flex">
             <div class="flex flex-row items-center gap-2.5 ">   
-            <div
-                    class="text-brandRed-normal lg:text-2xl sm:text-lg font-light font-['Lexend'] lg:leading-9 sm:leading-relaxed">
+            <div class="text-brandRed-normal lg:text-2xl sm:text-lg font-light font-['Lexend'] lg:leading-9 sm:leading-relaxed">
+                   
                     NT$ {{ number_format($product->product_price*0.9) }}</div>
                 <div
                     class="text-brandGray-normal lg:text-xl sm:text-md font-light font-['Lexend'] lg:leading-9 sm:leading-relaxed line-through">

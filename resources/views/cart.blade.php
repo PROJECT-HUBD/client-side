@@ -414,7 +414,7 @@ ${cart_items[i].product_stock}
 
           // 價格顯示
           resultHTML += `<div class="flex flex-col justify-center self-stretch my-auto text-base">`;
-          resultHTML += `<p class="discount_price text-red-700">$${Number(cart_items[i].product_price*0.9)}</p>`; // 强制转换为数字并格式化为两位小数
+          resultHTML += `<p class="discount_price text-red-700">$${Math.floor(cart_items[i].product_price*0.9)}</p>`; // 强制转换为数字并格式化为两位小数
           resultHTML += `<p class="product_price mt-3 text-zinc-700 line-through" >$${Number(cart_items[i].product_price)}</p>`; // 强制转换为数字并格式化为两位小数
           resultHTML += `</div>`; // 關閉價格區塊
 
@@ -456,7 +456,7 @@ ${cart_items[i].product_stock}
       let totalPriceWithDiscount = totalPrice * 0.9 + couponMinus; // 計算折扣後的總價
 
       $(".totalPrice").text(`$${totalPrice.toFixed(0)}`); // 更新總金額
-      $(".festivalMinus").text(`-$${totalPrice*0.1}`); // 更新活動特惠
+      $(".festivalMinus").text(`-$${Math.floor(totalPrice*0.1)}`); // 更新活動特惠
       $(".totalPriceWithDiscount").text(`$${totalPriceWithDiscount.toFixed(0)}`); // 更新折扣後的總金額
     } //end of updatePrices()
 
