@@ -29,9 +29,9 @@ class CheckoutController extends Controller
             $orderMain->order_id = $orderMainData['order_id'];
 
             // Manually set created_at and updated_at
-            $orderMain->created_at = now()->addHours(8);
-            $orderMain->updated_at = now()->addHours(8);
-            $orderMain->trade_Date = now()->addHours(8);
+            $orderMain->created_at = now();
+            $orderMain->updated_at = now();
+            $orderMain->trade_Date = now();
 
             $orderMain->save();
             return response()->json(['res' => $orderMainData]);
@@ -62,8 +62,8 @@ public function InsertOrderDetail(Request $request)
             $orderDetail->product_price = $product['product_price'];
 
             // Manually set created_at and updated_at
-            $orderDetail->created_at = now()->addHours(8);
-            $orderDetail->updated_at = now()->addHours(8);
+            $orderDetail->created_at = now();
+            $orderDetail->updated_at = now();
 
             // Save the order detail to the database
             $orderDetail->save();
@@ -148,7 +148,7 @@ public function UpdateProductStock(Request $request)
                         ->where('product_id', $productId)
                         ->update([
                             'product_stock' => $productSpec->product_stock - $quantity,
-                            'updated_at' => now()->addHours(8)
+                            'updated_at' => now()
                         ]);
                 } else {
                     // 如果庫存不足，回滾事務並返回錯誤

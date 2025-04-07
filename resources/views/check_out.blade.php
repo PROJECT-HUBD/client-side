@@ -58,9 +58,9 @@
         </select>
       </section>
   
-    <a href="{{ route('successful_transaction') }}"
    
-
+   
+<a
         class="makeOrder flex justify-center items-center px-10 py-4 mt-12 w-full text-2xl font-bold tracking-normal leading-none text-center text-white  bg-red-500 rounded-md max-md:px-5 max-md:mt-10 max-md:max-w-full">
         一鍵下訂
       </a>
@@ -334,6 +334,7 @@
             },
             success: function(response) {
               console.log("Success inserting order details::", response);
+              window.location.href = "{{ route('successful_transaction') }}";
             },
             error: function(error) {
               console.error("Error inserting order details:", error);
@@ -355,7 +356,6 @@
           quantity: product.quantity
         }))
       };
-
 
       $.ajax({
         url: 'http://localhost/client-side/public/DeleteCart',
@@ -388,7 +388,6 @@
           quantity: product.quantity
         }))
       };
-
       $.ajax({
         url: 'http://localhost/client-side/public/UpdateProductStock',
         method: 'POST',
@@ -408,6 +407,9 @@
           console.error("Error deleting cart items:", error);
         }
       }); //end of ajax_UpdateProductStock
+
+   
+   
     }); //end of makeOrder
   }); //end of document.ready
   // <------------------------------renew cart SQLCommand --------------------------->
