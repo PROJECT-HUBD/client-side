@@ -360,12 +360,12 @@
 
           // 產品選擇
           resultHTML += `<div class="flex flex-col items-start mt-3 max-w-full text-sm whitespace-flexwrap w-[100px] rounded">`;
-          if (cart_items[i].product_color == "null") {
-            resultHTML += `<select name="product_color" class="product_color" style="display: none;">`;
+          if (cart_items[i].product_color == null) {
+            resultHTML += `<select name="product_color" class="product_color" style="display:none !important;">`;
+    
           } else {
             resultHTML += `<select name="product_color"  class="product_color flex gap-10 justify-between items-center px-3 py-1 w-32 rounded bg-neutral-100 max-w-40 border border-none">`;
-          }
-          resultHTML += `<option  value="${cart_items[i].product_color}" >${cart_items[i].product_color}</option>`;
+            resultHTML += `<option  value="${cart_items[i].product_color}" >${cart_items[i].product_color}</option>`;
           if (cart_items[i].product_color == "Black") {
             resultHTML += `<option  value="Black" hidden>Black</option>`;
           resultHTML += `<option  value="Grey">Grey</option>`;
@@ -382,9 +382,10 @@
             resultHTML += `<option  value="White" hidden>White</option>`;
           }
           
-          
+          }
           resultHTML += `</select>`;
-          if (cart_items[i].product_size == "null") {
+
+          if (cart_items[i].product_size == null) {
             resultHTML += `<select name="product_size" class="product_size" style="display: none;">`;
           } else {
             resultHTML += `<select name="product_size" class="product_size flex gap-10 justify-between items-center mt-2 px-3 py-1 w-32 rounded bg-neutral-100 max-w-40 border border-none">`;
@@ -529,7 +530,7 @@ ${cart_items[i].product_stock}
         };
         let nrpProduct = productList.cart_items.find(item => item.product_id && item.product_id.startsWith("pj"));
         if (nrpProduct) {
-          couponMinus = -nrpProduct.product_price * 0.05;
+          couponMinus = -Math.floor(nrpProduct.product_price * 0.05);
         } else {
           couponMinus = 0;
         }

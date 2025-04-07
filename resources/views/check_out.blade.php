@@ -57,9 +57,9 @@
 
         </select>
       </section>
-
-      <a href="{{ route('successful_transaction') }}"
-     
+  
+    <a href="{{ route('successful_transaction') }}"
+    
 
         class="makeOrder flex justify-center items-center px-10 py-4 mt-12 w-full text-2xl font-bold tracking-normal leading-none text-center text-white  bg-red-500 rounded-md max-md:px-5 max-md:mt-10 max-md:max-w-full">
         一鍵下訂
@@ -158,7 +158,11 @@
 
       resultHTML += `<div class="flex flex-col items-start mt-1 max-w-full whitespace-nowrap w-[191px]">`;
 
-      resultHTML += `<div class="self-stretch py-1 w-40 rounded max-w-40">${(productList[i]. product_color)} - ${(productList[i]. product_size)}</div>`;
+      
+      if (productList[i].product_color == null && productList[i].product_color == null) {
+        resultHTML += `<div class="self-stretch py-1 w-40 rounded max-w-40" style="display:none !important;">${(productList[i]. product_color)} - ${(productList[i]. product_size)}</div>`;
+      }else{resultHTML += `<div class="self-stretch py-1 w-40 rounded max-w-40">${(productList[i]. product_color)} - ${(productList[i]. product_size)}</div>`;}
+        
 
       resultHTML += `</div>`; // Closing the flex column container
 
@@ -290,7 +294,20 @@
       };
       // console.log(orderMainData);
 
-      // <------------------------------Insert order main data (InsertOrderMain)<------------------------------>
+      // <------------------------------給Orderdetail資料表的資料Prepare data for InsertOrderDetail API------------------------------>
+      const orderDetailData = {
+        order_id: order_id,
+        products: productList.map(product => ({
+          product_name: product.product_name,
+          product_size: product.product_size,
+          product_color: product.product_color,
+          quantity: product.quantity,
+          product_price: product.product_price
+        }))
+      };
+      // console.log(orderDetailData);
+
+      // <------------------------------先Insert order main data (InsertOrderMain)<------------------------------>
       $.ajax({
         url: 'http://localhost/client-side/public/InsertOrderMain',
         method: 'POST',
@@ -303,39 +320,28 @@
         },
         success: function(response) {
           console.log("Order Main Inserted Successfully:", response);
+          
+          // <------------------------------在OrderMain成功後再Insert order details (InsertOrderDetail)--------------------------->
+          $.ajax({
+            url: 'http://localhost/client-side/public/InsertOrderDetail',
+            method: 'POST',
+            contentType: "application/json", // 以 JSON 格式發送資料
+            data: JSON.stringify({
+              productList: orderDetailData
+            }), // 傳遞 JSON 格式的購物車資料
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // 取得 CSRF Token
+            },
+            success: function(response) {
+              console.log("Success inserting order details::", response);
+            },
+            error: function(error) {
+              console.error("Error inserting order details:", error);
+            }
+          });
         },
         error: function(error) {
           console.error("Error inserting order main:", error);
-        }
-      });
-      //  <-----------------------------給Orderdetail資料表的資料Prepare data for InsertOrderDetail API------------------------------>
-      const orderDetailData = {
-        order_id: order_id,
-        products: productList.map(product => ({
-          product_name: product.product_name,
-          product_size: product.product_size,
-          product_color: product.product_color,
-          quantity: product.quantity,
-          product_price: product.product_price
-        }))
-      };
-      // console.log(orderDetailData);
-      // <------------------------------Insert order details (InsertOrderDetail)--------------------------->
-      $.ajax({
-        url: 'http://localhost/client-side/public/InsertOrderDetail',
-        method: 'POST',
-        contentType: "application/json", // 以 JSON 格式發送資料
-        data: JSON.stringify({
-          productList: orderDetailData
-        }), // 傳遞 JSON 格式的購物車資料
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // 取得 CSRF Token
-        },
-        success: function(response) {
-          console.log("Success inserting order details::", response);
-        },
-        error: function(error) {
-          console.error("Error inserting order details:", error);
         }
       });
 
