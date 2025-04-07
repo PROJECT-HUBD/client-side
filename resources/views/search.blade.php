@@ -29,7 +29,10 @@
                     </div>
                     <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
                         <p class="text-brandGrey-darker">{{$result->product_name}}</p>
-                        <p class="text-brandGrey-normal text-[18px]">NT$&nbsp;<span id="price">{{$result->product_price}}</span></p>
+                        <div class="flex justify-start items-center gap-5">
+                            <p class="text-brandGray-normalLight text-[18px] line-through">NT$&nbsp;<span id="price">{{$result->product_price}}</span></p>
+                            <p class="text-brandRed-normal text-[18px]">NT$&nbsp;<span id="price">{{$result->product_price * 0.9}}</span></p>
+                        </div>
                     </div>
                 </a>
                 @endforeach
