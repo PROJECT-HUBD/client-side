@@ -43,7 +43,7 @@
 </div>
 
 <!-- 行動版新側邊欄（取代原先的底部導航） -->
-<div class="md:hidden fixed left-0 z-50 flex flex-col bg-white border-r border-brandGray-light shadow-md min-w-[64px]" style="top: var(--header-height, 125px); bottom: 0; width: 64px; transition: all 0.3s ease-in-out;" id="mobileSidebar">
+<div class="md:hidden fixed left-0 z-50 flex flex-col bg-white border-r border-brandGray-light shadow-md min-w-[64px]" style="top: var(--header-height, 170px); bottom: 0; width: 64px; transition: all 0.3s ease-in-out;" id="mobileSidebar">
     <!-- 使用grid布局實現垂直均勻分佈 -->
     <div class="grid grid-cols-1 h-full py-4 overflow-y-auto" style="grid-template-rows: auto 1.5fr auto 1fr auto 1fr auto 1fr auto 1fr auto 1.5fr auto;">
         <!-- 第1個按鈕：展開/收合 -->
@@ -143,7 +143,7 @@
 </div>
 
 <!-- 黑色半透明背景覆蓋層 (當側邊欄展開時顯示) -->
-<div class="fixed left-0 right-0 bg-black bg-opacity-50 z-45 hidden md:hidden transition-opacity duration-300" style="top: var(--header-height, 125px); bottom: 0;" id="sidebarOverlay"></div>
+<div class="fixed left-0 right-0 bg-black bg-opacity-50 z-45 hidden md:hidden transition-opacity duration-300" style="top: var(--header-height, 170px); bottom: 0;" id="sidebarOverlay"></div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -159,11 +159,21 @@
         // 設定header高度變數
         const updateHeaderHeight = () => {
             const marquee = document.querySelector('.marquee-wrapper');
+            const marketing = document.querySelector('.fixed.top-\\[45px\\]'); // 紅布條
             const navigation = document.querySelector('nav');
+            
             if (marquee && navigation) {
-                const marqueeHeight = marquee.offsetHeight;
-                const navigationHeight = navigation.offsetHeight;
-                const totalHeight = marqueeHeight + navigationHeight;
+                // 計算所有元素高度
+                const marqueeHeight = marquee.offsetHeight || 0;
+                const navigationHeight = navigation.offsetHeight || 0;
+                const marketingHeight = marketing ? marketing.offsetHeight || 0 : 0;
+                
+                // 根據紅布條的固定定位進行調整
+                let totalHeight = marqueeHeight + navigationHeight + 45; // 45px是紅布條的頂部偏移
+                
+                // 設置最小為170px，確保即使無法計算也有合理的空間
+                totalHeight = Math.max(totalHeight, 170);
+                
                 document.documentElement.style.setProperty('--header-height', `${totalHeight}px`);
                 
                 // 直接設定側邊欄位置
@@ -184,7 +194,7 @@
             
             const windowHeight = window.innerHeight;
             const windowWidth = window.innerWidth;
-            const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height') || '125px');
+            const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height') || '170px');
             const availableHeight = windowHeight - headerHeight;
             
             // 處理側邊欄展開時的寬度限制

@@ -5,16 +5,16 @@
     <style>
         /* 設定CSS變數，用於儲存header高度 */
         :root {
-            --header-height: 125px;
+            --header-height: 170px; /* 預設值更改為包含紅布條的高度 */
         }
 
         /* 自定義類，可以通過Tailwind的斷點應用 */
         .min-height-custom {
-            min-height: calc(100vh - var(--header-height, 125px));
+            min-height: calc(100vh - var(--header-height, 170px));
         }
         
         .content-min-height {
-            min-height: calc(100vh - var(--header-height, 125px) - 40px);
+            min-height: calc(100vh - var(--header-height, 170px) - 40px);
         }
         
         /* 側邊欄寬度相關類 */
@@ -62,14 +62,31 @@
         // 設定header高度變數供樣式表使用
         document.addEventListener('DOMContentLoaded', function() {
             const updateHeaderHeight = () => {
-                const header = document.querySelector('header');
-                if (header) {
-                    const headerHeight = header.offsetHeight;
-                    document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
-                }
+                // 獲取完整的header高度，包括紅布條
+                const marquee = document.querySelector('.marquee-wrapper');
+                const marketing = document.querySelector('.fixed.top-\\[45px\\]'); // 紅布條
+                const navigation = document.querySelector('nav');
                 
-                // 在小屏幕上應用footer調整
-                applyFooterStyles();
+                if (marquee && navigation) {
+                    let totalHeight = 0;
+                    
+                    // 計算所有元素高度
+                    const marqueeHeight = marquee.offsetHeight || 0;
+                    const navigationHeight = navigation.offsetHeight || 0;
+                    const marketingHeight = marketing ? marketing.offsetHeight || 0 : 0;
+                    
+                    // 根據紅布條的固定定位進行調整
+                    totalHeight = marqueeHeight + navigationHeight + 45; // 45px是紅布條的頂部偏移
+                    
+                    // 設置最小為170px，確保即使無法計算也有合理的空間
+                    totalHeight = Math.max(totalHeight, 170);
+                    
+                    // 將計算後的高度應用到CSS變數
+                    document.documentElement.style.setProperty('--header-height', `${totalHeight}px`);
+                    
+                    // 調整footer樣式
+                    applyFooterStyles();
+                }
             };
             
             // 應用footer樣式
