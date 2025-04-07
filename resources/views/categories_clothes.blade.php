@@ -44,7 +44,10 @@ $initialTab = 2;
                             </div>
                             <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
                                 <p class="text-brandGrey-darker">{{$short->product_name}}</p>
-                                <p class="text-brandGrey-normal text-[18px]">NT$&nbsp;<span id="price">{{$short->product_price}}</span></p>
+                                <div class="flex justify-start items-center gap-5">
+                                    <p class="text-brandGray-normalLight text-[18px] line-through">NT$&nbsp;<span id="price">{{$short->product_price}}</span></p>
+                                    <p class="text-brandRed-normal text-[18px]">NT$&nbsp;<span id="price">{{$short->product_price * 0.9}}</span></p>
+                                </div>
                             </div>
                         </a>
                         @endforeach
@@ -67,7 +70,10 @@ $initialTab = 2;
                             </div>
                             <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
                                 <p class="text-brandGrey-darker">{{$long->product_name}}</p>
-                                <p class="text-brandGrey-normal text-[18px]">NT$&nbsp;<span id="price">{{$long->product_price}}</span></p>
+                                <div class="flex justify-start items-center gap-5">
+                                    <p class="text-brandGray-normalLight text-[18px] line-through">NT$&nbsp;<span id="price">{{$long->product_price}}</span></p>
+                                    <p class="text-brandRed-normal text-[18px]">NT$&nbsp;<span id="price">{{$long->product_price * 0.9}}</span></p>
+                                </div>
                             </div>
                         </a>
                         @endforeach
@@ -89,7 +95,10 @@ $initialTab = 2;
                             </div>
                             <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
                                 <p class="text-brandGrey-darker">{{$jacket->product_name}}</p>
-                                <p class="text-brandGrey-normal text-[18px]">NT$&nbsp;<span id="price">{{$jacket->product_price}}</span></p>
+                                <div class="flex justify-start items-center gap-5">
+                                    <p class="text-brandGray-normalLight text-[18px] line-through">NT$&nbsp;<span id="price">{{$jacket->product_price}}</span></p>
+                                    <p class="text-brandRed-normal text-[18px]">NT$&nbsp;<span id="price">{{$jacket->product_price * 0.9}}</span></p>
+                                </div>
                             </div>
                         </div>
 
@@ -101,7 +110,10 @@ $initialTab = 2;
                             </div>
                             <div class="w-full h-[74px] flex flex-col justify-center items-start gap-5 text-[20px]">
                                 <p class="text-brandGrey-darker">{{$jacket->product_name}}</p>
-                                <p class="text-brandGrey-normal text-[18px]">NT$&nbsp;<span id="price">{{$jacket->product_price}}</span></p>
+                                <div class="flex justify-start items-center gap-5">
+                                    <p class="text-brandGray-normalLight text-[18px] line-through">NT$&nbsp;<span id="price">{{$jacket->product_price}}</span></p>
+                                    <p class="text-brandRed-normal text-[18px]">NT$&nbsp;<span id="price">{{$jacket->product_price * 0.9}}</span></p>
+                                </div>
                             </div>
                         </a>
                         @endif
@@ -124,10 +136,10 @@ $initialTab = 2;
             let windowWidth = $(window).width();
 
             // RWD 判斷：不同螢幕寬度的 `grid-cols`
-            if (windowWidth < 1024) { // md:grid-cols-3
+            if (windowWidth < 1200) { // md:grid-cols-3
                 itemsPerRow = 3;
             }
-            if (windowWidth < 768) { // 手機顯示單列
+            if (windowWidth < 800) { // 手機顯示單列
                 itemsPerRow = 1;
             }
 

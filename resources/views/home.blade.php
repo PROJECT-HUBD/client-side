@@ -81,8 +81,10 @@
                         <p class="text-brandGray-normal text-[24px] mb-5 targetName">{{ $firstItem->product_name }}</p>
                         <p class="hidden md:block text-brandGray-normalLight text-[16px] targetDesc">{{ $firstItem->product_description }}</p>
                     </div>
-                    <div class="pb-[28px] text-[24px]">
-                        <p>NT$&nbsp;<span class="targetPrice">{{ $firstItem->product_price }}</span></p>
+                    <!-- 價格 -->
+                    <div class="pb-[28px] text-[24px] flex justify-start items-center gap-8">
+                        <p class="line-through text-brandGray-normalLight">NT$&nbsp;<span class="targetPrice">{{ $firstItem->product_price }}</span></p>
+                        <p class="text-brandRed-normal">NT$&nbsp;<span class="targetPriceDiscount">{{ $firstItem->product_price * 0.9 }}</span></p>
                     </div>
                     <div class="md:w-full md:h-[50px] flex justify-center md:justify-between items-center md:gap-5">
                         <!-- 顏色 -->
@@ -257,7 +259,10 @@
                 </div>
                 <div class="w-full h-[74px] flex flex-col justify-center items-start gap-3 text-[20px]">
                     <p class="text-brandGray-darker">{{$accessory->product_name}}</p>
-                    <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">{{ number_format($accessory->product_price) }}</span></p>
+                    <div class="flex justify-start items-center gap-5">
+                        <p class="text-brandGray-normalLight text-[18px] line-through">NT$&nbsp;<span id="price">{{ number_format($accessory->product_price) }}</span></p>
+                        <p class="text-brandRed-normal text-[18px]">NT$&nbsp;<span id="price">{{ number_format($accessory->product_price * 0.9) }}</span></p>
+                    </div>
                 </div>
             </a>
             @endforeach
@@ -289,7 +294,10 @@
                 </div>
                 <div class="w-full h-[74px] flex flex-col justify-center items-start gap-3 text-[20px]">
                     <p class="text-brandGray-darker">{{$cloth->product_name}}</p>
-                    <p class="text-brandGray-normal text-[18px]">NT$&nbsp;<span id="price">{{ number_format($cloth->product_price) }}</span></p>
+                    <div class="flex justify-start items-center gap-5">
+                        <p class="text-brandGray-normalLight text-[18px] line-through">NT$&nbsp;<span id="price">{{ number_format($cloth->product_price) }}</span></p>
+                        <p class="text-brandRed-normal text-[18px]">NT$&nbsp;<span id="price">{{ number_format($cloth->product_price) }}</span></p>
+                    </div>
                 </div>
             </a>
             @endforeach
@@ -379,6 +387,7 @@
                     $(".targetName").text(newTarget.attr("data-name"));
                     $(".targetDesc").text(newTarget.attr("data-desc"));
                     $(".targetPrice").text(newTarget.attr("data-price"));
+                    $(".targetPriceDiscount").text(newTarget.attr("data-price") * 0.9);
                 }
             });
         });
