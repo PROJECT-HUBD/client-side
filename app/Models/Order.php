@@ -14,6 +14,8 @@ class Order extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
+    public $timestamps = false;
+
     /**
      * 定義與 User 的關聯
      */

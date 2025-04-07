@@ -109,8 +109,8 @@ class CartController extends Controller
                     'product_color' => $data['product_color'],
                     'product_size' => $data['product_size'],
                     'quantity' => $data['quantity'],
-                    'created_at' => now(),
-                    'updated_at' => now(),
+                    'created_at' => now()->addHours(8),
+                    'updated_at' => now()->addHours(8),
                 ]);
             }
 
