@@ -59,7 +59,7 @@
       </section>
   
     <a href="{{ route('successful_transaction') }}"
-    
+   
 
         class="makeOrder flex justify-center items-center px-10 py-4 mt-12 w-full text-2xl font-bold tracking-normal leading-none text-center text-white  bg-red-500 rounded-md max-md:px-5 max-md:mt-10 max-md:max-w-full">
         一鍵下訂
@@ -269,7 +269,7 @@
 
     $(".makeOrder").on("click", function() {
       // Generate random trade_No ( digits) and order_id (8 digits)
-      const order_id = Math.floor(Math.random() * 900 + 100); // Random 3 digits
+      const order_id = Math.floor(Math.random() * 900000 + 100000); // Random 6 digits
       const trade_No = Math.floor(Math.random() * 90000000 + 10000000); // Random 8 digits
 
       // Get data from localstorage & views
