@@ -263,7 +263,7 @@
     function renderProductList(productList) {
       // 從 API 回傳的資料中獲取購物車項目
       const cart_items = productList.cart_items || [];
-      console.log(cart_items);
+      // console.log(cart_items);
 
       for (let i = 0; i < cart_items.length; i++) {
         // console.log(i);
@@ -365,20 +365,47 @@
           } else {
             resultHTML += `<select name="product_color"  class="product_color flex gap-10 justify-between items-center px-3 py-1 w-32 rounded bg-neutral-100 max-w-40 border border-none">`;
           }
-          resultHTML += `<option  value="${cart_items[i].product_color}"  hidden>${cart_items[i].product_color}</option>`;
-          resultHTML += `<option  value="Black">Black</option>`;
+          resultHTML += `<option  value="${cart_items[i].product_color}" >${cart_items[i].product_color}</option>`;
+          if (cart_items[i].product_color == "Black") {
+            resultHTML += `<option  value="Black" hidden>Black</option>`;
           resultHTML += `<option  value="Grey">Grey</option>`;
           resultHTML += `<option  value="White">White</option>`;
+          }
+          if (cart_items[i].product_color == "Grey") {
+            resultHTML += `<option  value="Black">Black</option>`;
+            resultHTML += `<option  value="Grey" hidden>Grey</option>`;
+            resultHTML += `<option  value="White">White</option>`;
+          }
+          if (cart_items[i].product_color == "White") {
+            resultHTML += `<option  value="Black">Black</option>`;
+            resultHTML += `<option  value="Grey">Grey</option>`;
+            resultHTML += `<option  value="White" hidden>White</option>`;
+          }
+          
+          
           resultHTML += `</select>`;
           if (cart_items[i].product_size == "null") {
             resultHTML += `<select name="product_size" class="product_size" style="display: none;">`;
           } else {
             resultHTML += `<select name="product_size" class="product_size flex gap-10 justify-between items-center mt-2 px-3 py-1 w-32 rounded bg-neutral-100 max-w-40 border border-none">`;
           }
-          resultHTML += `<option value="${cart_items[i].product_size}" hidden>${cart_items[i].product_size}</option>`;
-          resultHTML += `<option value="S">S</option>`;
-          resultHTML += `<option value="M">M</option>`;
-          resultHTML += `<option value="L">L</option>`;
+          resultHTML += `<option value="${cart_items[i].product_size}" >${cart_items[i].product_size}</option>`;
+          if (cart_items[i].product_size == "S") {
+            resultHTML += `<option value="S" hidden>S</option>`;
+            resultHTML += `<option value="M">M</option>`;
+            resultHTML += `<option value="L">L</option>`;
+          }
+          if (cart_items[i].product_size == "M") {
+            resultHTML += `<option value="S">S</option>`;
+            resultHTML += `<option value="M" hidden>M</option>`;
+            resultHTML += `<option value="L">L</option>`;
+          }
+          if (cart_items[i].product_size == "L") {
+            resultHTML += `<option value="S">S</option>`;
+            resultHTML += `<option value="M">M</option>`;
+            resultHTML += `<option value="L" hidden>L</option>`;
+          }
+          
           resultHTML += `</select>`;
           resultHTML += `</div>`; // 關閉選擇框
 

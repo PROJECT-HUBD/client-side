@@ -44,10 +44,10 @@ class CartController extends Controller
            
             $productData[] = [
                 'product_img' => $productMain ? $productMain->product_img : null,
-                'product_stock' => $productMain ? $productSpec->product_stock : null,
+                'product_stock' => $productSpec ? $productSpec->product_stock : null,
                 'product_name' => $cartItem->product_name,
-                'product_size' => $productSpec ? $productSpec->product_size : null,
-                'product_color' => $productSpec ? $productSpec->product_color : null,
+                'product_size' => $cartItem->product_size,
+                'product_color' =>  $cartItem->product_color,
                 'quantity' => $cartItem->quantity,
                 'product_price' => $productMain ? $productMain->product_price : null,
                 'product_id' => $cartItem->product_id,
